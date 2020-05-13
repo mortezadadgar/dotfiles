@@ -1,0 +1,9 @@
+{
+  "coc.preferences.hoverTarget": "float",
+  "coc.preferences.enableFloatHighlight": true,
+  "coc.source.file.ignoreHidden": false,
+  "python.jediEnabled": false,
+  "python.formatting.provider": "yapf",
+  "coc.preferences.formatOnSaveFiletypes": ["python"],
+  "coc.preferences.formatOnType": true,
+}
