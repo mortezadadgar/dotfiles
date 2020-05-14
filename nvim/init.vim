@@ -14,25 +14,66 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'unblevable/quick-scope'
 Plug 'justinmk/vim-sneak'
+Plug 'preservim/nerdtree'
+Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
-"" quick-scope
+" ------------------------[NERDTree]------------------------
+let NERDTreeMinimalUI=1
+let NERDChristmasTree=0
+map <leader>n :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" ------------------------[Quick-Scope]------------------------
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 let g:qs_max_chars=150
 
-"" statusline
+" ------------------------[LightLine]------------------------
 set noshowmode
 set updatetime=300
+set cmdheight=2
 let g:lightline = {
-      \ 'colorscheme': 'onehalfdark',
-      \ }
+        \ 'colorscheme': 'onehalfdark',
+	\ 'active': {
+	\   'left': [ [ 'mode', 'paste' ],
+	\             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
+	\ },
+	\ 'component_function': {
+	\   'filetype': 'MyFiletype',
+	\   'cocstatus': 'coc#status',
+	\   'fileformat': 'MyFileformat',
+	\ }
+	\ }
 
-"" colorscheme
-" let g:gruvbox_contrast_dark = 'soft'
+let g:lightline.separator = {
+	\   'left': '', 'right': ''
+  \}
+
+let g:lightline.subseparator = {
+	\   'left': '', 'right': '' 
+  \}
+
+let g:lightline.tabline = {
+  \   'left': [ ['tabs'] ],
+  \   'right': [ [''] ]
+  \ }
+
+"Use auocmd to force lightline update.
+autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
+
+function! MyFiletype()
+return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
+endfunction
+
+function! MyFileformat()
+return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+endfunction
+
+" ------------------------[colorScheme]------------------------
 set background=dark termguicolors
 colorscheme onehalfdark
 
-"" Basic
+" ------------------------[Basic]------------------------------
 " line number
 set number relativenumber
 " search
@@ -52,7 +93,7 @@ set clipboard=unnamedplus
 " Makes popup menu smaller
 set pumheight=10                        
 
-"" Keymapping
+" ------------------------[Key-Mapping]------------------------
 " Disable q:
 nnoremap q: <nop>
 " Shortcutting split navigation, saving a keypress:
@@ -70,13 +111,16 @@ cmap w!! w !sudo tee %
 vnoremap < <gv
 vnoremap > >gv
 
-"" COC
+" ------------------------[CoC]--------------------------------
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
 
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
 set signcolumn=yes
+
+" TextEdit might fail if hidden is not set.
+set hidden
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
