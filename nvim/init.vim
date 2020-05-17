@@ -16,12 +16,13 @@ Plug 'unblevable/quick-scope'
 Plug 'justinmk/vim-sneak'
 Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
+Plug 'joshdick/onedark.vim'
 call plug#end()
 
 " ------------------------[NERDTree]------------------------
 let NERDTreeMinimalUI=1
 let NERDChristmasTree=0
-map <leader>n :NERDTreeToggle<CR>
+map " :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " ------------------------[Quick-Scope]------------------------
@@ -33,7 +34,7 @@ set noshowmode
 set updatetime=300
 set cmdheight=2
 let g:lightline = {
-        \ 'colorscheme': 'onehalfdark',
+        \ 'colorscheme': 'onedark',
 	\ 'active': {
 	\   'left': [ [ 'mode', 'paste' ],
 	\             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
@@ -58,20 +59,22 @@ let g:lightline.tabline = {
   \   'right': [ [''] ]
   \ }
 
-"Use auocmd to force lightline update.
-autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
+" Use auocmd to force lightline update.
+ autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 
-function! MyFiletype()
-return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
-endfunction
+ function! MyFiletype()
+ return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
+ endfunction
 
-function! MyFileformat()
-return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
-endfunction
+ function! MyFileformat()
+ return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+ endfunction
 
 " ------------------------[colorScheme]------------------------
+let g:onedark_termcolors=16
+let g:onedark_terminal_italics=1
 set background=dark termguicolors
-colorscheme onehalfdark
+colorscheme onedark
 
 " ------------------------[Basic]------------------------------
 " line number
@@ -92,6 +95,8 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 set clipboard=unnamedplus
 " Makes popup menu smaller
 set pumheight=10                        
+" set python binary
+let g:python3_host_prog='/usr/bin/python3'
 
 " ------------------------[Key-Mapping]------------------------
 " Disable q:
@@ -100,18 +105,27 @@ nnoremap q: <nop>
 map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
-" Map arrow keys to resize
-nnoremap <Up> :resize +2<CR> 
-nnoremap <Down> :resize -2<CR>
-nnoremap <Left> :vertical resize +2<CR>
-nnoremap <Right> :vertical resize -2<CR>
-" save as sudo when needed
-cmap w!! w !sudo tee %
 " Better indenting
 vnoremap < <gv
 vnoremap > >gv
+" ripgrep
+map <leader>r :Rg<CR>
+" fzf with preview
+map <leader>ff :Files<CR>
+" compile python code
+imap <F5> <Esc>:w<CR>:!clear;python %<CR>
+map <F5> <Esc>:w<CR>:!clear;python %<CR>
+" Disable arrow keys
+no <down> <Nop>
+no <left> <Nop>
+no <right> <Nop>
+no <up> <Nop>
+vno <down> <Nop>
+vno <left> <Nop>
+vno <right> <Nop>
+vno <up> <Nop>
 
-" ------------------------[CoC]--------------------------------
+" " ------------------------[CoC]--------------------------------
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
 
@@ -238,7 +252,7 @@ nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
 " Find symbol of current document.
 nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
 " Search workspace symbols.
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+nnoremap <silent> <space>s  :<C-u>" CocList -I symbols<cr>
 " Do default action for next item.
 nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 " Do default action for previous item.

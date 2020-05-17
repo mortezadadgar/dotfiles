@@ -49,32 +49,23 @@ font-0 = "NotoSans Nerd Font:style=Regular:size=11;3"
 
 modules-left = i3
 modules-center = date
-modules-right = backlight pulseaudio wlan battery powermenu
+modules-right = system-cpu-frequency info-eyestrain pulseaudio wlan battery powermenu
 
 tray-position = right
 tray-padding = 2
 enable-ipc = false
 
-[module/xwindow]
-type = internal/xwindow
-label = %title:0:30:...%
+[module/system-cpu-frequency]
+type = custom/script
+exec = ~/.config/polybar/scripts/cpu-freq.sh
+format-prefix = "龍 "
+interval = 1
 
-[module/xkeyboard]
-type = internal/xkeyboard
-blacklist-0 = num lock
-
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground}
-
-label-layout = %layout%
-
-label-indicator-padding = 2
-label-indicator-margin = 1
-label-indicator-background = ${colors.background}
-
-[module/filesystem]
-type = internal/fs
-interval = 25
+[module/info-eyestrain]
+type = custom/script
+exec = ~/.config/polybar/scripts/info-eyestrain.sh 
+format-prefix = " "
+interval = 60
 
 mount-0 = /
 
@@ -137,19 +128,12 @@ format = <label>
 ;   %percentage% (default)
 label = %percentage%%
 
-[module/cpu]
-type = internal/cpu
-interval = 2
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground}
-label = %percentage:2%%
-
 [module/wlan]
 type = internal/network
 interface = wlp3s0
 interval = 3.0
 
-format-connected = <ramp-signal> <label-connected>
+format-connected = <label-connected>
 label-connected = %essid%
 
 format-disconnected =
@@ -203,23 +187,6 @@ ramp-capacity-foreground = ${colors.foreground}
 animation-charging-0          = "  "
 animation-charging-1          = "  "
 animation-charging-2          = "  " 
-
-[module/temperature]
-type = internal/temperature
-thermal-zone = 0
-warn-temperature = 60
-
-format = <ramp> <label>
-format-warn = <ramp> <label-warn>
-
-label = %temperature-c%
-label-warn = %temperature-c%
-label-warn-foreground = ${colors.secondary}
-
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
-ramp-foreground = ${colors.foreground}
 
 [module/powermenu]
 type = custom/menu

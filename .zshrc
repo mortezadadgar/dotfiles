@@ -42,6 +42,8 @@ zinit light-mode for \
 
 # set default sudoeditor
 export SUDO_EDITOR=/usr/bin/nvim
+# use ripgrep by deafult
+export FZF_DEFAULT_COMMAND='rg --files --hidden'
 
 # powerlevel10k
 zinit ice depth=1 atload"!source ~/.p10k.zsh" lucid nocd
@@ -88,13 +90,14 @@ zstyle ':completion:*:*:*:default' menu yes select search
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias pacman='pacman --color=auto'
-alias nf='neofetch'
+alias nf='neofetch | lolcat'
 alias ht='sudo htop'
 alias ll='ls -lh'
 alias vi='nvim'
 alias rf='sudo reflector --latest 10 --protocol https --sort rate --save /etc/pacman.d/mirrorlist &'
 alias svi='sudoedit'
 alias sudo='sudo -v; sudo '
+alias pt='sudo powertop'
 
 # you-should-use
 zinit ice depth=1 wait"3" lucid
