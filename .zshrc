@@ -44,6 +44,8 @@ zinit light-mode for \
 export SUDO_EDITOR=/usr/bin/nvim
 # use ripgrep by deafult
 export FZF_DEFAULT_COMMAND='rg --files --hidden'
+# set nvim as default
+export EDITOR=nvim
 
 # powerlevel10k
 zinit ice depth=1 atload"!source ~/.p10k.zsh" lucid nocd
@@ -111,6 +113,11 @@ function take() {
   mkdir -p $@ && cd ${@:$#}
 }
 
+# copy contents of a file to clipboard
+function xcp() {
+  cat $1 |xclip -selection clipboard
+}
+
 # preserve history for new instance
 setopt extended_history 
 setopt hist_expire_dups_first 
@@ -133,3 +140,4 @@ zinit wait lucid for \
 	          zsh-users/zsh-completions \
 		   atload"!_zsh_autosuggest_start" \
 		       zsh-users/zsh-autosuggestions
+### End of Zinit's installer chunk

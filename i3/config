@@ -19,8 +19,8 @@ new_window pixel
 workspace_auto_back_and_forth yes
 
 # i3-gaps
-gaps inner 3
-gaps outer 6
+gaps inner 4
+gaps outer 10
 for_window [class="^.*"] border pixel 1
 bindsym $mod+z		gaps inner current plus 5
 bindsym $mod+shift+z	gaps inner current minus 5
@@ -41,7 +41,7 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
-#exec --no-startup-id nm-applet
+exec --no-startup-id nm-applet
 
 # picom compositor
 exec --no-startup-id picom
@@ -199,21 +199,6 @@ mode "resize" {
         bindsym $mod+r mode "default"
 }
 
-# bar {
-#     font pango: NotoSans Nerd Font 12
-#     position top
-#     status_command i3blocks
-#     colors {
-#         separator #666666
-#         background #222222
-#         statusline #dddddd
-#         focused_workspace #0088CC #0088CC #ffffff
-#         active_workspace #333333 #333333 #ffffff
-#         inactive_workspace #333333 #333333 #888888
-#         urgent_workspace #2f343a #900000 #ffffff
-#     }
-# }
-
 
 client.focused #333333 #333333 #c0c0c0 #333333
 
@@ -235,3 +220,9 @@ exec --no-startup-id ~/.config/polybar/launch.sh
 # keyboard layout
 bindsym $mod+F2 exec --no-startup-id setxkbmap ir
 bindsym $mod+F1 exec --no-startup-id setxkbmap us
+
+# repeat rate/delay
+exec --no-startup-id xset r rate 300 30
+
+# autotiling
+exec_always --no-startup-id autotiling

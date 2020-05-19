@@ -1,22 +1,17 @@
 runtime! archlinux.vim
 call plug#begin()
-Plug 'junegunn/goyo.vim'
 Plug 'ap/vim-css-color'
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
-Plug 'arcticicestudio/nord-vim'
-Plug 'sheerun/vim-polyglot'
-Plug 'morhetz/gruvbox'
 Plug 'sonph/onehalf', {'rtp': 'vim/'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
 Plug 'unblevable/quick-scope'
 Plug 'justinmk/vim-sneak'
 Plug 'preservim/nerdtree'
-Plug 'ryanoasis/vim-devicons'
 Plug 'joshdick/onedark.vim'
+Plug 'tpope/vim-surround'
+Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 " ------------------------[NERDTree]------------------------
@@ -108,10 +103,6 @@ map <C-k> <C-w>k
 " Better indenting
 vnoremap < <gv
 vnoremap > >gv
-" ripgrep
-map <leader>r :Rg<CR>
-" fzf with preview
-map <leader>ff :Files<CR>
 " compile python code
 imap <F5> <Esc>:w<CR>:!clear;python %<CR>
 map <F5> <Esc>:w<CR>:!clear;python %<CR>
