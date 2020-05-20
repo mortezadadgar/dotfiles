@@ -8,23 +8,30 @@ Plug 'sonph/onehalf', {'rtp': 'vim/'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'unblevable/quick-scope'
 Plug 'justinmk/vim-sneak'
-Plug 'preservim/nerdtree'
 Plug 'joshdick/onedark.vim'
 Plug 'tpope/vim-surround'
+Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
 Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
-" ------------------------[NERDTree]------------------------
-let NERDTreeMinimalUI=1
-let NERDChristmasTree=0
-map " :NERDTreeToggle<CR>
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" ------------------------[Rnvimr]------------------------
 
-" ------------------------[Quick-Scope]------------------------
+let g:rnvimr_ex_enable = 1
+let g:rnvimr_draw_border = 1
+let g:rnvimr_pick_enable = 1
+let g:rnvimr_bw_enable = 1
+nmap " :RnvimrToggle<CR>
+let g:rnvimr_ranger_cmd = 'ranger --cmd="set column_ratios 1,1"'
+let g:rnvimr_presets = [
+            \ {'width': 0.800, 'height': 0.600}]
+
+" ------------------------[Quick-Scope]--------------------
+
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 let g:qs_max_chars=150
 
-" ------------------------[LightLine]------------------------
+" ------------------------[LightLine]----------------------
+
 set noshowmode
 set updatetime=300
 set cmdheight=2
@@ -65,13 +72,15 @@ let g:lightline.tabline = {
  return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
  endfunction
 
-" ------------------------[colorScheme]------------------------
+" ------------------------[colorScheme]--------------------
+
 let g:onedark_termcolors=16
 let g:onedark_terminal_italics=1
 set background=dark termguicolors
 colorscheme onedark
 
-" ------------------------[Basic]------------------------------
+" ------------------------[Basic]--------------------------
+
 " line number
 set number relativenumber
 " search
@@ -93,7 +102,8 @@ set pumheight=10
 " set python binary
 let g:python3_host_prog='/usr/bin/python3'
 
-" ------------------------[Key-Mapping]------------------------
+" ------------------------[Key-Mapping]--------------------
+
 " Disable q:
 nnoremap q: <nop>
 " Shortcutting split navigation, saving a keypress:
@@ -116,7 +126,8 @@ vno <left> <Nop>
 vno <right> <Nop>
 vno <up> <Nop>
 
-" " ------------------------[CoC]--------------------------------
+" ------------------------[CoC]---------------------------
+
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
 
