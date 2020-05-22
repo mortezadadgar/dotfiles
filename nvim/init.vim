@@ -1,6 +1,5 @@
 runtime! archlinux.vim
 call plug#begin()
-Plug 'ap/vim-css-color'
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
@@ -125,6 +124,9 @@ vno <down> <Nop>
 vno <left> <Nop>
 vno <right> <Nop>
 vno <up> <Nop>
+" Use TAB to switch between tabs instead of gt/gT
+nmap <Tab> :tabnext<CR>
+nmap <S-Tab> :tabprevious<CR>
 
 " ------------------------[CoC]---------------------------
 
@@ -227,8 +229,8 @@ omap ac <Plug>(coc-classobj-a)
 " Use <TAB> for selections ranges.
 " NOTE: Requires 'textDocument/selectionRange' support from the language server.
 " coc-tsserver, coc-python are the examples of servers that support it.
-nmap <silent> <TAB> <Plug>(coc-range-select)
-xmap <silent> <TAB> <Plug>(coc-range-select)
+" nmap <silent> <TAB> <Plug>(coc-range-select)
+" xmap <silent> <TAB> <Plug>(coc-range-select)
 
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')
