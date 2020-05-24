@@ -11,7 +11,7 @@ HISTSIZE=1000
 SAVEHIST=1000
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
-zstyle :compinstall filename '/home/morteza/.zshrc'
+zstyle :compinstall filename '~/.zshrc'
 
 autoload -Uz compinit
 compinit
@@ -42,8 +42,6 @@ zinit light-mode for \
 
 # set default sudoeditor
 export SUDO_EDITOR=/usr/bin/nvim
-# use ripgrep by deafult
-export FZF_DEFAULT_COMMAND='rg --files --hidden'
 # set nvim as default
 export EDITOR=nvim
 
@@ -105,10 +103,6 @@ alias pt='sudo powertop'
 zinit ice depth=1 wait"3" lucid
 zinit light MichaelAquilina/zsh-you-should-use
 
-wd() {
-  . ~/bin/wd/wd.sh
-}
-
 function take() {
   mkdir -p $@ && cd ${@:$#}
 }
@@ -130,7 +124,6 @@ setopt share_history
 # fzf
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
-alias pacf="pacman -Slq | fzf -m --preview "pacman -Si {1}' | xargs -ro sudo pacman -S'
 
 # fast-syntax and autosuggestions
 zinit wait lucid for \
@@ -140,4 +133,3 @@ zinit wait lucid for \
 	          zsh-users/zsh-completions \
 		   atload"!_zsh_autosuggest_start" \
 		       zsh-users/zsh-autosuggestions
-### End of Zinit's installer chunk

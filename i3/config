@@ -30,7 +30,7 @@ exec --no-startup-id xfce4-power-manager
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:NotoSans Nerd Font 11
+font pango:RobotoMono Nerd Font 11
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
@@ -51,6 +51,9 @@ exec --no-startup-id picom
 
 # firefox
 bindsym $mod+Shift+f exec --no-startup-id firefox
+
+# telegram
+bindsym $mod+Shift+t exec --no-startup-id telegram-desktop
 
 # flameshot
 bindsym Print exec --no-startup-id "flameshot gui"
@@ -161,11 +164,14 @@ assign [class="Telegram"] $ws3
 assign [class="Nemo"] $ws5
 assign [class="Code"] $ws4
 assign [class="firefox"] $ws2
+assign [class="persepolis"] $ws4
 
 for_window [class="Nm-connection-editor"] floating enable
 for_window [class="Lxappearance"] floating enable
 for_window [class="vlc"] floating enable
 for_window [class="feh"] floating enable
+for_window [class="persepolis"] floating enable
+for_window [window_role="About"] floating enable
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -215,7 +221,7 @@ exec --no-startup-id feh --bg-fill ~/Downloads/back1.jpg
 exec --no-startup-id light-locker
 
 # polybar
-exec --no-startup-id ~/.config/polybar/launch.sh
+exec_always --no-startup-id ~/.config/polybar/launch.sh
 
 # keyboard layout
 bindsym $mod+F2 exec --no-startup-id setxkbmap ir

@@ -7,15 +7,15 @@
 
 /* global settings and color variables */
 * {
-    maincolor:        #61AFEF;
+    maincolor:        #fabd2f;
     highlight:        bold #50fa7b;
     urgentcolor:      #ff79c6;
 
     fg:               #f8f8f2;
-    bg:               #25272a;
+    bg:               #212121;
     blackselect:      #44475a;
     cyan:             #8be9fd;
-    font: "SpaceMono Nerd Font Black 12";
+    font: "RobotoMono Nerd Font 13";
     background-color: @bg;
     show-icons: true;
     icon-theme: "Pop";
@@ -28,12 +28,13 @@ window {
     anchor:           north;
     location:         north;
     y-offset:         0%;
+    width:            900;
 }
 
 mainbox {
     background-color: @bg;
     spacing:          0px;
-    children: [inputbar, message, mode-switcher, listview];
+    children: [inputbar, message, listview];
 }
 
 message {
@@ -44,12 +45,12 @@ message {
 textbox {
     text-color:@cyan;
     background-color:@bg;
+    font: "RobotoMono Nerd Font 13";
 }
 
 listview {
     fixed-height: false;
     dynamic: true;
-    scrollbar: true;
     spacing: 0px;
     padding: 1px 0px 0px 0px;
     margin: 0px 0px 1px 0px;

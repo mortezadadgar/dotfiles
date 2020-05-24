@@ -27,7 +27,6 @@ module-margin-left = 0
 module-margin-right = 2
 
 font-0 = "RobotoMono Nerd Font:style=Regular:size=11;3"
-; font-1 = "Font Awesome 5 Free:style=Regular:pixelsize=5;0"
 
 modules-left = i3 title
 modules-center = date
@@ -169,14 +168,14 @@ format-discharging = <ramp-capacity> <label-discharging>
 format-full-prefix = "  "
 format-full-prefix-foreground = ${colors.foreground}
 
-ramp-capacity-0 = "  "
-ramp-capacity-1 = "  "
-ramp-capacity-2 = "  "
+ramp-capacity-0 = " "
+ramp-capacity-1 = " "
+ramp-capacity-2 = " "
 ramp-capacity-foreground = ${colors.foreground}
 
-animation-charging-0          = "  "
-animation-charging-1          = "  "
-animation-charging-2          = "  " 
+animation-charging-0          = " "
+animation-charging-1          = " "
+animation-charging-2          = " " 
 
 [module/powermenu]
 type = custom/menu

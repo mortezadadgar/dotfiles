@@ -1,0 +1,9 @@
+.zshrc
+.p10k.zsh
+.config/alacritty
+.config/fontconfig
+.config/i3
+.config/ranger
+.config/nvim/init.vim
+.config/polybar
+.config/rofi
