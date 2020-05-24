@@ -98,6 +98,7 @@ alias rf='sudo reflector --latest 10 --protocol https --sort rate --save /etc/pa
 alias svi='sudoedit'
 alias sudo='sudo -v; sudo '
 alias pt='sudo powertop'
+alias makedf='make shadow_defconfig; cp .config arch/arm64/configs/shadow_defconfig'
 
 # you-should-use
 zinit ice depth=1 wait"3" lucid
