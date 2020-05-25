@@ -12,16 +12,18 @@ Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
 Plug 'mhinz/vim-startify'
 Plug 'itchyny/vim-gitbranch'
 Plug 'preservim/nerdtree'
+Plug 'psliwka/vim-smoothie'
 Plug 'airblade/vim-rooter'
 Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
  " ------------------------[NERDTree]------------------------
 
-let NERDTreeMinimalUI=1
 map <leader>n :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+let g:NERDTreeWinSize = 23
 let g:rooter_change_directory_for_non_project_files = 'current'
+let g:rooter_silent_chdir = 1
 
 " ------------------------[Startify]-------------------
 
@@ -102,15 +104,15 @@ let g:lightline.tabline = {
   \ }
 
 " Use auocmd to force lightline update.
- autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
+autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 
- function! MyFiletype()
- return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
- endfunction
+function! MyFiletype()
+return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
+endfunction
 
- function! MyFileformat()
- return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
- endfunction
+function! MyFileformat()
+return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+endfunction
 
 " ------------------------[colorScheme]--------------------
 
