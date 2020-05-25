@@ -3,15 +3,55 @@ call plug#begin()
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
-Plug 'sonph/onehalf', {'rtp': 'vim/'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'unblevable/quick-scope'
 Plug 'justinmk/vim-sneak'
 Plug 'joshdick/onedark.vim'
 Plug 'tpope/vim-surround'
 Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
+Plug 'mhinz/vim-startify'
+Plug 'itchyny/vim-gitbranch'
+Plug 'preservim/nerdtree'
+Plug 'airblade/vim-rooter'
 Plug 'ryanoasis/vim-devicons'
 call plug#end()
+
+ " ------------------------[NERDTree]------------------------
+
+let NERDTreeMinimalUI=1
+map <leader>n :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+let g:rooter_change_directory_for_non_project_files = 'current'
+
+" ------------------------[Startify]-------------------
+
+let g:startify_custom_header = [
+	\ '      ___           ___           ___                                      ___     ',
+	\ '     /  /\         /  /\         /  /\          ___            ___        /  /\    ',
+	\ '    /  /::|       /  /::\       /  /::\        /  /\          /__/\      /  /::|   ',
+	\ '   /  /:|:|      /  /:/\:\     /  /:/\:\      /  /:/          \__\:\    /  /:|:|   ',
+	\ '  /  /:/|:|__   /  /::\ \:\   /  /:/  \:\    /  /:/           /  /::\  /  /:/|:|__ ',
+	\ ' /__/:/ |:| /\ /__/:/\:\ \:\ /__/:/ \__\:\  /__/:/  ___    __/  /:/\/ /__/:/_|::::\',
+	\ ' \__\/  |:|/:/ \  \:\ \:\_\/ \  \:\ /  /:/  |  |:| /  /\  /__/\/:/~~  \__\/  /~~/:/',
+	\ '     |  |:/:/   \  \:\ \:\    \  \:\  /:/   |  |:|/  /:/  \  \::/           /  /:/',
+	\ '     |__|::/     \  \:\_\/     \  \:\/:/    |__|:|__/:/    \  \:\          /  /:/ ', 
+	\ '     /__/:/       \  \:\        \  \::/      \__\::::/      \__\/         /__/:/  ', 
+	\ '     \__\/         \__\/         \__\/           ~~~~                     \__\/   ', 
+	\]
+                                                                                   
+let g:startify_session_dir = '~/.config/nvim/session'
+let g:startify_lists = [
+          \ { 'type': 'files',     'header': ['   Files']                        },
+          \ { 'type': 'dir',       'header': ['   Current Directory '. getcwd()] },
+          \ { 'type': 'sessions',  'header': ['   Sessions']                     },
+          \ ]
+
+let g:startify_session_autoload = 1
+let g:startify_session_delete_buffers = 1
+let g:startify_change_to_vcs_root = 1
+let g:startify_fortune_use_unicode = 1
+let g:startify_session_persistence = 1
+let g:startify_enable_special = 0
 
 " ------------------------[Rnvimr]------------------------
 
@@ -38,11 +78,12 @@ let g:lightline = {
         \ 'colorscheme': 'onedark',
 	\ 'active': {
 	\   'left': [ [ 'mode', 'paste' ],
-	\             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
+	\             [ 'gitbranch', 'cocstatus', 'readonly', 'filename', 'modified' ] ]
 	\ },
 	\ 'component_function': {
 	\   'filetype': 'MyFiletype',
 	\   'cocstatus': 'coc#status',
+	\   'gitbranch': 'gitbranch#name',
 	\   'fileformat': 'MyFileformat',
 	\ }
 	\ }
@@ -52,7 +93,7 @@ let g:lightline.separator = {
   \}
 
 let g:lightline.subseparator = {
-	\   'left': '', 'right': '' 
+	\   'left': '', 'right': ''
   \}
 
 let g:lightline.tabline = {
@@ -97,7 +138,7 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 " copy paste setting
 set clipboard=unnamedplus
 " Makes popup menu smaller
-set pumheight=10                        
+set pumheight=10
 " set python binary
 let g:python3_host_prog='/usr/bin/python3'
 
@@ -107,6 +148,7 @@ let g:python3_host_prog='/usr/bin/python3'
 nnoremap q: <nop>
 " Shortcutting split navigation, saving a keypress:
 map <C-h> <C-w>h
+map <C-l> <C-w>l
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 " Better indenting
