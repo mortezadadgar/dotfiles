@@ -15,6 +15,7 @@ Plug 'preservim/nerdtree'
 Plug 'psliwka/vim-smoothie'
 Plug 'airblade/vim-rooter'
 Plug 'ryanoasis/vim-devicons'
+Plug 'sheerun/vim-polyglot'
 call plug#end()
 
  " ------------------------[NERDTree]------------------------
@@ -157,8 +158,8 @@ map <C-k> <C-w>k
 vnoremap < <gv
 vnoremap > >gv
 " compile python code
-imap <F5> <Esc>:w<CR>:!clear;python %<CR>
-map <F5> <Esc>:w<CR>:!clear;python %<CR>
+autocmd FileType python map <buffer> <F5> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+autocmd FileType python imap <buffer> <F5> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
 " Disable arrow keys
 no <down> <Nop>
 no <left> <Nop>
