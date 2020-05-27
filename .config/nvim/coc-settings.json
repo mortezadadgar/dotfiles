@@ -4,6 +4,8 @@
   "diagnostic.infoSign": "ℹ",
   "diagnostic.hintSign": "➤",
   "python.jediEnabled": false,
+  "python.linting.banditEnabled": true,
+  "python.linting.banditArgs": ["--skip=B322"],
   "python.linting.flake8Enabled": true,
   "python.formatting.provider": "black",
   "python.linting.enabled": true,
