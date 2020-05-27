@@ -4,6 +4,7 @@
   "diagnostic.infoSign": "ℹ",
   "diagnostic.hintSign": "➤",
   "python.jediEnabled": false,
+  "python.linting.flake8Enabled": true,
   "python.formatting.provider": "black",
   "python.linting.enabled": true,
   "python.linting.pylintPath":"/usr/bin/pylint",
