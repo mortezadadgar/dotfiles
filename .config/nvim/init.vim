@@ -21,6 +21,7 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'deoplete-plugins/deoplete-jedi'
 Plug 'dense-analysis/ale'
 Plug 'maximbaz/lightline-ale'
+Plug 'Yggdroot/indentLine'
 Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
@@ -143,7 +144,7 @@ let g:lightline = {
 	\ 'active': {
 	\   'left': [ [ 'mode', 'paste' ],
 	\             [ 'gitbranch', 'readonly', 'filename', 'modified',
-	\	        'linter_checking', 'linter_errors', 'linter_ok' ] ]
+	\	        'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ] ]
 	\ },
 	\ 'component_function': {
 	\   'gitbranch': 'gitbranch#name',
@@ -192,15 +193,17 @@ let g:lightline.component_type = {
 
 let g:lightline#ale#indicator_errors = "\uf05e "
 let g:lightline#ale#indicator_ok = "\uf00c"
+let g:lightline#ale#indicator_warnings = "\uf071 "
 
 " /// colorscheme ///
-" background and 24-bit color
-set background=dark termguicolors
+" 24-bit color
+set termguicolors
 
 " OneDark
+let g:onedark_hide_endofbuffer = 1
+let g:onedark_termcolors = 16
+let g:onedark_terminal_italics = 1
 colorscheme onedark
-let g:onedark_termcolors=16
-let g:onedark_terminal_italics=1
 
 " /// Basic ///
 " line number
@@ -277,7 +280,7 @@ let g:ale_fixers = {
 " formatting on save
 let g:ale_fix_on_save = 1
 
-" ALE sings
+" ALE sign
 let g:ale_sign_error = '●'
 let g:ale_sign_warning = '.'
 
@@ -297,3 +300,7 @@ set shortmess+=c
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
 set signcolumn=yes
+
+" nvigate between linters error
+nmap <silent> ]g :ALENext<CR>
+nmap <silent> [g :ALEPrevious<CR>

@@ -161,14 +161,14 @@ bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
 assign [class="Telegram"] $ws3
-assign [class="Nemo"] $ws5
-assign [class="Code"] $ws4
 assign [class="firefox"] $ws2
-assign [class="persepolis"] $ws4
+assign [class="persepolis"] $ws5
+assign [class="Evince"] $ws5
+assign [class="mpv"] $ws4
 
 for_window [class="Nm-connection-editor"] floating enable
 for_window [class="Lxappearance"] floating enable
-for_window [class="vlc"] floating enable
+for_window [class="mpv"] floating enable
 for_window [class="feh"] floating enable
 for_window [class="persepolis"] floating enable
 for_window [window_role="About"] floating enable

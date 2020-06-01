@@ -7,4 +7,5 @@
 .config/rofi
 .config/ranger/rc.conf
 .config/nvim/init.vim
-.config/nvim/coc-settings.json
+.config/htop/htoprc
+.config/mpv/mpv.conf
