@@ -2,12 +2,11 @@ runtime! archlinux.vim
 
 " /// Plug-ins ///
 call plug#begin()
-Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'unblevable/quick-scope'
 Plug 'justinmk/vim-sneak'
-Plug 'joshdick/onedark.vim'
+Plug 'rakr/vim-one'
 Plug 'tpope/vim-surround'
 Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
 Plug 'mhinz/vim-startify'
@@ -20,8 +19,9 @@ Plug 'sheerun/vim-polyglot'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'deoplete-plugins/deoplete-jedi'
 Plug 'dense-analysis/ale'
-Plug 'maximbaz/lightline-ale'
 Plug 'Yggdroot/indentLine'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
@@ -84,15 +84,13 @@ command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 " /// Startify ///
 " startify banner
 let g:startify_custom_header = [
-	\ '  _   _ ______ ______      _______ __  __ ',
-	\ ' | \ | |  ____/ __ \ \    / /_   _|  \/  |',
-	\ ' |  \| | |__ | |  | \ \  / /  | | | \  / |',
-	\ ' | . ` |  __|| |  | |\ \/ /   | | | |\/| |',
-	\ ' | |\  | |___| |__| | \  /   _| |_| |  | |',
-	\ ' |_| \_|______\____/   \/   |_____|_|  |_|',
-	\ ]
-                                          
-                                          
+\ '  _   _ ______ ______      _______ __  __ ',
+\ ' | \ | |  ____/ __ \ \    / /_   _|  \/  |',
+\ ' |  \| | |__ | |  | \ \  / /  | | | \  / |',
+\ ' | . ` |  __|| |  | |\ \/ /   | | | |\/| |',
+\ ' | |\  | |___| |__| | \  /   _| |_| |  | |',
+\ ' |_| \_|______\____/   \/   |_____|_|  |_|',
+\ ]
 " where we should save sessions
 let g:startify_session_dir = '~/.config/nvim/session'
 
@@ -134,76 +132,31 @@ let g:rnvimr_presets = [
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 let g:qs_max_chars=150
 
-" /// Lightline ///
+" /// AirLine ///
 set noshowmode
 set updatetime=300
 set cmdheight=2
 
-let g:lightline = {
-        \ 'colorscheme': 'onedark',
-	\ 'active': {
-	\   'left': [ [ 'mode', 'paste' ],
-	\             [ 'gitbranch', 'readonly', 'filename', 'modified',
-	\	        'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ] ]
-	\ },
-	\ 'component_function': {
-	\   'gitbranch': 'gitbranch#name',
-        \   'fileformat': 'MyFileformat',
-        \   'filetype': 'MyFiletype',
-	\ }
-	\ }
-
-let g:lightline.separator = {
-	\   'left': '', 'right': ''
-  \}
-
-let g:lightline.subseparator = {
-	\   'left': '', 'right': ''
-  \}
-
-let g:lightline.tabline = {
-  \   'left': [ ['tabs'] ],
-  \   'right': [ [''] ]
-  \ }
-
-function! MyFiletype()
-  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
-endfunction
-
-function! MyFileformat()
-  return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
-endfunction
-
-" lightline-ale
-let g:lightline.component_expand = {
-      \  'linter_checking': 'lightline#ale#checking',
-      \  'linter_infos': 'lightline#ale#infos',
-      \  'linter_warnings': 'lightline#ale#warnings',
-      \  'linter_errors': 'lightline#ale#errors',
-      \  'linter_ok': 'lightline#ale#ok',
-      \ }
-
-let g:lightline.component_type = {
-      \     'linter_checking': 'right',
-      \     'linter_infos': 'right',
-      \     'linter_warnings': 'warning',
-      \     'linter_errors': 'error',
-      \     'linter_ok': 'right',
-      \ }
-
-let g:lightline#ale#indicator_errors = "\uf05e "
-let g:lightline#ale#indicator_ok = "\uf00c"
-let g:lightline#ale#indicator_warnings = "\uf071 "
+let g:airline_theme='one'
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline#extensions#tabline#left_sep = ''
+let g:airline#extensions#tabline#right_sep = ''
+let airline#extensions#tabline#show_splits = 0
+let airline#extensions#tabline#tabs_label = ''
+let g:airline#extensions#tabline#show_close_button = 0
+let g:airline_symbols = get(g:, 'airline_symbols', {})
+let g:airline_symbols.linenr = '☰'
+let g:airline_section_z = '%{g:airline_symbols.linenr}%#__accent_bold#%4l%#__restore__#/%L%'
+let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 
 " /// colorscheme ///
 " 24-bit color
 set termguicolors
 
 " OneDark
-let g:onedark_hide_endofbuffer = 1
-let g:onedark_termcolors = 16
-let g:onedark_terminal_italics = 1
-colorscheme onedark
+colorscheme one
 
 " /// Basic ///
 " line number
@@ -267,6 +220,10 @@ vno <up> <Nop>
 " Use TAB to switch between tabs instead of gt/gT
 " nmap <Tab> :tabnext<CR>
 " nmap <S-Tab> :tabprevious<CR>
+
+" switch between dark/light theme
+map <F1> :set background=dark<CR>
+map <F2> :set background=light<CR>
 
 " /// ALE/Deoplete ///
 let g:ale_linters = {

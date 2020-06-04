@@ -1,0 +1,10 @@
+FormatString = "%(n:%n :)%(a:%a - :)%(t:%t:)"
+SoundDriver = PULSEAUDIO:JACK:ALSA:OSS
+ShowTime = no
+# vi-like movement
+Keymap = keymap
+ResampleMethod = SincMediumQuality
+UseRealtimePriority = yes
+StartInMusicDir = yes
+MusicDir = "$HOME/Music"
+Theme = nightly_theme

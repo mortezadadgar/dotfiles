@@ -118,8 +118,13 @@ restore_utility(){
         # restore dotfiles
         for dir in ${directories[@]}; do
             # copy the dotfile
-            echo "$dir"
-            cp -R -f $dot/$dir "$HOME/$dir"
+            echo "$dot/$dir $HOME/$dir"
+            if cp -r -f "$dot/$dir/." "$HOME/$dir"; then
+                :
+            else
+                cp -r -f "$dot/$dir" "$HOME/$dir"
+            fi
+
         done
         echo -e "\e[96mDotfiles restore done!\e[0m"
         # Reset IFS to its default value
@@ -132,15 +137,21 @@ restore_utility(){
 }
 
 # MAIN
+main(){
+    echo -e "\e[96mDOTFILES MANAGER SCRIPT\e[0m"
+    echo ''
+    echo -e "\e[96m1)Backup utility\e[0m"
+    echo -e "\e[96m2)Restore utility\e[0m"
+    read -r -p "Enter a selection:" response
+    if [ "$response" == "1" ]; then
+        backup_utility
+    elif [ "$response" == "2" ]; then
+        restore_utility
+    else
+        clear
+        echo -e "\e[31mPlease enter a valid value\e[0m"
+        main
+    fi
+}
 clear
-echo -e "\e[96mDOTFILES MANAGER SCRIPT\e[0m"
-echo ''
-echo -e "\e[96m1)Backup utility\e[0m"
-echo -e "\e[96m2)Restore utility\e[0m"
-read -r -p "Enter a selection:" response
-if [ "$response" == "1" ]
-then
-    backup_utility
-else
-    restore_utility
-fi
+main

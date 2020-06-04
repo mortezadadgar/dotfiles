@@ -9,3 +9,6 @@
 .config/nvim/init.vim
 .config/htop/htoprc
 .config/mpv/mpv.conf
+.moc/config
+.moc/keymap
+.moc/themes/nightly_theme
