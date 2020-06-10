@@ -44,10 +44,7 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 
 # picom compositor
-exec --no-startup-id picom
-
-# powermenu
-# bindsym $mod+Escape exec --no-startup-id ~/.config/rofi/powermenu.sh
+exec --no-startup-id picom --experimental-backends
 
 # firefox
 bindsym $mod+Shift+f exec --no-startup-id firefox
@@ -165,10 +162,12 @@ assign [class="firefox"] $ws2
 assign [class="persepolis"] $ws5
 assign [class="Evince"] $ws5
 assign [class="mpv"] $ws4
+assign [class="vlc"] $ws4
 
 for_window [class="Nm-connection-editor"] floating enable
 for_window [class="Lxappearance"] floating enable
 for_window [class="mpv"] floating enable
+for_window [class="vlc"] floating enable
 for_window [class="feh"] floating enable
 for_window [class="persepolis"] floating enable
 for_window [window_role="About"] floating enable
@@ -218,14 +217,10 @@ bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5 # decrease 
 exec --no-startup-id feh --bg-fill ~/Downloads/back1.jpg
 
 # start ligh-locker
-exec --no-startup-id light-locker
+# exec --no-startup-id light-locker --idle-hint
 
 # polybar
 exec_always --no-startup-id ~/.config/polybar/launch.sh
-
-# keyboard layout
-bindsym $mod+F2 exec --no-startup-id setxkbmap ir
-bindsym $mod+F1 exec --no-startup-id setxkbmap us
 
 # repeat rate/delay
 exec --no-startup-id xset r rate 300 30

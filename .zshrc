@@ -90,7 +90,7 @@ zstyle ':completion:*:*:*:default' menu yes select search
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias pacman='pacman --color=auto'
-alias nf='neofetch | lolcat'
+alias yay='yay --color=auto'
 alias ht='htop'
 alias ll='ls -lh'
 alias vi='nvim'
@@ -98,7 +98,10 @@ alias rf='sudo reflector --latest 10 --protocol https --sort rate --save /etc/pa
 alias svi='sudoedit'
 alias sudo='sudo -v; sudo '
 alias pt='sudo powertop'
-alias makedf='make shadow_defconfig; cp .config arch/arm64/configs/shadow_defconfig'
+alias mkdef='make shadow_defconfig; cp .config arch/arm64/configs/shadow_defconfig'
+alias rr='ranger'
+alias pacorph='sudo pacman -Rns $(pacman -Qtdq)'
+alias kp='sudo killall'
 
 # you-should-use
 zinit ice depth=1 wait"3" lucid

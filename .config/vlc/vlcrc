@@ -1,0 +1,16 @@
+﻿[swscale] # Video scaling filter
+swscale-mode=9
+
+[core] # core program
+global-key-quit=q
+key-quit=q
+qt-privacy-ask=0
+audio-filter=compressor
+file-caching=1500
+
+[compressor] # Dynamic range compressor
+compressor-rms-peak=0
+compressor-release=250
+compressor-threshold=-15
+compressor-ratio=7
+compressor-makeup-gain=5

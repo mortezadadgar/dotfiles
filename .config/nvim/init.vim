@@ -217,10 +217,6 @@ vno <left> <Nop>
 vno <right> <Nop>
 vno <up> <Nop>
 
-" Use TAB to switch between tabs instead of gt/gT
-" nmap <Tab> :tabnext<CR>
-" nmap <S-Tab> :tabprevious<CR>
-
 " switch between dark/light theme
 map <F1> :set background=dark<CR>
 map <F2> :set background=light<CR>
