@@ -6,6 +6,7 @@
 .config/polybar
 .config/rofi
 .config/ranger/rc.conf
+.config/ranger/scope.sh
 .config/nvim/init.vim
 .config/htop/htoprc
 .config/mpv/mpv.conf
@@ -15,4 +16,3 @@
 .moc/themes/nightly_theme
 .config/xfce4/xfconf/xfce-perchannel-xml/
 .config/gtk-3.0/settings.ini
-.config/vlc/vlcrc
