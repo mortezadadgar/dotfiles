@@ -2,6 +2,9 @@
 
 sxhkd &
 
+# fix cursor displaying as X when not over windows
+xsetroot -cursor_name left_ptr &
+
 # bspc monitor -d term firefox telegram movie files
 bspc monitor -d 1 2 3 4 5
 
@@ -16,7 +19,7 @@ bspc rule -a firefox desktop='^2' follow=on
 bspc rule -a TelegramDesktop desktop='^3' follow=on
 bspc rule -a mpv desktop='^4' follow=on
 bspc rule -a Evince desktop='^5' follow=on
-bspc rule -a persepolis desktop='^5' follow=on
+bspc rule -a persepolis state=floating desktop='^5' follow=on
 bspc rule -a feh state=floating follow=on
 
 # polybar
@@ -37,5 +40,3 @@ xset r rate 300 30
 # nm-applet
 nm-applet &
 
-# fix cursor displaying as X when not over windows
-xsetroot -cursor_name left_ptr &

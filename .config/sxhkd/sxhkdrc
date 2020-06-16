@@ -19,7 +19,7 @@ super + Escape
 #
 
 # quit/restart bspwm
-super + alt + {q,r}
+super + ctrl + {q,r}
 	bspc {quit,wm -r}
 
 # always close only ONE instance
@@ -129,7 +129,7 @@ super + {Left,Down,Up,Right}
 
 # apps
 super + shift + {f, e, m}
-	{firefox, telegram-desktop, alacritty -e ncmpcpp}
+	{firefox, telegram-desktop, bspc rule -a Alacritty -o desktop=^4 state=floating follow=on && alacritty --dimensions 70 20 --position 10 40 -e ncmpcpp}
 
 # sound control
 XF86Audio{RaiseVolume,LowerVolume,Mute}
