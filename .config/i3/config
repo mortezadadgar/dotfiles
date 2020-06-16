@@ -19,7 +19,7 @@ new_window pixel
 workspace_auto_back_and_forth yes
 
 # i3-gaps
-gaps inner 4
+gaps inner 6
 gaps outer 10
 for_window [class="^.*"] border pixel 1
 bindsym $mod+z		gaps inner current plus 5
@@ -31,13 +31,6 @@ exec --no-startup-id xfce4-power-manager
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 font pango:RobotoMono Nerd Font 11
-
-# The combination of xss-lock, nm-applet and pactl is a popular choice, so
-# they are included here as an example. Modify as you see fit.
-
-# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
-# screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -55,11 +48,10 @@ bindsym $mod+Shift+t exec --no-startup-id telegram-desktop
 # flameshot
 bindsym Print exec --no-startup-id "flameshot gui"
 
-# Use pactl to adjust volume in PulseAudio.
-set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pulseaudio-ctl up
-bindsym XF86AudioLowerVolume exec --no-startup-id pulseaudio-ctl down
-bindsym XF86AudioMute exec --no-startup-id pulseaudio-ctl mute
+# sound control
+bindsym XF86AudioRaiseVolume exec --no-startup-id $HOME/.config/i3/scripts/VolumeControl.sh up
+bindsym XF86AudioLowerVolume exec --no-startup-id $HOME/.config/i3/scripts/VolumeControl.sh down
+bindsym XF86AudioMute exec --no-startup-id $HOME/.config/i3/scripts/VolumeControl.sh mute
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -78,12 +70,6 @@ bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
-
-# alternatively, you can use the cursor keys:
-# bindsym $mod+Left focus left
-# bindsym $mod+Down focus down
-# bindsym $mod+Up focus up
-# bindsym $mod+Right focus right
 
 # move focused window
 bindsym $mod+Shift+j move left
@@ -205,19 +191,16 @@ mode "resize" {
 }
 
 
-client.focused #333333 #333333 #c0c0c0 #333333
+client.focused #333333 #c0c0c0 #333333 #333333
 
 bindsym $mod+r mode "resize"
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5 # increase screen brightness
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec --no-startup-id $HOME/.config/i3/scripts/BrightnessControl.sh up 
+bindsym XF86MonBrightnessDown exec --no-startup-id $HOME/.config/i3/scripts/BrightnessControl.sh down
 
 # desktop background
 exec --no-startup-id feh --bg-fill ~/Downloads/back1.jpg
-
-# start ligh-locker
-# exec --no-startup-id light-locker --idle-hint
 
 # polybar
 exec_always --no-startup-id ~/.config/polybar/launch.sh
