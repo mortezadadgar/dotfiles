@@ -45,6 +45,9 @@ bindsym $mod+Shift+f exec --no-startup-id firefox
 # telegram
 bindsym $mod+Shift+t exec --no-startup-id telegram-desktop
 
+# ncmpcpp
+bindsym $mod+Shift+m exec --no-startup-id alacritty --class floating-term -e ncmpcpp
+
 # flameshot
 bindsym Print exec --no-startup-id "flameshot gui"
 
@@ -72,10 +75,10 @@ bindsym $mod+k focus up
 bindsym $mod+l focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -149,6 +152,7 @@ assign [class="persepolis"] $ws5
 assign [class="Evince"] $ws5
 assign [class="mpv"] $ws4
 assign [class="vlc"] $ws4
+assign [instance="floating-term"] $ws4
 
 for_window [class="Nm-connection-editor"] floating enable
 for_window [class="Lxappearance"] floating enable
@@ -157,6 +161,7 @@ for_window [class="vlc"] floating enable
 for_window [class="feh"] floating enable
 for_window [class="persepolis"] floating enable
 for_window [window_role="About"] floating enable
+for_window [class="Alacritty" instance="floating-term"] floating enable
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -191,7 +196,7 @@ mode "resize" {
 }
 
 
-client.focused #333333 #c0c0c0 #333333 #333333
+client.focused #333333 #8e8e8e #333333 #333333
 
 bindsym $mod+r mode "resize"
 
