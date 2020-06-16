@@ -13,12 +13,11 @@ bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 
 bspc rule -a firefox desktop='^2' follow=on
-bspc rule -a telegram-desktop desktop='^3' follow=on
+bspc rule -a TelegramDesktop desktop='^3' follow=on
 bspc rule -a mpv desktop='^4' follow=on
 bspc rule -a Evince desktop='^5' follow=on
 bspc rule -a persepolis desktop='^5' follow=on
 bspc rule -a feh state=floating follow=on
-bspc rule -a About state=floating follow=on
 
 # polybar
 $HOME/.config/polybar/launch.sh
@@ -38,5 +37,5 @@ xset r rate 300 30
 # nm-applet
 nm-applet &
 
-# fix cursor displaying X when not over windows
+# fix cursor displaying as X when not over windows
 xsetroot -cursor_name left_ptr &

@@ -28,7 +28,7 @@ module-margin-right = 2
 
 font-0 = "RobotoMono Nerd Font:style=Regular:size=11;3"
 
-modules-left = i3 title
+modules-left = bspwm title
 modules-center = date
 modules-right = pulseaudio wlan battery powermenu
 
@@ -44,6 +44,35 @@ mount-0 = /
 label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.foreground}
+
+wm-restack = bspwm
+
+[module/bspwm]
+type = internal/bspwm
+
+ws-icon-0 = 1; 
+ws-icon-1 = 2; 
+ws-icon-2 = 3; 
+ws-icon-3 = 4; 
+ws-icon-4 = 5; 
+
+format = <label-state> <label-mode>
+
+label-focused-background = ${colors.grey}
+label-occupied-background = ${colors.background}
+label-empty-background = ${colors.background}
+label-empty-foreground = ${colors.background}
+label-urgent-foreground = ${colors.red_dark}
+
+label-focused = %icon%
+label-focused-padding = 1
+label-focused-underline = ${colors.yellow}
+label-occupied = %icon%
+label-occupied-padding = 1
+label-empty = 
+label-empty-padding = 1
+label-urgent = %icon%
+label-urgent-padding = 1
 
 [module/title]
 type = internal/xwindow

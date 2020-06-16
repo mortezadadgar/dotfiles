@@ -22,9 +22,9 @@ super + Escape
 super + alt + {q,r}
 	bspc {quit,wm -r}
 
-# close and kill
+# always close only ONE instance
 super + {_,shift + }q
-	bspc node -{c,k}
+	bspc node -c
 
 # alternate between the tiled and monocle layout
 super + m
@@ -43,8 +43,9 @@ super + g
 #
 
 # set the window state
+# toggle fullscreen with only one key
 super + {t,shift + t,s,f}
-	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+	bspc node -t {tiled,pseudo_tiled,floating,\~fullscreen}
 
 # set the node flags
 super + ctrl + {m,x,y,z}
@@ -79,6 +80,12 @@ super + {o,i}
 	bspc wm -h off; \
 	bspc node {older,newer} -f; \
 	bspc wm -h on
+
+# focus desktop {1-9,0} (or bounce to last desktop)
+super + {1-9,0}
+	target='^{1-9,10}'; \
+	[ "$(bspc query -D -d "$target")" != "$(bspc query -D -d)" ] \
+		&& bspc desktop -f "$target" || bspc desktop -f last.local
 
 # focus or send to the given desktop
 super + {_,shift + }{1-9,0}
@@ -136,5 +143,5 @@ XF86MonBrightness{Up,Down}
 	$HOME/.config/sxhkd/scripts/BrightnessControl.sh {up, down}
 
 # screenshot
-super + Print
+Print
 	flameshot gui
