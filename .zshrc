@@ -102,6 +102,7 @@ alias mkdef='make shadow_defconfig; cp .config arch/arm64/configs/shadow_defconf
 alias rr='ranger'
 alias pacorph='sudo pacman -Rns $(pacman -Qtdq)'
 alias kp='sudo killall'
+alias cl='clear'
 
 # you-should-use
 zinit ice depth=1 wait"3" lucid
