@@ -1,0 +1,13 @@
+next_img j Right
+prev_img k Left
+toggle_filenames r
+toggle_fullscreen f
+zoom_in  plus
+zoom_out minus
+zoom_fit equal
+delete   C-d C-Delete
+scroll_up    K
+scroll_down  J
+scroll_left  H
+scroll_right L
+
