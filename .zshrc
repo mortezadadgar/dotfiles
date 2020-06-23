@@ -86,6 +86,11 @@ zstyle ':completion:*:kill:*'   force-list always
 zstyle ":completion:*:descriptions" format "%B%d%b"
 zstyle ':completion:*:*:*:default' menu yes select search
 
+# don't press enter twice for completion menu 
+zmodload -i zsh/complist
+bindkey -M menuselect '^M' .accept-line
+
+
 # alias
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
@@ -103,6 +108,7 @@ alias rr='ranger'
 alias pacorph='sudo pacman -Rns $(pacman -Qtdq)'
 alias kp='sudo killall'
 alias cl='clear'
+alias nf='neofetch'
 
 # you-should-use
 zinit ice depth=1 wait"3" lucid
