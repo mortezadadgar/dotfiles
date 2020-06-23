@@ -170,3 +170,7 @@ Print
 	flameshot gui
 super + Print
 	flameshot full -c
+
+# toggle dont-disturb-mode
+F10 + {_,shift +}
+	{dunstify -r 9292 -u critical "Enabled Do not disturb mode" && sleep 2 && killall -SIGUSR1 dunst && dunstify -C 9292,killall -SIGUSR2 dunst && dunstify -r 9293 -u critical "Disabled Do not disturb mode"}
