@@ -23,7 +23,7 @@ super + ctrl + {q,r}
 	bspc {quit,wm -r}
 
 # always close only ONE instance
-super + {_,shift + }q
+super + shift + q
 	bspc node -c
 
 # alternate between the tiled and monocle layout
@@ -76,16 +76,18 @@ super + {grave,Tab}
 	bspc {node,desktop} -f last
 
 # focus the older or newer node in the focus history
-super + {o,i}
-	bspc wm -h off; \
-	bspc node {older,newer} -f; \
-	bspc wm -h on
+# super + {o,i}
+# 	bspc wm -h off; \
+# 	bspc node {older,newer} -f; \
+# 	bspc wm -h on
 
 # focus desktop {1-9,0} (or bounce to last desktop)
 super + {1-9,0}
 	target='^{1-9,10}'; \
-	[ "$(bspc query -D -d "$target")" != "$(bspc query -D -d)" ] \
-		&& bspc desktop -f "$target" || bspc desktop -f last.local
+	[ "$(bspc query -D -d "$target")" \
+	!= "$(bspc query -D -d)" ] \
+	&& bspc desktop -f "$target" \
+	|| bspc desktop -f last.local
 
 # focus or send to the given desktop
 super + {_,shift + }{1-9,0}
@@ -116,20 +118,42 @@ super + ctrl + shift + space
 #
 
 # expand a window by moving one of its side outward
-super + alt + {h,j,k,l}
-	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+super + shift + {y,u,i,o}
+	bspc node -z {right -20 0,bottom 0 20,bottom 0 -20,right 20 0}
 
 # contract a window by moving one of its side inward
-super + alt + shift + {h,j,k,l}
-	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
-
+# super + alt + shift + {h,j,k,l}
+# 	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+ 
 # move a floating window
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
 
+# Make a window sticky/non-sticky
+super + o
+	bspc node -g sticky={on,off}
+
 # apps
-super + shift + {f, e, m}
-	{firefox, telegram-desktop, bspc rule -a Alacritty -o desktop=^4 state=floating follow=on && alacritty --dimensions 70 20 --position 10 40 -e ncmpcpp}
+super + shift + {f, e}
+	{firefox, telegram-desktop}
+
+# ncmpcpp
+super + shift + m
+	bspc rule -a Alacritty:ncmpcpp -o desktop=^4 \
+	state=floating follow=on && alacritty \
+	--dimensions 70 20 --position 10 40 \
+	--class ncmpcpp,Alacritty -e ncmpcpp
+
+# calc
+super + shift + equal
+	bspc rule -a Alacritty:bc state=floating \
+	&& alacritty --class bc,Alacritty --dimensions 25 20 \
+	-e bash -c 'figlet "+=/-" \
+	| boxes -d stone && bc -q'
+
+# ranger
+super + shift + r
+	alacritty -e ranger
 
 # sound control
 XF86Audio{RaiseVolume,LowerVolume,Mute}
@@ -145,3 +169,5 @@ XF86MonBrightness{Up,Down}
 # screenshot
 Print
 	flameshot gui
+super + Print
+	flameshot full -c

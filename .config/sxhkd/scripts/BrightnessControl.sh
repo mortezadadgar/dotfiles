@@ -17,11 +17,9 @@ function send_notification {
   brightness=$(get_brightness)
   # Make the bar with the special character ─ (it's not dash -)
   # https://en.wikipedia.org/wiki/Box-drawing_character
-  bar=$(seq -s "━" 0 $((brightness / 5)) | sed 's/[0-9]//g')
+  bar=$(seq -s "━" 0 $((brightness / 6)) | sed 's/[0-9]//g')
   # Send the notification
-  dunstify -i "$icon" -r 555 -u normal "   $bar"
-    sleep 5
-    dunstify -C 555
+  dunstify -i "$icon" -r 555 -u normal "  $bar  "
 }
 
 case $1 in

@@ -9,18 +9,17 @@ xsetroot -cursor_name left_ptr &
 bspc monitor -d 1 2 3 4 5
 
 bspc config border_width         1
-bspc config window_gap          8
+bspc config window_gap          10
 
-bspc config split_ratio          0.52
+bspc config split_ratio          0.5
 bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 
 bspc rule -a firefox desktop='^2' follow=on
 bspc rule -a TelegramDesktop desktop='^3' follow=on
 bspc rule -a mpv desktop='^4' follow=on
-bspc rule -a Evince desktop='^5' follow=on
+bspc rule -a Zathura desktop='^5' state=fullscreen follow=on
 bspc rule -a persepolis state=floating desktop='^5' follow=on
-bspc rule -a feh state=floating follow=on
 
 # polybar
 $HOME/.config/polybar/launch.sh
@@ -45,4 +44,5 @@ setxkbmap -layout us,ir -variant ,pes_win -option grp:alt_shift_toggle
 
 # touchpad
 # enable tapping, natural scrolling
-xinput set-prop 12 312 1 && xinput set-prop 12 320 1
+xinput set-prop 12 "libinput Tapping Enabled" 1
+xinput set-prop 12 "libinput Natural Scrolling Enabled" 1

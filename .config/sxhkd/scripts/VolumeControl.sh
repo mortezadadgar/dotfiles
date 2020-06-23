@@ -27,11 +27,9 @@ function send_notification {
     volume=$(get_volume)
     # Make the bar with the special character ─ (it's not dash -)
     # https://en.wikipedia.org/wiki/Box-drawing_character
-    bar=$(seq -s "━" 0 "$((volume / 5))" | sed 's/[0-9]//g')
+    bar=$(seq -s "━" 0 "$((volume / 6))" | sed 's/[0-9]//g')
     # Send the notification
-    dunstify -i $iconSound -r 2593 -u normal "   $bar"
-    sleep 5
-    dunstify -C 2593
+    dunstify -i $iconSound -r 2593 -u normal "  $bar  "
   fi
 }
 
