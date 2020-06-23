@@ -4,17 +4,12 @@ runtime! archlinux.vim
 call plug#begin()
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
-Plug 'unblevable/quick-scope'
-Plug 'justinmk/vim-sneak'
 Plug 'rakr/vim-one'
 Plug 'tpope/vim-surround'
 Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
 Plug 'mhinz/vim-startify'
 Plug 'itchyny/vim-gitbranch'
-Plug 'psliwka/vim-smoothie'
 Plug 'airblade/vim-rooter'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'deoplete-plugins/deoplete-jedi'
@@ -24,62 +19,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
 call plug#end()
-
-" /// FzF ///
-" Enable per-command history.
-let g:fzf_history_dir = '~/.local/share/fzf-history'
-let g:fzf_buffers_jump = 1
-
-" key-binding
-map <C-f> :Files<CR>
-map <leader>b :Buffers<CR>
-nnoremap <leader>g :Rg<CR>
-
-" Border color
-let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8,'yoffset':0.5,'xoffset': 0.5, 'highlight': 'Todo', 'border': 'sharp' } }
-
-let $FZF_DEFAULT_OPTS = '--layout=reverse --inline-info'
-let $FZF_DEFAULT_COMMAND="rg --files"
-
-" Customize fzf colors to match your color scheme
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
-
-" Get Files
-command! -bang -nargs=? -complete=dir Files
-    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--inline-info']}), <bang>0)
-
-" Make Ripgrep ONLY search file contents and not filenames
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --smart-case --no-heading --color=always '.shellescape(<q-args>), 1,
-  \   <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:60%')
-  \           : fzf#vim#with_preview({'options': '--delimiter : --nth 4.. -e'}, 'right:50%', '?'),
-  \   <bang>0)
-
-" Ripgrep advanced
-function! RipgrepFzf(query, fullscreen)
-  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s || true'
-  let initial_command = printf(command_fmt, shellescape(a:query))
-  let reload_command = printf(command_fmt, '{q}')
-  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
-  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
-endfunction
-
-command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
-
 
 " /// Startify ///
 " startify banner
@@ -127,10 +66,6 @@ let g:rnvimr_ranger_cmd = 'ranger --cmd="set column_ratios 1,1"'
 " Customize floating size
 let g:rnvimr_presets = [
             \ {'width': 0.800, 'height': 0.600}]
-
-" /// QuickScope ///
-let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
-let g:qs_max_chars=150
 
 " /// AirLine ///
 set noshowmode
