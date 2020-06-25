@@ -20,9 +20,6 @@ bspc rule -a TelegramDesktop desktop='^3' follow=on
 bspc rule -a mpv desktop='^4' follow=on
 bspc rule -a Zathura desktop='^5' state=fullscreen follow=on
 bspc rule -a persepolis state=floating desktop='^5' follow=on
-bspc rule -a Alacritty:ncmpcpp -o desktop=^4 state=floating follow=on
-bspc rule -a Alacritty:bc state=floating
-
 
 # polybar
 $HOME/.config/polybar/launch.sh

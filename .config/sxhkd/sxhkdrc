@@ -139,16 +139,17 @@ super + shift + {f, e}
 
 # ncmpcpp
 super + shift + m
-	alacritty \
+	bspc rule -a Alacritty:ncmpcpp -o desktop=^4 \
+	state=floating follow=on && alacritty \
 	--dimensions 70 20 --position 10 40 \
 	--class ncmpcpp,Alacritty -e ncmpcpp
 
 # calc
 super + shift + equal
-	alacritty \
-	--class bc,Alacritty --dimensions 25 20 \
-	-e bash -c \
-	'figlet "+=/-" \ | boxes -d stone && bc -q'
+	bspc rule -a Alacritty:bc state=floating \
+	&& alacritty --class bc,Alacritty --dimensions 25 20 \
+	-e bash -c 'figlet "+=/-" \
+	| boxes -d stone && bc -q'
 
 # ranger
 super + shift + r
