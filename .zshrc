@@ -103,6 +103,7 @@ alias rr='ranger'
 alias pacorph='sudo pacman -Rns $(pacman -Qtdq)'
 alias kp='sudo killall'
 alias cl='clear'
+alias nf='neofetch'
 
 # you-should-use
 zinit ice depth=1 wait"3" lucid
