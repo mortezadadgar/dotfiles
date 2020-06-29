@@ -1,0 +1,4 @@
+set selection-clipboard clipboard
+set scroll-step 100
+set statusbar-home-tilde true
+set window-title-home-tilde true

@@ -1,5 +1,5 @@
 [colors]
-background = #212121
+background = #282c34
 foreground = #dfdfdf
 yellow = #fabd2f
 blue = #61AFEF
@@ -30,7 +30,7 @@ font-0 = "RobotoMono Nerd Font:style=Regular:size=11;3"
 
 modules-left = bspwm title
 modules-center = date
-modules-right = pulseaudio wlan battery powermenu
+modules-right = cpu cpu-temp pulseaudio wlan battery powermenu
 
 tray-position = right
 tray-padding = 2
@@ -47,6 +47,19 @@ label-unmounted-foreground = ${colors.foreground}
 
 wm-restack = bspwm
 
+[module/cpu-temp]
+type = custom/script
+exec = ~/.config/polybar/scripts/cpu-temp.sh
+interval = 15
+format-prefix = " "
+
+[module/cpu]
+type = internal/cpu
+
+interval = 2
+format-prefix = " "
+label = %percentage%%
+
 [module/bspwm]
 type = internal/bspwm
 
@@ -62,7 +75,7 @@ label-focused-background = ${colors.grey}
 label-occupied-background = ${colors.background}
 label-empty-background = ${colors.background}
 label-empty-foreground = ${colors.background}
-label-urgent-foreground = ${colors.red_dark}
+/* label-urgent-foreground = ${colors.red_dark} */
 
 label-focused = %icon%
 label-focused-padding = 1
@@ -73,6 +86,7 @@ label-empty =
 label-empty-padding = 1
 label-urgent = %icon%
 label-urgent-padding = 1
+label-urgent-underline = ${colors.red_dark}
 
 [module/title]
 type = internal/xwindow
@@ -87,63 +101,6 @@ label-maxlen = 12
 
 label-empty = Empty
 label-empty-foreground = #707880
-
-[module/i3]
-type = internal/i3
-
-format = <label-state> <label-mode>
-
-index-sort = true
-pin-workspaces = true
-enable-click = true
-strip-wsnumbers = true
-
-label-mode-padding = 2
-label-mode-foreground = #000
-label-mode-background = #000
-
-; focused = Active workspace on focused monitor
-label-focused = %icon%
-label-focused-background = ${colors.grey}
-label-focused-underline = ${colors.yellow}
-label-focused-padding = 1
-
-; unfocused = Inactive workspace on any monitor
-label-unfocused = %icon%
-label-unfocused-background = ${colors.background}
-label-unfocused-padding = 1
-
-; visible = Active workspace on unfocused monitor
-label-visible = %icon%
-label-visible-background = ${self.label-focused-background}
-label-visible-padding = ${self.label-focused-padding}
-
-; urgent = Workspace with urgency hint set
-label-urgent = %icon%
-label-urgent-background = ${colors.red_dark}
-label-urgent-padding = 1
-
-ws-icon-0 = 1; 
-ws-icon-1 = 2; 
-ws-icon-2 = 3; 
-ws-icon-3 = 4; 
-ws-icon-4 = 5; 
-
-[module/backlight]
-type = internal/backlight
-format-prefix            = " "
-format-prefix-foreground = ${colors.yellow}
-
-card = intel_backlight
-; Available tags:
-;   <label> (default)
-;   <ramp>
-;   <bar>
-format = <label>
-
-; Available tokens:
-;   %percentage% (default)
-label = %percentage%%
 
 [module/wlan]
 type = internal/network
@@ -215,7 +172,7 @@ format-spacing = 1
 
 label-open = " |"
 label-open-foreground = ${colors.foreground}
-label-close =  cancel
+label-close = cancel
 label-close-foreground = ${colors.foreground}
 label-separator = |
 label-separator-foreground = ${colors.foreground}

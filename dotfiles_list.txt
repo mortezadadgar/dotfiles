@@ -18,3 +18,6 @@
 .config/gtk-3.0/settings.ini
 .config/dunst/dunstrc
 .config/feh
+.config/picom/picom.conf
+.config/mimeapps.list
+.config/zathura/zathurarc

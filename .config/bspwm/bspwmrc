@@ -20,6 +20,10 @@ bspc rule -a TelegramDesktop desktop='^3' follow=on
 bspc rule -a mpv desktop='^4' follow=on
 bspc rule -a Zathura desktop='^5' state=fullscreen follow=on
 bspc rule -a persepolis state=floating desktop='^5' follow=on
+bspc rule -a Alacritty:ncmpcpp -o desktop=^4 state=floating follow=on
+bspc rule -a Alacritty:bc state=floating
+bspc desktop 2 -l monocle
+bspc desktop 3 -l monocle
 
 # polybar
 $HOME/.config/polybar/launch.sh
@@ -44,5 +48,5 @@ setxkbmap -layout us,ir -variant ,pes_win -option grp:alt_shift_toggle
 
 # touchpad
 # enable tapping, natural scrolling
-xinput set-prop 12 "libinput Tapping Enabled" 1
-xinput set-prop 12 "libinput Natural Scrolling Enabled" 1
+xinput set-prop "ETPS/2 Elantech Touchpad" "libinput Tapping Enabled" 1
+xinput set-prop "ETPS/2 Elantech Touchpad" "libinput Natural Scrolling Enabled" 1

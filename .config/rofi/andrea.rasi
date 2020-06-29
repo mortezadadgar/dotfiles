@@ -11,8 +11,8 @@
     highlight:        bold #50fa7b;
     urgentcolor:      #ff79c6;
 
-    fg:               #f8f8f2;
-    bg:               #212121;
+    fg:               #c0c0c0;
+    bg:               #282C34;
     blackselect:      #44475a;
     cyan:             #8be9fd;
     font: "RobotoMono Nerd Font 13";
