@@ -1,0 +1,38 @@
+#!/bin/bash
+
+while read file; do
+  case "$1" in
+
+# Set Wallpaper
+    "B") xwallpaper --stretch "$file" & 
+    	 cp "$file" $HOME/.config/wallp.jpg
+      ;;
+
+# Rotate +90
+    "r")
+    convert -rotate 90 "$file" "$file"
+      ;;
+
+# Rotate -90
+    "R")
+    convert -rotate -90 "$file" "$file"
+      ;;
+
+# Flip Image
+    "f")
+    convert -flop "$file" "$file"
+      ;;
+
+# Yank
+    "y")
+    echo -n "$file" | xclip -selection clipboard &&
+    notify-send "$file copied to clipboard" & 
+      ;;
+
+# Minify
+    "j")
+    [[ $(file -b "${file}") =~ JPEG ]] && convert -strip -interlace Plane -gaussian-blur 0.05 -quality 85% $file $file-min.jpg || echo "Error, file isn't a jpg."
+      ;;
+
+  esac
+done

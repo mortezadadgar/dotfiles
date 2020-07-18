@@ -20,8 +20,7 @@ function is_mute {
 function send_notification {
   iconSound="org.kde.plasma.volume"
   iconMuted="notification-audio-volume-muted"
-  if [ "$is_mute" = "yes" ]; then
-    echo is_mute
+  if [ $is_mute == "yes" ]; then
     dunstify -i $iconMuted -r 2593 -u normal "mute"
   else
     volume=$(get_volume)
