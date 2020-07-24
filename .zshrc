@@ -80,20 +80,14 @@ zinit wait"0c" lucid reset \
  atload'zstyle ":completion:*:default" list-colors "${(s.:.)LS_COLORS}";' for \
     trapd00r/LS_COLORS
 
-# you-should-use
-zinit ice depth=1 wait"3" lucid
-zinit light MichaelAquilina/zsh-you-should-use
-
-# forgit
-zinit ice wait lucid
-zinit load 'wfxr/forgit'
-
 # completion zstyle
 zstyle ':completion:*:*:kill:*' menu yes select
 zstyle ':completion:*:kill:*'   force-list always
 zstyle ":completion:*:descriptions" format "%B%d%b"
 zstyle ':completion:*:*:*:default' menu yes select search
 zstyle ':completion:*files' ignored-patterns '*?.o'
+zstyle ':completion:*' use-cache yes
+zstyle ':completion:*' cache-path $ZSH_CACHE_DIR
 
 # alias
 alias ls='ls --color=auto'
@@ -118,6 +112,7 @@ alias gbb='git branch | fzf | xargs git checkout'
 alias rm='rm -f'
 alias rg='rg --smart-case'
 alias inmea='sudo intel-undervolt measure'
+alias grevn='git revert --no-edit'
 
 function take() {
   mkdir -p $@ && cd ${@:$#}

@@ -159,6 +159,7 @@ map <F2> :set background=light<CR>
 " /// ALE/Deoplete ///
 let g:ale_linters = {
       \   'python': ['pylint', 'flake8'],
+      \   'c': [],
       \ }
 
 let g:ale_fixers = {

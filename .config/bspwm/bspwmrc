@@ -27,7 +27,6 @@ bspc rule -a Alacritty:ncmpcpp -o desktop=^4 state=floating follow=on
 bspc rule -a libreoffice desktop='^5' follow=on
 bspc rule -a Alacritty:bc state=floating
 bspc rule -a Pulseaudio-equalizer-gtk state=floating
-bspc desktop 2 -l monocle
 bspc desktop 3 -l monocle
 
 # picom
@@ -42,11 +41,14 @@ xwallpaper --stretch .config/wallp.jpg &
 # polybar
 $HOME/.config/polybar/launch.sh
 
-# repeat rate/delay
-xset r rate 300 30
-
 # nm-applet
 nm-applet &
+
+# redshift
+redshift &
+
+# repeat rate/delay
+xset r rate 300 30
 
 # add persian layout with windows variant keyboard
 setxkbmap -layout us,ir -variant ,pes_win -option grp:alt_shift_toggle
