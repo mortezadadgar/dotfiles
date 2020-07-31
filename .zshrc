@@ -1,22 +1,17 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
+# Powerlevel10k instant prompt
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Lines configured by zsh-newuser-install
+# configure zsh histroy
 HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
-# End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
-zstyle :compinstall filename '~/.zshrc'
 
+# configure zsh compinit
+zstyle :compinstall filename '~/.zshrc'
 autoload -Uz compinit
 compinit
-
-# End of lines added by compinstall
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
@@ -31,8 +26,7 @@ source "$HOME/.zinit/bin/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
-# Load a few important annexes, without Turbo
-# (this is currently required for annexes)
+# Annexes
 zinit light-mode for \
     zinit-zsh/z-a-patch-dl \
     zinit-zsh/z-a-as-monitor \
@@ -44,21 +38,25 @@ zinit light-mode for \
 export SUDO_EDITOR=/usr/bin/nvim
 # set nvim as default
 export EDITOR=nvim
+# arm32 toolchain
+export PATH="$HOME/arm-linux-gnueabi/bin:$PATH"
 
 # powerlevel10k
 zinit ice depth=1 atload"!source ~/.p10k.zsh" lucid nocd
-zplugin light romkatv/powerlevel10k
+zinit light romkatv/powerlevel10k
 
 # o-my-zsh
 # key-binding
-# always load fzf after key-bindings
-zinit ice wait atload"!source /usr/share/fzf/key-bindings.zsh !source /usr/share/fzf/completion.zsh" lucid nocd
+# always load fzf-bindings after key-bindings
+zinit ice lucid \
+	 atload"!source /usr/share/fzf/key-bindings.zsh \
+	 !source /usr/share/fzf/completion.zsh"
 zinit snippet OMZ::lib/key-bindings.zsh
 # git
 zinit ice wait lucid
 zinit snippet OMZ::plugins/git/git.plugin.zsh
 # archlinux yarem,yain...
-zinit ice wait"1" lucid
+zinit ice wait"2" lucid
 zinit snippet OMZ::plugins/archlinux/archlinux.plugin.zsh
 # systemd
 zinit ice wait"2" lucid
@@ -70,15 +68,28 @@ zinit snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
 zinit ice wait"3" lucid
 zinit snippet OMZ::plugins/sudo/sudo.plugin.zsh
 
+# fast-syntax and autosuggestions
+zinit wait lucid for \
+	atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+	    zdharma/fast-syntax-highlighting \
+	blockf \
+	    zsh-users/zsh-completions \
+	atload"_zsh_autosuggest_start" \
+	    zsh-users/zsh-autosuggestions
+
+# make completion faster
+export ZSH_AUTOSUGGEST_USE_ASYNC=1
+export ZSH_AUTOSUGGEST_MANUAL_REBIND=1
+
 # completion color
 zinit wait"0c" lucid reset \
- atclone"local P=${${(M)OSTYPE:#*darwin*}:+g}
-        \${P}sed -i \
-        '/DIR/c\DIR 38;5;63;1' LS_COLORS; \
-        \${P}dircolors -b LS_COLORS > c.zsh" \
- atpull'%atclone' pick"c.zsh" nocompile'!' \
- atload'zstyle ":completion:*:default" list-colors "${(s.:.)LS_COLORS}";' for \
-    trapd00r/LS_COLORS
+ 	atclone"local P=${${(M)OSTYPE:#*darwin*}:+g}
+            \${P}sed -i \
+            '/DIR/c\DIR 38;5;63;1' LS_COLORS; \
+            \${P}dircolors -b LS_COLORS > c.zsh" \
+	atpull'%atclone' pick"c.zsh" nocompile'!' \
+	atload'zstyle ":completion:*:default" list-colors "${(s.:.)LS_COLORS}";' for \
+	    trapd00r/LS_COLORS
 
 # completion zstyle
 zstyle ':completion:*:*:kill:*' menu yes select
@@ -107,13 +118,13 @@ alias pacorph='sudo pacman -Rns $(pacman -Qtdq)'
 alias kaa='sudo killall'
 alias cl='clear'
 alias nf='neofetch'
-alias bsf='bash -xc '\''bspc rule -a $0 state=floating'\'''
 alias gbb='git branch | fzf | xargs git checkout'
 alias rm='rm -f'
 alias rg='rg --smart-case'
 alias inmea='sudo intel-undervolt measure'
 alias grevn='git revert --no-edit'
 
+# make and cd
 function take() {
   mkdir -p $@ && cd ${@:$#}
 }
@@ -136,13 +147,3 @@ setopt share_history
 export FZF_DEFAULT_COMMAND="fd --type f -H"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --type d -H"
-
-# fast-syntax and autosuggestions
-zinit wait lucid for \
-	 atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
-	     zdharma/fast-syntax-highlighting \
-	      blockf \
-	          zsh-users/zsh-completions \
-		   atload"!_zsh_autosuggest_start" \
-		       zsh-users/zsh-autosuggestions
-
