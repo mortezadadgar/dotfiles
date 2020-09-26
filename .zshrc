@@ -39,7 +39,11 @@ export SUDO_EDITOR=/usr/bin/nvim
 # set nvim as default
 export EDITOR=nvim
 # arm32 toolchain
-export PATH="$HOME/arm-linux-gnueabi/bin:$PATH"
+# export PATH="$HOME/arm-linux-gnueabi/bin:$PATH"
+# clang toolchain
+# export PATH="$HOME/proton_clang/bin:$PATH"
+# always clear screen after exit ls
+export LESS=R
 
 # powerlevel10k
 zinit ice depth=1 atload"!source ~/.p10k.zsh" lucid nocd
@@ -53,7 +57,7 @@ zinit ice lucid \
 	 !source /usr/share/fzf/completion.zsh"
 zinit snippet OMZ::lib/key-bindings.zsh
 # git
-zinit ice wait lucid
+zinit ice lucid
 zinit snippet OMZ::plugins/git/git.plugin.zsh
 # archlinux yarem,yain...
 zinit ice wait"2" lucid
@@ -77,10 +81,6 @@ zinit wait lucid for \
 	atload"_zsh_autosuggest_start" \
 	    zsh-users/zsh-autosuggestions
 
-# make completion faster
-export ZSH_AUTOSUGGEST_USE_ASYNC=1
-export ZSH_AUTOSUGGEST_MANUAL_REBIND=1
-
 # completion color
 zinit wait"0c" lucid reset \
  	atclone"local P=${${(M)OSTYPE:#*darwin*}:+g}
@@ -93,15 +93,17 @@ zinit wait"0c" lucid reset \
 
 # completion zstyle
 zstyle ':completion:*:*:kill:*' menu yes select
-zstyle ':completion:*:kill:*'   force-list always
+zstyle ':completion:*:kill:*' force-list always
 zstyle ":completion:*:descriptions" format "%B%d%b"
 zstyle ':completion:*:*:*:default' menu yes select search
 zstyle ':completion:*files' ignored-patterns '*?.o'
 zstyle ':completion:*' use-cache yes
 zstyle ':completion:*' cache-path $ZSH_CACHE_DIR
+zstyle ':completion:*:matches' group 'yes'
+zstyle ':completion:*' group-name ''
 
 # alias
-alias ls='ls --color=auto'
+alias ls='ls --color=auto --group-directories-first'
 alias grep='grep --color=auto'
 alias pacman='pacman --color=auto'
 alias yay='yay --color=auto'
@@ -115,14 +117,16 @@ alias pt='sudo powertop'
 alias mkdef='make shadow_defconfig; cp .config arch/arm64/configs/shadow_defconfig'
 alias rr='ranger'
 alias pacorph='sudo pacman -Rns $(pacman -Qtdq)'
-alias kaa='sudo killall'
 alias cl='clear'
 alias nf='neofetch'
 alias gbb='git branch | fzf | xargs git checkout'
 alias rm='rm -f'
-alias rg='rg --smart-case'
 alias inmea='sudo intel-undervolt measure'
 alias grevn='git revert --no-edit'
+alias glg='git log --no-merges'
+alias gcps='git cherry-pick --skip'
+alias gams='git commit --amend -s'
+alias pc='sudo picocom -b 115200 /dev/ttyUSB0'
 
 # make and cd
 function take() {

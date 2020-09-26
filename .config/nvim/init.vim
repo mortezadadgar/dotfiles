@@ -17,6 +17,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-fugitive'
 call plug#end()
 
 " /// Statusline ///
@@ -78,6 +79,9 @@ set pumheight=10
 
 " set python binary
 let g:python3_host_prog='/usr/bin/python3'
+
+" max 80 line width
+set colorcolumn=80
 
 " /// KeyMapping ///
 " Disable q:
