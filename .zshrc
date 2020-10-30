@@ -127,6 +127,8 @@ alias glg='git log --no-merges'
 alias gcps='git cherry-pick --skip'
 alias gams='git commit --amend -s'
 alias pc='sudo picocom -b 115200 /dev/ttyUSB0'
+alias dnssta='sudo systemctl status --now dnscrypt-proxy.service'
+alias dnsres='sudo systemctl restart --now dnscrypt-proxy.service'
 
 # make and cd
 function take() {

@@ -1,10 +1,13 @@
 [colors]
 background = #282c34
+background_2 = #121417
 foreground = #dfdfdf
-yellow = #fabd2f
+yellow = #ffff00
 blue = #61AFEF
 grey = #333842
+grey_2 = #47474B
 red_dark = #9d000f
+black = #000000
 
 [bar/top]
 width = 100%
@@ -15,6 +18,7 @@ fixed-center = true
 background = ${colors.background}
 foreground = ${colors.foreground}
 
+# size of yellow bar
 line-size = 3
 
 border-size = 0
@@ -30,7 +34,7 @@ font-0 = "RobotoMono Nerd Font:style=Regular:size=11;3"
 
 modules-left = bspwm title
 modules-center = date
-modules-right = cpu cpu-temp pulseaudio wlan battery powermenu
+modules-right = xkeyboard cpu cpu-temp pulseaudio battery powermenu
 
 tray-position = right
 tray-padding = 2
@@ -39,13 +43,19 @@ enable-ipc = false
 cursor-click = pointer
 cursor-scroll = ns-resize
 
-mount-0 = /
-
-label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
-label-unmounted = %mountpoint% not mounted
-label-unmounted-foreground = ${colors.foreground}
-
 wm-restack = bspwm
+
+[module/xkeyboard]
+type = internal/xkeyboard
+blacklist-0 = num lock
+
+format = <label-layout>
+format-spacing = 0
+
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground}
+
+label-layout = %layout%
 
 [module/cpu-temp]
 type = custom/script
@@ -62,6 +72,7 @@ label = %percentage%%
 
 [module/bspwm]
 type = internal/bspwm
+enable-scroll = false
 
 ws-icon-0 = 1; 
 ws-icon-1 = 2; 
@@ -75,7 +86,6 @@ label-focused-background = ${colors.grey}
 label-occupied-background = ${colors.background}
 label-empty-background = ${colors.background}
 label-empty-foreground = ${colors.background}
-/* label-urgent-foreground = ${colors.red_dark} */
 
 label-focused = %icon%
 label-focused-padding = 1
@@ -119,7 +129,7 @@ ramp-signal-0 = "  "
 type = internal/date
 interval = 60
 
-date = " %a %b %d,"
+date = " %a %b %d |"
 
 time = %H:%M
 time-alt = %H:%M:%S
@@ -145,7 +155,7 @@ ramp-volume-2 = 
 type = internal/battery
 battery = BAT1
 adapter = ACAD
-full-at = 98
+full-at = 100
 
 format-charging = <animation-charging> <label-charging>
 
@@ -177,17 +187,14 @@ label-close-foreground = ${colors.foreground}
 label-separator = |
 label-separator-foreground = ${colors.foreground}
 label-open-padding = 0
+
 menu-0-0 = reboot
 menu-0-0-exec = menu-open-1
 menu-0-1 = shutdown 
 menu-0-1-exec = menu-open-2
 
-menu-1-0 = cancel
-menu-1-0-exec = menu-open-0
-menu-1-1 = reboot
-menu-1-1-exec = systemctl reboot
+menu-1-0 = reboot
+menu-1-0-exec = systemctl reboot
 
 menu-2-0 = power off
 menu-2-0-exec = systemctl poweroff
-menu-2-1 = cancel
-menu-2-1-exec = menu-open-0

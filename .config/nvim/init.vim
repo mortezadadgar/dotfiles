@@ -18,6 +18,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
+Plug 'gburca/vim-logcat'
 call plug#end()
 
 " /// Statusline ///
@@ -36,8 +37,8 @@ let airline#extensions#tabline#tabs_label = ''
 let g:airline#extensions#tabline#show_close_button = 0
 let g:airline#extensions#tabline#show_buffers = 0
 let g:airline_symbols = get(g:, 'airline_symbols', {})
-let g:airline_symbols.linenr = '☰'
-let g:airline_section_z = '%{g:airline_symbols.linenr}%#__accent_bold#%4l%#__restore__#/%L%'
+let g:airline_symbols.linenr = '☰ '
+let g:airline_section_z = '%{g:airline_symbols.linenr}%#__accent_bold#%l%#__restore__#/%L%'
 
 " stop Rooter echoing the project directory
 let g:rooter_silent_chdir = 1
@@ -48,6 +49,9 @@ set termguicolors
 
 " OneDark
 colorscheme one
+
+" call one#highlight('DiffAdd', '000000', 'ffffff', 'none')
+" call one#highlight('DiffLine', '000000', 'ffffff', 'none')
 
 " /// Basic ///
 " line number
@@ -82,6 +86,10 @@ let g:python3_host_prog='/usr/bin/python3'
 
 " max 80 line width
 set colorcolumn=80
+
+" default syntax for files with no extention
+autocmd BufNewFile,BufRead * if expand('%:t') !~ '\.' | set syntax=log | endif
+autocmd BufNewFile,BufRead *.rc set syntax=log
 
 " /// KeyMapping ///
 " Disable q:
@@ -120,16 +128,21 @@ nnoremap <C-t> :Files<CR>
 nnoremap <C-b> :Buffers<CR>
 nnoremap <C-g> :GFiles?<CR>
 
+" Disable help menu
+no <F1> <Nop>
+ino <F1> <Nop>
+
 " /// ALE/Deoplete ///
 let g:ale_linters = {
       \   'python': ['pylint', 'flake8'],
-      \   'c': [],
+      \   'c': ['cc'],
       \   'h': [],
       \   'S': [],
       \ }
 
 let g:ale_fixers = {
       \   'python': ['black', 'isort'],
+      \	  'c': ['clangtidy', 'clang-format'],
       \ }
 
 " formatting on save
