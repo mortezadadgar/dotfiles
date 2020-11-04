@@ -24,9 +24,10 @@ bspc rule -a mpv desktop='^4' follow=on
 bspc rule -a Zathura desktop='^5' state=fullscreen follow=on
 bspc rule -a persepolis state=floating desktop='^5' follow=on
 bspc rule -a Alacritty:ncmpcpp -o desktop=^4 state=floating follow=on
-bspc rule -a libreoffice desktop='^5' follow=on
 bspc rule -a Alacritty:bc state=floating
+bspc rule -a Alacritty:pulsemixer state=floating
 bspc rule -a Pulseaudio-equalizer-gtk state=floating
+bspc rule -a Nm-connection-editor state=floating
 
 # picom
 picom --experimental-backends &

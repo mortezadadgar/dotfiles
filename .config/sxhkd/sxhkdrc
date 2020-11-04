@@ -36,8 +36,8 @@ super + m
 
 # set the window state
 # toggle fullscreen with only one key
-super + {t,shift + t,s,f}
-	bspc node -t {tiled,pseudo_tiled,floating,\~fullscreen}
+super + {t,s,f}
+	bspc node -t {tiled,floating,\~fullscreen}
 
 # set the node flags
 super + ctrl + {m,x,y,z}
@@ -68,10 +68,6 @@ super + {_,shift + }{1-9,0}
 	bspc {desktop -f,node -d} '^{1-9,10}'
 
 #
-# preselect
-#
-
-#
 # move/resize
 #
 
@@ -93,15 +89,14 @@ super + shift + {f, e}
 
 # ncmpcpp
 super + shift + m
-	bspc rule -a Alacritty:ncmpcpp -o desktop=^4 \
-	state=floating follow=on && alacritty \
+	alacritty \
 	--dimensions 70 20 --position 10 40 \
 	--class ncmpcpp,Alacritty -e ncmpcpp
 
 # calc
 super + shift + equal
-	bspc rule -a Alacritty:bc state=floating \
-	&& alacritty --class bc,Alacritty --dimensions 25 20 \
+	alacritty \
+	--class bc,Alacritty --dimensions 25 20 \
 	-e bash -c 'figlet "+=/-" \
 	| boxes -d stone && bc -q'
 
@@ -111,21 +106,25 @@ super + shift + r
 
 # sound control
 XF86Audio{RaiseVolume,LowerVolume,Mute}
-	$HOME/.config/sxhkd/scripts/VolumeControl.sh {up, down, mute}
+	pulsemixer {--change-volume +10, --change-volume -10, --toggle-mute}
 
 # media keys
 XF86Audio{Next,Prev,Play,Stop}
 	mpc {next,prev,toggle,stop}
 
 XF86MonBrightness{Up,Down}
-	$HOME/.config/sxhkd/scripts/BrightnessControl.sh {up, down}
+	xbacklight {-inc 5, -dec 5}
 
-# screenshot
+# screenshot (region)
 Print
 	flameshot gui
+
+# screenshot (full)
 super + Print
 	flameshot full -c
 
-# toggle dont-disturb-mode
-F10 + {_,shift +}
-	{dunstify -r 9292 -u critical "Enabled Do not disturb mode" && sleep 2 && killall -SIGUSR1 dunst && dunstify -C 9292,killall -SIGUSR2 dunst && dunstify -r 9293 -u critical "Disabled Do not disturb mode"}
+# pulsemixer
+super + shift + v
+	alacritty \
+	--dimensions 50 15 \
+	--class pulsemixer,Alacritty -e pulsemixer

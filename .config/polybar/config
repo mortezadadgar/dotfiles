@@ -7,6 +7,7 @@ blue = #61AFEF
 grey = #333842
 grey_2 = #47474B
 red_dark = #9d000f
+red = #ff3333
 black = #000000
 
 [bar/top]
@@ -34,7 +35,7 @@ font-0 = "RobotoMono Nerd Font:style=Regular:size=11;3"
 
 modules-left = bspwm title
 modules-center = date
-modules-right = xkeyboard cpu cpu-temp pulseaudio battery powermenu
+modules-right = xkeyboard cpu temperature pulseaudio backlight battery powermenu
 
 tray-position = right
 tray-padding = 2
@@ -44,6 +45,20 @@ cursor-click = pointer
 cursor-scroll = ns-resize
 
 wm-restack = bspwm
+
+[module/backlight]
+type = internal/xbacklight
+enable-scroll = false
+
+label = %percentage%%
+format = <ramp> <label>
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-3 = ﯦ
+ramp-4 = ﯦ
+ramp-5 = ﯦ
 
 [module/xkeyboard]
 type = internal/xkeyboard
@@ -57,11 +72,22 @@ format-prefix-foreground = ${colors.foreground}
 
 label-layout = %layout%
 
-[module/cpu-temp]
-type = custom/script
-exec = ~/.config/polybar/scripts/cpu-temp.sh
-interval = 15
-format-prefix = " "
+[module/temperature]
+type = internal/temperature
+interval = 10
+thermal-zone = 0
+
+base-temperature = 30
+warn-temperature = 60
+
+format = <ramp> <label>
+format-warn = <ramp> <label-warn>
+
+label = %temperature-c%
+label-warn = %temperature-c%
+label-warn-foreground = ${colors.red}
+
+ramp-0 =  
 
 [module/cpu]
 type = internal/cpu
@@ -138,7 +164,6 @@ label = %date% %time%
 
 [module/pulseaudio]
 type = internal/pulseaudio
-sink = alsa_output.pci-0000_00_1f.3.analog-stereo
 
 format-volume = <ramp-volume> <label-volume> 
 label-volume = %percentage%%
@@ -165,9 +190,9 @@ format-full-prefix = "  "
 format-full-prefix-foreground = ${colors.foreground}
 
 ramp-capacity-0 = " "
+ramp-capacity-0-foreground = ${colors.red_dark}
 ramp-capacity-1 = " "
 ramp-capacity-2 = " "
-ramp-capacity-foreground = ${colors.foreground}
 
 animation-charging-0          = " "
 animation-charging-1          = " "
