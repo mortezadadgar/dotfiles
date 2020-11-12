@@ -4,8 +4,8 @@ while read file; do
   case "$1" in
 
 # Set Wallpaper
-    "B") xwallpaper --stretch "$file" & 
-    	 cp "$file" $HOME/.config/wallp.jpg
+    "B") xwallpaper --stretch "$file" &&
+    	 cp "$file" $HOME/.config/wallp.jpg &
       ;;
 
 # Rotate +90
@@ -31,7 +31,9 @@ while read file; do
 
 # Minify
     "j")
-    [[ $(file -b "${file}") =~ JPEG ]] && convert -strip -interlace Plane -gaussian-blur 0.05 -quality 85% $file $file-min.jpg || echo "Error, file isn't a jpg."
+    [[ $(file -b "${file}") =~ JPEG ]] &&
+    convert -quality 85% "$file" "$file-min.jpg" \
+    || notify-send "Error, $file isn't a jpg."
       ;;
 
   esac

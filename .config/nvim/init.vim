@@ -9,16 +9,13 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-rooter'
 Plug 'sheerun/vim-polyglot'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'deoplete-plugins/deoplete-jedi'
-Plug 'dense-analysis/ale'
 Plug 'Yggdroot/indentLine'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
-Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
 Plug 'gburca/vim-logcat'
+Plug 'neoclide/coc.nvim'
 call plug#end()
 
 " /// Statusline ///
@@ -35,7 +32,7 @@ let g:airline#extensions#tabline#right_sep = ''
 let airline#extensions#tabline#show_splits = 0
 let airline#extensions#tabline#tabs_label = ''
 let g:airline#extensions#tabline#show_close_button = 0
-let g:airline#extensions#tabline#show_buffers = 0
+" let g:airline#extensions#tabline#show_buffers = 0
 let g:airline_symbols = get(g:, 'airline_symbols', {})
 let g:airline_symbols.linenr = '☰ '
 let g:airline_section_z = '%{g:airline_symbols.linenr}%#__accent_bold#%l%#__restore__#/%L%'
@@ -49,9 +46,6 @@ set termguicolors
 
 " OneDark
 colorscheme one
-
-" call one#highlight('DiffAdd', '000000', 'ffffff', 'none')
-" call one#highlight('DiffLine', '000000', 'ffffff', 'none')
 
 " /// Basic ///
 " line number
@@ -106,8 +100,8 @@ vnoremap < <gv
 vnoremap > >gv
 
 " compile python code
-autocmd FileType python map <buffer> <F5> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
-autocmd FileType python imap <buffer> <F5> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+autocmd FileType python map <buffer> <F5> :w<CR>:exec '!python' shellescape(@%, 1)<CR>
+autocmd FileType python imap <buffer> <F5> <esc>:w<CR>:exec '!python' shellescape(@%, 1)<CR>
 
 " Disable arrow keys
 no <down> <Nop>
@@ -132,32 +126,7 @@ nnoremap <C-g> :GFiles?<CR>
 no <F1> <Nop>
 ino <F1> <Nop>
 
-" /// ALE/Deoplete ///
-let g:ale_linters = {
-      \   'python': ['pylint', 'flake8'],
-      \   'c': ['cc'],
-      \   'h': [],
-      \   'S': [],
-      \ }
-
-let g:ale_fixers = {
-      \   'python': ['black', 'isort'],
-      \	  'c': ['clangtidy', 'clang-format'],
-      \ }
-
-" formatting on save
-let g:ale_fix_on_save = 1
-
-" ALE sign
-let g:ale_sign_error = '●'
-let g:ale_sign_warning = '.'
-
-" Use deoplete.
-let g:deoplete#enable_at_startup = 1
-let g:ale_completion_enabled = 0
-
-" deplote width
-call deoplete#custom#source('_',  'max_menu_width', 50)
+" /// COC ///
 
 " Disable completion scratch
 set completeopt-=preview
@@ -169,6 +138,58 @@ set shortmess+=c
 " diagnostics appear/become resolved.
 set signcolumn=yes
 
-" nvigate between linters error
-nmap <silent> ]g :ALENext<CR>
-nmap <silent> [g :ALEPrevious<CR>
+" Use tab for trigger completion with characters ahead and navigate.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
+
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
+
+" Formatting selected code.
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+" Applying codeAction to the selected region.
+" Example: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap keys for applying codeAction to the current buffer.
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Show all diagnostics.
+nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>

@@ -12,38 +12,28 @@
 
 window {
     background-color: @bg;
-    width:            900;
 }
 
 mainbox {
     background-color: @bg;
-    children: [inputbar, message, listview];
-}
-
-inputbar {
-    background-color: @bg;
-    spacing: 0px;
-}
-
-prompt {
-    padding:6px 9px;
-    background-color: @maincolor;
-    text-color:@bg;
-}
-
-message {
-    padding: 6px 10px;
-    background-color:@bg;
+    children: [prompt, listview];
 }
 
 listview {
-    fixed-height: false;
-    dynamic: true;
+    margin: 0px 0px -50px -5px;
+    location: center;
     background: @bg;
+    padding:0px 10px 0px 25px;
 }
 
+prompt {
+    padding:5px 41px;
+    background-color: @maincolor;
+    text-color:@bg;
+}
 element {
     padding: 2px 15px;
+    margin: 0px -18px;
 }
 
 element normal.normal {

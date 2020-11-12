@@ -1,0 +1,8 @@
+configuration {
+	modi: "drun";
+	theme: "andrea";
+	width: 300;
+	lines: 4;
+	columns: 3;
+	show-icons: true;
+}

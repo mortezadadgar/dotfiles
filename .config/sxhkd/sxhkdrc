@@ -8,12 +8,15 @@ super + Return
 
 # program launcher
 super + d
-	rofi -show drun -columns 3
+	rofi -show drun -location 2
 
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd
 
+# powermenu
+super + shift + n
+	~/.config/sxhkd/scripts/power_rofi.sh
 #
 # bspwm hotkeys
 #
@@ -84,8 +87,8 @@ super + o
 	bspc node -g sticky={on,off}
 
 # apps
-super + shift + {f, e}
-	{firefox, telegram-desktop}
+super + shift + {f, End, e, p}
+	{firefox, firefox --private-window, telegram-desktop, persepolis}
 
 # ncmpcpp
 super + shift + m

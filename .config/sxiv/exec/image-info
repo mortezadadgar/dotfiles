@@ -7,4 +7,4 @@
   geometry=$(identify -format '%wx%h' "$1[0]")
 
 # Bar Line Content
-  echo "ctrl+x to execute commands${s}${filesize}${s}${geometry}${s}${filename}"
+  echo "${filename}${s}${geometry}${s}${filesize}"

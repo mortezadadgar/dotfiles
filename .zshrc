@@ -98,12 +98,12 @@ zstyle ':completion:*:matches' group 'yes'
 zstyle ':completion:*' group-name ''
 
 # alias
-alias ls='ls --color=auto --group-directories-first'
+alias ls='ls -h --color=auto --group-directories-first'
 alias grep='grep --color=auto'
 alias pacman='pacman --color=auto'
 alias yay='yay --color=auto'
 alias ht='htop'
-alias ll='ls -lh'
+alias ll='ls -lh --color=auto --group-directories-first'
 alias vi='nvim'
 alias rf='sudo reflector --latest 10 --protocol https --sort rate --save /etc/pacman.d/mirrorlist &'
 alias svi='sudoedit'
@@ -124,6 +124,7 @@ alias gams='git commit --amend -s'
 alias pc='sudo picocom -b 115200 /dev/ttyUSB0'
 alias dnssta='sudo systemctl status --now dnscrypt-proxy.service'
 alias dnsres='sudo systemctl restart --now dnscrypt-proxy.service'
+alias ka='killall -9'
 
 # make and cd
 function take() {
