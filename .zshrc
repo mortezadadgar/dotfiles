@@ -110,12 +110,10 @@ alias svi='sudoedit'
 alias sudo='sudo -v; sudo '
 alias pt='sudo powertop'
 alias mkdef='make shadow_defconfig; cp .config arch/arm64/configs/shadow_defconfig'
-alias rr='ranger'
 alias pacorph='sudo pacman -Rns $(pacman -Qtdq)'
 alias cl='clear'
 alias nf='neofetch'
 alias gbb='git branch | fzf | xargs git checkout'
-alias rm='rm -f'
 alias inmea='sudo intel-undervolt measure'
 alias grevn='git revert --no-edit'
 alias glg='git log --no-merges'
@@ -125,6 +123,7 @@ alias pc='sudo picocom -b 115200 /dev/ttyUSB0'
 alias dnssta='sudo systemctl status --now dnscrypt-proxy.service'
 alias dnsres='sudo systemctl restart --now dnscrypt-proxy.service'
 alias ka='killall -9'
+alias sxiv='sxiv-rifle'
 
 # make and cd
 function take() {
@@ -149,3 +148,6 @@ setopt share_history
 export FZF_DEFAULT_COMMAND="fd --type f -H"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --type d -H"
+
+# NNN
+source ~/.nnn

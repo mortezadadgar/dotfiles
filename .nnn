@@ -1,0 +1,7 @@
+# NNN
+[ -n "$NNNLVL" ] && PS1="N$NNNLVL $PS1"
+source /usr/share/nnn/quitcd/quitcd.bash_zsh
+alias n='n -e'
+export NNN_PLUG='u:upload;j:autojump;d:diffs;s:suedit;U:getplugs;z:fzcd;b:bookmarks;o:fzopen;m:nmount;x:_chmod +x $nnn'
+export NNN_BMS='d:~/Downloads;m:~/Downloads/Persepolis/Videos;b:~/bullhead_device'
+export NNN_ARCHIVE="\\.(7z|a|ace|alz|arc|arj|bz|bz2|cab|cpio|deb|gz|jar|lha|lz|lzh|lzma|lzo|rar|rpm|rz|t7z|tar|tbz|tbz2|tgz|tlz|txz|tZ|tzo|war|xpi|xz|Z|zip)$"

@@ -103,10 +103,6 @@ super + shift + equal
 	-e bash -c 'figlet "+=/-" \
 	| boxes -d stone && bc -q'
 
-# ranger
-super + shift + r
-	alacritty -e ranger
-
 # sound control
 XF86Audio{RaiseVolume,LowerVolume,Mute}
 	pulsemixer {--change-volume +10, --change-volume -10, --toggle-mute}

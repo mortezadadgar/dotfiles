@@ -2,5 +2,7 @@
 
 [Default Applications]
 application/pdf=org.pwmt.zathura.desktop;
-image/jpeg=feh.desktop;
-image/png=feh.desktop;
+image/jpeg=sxiv-rifle.desktop;
+image/png=sxiv-rifle.desktop;
+video/mp4=mpv.desktop;
+video/x-matroska=mpv.desktop;

@@ -1,3 +1,4 @@
+.nnn
 .zshrc
 .p10k.zsh
 .config/alacritty
@@ -6,8 +7,6 @@
 .config/rofi
 .config/sxhkd
 .config/bspwm
-.config/ranger/rc.conf
-.config/ranger/scope.sh
 .config/nvim/init.vim
 .config/htop/htoprc
 .config/mpv/mpv.conf
