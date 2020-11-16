@@ -1,8 +1,8 @@
 #
 # wm independent hotkeys
 #
-
 # terminal emulator
+
 super + Return
 	alacritty
 
@@ -93,7 +93,7 @@ super + shift + {f, End, e, p}
 # ncmpcpp
 super + shift + m
 	alacritty \
-	--dimensions 70 20 --position 10 40 \
+	--dimensions 60 15 \
 	--class ncmpcpp,Alacritty -e ncmpcpp
 
 # calc
@@ -101,7 +101,8 @@ super + shift + equal
 	alacritty \
 	--class bc,Alacritty --dimensions 25 20 \
 	-e bash -c 'figlet "+=/-" \
-	| boxes -d stone && bc -q'
+	| boxes -d stone \
+	&& BC_ENV_ARGS=<(echo "scale=2") \bc -q'
 
 # sound control
 XF86Audio{RaiseVolume,LowerVolume,Mute}

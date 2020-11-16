@@ -5,8 +5,6 @@ call plug#begin()
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'rakr/vim-one'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-rooter'
 Plug 'sheerun/vim-polyglot'
 Plug 'Yggdroot/indentLine'
@@ -15,7 +13,8 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tpope/vim-fugitive'
 Plug 'gburca/vim-logcat'
-Plug 'neoclide/coc.nvim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'mcchrish/nnn.vim'
 call plug#end()
 
 " /// Statusline ///
@@ -116,11 +115,6 @@ vno <up> <Nop>
 " switch between dark/light theme
 map <F1> :set background=dark<CR>
 map <F2> :set background=light<CR>
-
-" Fzf
-nnoremap <C-t> :Files<CR>
-nnoremap <C-b> :Buffers<CR>
-nnoremap <C-g> :GFiles?<CR>
 
 " Disable help menu
 no <F1> <Nop>

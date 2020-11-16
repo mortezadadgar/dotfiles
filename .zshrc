@@ -38,10 +38,6 @@ zinit light-mode for \
 export SUDO_EDITOR=/usr/bin/nvim
 # set nvim as default
 export EDITOR=nvim
-# arm32 toolchain
-# export PATH="$HOME/arm-linux-gnueabi/bin:$PATH"
-# clang toolchain
-# export PATH="$HOME/proton_clang/bin:$PATH"
 # always clear screen after exit ls
 export LESS=R
 
@@ -96,6 +92,7 @@ zstyle ':completion:*' use-cache yes
 zstyle ':completion:*' cache-path $ZSH_CACHE_DIR
 zstyle ':completion:*:matches' group 'yes'
 zstyle ':completion:*' group-name ''
+zstyle ':completion:*' list-dirs-first true
 
 # alias
 alias ls='ls -h --color=auto --group-directories-first'
@@ -120,20 +117,7 @@ alias glg='git log --no-merges'
 alias gcps='git cherry-pick --skip'
 alias gams='git commit --amend -s'
 alias pc='sudo picocom -b 115200 /dev/ttyUSB0'
-alias dnssta='sudo systemctl status --now dnscrypt-proxy.service'
-alias dnsres='sudo systemctl restart --now dnscrypt-proxy.service'
-alias ka='killall -9'
 alias sxiv='sxiv-rifle'
-
-# make and cd
-function take() {
-  mkdir -p $@ && cd ${@:$#}
-}
-
-# copy contents of a file to clipboard
-function xcp() {
-  cat $1 |xclip -selection clipboard
-}
 
 # preserve history for new instance
 setopt extended_history
@@ -145,9 +129,11 @@ setopt inc_append_history
 setopt share_history
 
 # fzf
-export FZF_DEFAULT_COMMAND="fd --type f -H"
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_CTRL_T_COMMAND="fd --type f -H"
 export FZF_ALT_C_COMMAND="fd --type d -H"
 
 # NNN
 source ~/.nnn
+
+# Jump
+eval "$(jump shell --bind=j)"
