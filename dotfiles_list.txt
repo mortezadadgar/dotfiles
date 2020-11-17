@@ -12,6 +12,7 @@
 .config/mpv/mpv.conf
 .config/mpv/scripts
 .config/ncmpcpp/config
+.config/ncmpcpp/bindings
 .config/mpd/mpd.conf
 .config/gtk-3.0/settings.ini
 .config/dunst/dunstrc
