@@ -79,6 +79,9 @@ zinit wait lucid for \
 
 # completion color
 zinit wait"0c" lucid reset \
+ 	atclone"local P=${${(M)OSTYPE:#*darwin*}:+g}
+            \${P}dircolors -b LS_COLORS > c.zsh" \
+	atpull'%atclone' pick"c.zsh" nocompile'!' \
 	atload'zstyle ":completion:*:default" list-colors "${(s.:.)LS_COLORS}";' for \
 	    trapd00r/LS_COLORS
 

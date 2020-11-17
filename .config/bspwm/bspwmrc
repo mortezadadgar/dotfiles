@@ -45,7 +45,7 @@ $HOME/.config/polybar/launch.sh
 # nm-applet
 nm-applet &
 
-# redshift
+# redshift 
 redshift &
 
 # repeat rate/delay
