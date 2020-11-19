@@ -5,21 +5,12 @@
   "diagnostic.hintSign": "➤",
   "python.jediEnabled": false,
   "python.linting.enabled": true,
-  "python.linting.banditEnabled": true,
-  "python.linting.banditArgs": ["--skip=B322"],
   "python.linting.flake8Enabled": true,
-  "python.formatting.provider": "black",
+  "python.linting.pylintEnabled": false,
+  "python.formatting.provider": "yapf",
   "coc.preferences.hoverTarget": "float",
   "coc.preferences.enableFloatHighlight": true,
   "coc.source.file.ignoreHidden": false,
   "coc.preferences.formatOnSaveFiletypes": ["python"],
-  "coc.preferences.formatOnType": true,
-  // explorer
-  "explorer.width": 30,
-  "explorer.icon.enableNerdfont": true,
-  "explorer.previewAction.onHover": false,
-  "explorer.keyMappings": {
-    "<cr>": ["expandable?", "expand", "open"],
-    "v": "open:vsplit"
-  }
+  "coc.preferences.formatOnType": true
 }

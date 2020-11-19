@@ -61,9 +61,6 @@ zinit snippet OMZ::plugins/archlinux/archlinux.plugin.zsh
 # systemd
 zinit ice wait"2" lucid
 zinit snippet OMZ::plugins/systemd/systemd.plugin.zsh
-# colored man-pages
-zinit ice wait"3" lucid
-zinit snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
 # double esc
 zinit ice wait"3" lucid
 zinit snippet OMZ::plugins/sudo/sudo.plugin.zsh

@@ -4,7 +4,7 @@ while read file; do
   case "$1" in
 
 # Set Wallpaper
-    "B") xwallpaper --stretch "$file" &&
+    "b") xwallpaper --stretch "$file" &&
     	 cp "$file" $HOME/.config/wallp.jpg &
       ;;
 

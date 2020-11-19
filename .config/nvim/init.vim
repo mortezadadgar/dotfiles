@@ -120,8 +120,21 @@ map <F2> :set background=light<CR>
 no <F1> <Nop>
 ino <F1> <Nop>
 
-" /// COC ///
+" /// NNN ///
+let g:nnn#action = {
+      \ '<c-t>': 'tab split',
+      \ '<c-x>': 'split',
+      \ '<c-v>': 'vsplit' }
 
+let g:nnn#layout = { 'window': { 'width': 0.4, 'height': 0.6, 'xoffset': 40, 'highlight': 'Debug', 'border': 'sharp' } }
+
+" open nnn in current file's directory
+nnoremap <leader>n :NnnPicker %:p:h<CR>
+
+" open text files in $VISUAL
+let g:nnn#command = 'nnn -e'
+
+" /// COC ///
 " Disable completion scratch
 set completeopt-=preview
 
@@ -170,20 +183,6 @@ endfunction
 
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
-
-" Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-
-" Applying codeAction to the selected region.
-" Example: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
-
-" Remap keys for applying codeAction to the current buffer.
-nmap <leader>ac  <Plug>(coc-codeaction)
-" Apply AutoFix to problem on the current line.
-nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Show all diagnostics.
 nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
