@@ -76,3 +76,9 @@ element alternate.active {
     background-color: @bg;
     text-color:       @maincolor;
 }
+
+entry {
+    padding:6px 10px;
+    background-color:@bg;
+    text-color:@fg;
+}

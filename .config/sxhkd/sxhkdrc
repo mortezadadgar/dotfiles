@@ -8,7 +8,7 @@ super + Return
 
 # program launcher
 super + d
-	rofi -show drun -location 2
+	rofi -display-run "> " -modi run -show run -theme /home/morteza/.config/rofi/simple_launcher.rasi
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -16,7 +16,8 @@ super + Escape
 
 # powermenu
 super + shift + n
-	~/.config/sxhkd/scripts/power_rofi.sh
+	rofi -modi 'Powermenu: /home/morteza/.config/rofi/scripts/rofi-powermenu.sh' \
+	-show Powermenu -theme /home/morteza/.config/rofi/powermenu.rasi
 #
 # bspwm hotkeys
 #

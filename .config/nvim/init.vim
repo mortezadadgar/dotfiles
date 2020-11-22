@@ -31,7 +31,7 @@ let g:airline#extensions#tabline#right_sep = ''
 let airline#extensions#tabline#show_splits = 0
 let airline#extensions#tabline#tabs_label = ''
 let g:airline#extensions#tabline#show_close_button = 0
-" let g:airline#extensions#tabline#show_buffers = 0
+let g:airline#extensions#tabline#show_buffers = 0
 let g:airline_symbols = get(g:, 'airline_symbols', {})
 let g:airline_symbols.linenr = '☰ '
 let g:airline_section_z = '%{g:airline_symbols.linenr}%#__accent_bold#%l%#__restore__#/%L%'
@@ -186,3 +186,6 @@ nmap <leader>rn <Plug>(coc-rename)
 
 " Show all diagnostics.
 nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
+
+" coc-yank
+nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>

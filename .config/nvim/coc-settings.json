@@ -12,5 +12,6 @@
   "coc.preferences.enableFloatHighlight": true,
   "coc.source.file.ignoreHidden": false,
   "coc.preferences.formatOnSaveFiletypes": ["python"],
-  "coc.preferences.formatOnType": true
+  "coc.preferences.formatOnType": true,
+  "yank.highlight.enable": false
 }
