@@ -98,10 +98,6 @@ map <C-k> <C-w>k
 vnoremap < <gv
 vnoremap > >gv
 
-" compile python code
-autocmd FileType python map <buffer> <F5> :w<CR>:exec '!python' shellescape(@%, 1)<CR>
-autocmd FileType python imap <buffer> <F5> <esc>:w<CR>:exec '!python' shellescape(@%, 1)<CR>
-
 " Disable arrow keys
 no <down> <Nop>
 no <left> <Nop>
@@ -119,6 +115,9 @@ map <F2> :set background=light<CR>
 " Disable help menu
 no <F1> <Nop>
 ino <F1> <Nop>
+
+" map :W to :w
+command! W :w
 
 " /// NNN ///
 let g:nnn#action = {
@@ -186,6 +185,3 @@ nmap <leader>rn <Plug>(coc-rename)
 
 " Show all diagnostics.
 nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
-
-" coc-yank
-nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
