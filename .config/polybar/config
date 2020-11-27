@@ -28,13 +28,13 @@ padding-left = 0
 padding-right = 0
 
 module-margin-left = 0
-module-margin-right = 0
+module-margin-right = 1
 
 font-0 = "Iosevka Nerd Font:style=Regular:size=12;3"
 font-1 = "Iosevka Nerd Font:style=Heavy Italic:size=12;3"
 
 modules-left = bspwm title
-modules-center = 
+modules-center = spotify
 modules-right = memory cpu temperature pulseaudio backlight battery date
 
 tray-position = right
@@ -51,7 +51,6 @@ type = internal/xbacklight
 enable-scroll = false
 
 format = <label>
-format-padding = 0
 format-prefix = %{T2}BRT%{T-}
 format-prefix-foreground = ${colors.foreground-alt}
 label = %percentage%%
@@ -65,7 +64,6 @@ format = <label-layout>
 format-spacing = 0
 
 format-prefix = %{T2}LAY%{T-}
-format-prefix-padding = 1
 format-prefix-foreground = ${colors.foreground-alt}
 
 label-layout = %layout%
@@ -77,18 +75,16 @@ thermal-zone = 0
 warn-temperature = 60
 
 format = <label>
-format-padding = 0
 format-prefix = %{T2}TEMP%{T-}
 format-prefix-foreground = ${colors.foreground-alt}
 
 format-warn = <label-warn>
-format-warn-padding = 0
 format-warn-prefix = %{T2}TEMP%{T-}
 format-warn-prefix-foreground = ${colors.red}
 
 label = %temperature-c%
-label-padding = 1
 label-warn = %temperature-c%
+label-padding = 1
 label-warn-padding = 1
 
 [module/cpu]
@@ -96,7 +92,6 @@ type = internal/cpu
 interval = 2
 
 format = <label>
-format-padding = 1
 format-prefix = %{T2}CPU%{T-}
 format-prefix-foreground = ${colors.foreground-alt}
 label = %percentage%%
@@ -106,13 +101,7 @@ label-padding = 1
 type = internal/bspwm
 enable-scroll = false
 
-ws-icon-0 = 1;
-ws-icon-1 = 2; 
-ws-icon-2 = 3; 
-ws-icon-3 = 4; 
-ws-icon-4 = 5; 
-
-format = <label-state> <label-mode>
+format = <label-state>
 
 label-focused-background = ${colors.blue_dark}
 label-occupied-background = ${colors.background}
@@ -134,7 +123,6 @@ type = internal/xwindow
 format = <label>
 format-background = ${colors.background}
 format-foreground = ${colors.foreground}
-format-padding = 2
 
 label = %title%
 label-maxlen = 20
@@ -149,8 +137,7 @@ interval = 60
 time = %H:%M
 
 format = <label>
-format-padding = 1
-format-prefix = %{T2} TIME%{T-}
+format-prefix = %{T2}TIME%{T-}
 format-prefix-foreground = ${colors.foreground-alt}
 label = %time%
 label-padding = 1
@@ -159,7 +146,6 @@ label-padding = 1
 type = internal/pulseaudio
 
 format-volume = <label-volume>
-format-volume-padding = 1
 format-volume-prefix = %{T2}VOL%{T-}
 format-volume-prefix-foreground = ${colors.foreground-alt}
 label-volume = %percentage%%
@@ -167,7 +153,6 @@ label-volume-padding = 1
 
 format-muted = <label-muted>
 format-muted-foreground = ${colors.foreground-alt}
-format-muted-padding = 1
 format-muted-prefix = %{T2}VOL%{T-}
 format-muted-prefix-foreground = ${colors.red}
 label-muted = %percentage%%
@@ -181,24 +166,21 @@ full-at = 100
 
 format-charging = <label-charging>
 format-charging-prefix = %{T2}BAT%{T-}
-format-charging-prefix-padding = 1
 format-charging-prefix-foreground = ${colors.foreground-alt}
 label-charging = %percentage%%
-label-charging-padding = 0
+label-charging-padding = 1
 
 format-discharging = <label-discharging>
 format-discharging-prefix = %{T2}BAT%{T-}
-format-discharging-prefix-padding = 1
 format-discharging-prefix-foreground = ${colors.foreground-alt}
 label-discharging = %percentage%%
-label-discharging-padding = 0
+label-discharging-padding = 1
 
 format-full = <label-full>
 format-full-prefix = %{T2}BAT%{T-}
-format-full-prefix-padding = 1
 format-full-prefix-foreground = ${colors.foreground-alt}
 label-full = %percentage%%
-label-full-padding = 0
+label-full-padding = 1
 
 [module/memory]
 type = internal/memory
@@ -206,8 +188,15 @@ interval = 45
 format = <label>
 format-prefix = %{T2}MEM%{T-}
 format-foreground = ${colors.foreground-alt}
-format-padding = 0
 label = %percentage_used%%
 label-foreground = ${colors.foreground}
 label-padding = 1
 
+[module/spotify]
+type = custom/script
+interval = 10
+format-prefix = 
+format-prefix-foreground = ${colors.foreground-alt}
+format-prefix-padding = 2
+format = <label>
+exec = python $HOME/.config/polybar/scripts/spotify_status.py -f '{artist}: {song}' --font=1 -t 40 -q

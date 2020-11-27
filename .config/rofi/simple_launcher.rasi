@@ -42,5 +42,5 @@ element selected {
 }
 
 element-text {
-    /* highlight: None; */
+    padding: 0 0 0 -55;
 }

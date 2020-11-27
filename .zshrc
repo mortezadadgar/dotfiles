@@ -90,9 +90,7 @@ zstyle ':completion:*:*:*:default' menu yes select search
 zstyle ':completion:*files' ignored-patterns '*?.o'
 zstyle ':completion:*' use-cache yes
 zstyle ':completion:*' cache-path $ZSH_CACHE_DIR
-zstyle ':completion:*:matches' group 'yes'
-zstyle ':completion:*' group-name ''
-zstyle ':completion:*' list-dirs-first true
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
 
 # alias
 alias ls='ls -h --color=auto --group-directories-first'
