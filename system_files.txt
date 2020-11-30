@@ -6,3 +6,4 @@
 /etc/systemd/system/suspend@.service
 /etc/udev/rules.d
 /etc/intel-undervolt.conf
+/etc/dnscrypt-proxy/dnscrypt-proxy.toml

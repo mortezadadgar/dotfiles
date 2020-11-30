@@ -135,3 +135,8 @@ source ~/.nnn
 
 # Jump
 eval "$(jump shell --bind=j)"
+
+# P10K extra customizations
+typeset -g POWERLEVEL9K_CONTEXT_TEMPLATE='%n'
+typeset -g POWERLEVEL9K_STATUS_EXTENDED_STATES=false
+unset POWERLEVEL9K_CONTEXT_{DEFAULT,SUDO}_{CONTENT,VISUAL_IDENTIFIER}_EXPANSION

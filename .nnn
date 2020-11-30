@@ -1,8 +1,5 @@
 # NNN
-[ -n "$NNNLVL" ] && PS1="N$NNNLVL $PS1"
-source /usr/share/nnn/quitcd/quitcd.bash_zsh
-alias n='n -e'
-# export NNN_TRASH=1
-export NNN_PLUG='j:autojump;d:diffs;u:getplugs;z:fzcd;b:bookmarks;o:fzopen;X:_chmod +x $nnn;D:_du -sh $nnn;E:_zsh $nnn;'
+alias n='nnn -e'
+export NNN_PLUG='j:autojump;d:diffs;u:getplugs;b:bookmarks;X:_chmod +x $nnn;D:_du -sh $nnn;E:_zsh $nnn;'
 export NNN_BMS='h:~/;d:~/Downloads;v:~/Downloads/Persepolis/Videos;b:~/bullhead_device;m:~/Music;p:~/Pictures;s:~/scripts;Z:/run/media/sda2;X:/run/media/sda3;C:/run/media/sda5'
 export NNN_ARCHIVE="\\.(7z|a|ace|alz|arc|arj|bz|bz2|cab|cpio|deb|gz|jar|lha|lz|lzh|lzma|lzo|rar|rpm|rz|t7z|tar|tbz|tbz2|tgz|tlz|txz|tZ|tzo|war|xpi|xz|Z|zip)$"
