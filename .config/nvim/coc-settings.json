@@ -3,15 +3,14 @@
   "diagnostic.warningSign": "⚠",
   "diagnostic.infoSign": "ℹ",
   "diagnostic.hintSign": "➤",
-  "python.jediEnabled": false,
+  "diagnostic.virtualText": false,
+  "diagnostic.checkCurrentLine": true,
+  "python.jediEnabled": true,
   "python.linting.enabled": true,
   "python.linting.flake8Enabled": true,
   "python.linting.pylintEnabled": false,
   "python.formatting.provider": "yapf",
   "coc.preferences.hoverTarget": "float",
   "coc.preferences.enableFloatHighlight": true,
-  "coc.source.file.ignoreHidden": false,
-  "coc.preferences.formatOnSaveFiletypes": ["python"],
-  "coc.preferences.formatOnType": true,
-  "yank.highlight.enable": false
+  "coc.preferences.formatOnSaveFiletypes": ["python"]
 }

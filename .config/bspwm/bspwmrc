@@ -22,7 +22,7 @@ bspc rule -a firefox desktop='^2' follow=on
 bspc rule -a TelegramDesktop desktop='^3' follow=on
 bspc rule -a mpv desktop='^4' follow=on
 bspc rule -a Alacritty:ncmpcpp desktop=^4 state=floating follow=on
-bspc rule -a Zathura desktop='^5' follow=on
+bspc rule -a Zathura state=fullscreen follow=on
 bspc rule -a persepolis state=floating desktop='^5' follow=on
 bspc rule -a Alacritty:bc state=floating
 bspc rule -a Alacritty:pulsemixer state=floating
@@ -30,6 +30,7 @@ bspc rule -a Pulseaudio-equalizer-gtk state=floating
 bspc rule -a Nm-connection-editor state=floating
 bspc rule -a qBittorrent state=floating
 bspc rule -a lxappearance state=floating
+bspc rule -a Alacritty:Downloader desktop=^5 state=floating follow=on
 
 bspc desktop 5 -l monocle
 

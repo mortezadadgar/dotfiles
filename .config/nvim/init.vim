@@ -1,7 +1,14 @@
-runtime! archlinux.vim
+
+" install vim-plug in case it's missing
+if ! filereadable(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/plug.vim"'))
+	echo "Downloading junegunn/vim-plug to manage plugins..."
+	silent !mkdir -p ${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/
+	silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > ${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/plug.vim
+	autocmd VimEnter * PlugInstall
+endif
 
 " /// Plug-ins ///
-call plug#begin()
+call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"'))
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'rakr/vim-one'
@@ -11,7 +18,6 @@ Plug 'Yggdroot/indentLine'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
-Plug 'tpope/vim-fugitive'
 Plug 'gburca/vim-logcat'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'mcchrish/nnn.vim'
@@ -32,9 +38,14 @@ let airline#extensions#tabline#show_splits = 0
 let airline#extensions#tabline#tabs_label = ''
 let g:airline#extensions#tabline#show_close_button = 0
 let g:airline#extensions#tabline#show_buffers = 0
-let g:airline_symbols = get(g:, 'airline_symbols', {})
-let g:airline_symbols.linenr = '☰ '
-let g:airline_section_z = '%{g:airline_symbols.linenr}%#__accent_bold#%l%#__restore__#/%L%'
+
+" Human readable Line number
+function! MyLineNumber()
+  return substitute(line('.'), '\d\@<=\(\(\d\{3\}\)\+\)$', ',&', 'g'). ' / '.
+    \    substitute(line('$'), '\d\@<=\(\(\d\{3\}\)\+\)$', ',&', 'g')
+endfunction
+call airline#parts#define('linenr', {'function': 'MyLineNumber', 'accents': 'bold'})
+let g:airline_section_z = airline#section#create(['linenr'])
 
 " stop Rooter echoing the project directory
 let g:rooter_silent_chdir = 1
@@ -80,9 +91,17 @@ let g:python3_host_prog='/usr/bin/python3'
 " max 80 line width
 set colorcolumn=80
 
-" default syntax for files with no extention
+" default syntax for files with no extention and *.rc
 autocmd BufNewFile,BufRead * if expand('%:t') !~ '\.' | set syntax=log | endif
 autocmd BufNewFile,BufRead *.rc set syntax=log
+
+" Automatically deletes all trailing whitespace and newlines at end of file on save.
+autocmd BufWritePre * %s/\s\+$//e
+autocmd BufWritePre * %s/\n\+\%$//e
+
+" display comments and strings in italic style
+highlight Comment cterm=italic gui=italic
+highlight String cterm=italic gui=italic
 
 " /// KeyMapping ///
 " Disable q:
@@ -116,8 +135,15 @@ map <F2> :set background=light<CR>
 no <F1> <Nop>
 ino <F1> <Nop>
 
-" map :W to :w
+" map :W to :w, same for :Q
 command! W :w
+command! Q :q
+
+" Replace ex mode with gq
+map Q gq
+
+" Perform dot commands over visual blocks:
+vnoremap . :normal .<CR>
 
 " /// NNN ///
 let g:nnn#action = {
@@ -134,6 +160,12 @@ nnoremap <leader>n :NnnPicker %:p:h<CR>
 let g:nnn#command = 'nnn -e'
 
 " /// COC ///
+let g:coc_global_extensions = [
+            \ 'coc-snippets',
+            \ 'coc-python',
+            \ 'coc-sh'
+            \]
+
 " Disable completion scratch
 set completeopt-=preview
 
