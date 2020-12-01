@@ -2,26 +2,27 @@
 ncmpcpp_directory = "~/.config/ncmpcpp"
 lyrics_directory = "~/.local/share/lyrics"
 mpd_music_dir = "~/Music"
+message_delay_time = "2"
 
 # Visualizer #
-visualizer_type = "wave_filled"
-visualizer_look = "∙│"
-visualizer_color = red
+visualizer_type = "ellipse"
+visualizer_look = "▮▋"
+visualizer_color = "blue, cyan, green, yellow, magenta, red, black"
 
 # Appearance #
 playlist_display_mode = "classic"
 user_interface = classic
 header_visibility = "no"
-statusbar_visibility = "no"
 titles_visibility = "no"
-progressbar_look = "▁▁▁"
-progressbar_elapsed_color = blue:b
+progressbar_look = "━━━"
+progressbar_elapsed_color = "blue"
+progressbar_color = "black"
 song_list_format = "{{%a %t}|{%f}}{$R%l}"
 current_item_prefix = $(blue)$r
 main_window_color = white
 
 # Misc #
-execute_on_song_change = notify-send "Now Playing" "$(mpc current)"
+execute_on_song_change = notify-send -i deepin-music "Now Playing" "$(mpc current)"
 allow_for_physical_item_deletion = yes
 startup_screen = "browser"
 seek_time = 15

@@ -34,7 +34,7 @@ font-0 = "Iosevka Nerd Font:style=Regular:size=12;3"
 font-1 = "Iosevka Nerd Font:style=Heavy Italic:size=12;3"
 
 modules-left = bspwm title
-modules-center = spotify
+modules-center = mpd
 modules-right = memory cpu temperature pulseaudio backlight battery date
 
 tray-position = right
@@ -200,3 +200,19 @@ format-prefix-foreground = ${colors.foreground-alt}
 format-prefix-padding = 2
 format = <label>
 exec = python $HOME/.config/polybar/scripts/spotify_status.py -f '{artist}: {song}' --font=1 -t 40 -q
+
+[module/mpd]
+type = internal/mpd
+host = 127.0.0.1
+port = 6600
+interval = 10
+
+format-online = <label-song>
+format-playing = ${self.format-online}
+format-paused =
+format-stopped =
+format-online-prefix = 
+format-online-prefix-foreground = ${colors.foreground-alt}
+format-online-prefix-padding = 2
+
+label-song = %title%

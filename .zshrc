@@ -114,6 +114,7 @@ alias gcps='git cherry-pick --skip'
 alias gams='git commit --amend -s'
 alias pc='sudo picocom -b 115200 /dev/ttyUSB0'
 alias sxiv='sxiv-rifle'
+alias reload='exec $SHELL'
 
 # preserve history for new instance
 setopt extended_history

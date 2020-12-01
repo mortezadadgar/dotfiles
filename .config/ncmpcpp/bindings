@@ -23,6 +23,10 @@ def_key "."
     show_lyrics
 def_key "?"
     show_help
+def_key "o"
+    start_searching
+def_key "s"
+    show_search_engine
 # vim-like movements #
 def_key "j"
     scroll_down
@@ -60,4 +64,3 @@ def_key "g"
 def_key "space"
   select_item
   scroll_down
-

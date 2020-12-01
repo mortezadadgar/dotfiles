@@ -13,7 +13,7 @@ super + d
 
 # make sxhkd reload its configuration files:
 super + Escape
-	pkill -USR1 -x sxhkd; notify-send 'sxhkd' 'Reloaded config!'
+	pkill -USR1 -x sxhkd; notify-send -i gnome-settings 'sxhkd' 'Reloaded config!'
 
 # powermenu
 super + shift + n
@@ -25,7 +25,7 @@ super + shift + n
 
 # quit/restart bspwm
 super + ctrl + {q,r}
-	bspc {quit,wm -r;notify-send 'bspwm' 'Restarted config!'}
+	bspc {quit,wm -r;notify-send -i gnome-settings 'bspwm' 'Reloaded config!'}
 
 # close/kill an instance
 super + shift + {q,b}
@@ -132,7 +132,7 @@ XF86Audio{RaiseVolume,LowerVolume,Mute}
 
 # media keys
 XF86Audio{Next,Prev,Play,Stop}
-	playerctl {next,previous,play-pause,pause}
+	mpc {next,prev,toggle,stop}
 
 XF86MonBrightness{Up,Down}
 	xbacklight {-inc 5, -dec 5}
