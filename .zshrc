@@ -48,45 +48,44 @@ zinit light romkatv/powerlevel10k
 # o-my-zsh
 # key-binding
 # always load fzf-bindings after key-bindings
-zinit ice lucid \
+zinit ice \
 	 atload"!source /usr/share/fzf/key-bindings.zsh \
 	 !source /usr/share/fzf/completion.zsh"
 zinit snippet OMZ::lib/key-bindings.zsh
 # git
-zinit ice lucid
+zinit ice wait lucid
 zinit snippet OMZ::plugins/git/git.plugin.zsh
 # archlinux yarem,yain...
-zinit ice wait"2" lucid
+zinit ice wait"1" lucid
 zinit snippet OMZ::plugins/archlinux/archlinux.plugin.zsh
 # systemd
-zinit ice wait"2" lucid
+zinit ice wait"1" lucid
 zinit snippet OMZ::plugins/systemd/systemd.plugin.zsh
 # double esc
 zinit ice wait"3" lucid
 zinit snippet OMZ::plugins/sudo/sudo.plugin.zsh
 
-# fast-syntax and autosuggestions
+# fast-syntax-highlighting, autosuggestions and completions
 zinit wait lucid for \
 	atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
 	    zdharma/fast-syntax-highlighting \
 	blockf \
 	    zsh-users/zsh-completions \
-	atload"_zsh_autosuggest_start" \
+	atload"!_zsh_autosuggest_start" \
 	    zsh-users/zsh-autosuggestions
 
-# completion color
-zinit wait"0c" lucid reset \
- 	atclone"local P=${${(M)OSTYPE:#*darwin*}:+g}
-            \${P}dircolors -b LS_COLORS > c.zsh" \
-	atpull'%atclone' pick"c.zsh" nocompile'!' \
-	atload'zstyle ":completion:*:default" list-colors "${(s.:.)LS_COLORS}";' for \
-	    trapd00r/LS_COLORS
+# ls colors
+zinit pack for ls_colors
+
+# fzf-tab
+zinit ice wait lucid
+zinit load Aloxaf/fzf-tab
 
 # completion zstyle
-zstyle ':completion:*:*:kill:*' menu yes select
-zstyle ':completion:*:kill:*' force-list always
-zstyle ":completion:*:descriptions" format "%B%d%b"
-zstyle ':completion:*:*:*:default' menu yes select search
+zstyle ":completion:*:git-checkout:*" sort false
+zstyle ':completion:*:descriptions' format brief
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls -1 --color=always $realpath'
 zstyle ':completion:*files' ignored-patterns '*?.o'
 zstyle ':completion:*' use-cache yes
 zstyle ':completion:*' cache-path $ZSH_CACHE_DIR
@@ -108,7 +107,6 @@ alias mkdef='make shadow_defconfig; cp .config arch/arm64/configs/shadow_defconf
 alias pacorph='sudo pacman -Rns $(pacman -Qtdq)'
 alias cl='clear'
 alias nf='neofetch'
-alias gbb='git branch | fzf | xargs git checkout'
 alias inmea='sudo intel-undervolt measure'
 alias grevn='git revert --no-edit'
 alias glg='git log --no-merges'
@@ -127,8 +125,12 @@ setopt inc_append_history
 setopt share_history
 
 # fzf
-export FZF_CTRL_T_COMMAND="fd --type f -H"
-export FZF_ALT_C_COMMAND="fd --type d -H"
+export FZF_CTRL_T_COMMAND="fd --type f --follow"
+export FZF_ALT_C_COMMAND="fd --type d --follow"
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+--color=dark
+--color=fg:-1,bg:-1,hl:#5fff87,fg+:-1,bg+:-1,hl+:#ffaf5f
+--color=info:#af87ff,prompt:#5fff87,pointer:#ff87d7,marker:#ff87d7,spinner:#ff87d7'
 
 # NNN
 source ~/.nnn
