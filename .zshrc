@@ -1,31 +1,35 @@
-# Powerlevel10k instant prompt
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# Prompt
+autoload -U colors && colors	# Load colors
+PS1="%B%{$fg[red]%}[%{$fg[green]%}λ %{$fg[blue]%}%(4~|%-1~/…/%3~|%~)%{$fg[red]%}]%{$reset_color%}%b "
+autoload -Uz vcs_info
+precmd_vcs_info() { vcs_info }
+precmd_functions+=( precmd_vcs_info )
+setopt prompt_subst
+RPROMPT=\$vcs_info_msg_0_
+zstyle ':vcs_info:git:*' formats '%F{13}[%b]'
 
 # configure zsh histroy
 HISTFILE=~/.histfile
 HISTSIZE=100000
 SAVEHIST=100000
-setopt share_history # share the zsh histroy across the terminal windows
+# share the zsh histroy across the terminal windows
+setopt share_history
 setopt hist_ignore_dups
 setopt hist_ignore_space
 setopt hist_verify
 
-# zsh completion configurations
+# zsh completion configuration
 zstyle :compinstall filename '~/.zshrc'
 autoload -Uz compinit && compinit
-zmodload zsh/complist
 _comp_options+=(globdots)		# Include hidden files.
-zstyle ':completion:*:descriptions' format brief
+# required by fzf-tab
+zstyle ":completion:*:git-checkout:*" sort false
+# zstyle ':completion:*:descriptions' format brief
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls -1 --color=always $realpath'
-zstyle ':completion:*:*:kill:*' menu yes select
-zstyle ':completion:*:*:*:default' menu yes select search
+zstyle ':fzf-tab:complete:(cat|nvim):*' fzf-preview 'bat --style=numbers --color=always --line-range :200 $realpath'
 zstyle ':completion:*files' ignored-patterns '*?.o' # Ignore *.o
-zstyle ':completion:*' use-cache yes
-zstyle ':completion:*' cache-path $ZSH_CACHE_DIR
-zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' # case insensitive completion
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' # case insensitive completion
 
 # ZINIT Installer
 source $HOME/.zinitrc
@@ -37,18 +41,21 @@ export EDITOR=nvim
 # always clear screen after exiting ls
 export LESS=R
 
-# powerlevel10k
-zinit ice depth=1 atload"!source ~/.p10k.zsh" nocd
-zinit light romkatv/powerlevel10k
-
 # need to be loaded as fast as possible
 zinit snippet OMZ::lib/key-bindings.zsh
-zinit snippet OMZ::plugins/git/git.plugin.zsh
+
+# ls colors
+zinit pack for ls_colors
 
 # wait "1" plugins
 zinit wait"1" lucid for \
     OMZ::plugins/archlinux/archlinux.plugin.zsh \
     OMZ::plugins/systemd/systemd.plugin.zsh \
+    OMZ::plugins/git/git.plugin.zsh \
+    Aloxaf/fzf-tab
+
+# wait "2" plugins
+zinit wait"2" lucid for \
     OMZ::plugins/sudo/sudo.plugin.zsh
 
 # fast-syntax-highlighting, autosuggestions and completions
@@ -60,12 +67,11 @@ zinit wait lucid for \
 	atload"!_zsh_autosuggest_start" \
 	    zsh-users/zsh-autosuggestions
 
-# ls colors
-zinit pack for ls_colors
-
-# fzf-tab
-zinit ice wait lucid
-zinit load Aloxaf/fzf-tab
+# autosuggestions configuration
+export ZSH_AUTOSUGGEST_USE_ASYNC=1
+export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+export ZSH_AUTOSUGGEST_MANUAL_REBIND=1
 
 # aliases
 source $HOME/.aliasrc
@@ -74,6 +80,7 @@ source $HOME/.aliasrc
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
 export FZF_CTRL_T_COMMAND="fd --type f --follow"
+export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always --line-range :200 {}'"
 export FZF_ALT_C_COMMAND="fd --type d --follow"
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 --color=dark
@@ -82,8 +89,8 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 
 # NNN
 source ~/.nnn
+bindkey -s '^n' 'n\n'
 
-# P10K extra customizations
-typeset -g POWERLEVEL9K_CONTEXT_TEMPLATE='%n'
-typeset -g POWERLEVEL9K_STATUS_EXTENDED_STATES=false
-unset POWERLEVEL9K_CONTEXT_{DEFAULT,SUDO}_{CONTENT,VISUAL_IDENTIFIER}_EXPANSION
+# Bat
+export BAT_THEME="ansi-dark"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
