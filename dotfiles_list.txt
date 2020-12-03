@@ -1,5 +1,7 @@
 .nnn
 .zshrc
+.aliasrc
+.zinitrc
 .p10k.zsh
 .config/alacritty
 .config/fontconfig
