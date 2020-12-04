@@ -24,8 +24,6 @@ autoload -Uz compinit && compinit
 _comp_options+=(globdots)		# Include hidden files.
 # required by fzf-tab
 zstyle ":completion:*:git-checkout:*" sort false
-# zstyle ':completion:*:descriptions' format brief
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls -1 --color=always $realpath'
 zstyle ':fzf-tab:complete:(cat|nvim):*' fzf-preview 'bat --style=numbers --color=always --line-range :200 $realpath'
 zstyle ':completion:*files' ignored-patterns '*?.o' # Ignore *.o
@@ -52,6 +50,7 @@ zinit wait"1" lucid for \
     OMZ::plugins/archlinux/archlinux.plugin.zsh \
     OMZ::plugins/systemd/systemd.plugin.zsh \
     OMZ::plugins/git/git.plugin.zsh \
+    atload'zstyle ":completion:*" list-colors ${(s.:.)LS_COLORS}' \
     Aloxaf/fzf-tab
 
 # wait "2" plugins
@@ -60,12 +59,12 @@ zinit wait"2" lucid for \
 
 # fast-syntax-highlighting, autosuggestions and completions
 zinit wait lucid for \
-	atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
-	    zdharma/fast-syntax-highlighting \
+	atinit'ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay' \
+	zdharma/fast-syntax-highlighting \
 	blockf \
-	    zsh-users/zsh-completions \
-	atload"!_zsh_autosuggest_start" \
-	    zsh-users/zsh-autosuggestions
+	zsh-users/zsh-completions \
+	atload'!_zsh_autosuggest_start' \
+	zsh-users/zsh-autosuggestions
 
 # autosuggestions configuration
 export ZSH_AUTOSUGGEST_USE_ASYNC=1
@@ -79,9 +78,11 @@ source $HOME/.aliasrc
 # fzf
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
-export FZF_CTRL_T_COMMAND="fd --type f --follow"
+export FZF_DEFAULT_OPTS="--ansi"
+export FZF_CTRL_T_COMMAND="fd --type f --follow --color=always"
 export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always --line-range :200 {}'"
-export FZF_ALT_C_COMMAND="fd --type d --follow"
+export FZF_ALT_C_COMMAND="fd --type d --follow --color=always"
+export FZF_ALT_C_OPTS="--preview 'ls -1 --color=always {}'"
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 --color=dark
 --color=fg:-1,bg:-1,hl:#5fff87,fg+:-1,bg+:-1,hl+:#ffaf5f
@@ -94,3 +95,6 @@ bindkey -s '^n' 'n\n'
 # Bat
 export BAT_THEME="ansi-dark"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
+# override the clear the screen command
+bindkey -s '^l' 'clear\n'
