@@ -1,23 +1,24 @@
-alias ls='ls -h --color=auto --group-directories-first'
-alias grep='grep --color=auto'
-alias pacman='pacman --color=auto'
-alias yay='yay --color=auto'
-alias ht='htop'
-alias ll='ls -lh --color=auto --group-directories-first'
-alias vi='nvim'
-alias rf='sudo reflector --latest 10 --protocol https --sort rate --save /etc/pacman.d/mirrorlist &'
-alias svi='sudoedit'
-alias sudo='sudo -v; sudo '
-alias pt='sudo powertop'
-alias mkdef='make shadow_defconfig; cp .config arch/arm64/configs/shadow_defconfig'
-alias pacorph='sudo pacman -Rns $(pacman -Qtdq)'
-alias cl='clear'
-alias nf='neofetch'
-alias inmea='sudo intel-undervolt measure'
-alias grevn='git revert --no-edit'
-alias glg='git log --no-merges'
-alias gcps='git cherry-pick --skip'
-alias gams='git commit --amend -s'
-alias pc='sudo picocom -b 115200 /dev/ttyUSB0'
-alias sxiv='sxiv-rifle'
-alias reload='exec $SHELL'
+alias \
+		ls='ls -h --color=auto --group-directories-first' \
+		ll='ls -lh --color=auto --group-directories-first' \
+		grep='grep --color=auto' \
+		rm='rm -I' \
+		pacman='pacman --color=auto' \
+		yay='yay --color=auto' \
+		ht='htop' \
+		vi='nvim' \
+		rf='sudo reflector --latest 10 --protocol https --sort rate --save /etc/pacman.d/mirrorlist &' \
+		svi='sudoedit' \
+		sudo='sudo -v; sudo ' \
+		pt='sudo powertop' \
+		mkdef='make shadow_defconfig; cp .config arch/arm64/configs/shadow_defconfig' \
+		pacorph='sudo pacman -Rns $(pacman -Qtdq)' \
+		cl='clear' \
+		nf='neofetch' \
+		grevn='git revert --no-edit' \
+		glg='git log --no-merges' \
+		gcps='git cherry-pick --skip' \
+		gams='git commit --amend -s' \
+		pc='sudo picocom -b 115200 /dev/ttyUSB0' \
+		sxiv='sxiv-rifle' \
+		reload='exec $SHELL'

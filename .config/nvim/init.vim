@@ -154,7 +154,7 @@ let g:nnn#action = {
 let g:nnn#layout = { 'window': { 'width': 0.4, 'height': 0.6, 'xoffset': 40, 'highlight': 'Debug', 'border': 'sharp' } }
 
 " open nnn in current file's directory
-nnoremap <leader>n :NnnPicker %:p:h<CR>
+nnoremap <C-n> :Np %:p:h<CR>
 
 " open text files in $VISUAL
 let g:nnn#command = 'nnn -e'
@@ -163,7 +163,8 @@ let g:nnn#command = 'nnn -e'
 let g:coc_global_extensions = [
             \ 'coc-snippets',
             \ 'coc-python',
-            \ 'coc-sh'
+            \ 'coc-sh',
+            \ 'coc-go'
             \]
 
 " Disable completion scratch
