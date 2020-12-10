@@ -1,12 +1,7 @@
-# Prompt
-autoload -U colors && colors	# Load colors
-PS1="%B%{$fg[red]%}[%{$fg[green]%}λ %{$fg[blue]%}%(4~|%-1~/…/%3~|%~)%{$fg[red]%}]%{$reset_color%}%b "
-autoload -Uz vcs_info
-precmd_vcs_info() { vcs_info }
-precmd_functions+=( precmd_vcs_info )
-setopt prompt_subst
-RPROMPT=\$vcs_info_msg_0_
-zstyle ':vcs_info:git:*' formats '%F{13}[%b]'
+# Powerlevel10k instant prompt.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
 # configure zsh histroy
 HISTFILE=~/.histfile
@@ -46,27 +41,32 @@ export GOBIN=$HOME/scripts/Go/bin
 # need to be loaded as fast as possible
 zinit snippet OMZ::lib/key-bindings.zsh
 zinit snippet OMZ::lib/termsupport.zsh
-
-# ls colors
-zinit pack for ls_colors
+zinit ice depth=1 atload'source ~/.p10k.zsh'
+zinit light romkatv/powerlevel10k
 
 # wait"0" plugins
 zinit wait lucid for \
     ael-code/zsh-colored-man-pages \
     atload'zstyle ":completion:*" list-colors ${(s.:.)LS_COLORS}' \
     Aloxaf/fzf-tab \
-    urbainvaes/fzf-marks
+    urbainvaes/fzf-marks \
+    from'gh-r' as'program' mv'yay* -> yay' pick'yay/yay' \
+    Jguer/yay
 
 # wait"1" plugins
 zinit wait"1" lucid for \
     OMZ::plugins/archlinux/archlinux.plugin.zsh \
     OMZ::plugins/systemd/systemd.plugin.zsh \
     OMZ::plugins/git/git.plugin.zsh \
-    OMZ::plugins/golang/golang.plugin.zsh
+    kutsan/zsh-system-clipboard \
+    from'gh-r' as'program' mv'vivid* -> vivid' pick'vivid/vivid' \
+    atload'export LS_COLORS="$(vivid generate $HOME/one-dark.yml)"' \
+    @sharkdp/vivid
 
 # wait"2" plugins
 zinit wait"2" lucid for \
-    OMZ::plugins/sudo/sudo.plugin.zsh
+    from'gh-r' as'program' mv'dust* -> dust' pick'dust/dust' \
+    bootandy/dust
 
 # fast-syntax-highlighting, autosuggestions and completions
 zinit wait lucid for \
@@ -86,12 +86,17 @@ export ZSH_AUTOSUGGEST_MANUAL_REBIND=1
 # aliases
 source $HOME/.aliasrc
 
+# vi mode
+# NOTE: Should be loaded before fzf
+bindkey -v
+export KEYTIMEOUT=1
+
 # fzf
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
-export FZF_DEFAULT_OPTS="--ansi"
-export FZF_CTRL_T_COMMAND="fd --type f --follow --color=always"
-export FZF_ALT_C_COMMAND="fd --type d --follow --color=always"
+export FZF_DEFAULT_COMMAND="fd --type f --follow"
+export FZF_CTRL_T_COMMAND="fd --type f --follow"
+export FZF_ALT_C_COMMAND="fd --type d --follow"
 export FZF_ALT_C_OPTS="--preview 'ls -1 --color=always {}'"
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 --color=dark
@@ -100,7 +105,7 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 
 # n^3
 source ~/.nnn
-bindkey -s '^n' 'n\n'
+bindkey -s '^n' 'nnn -e\n'
 
 # override the clear the screen command
 bindkey -s '^l' 'clear\n'
@@ -111,3 +116,13 @@ setopt noflowcontrol
 
 # terminal title
 export ZSH_THEME_TERM_TITLE_IDLE='zsh: %~'
+
+# P10K extra customizations
+# Disable P10K reporting exit codes
+typeset -g POWERLEVEL9K_STATUS_EXTENDED_STATES=false
+# change default cursor shape to Beam
+echo -ne '\e[6 q'
+_fix_cursor() {
+	echo -ne '\e[6 q'
+}
+precmd_functions+=(_fix_cursor)

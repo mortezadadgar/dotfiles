@@ -1,13 +1,11 @@
 alias \
-		ls='ls -h --color=auto --group-directories-first' \
-		ll='ls -lh --color=auto --group-directories-first' \
+		ls='ls -Nh --color=auto --group-directories-first' \
+		ll='ls -Nlh --color=auto --group-directories-first' \
 		grep='grep --color=auto' \
-		rm='rm -I' \
 		pacman='pacman --color=auto' \
 		yay='yay --color=auto' \
 		ht='htop' \
 		vi='nvim' \
-		rf='sudo reflector --latest 10 --protocol https --sort rate --save /etc/pacman.d/mirrorlist &' \
 		svi='sudoedit' \
 		sudo='sudo -v; sudo ' \
 		pt='sudo powertop' \
@@ -21,4 +19,6 @@ alias \
 		gams='git commit --amend -s' \
 		pc='sudo picocom -b 115200 /dev/ttyUSB0' \
 		sxiv='sxiv-rifle' \
-		reload='exec $SHELL'
+		reload='exec $SHELL' \
+		n='nnn -e' \
+		du='dust -rb'

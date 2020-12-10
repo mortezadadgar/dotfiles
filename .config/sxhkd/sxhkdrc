@@ -16,7 +16,7 @@ super + Escape
 	pkill -USR1 -x sxhkd; notify-send -i gnome-settings 'sxhkd' 'Reloaded config!'
 
 # powermenu
-super + shift + n
+super + n
 	rofi -modi 'Powermenu: /home/morteza/.config/rofi/scripts/rofi-powermenu.sh' \
 	-show Powermenu -theme /home/morteza/.config/rofi/powermenu.rasi
 #

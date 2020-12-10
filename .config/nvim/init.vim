@@ -1,26 +1,37 @@
-
 " install vim-plug in case it's missing
-if ! filereadable(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/plug.vim"'))
+if empty(glob('~/.vim/autoload/plug.vim'))
 	echo "Downloading junegunn/vim-plug to manage plugins..."
-	silent !mkdir -p ${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/
-	silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > ${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/plug.vim
-	autocmd VimEnter * PlugInstall
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+" Install vim-plug if not found
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+endif
+
+" Run PlugInstall if there are missing plugins
+autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \| PlugInstall --sync | source $MYVIMRC
+\| endif
+
 " /// Plug-ins ///
-call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"'))
+call plug#begin()
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
-Plug 'rakr/vim-one'
+Plug 'joshdick/onedark.vim'
 Plug 'airblade/vim-rooter'
 Plug 'sheerun/vim-polyglot'
-Plug 'Yggdroot/indentLine'
 Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
 Plug 'gburca/vim-logcat'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'mcchrish/nnn.vim'
+Plug 'junegunn/fzf.vim'
+Plug 'AndrewRadev/sideways.vim'
+Plug 'jiangmiao/auto-pairs'
 call plug#end()
 
 " /// Statusline ///
@@ -28,7 +39,7 @@ set noshowmode
 set updatetime=300
 set cmdheight=2
 
-let g:airline_theme='one'
+let g:airline_theme='onedark'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
@@ -55,7 +66,13 @@ let g:rooter_silent_chdir = 1
 set termguicolors
 
 " OneDark
-colorscheme one
+let g:onedark_hide_endofbuffer=1
+let g:onedark_termcolors=16
+let g:onedark_terminal_italics=1
+let g:onedark_color_overrides = {
+\ "white": {"gui": "#c0c0c0", "cterm": "NONE", "cterm16": "NONE" },
+\}
+colorscheme onedark
 
 " /// Basic ///
 " line number
@@ -70,11 +87,8 @@ set nobackup nowb noswapfile
 " cursorline
 set cursorline
 
-" No mouse, sorry
-set mouse=
-
-" Splits open at the bottom and right, which is non-retarded, unlike vim defaults.
-set splitbelow splitright
+" Enable mouse for insert mode
+set mouse=i
 
 " Disables automatic commenting on newline:
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
@@ -84,9 +98,6 @@ set clipboard=unnamedplus
 
 " Makes popup menu smaller
 set pumheight=10
-
-" set python binary
-let g:python3_host_prog='/usr/bin/python3'
 
 " max 80 line width
 set colorcolumn=80
@@ -102,6 +113,15 @@ autocmd BufWritePre * %s/\n\+\%$//e
 " display comments and strings in italic style
 highlight Comment cterm=italic gui=italic
 highlight String cterm=italic gui=italic
+
+" disable folding everywhere
+set nofoldenable
+
+" spaces instead of tabs
+set expandtab
+
+" Do not show startup message('I' flag)
+set shortmess=filnxtToOFI
 
 " /// KeyMapping ///
 " Disable q:
@@ -144,6 +164,14 @@ map Q gq
 
 " Perform dot commands over visual blocks:
 vnoremap . :normal .<CR>
+
+" Mapping for sideways
+nmap <Leader>h :SidewaysLeft<CR>
+nmap <Leader>l :SidewaysRight<CR>
+
+" disable mouse selection in insert mode
+imap <LeftMouse> <nop>
+imap <RightMouse> <nop>
 
 " /// NNN ///
 let g:nnn#action = {
@@ -218,3 +246,12 @@ nmap <leader>rn <Plug>(coc-rename)
 
 " Show all diagnostics.
 nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
+
+" Add `:Format` command to format current buffer.
+command! -nargs=0 Format :call CocAction('format')
+
+" /// FZF ///
+ let g:fzf_layout = {'window': { 'width': 0.6, 'height': 0.8, 'highlight': 'Todo', 'border': 'sharp' } }
+let g:fzf_preview_window = []
+map <C-t> :Files<CR>
+imap <C-t> :Files<CR>

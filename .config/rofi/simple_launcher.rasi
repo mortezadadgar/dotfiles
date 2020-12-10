@@ -21,8 +21,8 @@ horibox {
     children:		[ prompt, entry, listview ];
 }
 
-entry {                                           
-    expand: 	false;                                 
+entry {
+    expand: 	false;
     width: 		20em;
 }
 
@@ -33,7 +33,7 @@ listview {
 }
 
 element {
-    horizontal-align: 1;                           
+    horizontal-align: 1;
 }
 
 element selected {

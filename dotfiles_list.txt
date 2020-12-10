@@ -13,6 +13,7 @@
 .config/nvim/coc-settings.json
 .config/htop/htoprc
 .config/mpv/mpv.conf
+.config/mpv/input.conf
 .config/mpv/scripts
 .config/ncmpcpp/config
 .config/ncmpcpp/bindings

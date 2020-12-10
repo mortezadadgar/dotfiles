@@ -44,7 +44,7 @@ pidof xfce4-power-manager || xfce4-power-manager &
 xwallpaper --stretch .config/wallp.jpg &
 
 # polybar
-$HOME/.config/polybar/launch.sh
+pidof polybar || polybar top -r &
 
 # nm-applet
 pidof nm-applet || nm-applet &
@@ -58,6 +58,7 @@ xset r rate 300 30
 # add persian layout with windows variant keyboard
 setxkbmap -layout us,ir -variant ,pes_win -option grp:alt_shift_toggle
 
+# setxkbmap -option caps:swapescape
 # touchpad
 # enable tapping, natural scrolling
 xinput set-prop "ETPS/2 Elantech Touchpad" "libinput Tapping Enabled" 1

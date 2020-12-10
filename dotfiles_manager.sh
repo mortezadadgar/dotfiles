@@ -60,7 +60,7 @@ backup_utility(){
     backup_app(){
         read -r -p "Backup explicitly installed app list? [y/N]" response
         if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
-        then    
+        then
             pacman -Qe > appList.txt && echo -e "\e[96mApp list backup done!\e[0m"
         else
             echo -e "\e[96mSkipping app list backup.\e[0m"
@@ -72,7 +72,7 @@ backup_utility(){
         # backup system files
         read -r -p "Backup system files? [y/N]" response
         if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
-        then    
+        then
             # get system files directories
             system_directories=()
             input="system_files.txt"
@@ -81,11 +81,11 @@ backup_utility(){
                 IFS=''
                 system_directories+=($line)
                 IFS=$DefaultIFS
-            done < "$input"           
+            done < "$input"
 
             # Set IFS to '' so spaces are not ignored
             IFS=''
-            # create .root directory if it doesn't exist 
+            # create .root directory if it doesn't exist
             if [ ! -d ".root" ]
             then
                 mkdir -p ".root"
@@ -93,7 +93,7 @@ backup_utility(){
             # copy system file to backup directory
             echo -e "\e[96mBackuping the following system files:\e[0m"
             for dir in ${system_directories[@]}; do
-                # copy the system file 
+                # copy the system file
                 echo "$dir"
                 cp --parents -r -f "$dir" $dot/.root/
             done
@@ -116,7 +116,7 @@ backup_utility(){
         read -r -p "[y/N]" response
         if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
         then
-            echo -e "\e[96mPushing files to your repo.\e[0m"  
+            echo -e "\e[96mPushing files to your repo.\e[0m"
             ${GIT} add .
             ${GIT} reset dotfiles_manager.sh
             read -r -p "Commit message:" response
@@ -137,7 +137,7 @@ backup_utility(){
 # Restore utility
 restore_utility(){
     clear
-    
+
     # restore files
     restore(){
         # dot files directories
@@ -170,12 +170,12 @@ restore_utility(){
         IFS=$DefaultIFS
         echo ''
     }
-    
+
     restore_system(){
         # restore system files
         read -r -p "Restore system files? [y/N]" response
         if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
-        then    
+        then
             # get system files directories
             system_directories=()
             input="system_files.txt"
@@ -204,7 +204,7 @@ restore_utility(){
                 echo -e "\e[96mSystem files restore done!\e[0m"
                 # Reset IFS to its default value
                 IFS=$DefaultIFS
-                echo ''    
+                echo ''
             else
                 echo -e "\e[31mPlease run script as root.\e[0m"
                 exit
@@ -220,7 +220,7 @@ restore_utility(){
     echo -e "\e[96m2)Restore system files\e[0m"
     read -r -p "Enter a selection:" response
     if [ "$response" == "1" ]; then
-        restore 
+        restore
     elif [ "$response" == "2" ]; then
         restore_system
     else
