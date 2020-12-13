@@ -1,0 +1,19 @@
+#!/bin/bash
+
+if [ $# == 0 ]; then
+        echo "Usage: [r/p]"
+        exit
+fi
+
+if [ $1 == 'r' ]; then
+        notify-send 'FFMPEG' 'Start recording in 3s' -u low
+        sleep 3
+        ffmpeg -f x11grab -video_size 1920x1080 -framerate 60 \
+                -i $DISPLAY -vaapi_device /dev/dri/renderD128 -vcodec \
+                h264_vaapi -vf format='nv12|vaapi,hwupload' -v -8 \
+                "$HOME/screencast/screencast-$(date '+%y%m%d-%H%M-%S').mp4"
+elif [ $1 == 'p' ]; then
+        killall ffmpeg
+        sleep 1
+        notify-send 'FFMPEG' 'Stopped recording'
+fi

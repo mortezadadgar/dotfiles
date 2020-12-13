@@ -31,7 +31,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'mcchrish/nnn.vim'
 Plug 'junegunn/fzf.vim'
 Plug 'AndrewRadev/sideways.vim'
-Plug 'jiangmiao/auto-pairs'
+Plug 'Raimondi/delimitMate'
 call plug#end()
 
 " /// Statusline ///
@@ -44,11 +44,13 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline#extensions#tabline#left_sep = ''
+let g:airline#extensions#tabline#left_alt_sep = ''
 let g:airline#extensions#tabline#right_sep = ''
-let airline#extensions#tabline#show_splits = 0
-let airline#extensions#tabline#tabs_label = ''
+let g:airline#extensions#tabline#show_splits = 0
+let g:airline#extensions#tabline#tabs_label = ''
 let g:airline#extensions#tabline#show_close_button = 0
 let g:airline#extensions#tabline#show_buffers = 0
+let g:airline#extensions#tabline#show_tab_nr = 0
 
 " Human readable Line number
 function! MyLineNumber()
@@ -73,6 +75,7 @@ let g:onedark_color_overrides = {
 \ "white": {"gui": "#c0c0c0", "cterm": "NONE", "cterm16": "NONE" },
 \}
 colorscheme onedark
+hi VertSplit guibg=bg guifg=bg
 
 " /// Basic ///
 " line number
@@ -93,10 +96,10 @@ set mouse=i
 " Disables automatic commenting on newline:
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
-" copy paste setting
+" configure yank/paste
 set clipboard=unnamedplus
 
-" Makes popup menu smaller
+" Make popup menu smaller
 set pumheight=10
 
 " max 80 line width
@@ -123,6 +126,15 @@ set expandtab
 " Do not show startup message('I' flag)
 set shortmess=filnxtToOFI
 
+" Splits open at the bottom and right
+set splitbelow splitright
+
+" Set space as leader
+let mapleader="\<Space>"
+
+" Spell-check set to <leader>o, 'o' for 'orthography':
+map <leader>o :setlocal spell! spelllang=en_us<CR>
+
 " /// KeyMapping ///
 " Disable q:
 nnoremap q: <nop>
@@ -146,10 +158,6 @@ vno <down> <Nop>
 vno <left> <Nop>
 vno <right> <Nop>
 vno <up> <Nop>
-
-" switch between dark/light theme
-map <F1> :set background=dark<CR>
-map <F2> :set background=light<CR>
 
 " Disable help menu
 no <F1> <Nop>
@@ -251,7 +259,21 @@ nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
 command! -nargs=0 Format :call CocAction('format')
 
 " /// FZF ///
- let g:fzf_layout = {'window': { 'width': 0.6, 'height': 0.8, 'highlight': 'Todo', 'border': 'sharp' } }
+" show fzf in a splitted window
+let g:fzf_layout = {'down': '~20%'}
+
+" Hide airline
+autocmd! FileType fzf set laststatus=0 noshowmode noruler
+  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+
+" disable preview window
 let g:fzf_preview_window = []
+
+" bindings
 map <C-t> :Files<CR>
 imap <C-t> :Files<CR>
+map <C-b> :GFiles<CR>
+imap <C-b> :GFiles<CR>
+
+" /// delimitMate ///
+let delimitMate_expand_cr = 2

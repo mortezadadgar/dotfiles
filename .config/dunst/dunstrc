@@ -35,7 +35,7 @@ fullscreen = pushback
 frame_color = "#3B7C87"
 foreground = "#c0c0c0"
 background = "#212121"
-timeout = 7
+timeout = 3
 
 [urgency_normal]
 msg_urgency = medium

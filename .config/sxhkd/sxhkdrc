@@ -151,8 +151,6 @@ super + shift + v
 	--dimensions 50 15 \
 	--class pulsemixer,Alacritty -e pulsemixer
 
-# Downloader
-super + shift + p
-	alacritty --dimensions 70 15 \
-	--class Downloader,Alacritty \
-	-e bash -c "/home/morteza/.config/scripts/downloader.sh"
+# recordscreen
+super + shift + {r, p}
+	$HOME/.config/scripts/recordscreen {r, p}

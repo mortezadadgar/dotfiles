@@ -52,5 +52,10 @@ cursor:
   style: Beam
 
 key_bindings:
-  - { key: U,  mods: Control,  action: ScrollHalfPageUp  }
-  - { key: D,  mods: Control,  action: ScrollHalfPageDown }
+  - { key: U,  mods: Alt,  action: ScrollHalfPageUp  }
+  - { key: D,  mods: Alt,  action: ScrollHalfPageDown }
+  - { key: K,  mods: Alt,  action: ScrollLineUp  }
+  - { key: J,  mods: Alt,  action: ScrollLineDown }
+  - { key: Key0,  mods: Alt,  action: ResetFontSize  }
+  - { key: Equals,  mods: Alt,  action: IncreaseFontSize  }
+  - { key: Minus,  mods: Alt,  action: DecreaseFontSize  }

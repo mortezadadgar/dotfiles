@@ -219,3 +219,11 @@ format-prefix = ﯲ
 label-padding = 1
 label-padding-left = 2
 exec = bash -c vnstat |awk '/today/ {print $2,$3}' |tail -1
+
+[module/github]
+type = internal/github
+token = ${file:$HOME/.cache/gh.token}
+user = mortezadadgar
+empty-notifications = false
+interval = 200
+label =   %notifications%

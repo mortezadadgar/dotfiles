@@ -24,5 +24,6 @@
 .config/picom/picom.conf
 .config/mimeapps.list
 .config/zathura/zathurarc
+.config/scripts/
 .config/wallp.jpg
 .local/share/fonts/
