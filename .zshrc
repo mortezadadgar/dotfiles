@@ -52,9 +52,7 @@ zinit wait lucid for \
     ael-code/zsh-colored-man-pages \
     atload'zstyle ":completion:*" list-colors ${(s.:.)LS_COLORS}' \
     Aloxaf/fzf-tab \
-    urbainvaes/fzf-marks \
-    from'gh-r' as'program' mv'yay* -> yay' pick'yay/yay' \
-    Jguer/yay
+    urbainvaes/fzf-marks
 
 # wait"1" plugins
 zinit wait"1" lucid for \
@@ -90,7 +88,7 @@ export ZSH_AUTOSUGGEST_MANUAL_REBIND=1
 source $HOME/.aliasrc
 
 # vi mode
-# NOTE: Should be loaded before fzf
+# NOTE: Should be configured before fzf
 bindkey -v
 export KEYTIMEOUT=1
 
@@ -112,6 +110,9 @@ bindkey -s '^n' 'nnn -e\n'
 
 # override the clear the screen command
 bindkey -s '^l' 'clear\n'
+
+# sudo the last entered command
+bindkey -s '^s' 'sudo !!\n'
 
 # misc
 setopt interactivecomments

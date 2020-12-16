@@ -1,9 +1,10 @@
 # General #
 ncmpcpp_directory = "~/.config/ncmpcpp"
 lyrics_directory = "~/.local/share/lyrics"
-lyrics_fetchers = lyricwiki, sing365, justsomelyrics, jahlyrics, plyrics, tekstowo, zeneszoveg
+lyrics_fetchers = sing365, justsomelyrics, jahlyrics, plyrics, tekstowo, zeneszoveg
 mpd_music_dir = "~/Music"
 message_delay_time = "2"
+connected_message_on_startup = no
 
 # Visualizer #
 visualizer_type = "ellipse"

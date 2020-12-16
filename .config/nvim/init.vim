@@ -197,7 +197,6 @@ let g:nnn#command = 'nnn -e'
 
 " /// COC ///
 let g:coc_global_extensions = [
-            \ 'coc-snippets',
             \ 'coc-python',
             \ 'coc-sh',
             \ 'coc-go'
@@ -232,8 +231,6 @@ nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window.
@@ -272,8 +269,8 @@ let g:fzf_preview_window = []
 " bindings
 map <C-t> :Files<CR>
 imap <C-t> :Files<CR>
-map <C-b> :GFiles<CR>
-imap <C-b> :GFiles<CR>
+map <C-b> :Buffers<CR>
+imap <C-b> :Buffers<CR>
 
 " /// delimitMate ///
 let delimitMate_expand_cr = 2

@@ -1,9 +1,9 @@
 alias \
-		ls='ls -Nh --color=auto --group-directories-first' \
-		ll='ls -Nlh --color=auto --group-directories-first' \
-		grep='grep --color=auto' \
-		pacman='pacman --color=auto' \
-		yay='yay --color=auto' \
+		ls='ls -Nh --color=always --group-directories-first' \
+		ll='ls -Nlh --color=always --group-directories-first' \
+		grep='grep --color=always' \
+		pacman='pacman --color=always' \
+		yay='yay --color=always' \
 		ht='htop' \
 		vi='nvim' \
 		svi='sudoedit' \
