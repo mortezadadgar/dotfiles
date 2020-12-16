@@ -61,7 +61,7 @@ backup_utility(){
         read -r -p "Backup explicitly installed app list? [y/N]" response
         if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
         then
-            pacman -Qe > appList.txt && echo -e "\e[96mApp list backup done!\e[0m"
+            pacman -Qe |awk '{print $1}'> appList.txt && echo -e "\e[96mApp list backup done!\e[0m"
         else
             echo -e "\e[96mSkipping app list backup.\e[0m"
         fi
