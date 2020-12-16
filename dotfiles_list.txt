@@ -15,6 +15,7 @@
 .config/mpv/mpv.conf
 .config/mpv/input.conf
 .config/mpv/scripts
+.config/mpv/script-opts
 .config/ncmpcpp/config
 .config/ncmpcpp/bindings
 .config/mpd/mpd.conf

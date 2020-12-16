@@ -87,7 +87,7 @@ ramp-0 = 
 
 [module/cpu]
 type = internal/cpu
-interval = 5
+interval = 3
 
 format-prefix = ""
 label = %percentage%%
