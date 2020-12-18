@@ -4,37 +4,45 @@ while read file; do
   case "$1" in
 
 # Set Wallpaper
-    "b") xwallpaper --stretch "$file" &&
-    	 cp "$file" $HOME/.config/wallp.jpg &
-      ;;
+    "b")
+    xwallpaper --stretch "$file" &&
+      cp "$file" $HOME/.config/wallp.jpg &
+    ;;
 
 # Rotate +90
     "r")
     convert -rotate 90 "$file" "$file"
-      ;;
+    ;;
 
 # Rotate -90
     "R")
     convert -rotate -90 "$file" "$file"
-      ;;
+    ;;
 
 # Flip Image
     "f")
     convert -flop "$file" "$file"
-      ;;
+    ;;
 
 # Yank
     "y")
     echo -n "$file" | xclip -selection clipboard &&
-    notify-send "$file copied to clipboard" & 
-      ;;
+      notify-send "$file copied to clipboard" &
+    ;;
 
 # Minify
     "j")
     [[ $(file -b "${file}") =~ JPEG ]] &&
-    convert -quality 85% "$file" "$file-min.jpg" \
-    || notify-send "Error, $file isn't a jpg."
-      ;;
+      convert -quality 85% "$file" "$file-min.jpg" \
+      || notify-send "Error, $file isn't a jpg."
+    ;;
+
+# Delete
+    "d")
+    [ "$(printf "No\\nYes" | dmenu -h 29 -sb "#61AFEF" -sf "#000" \
+      -p "Really delete $file?")" = "Yes" ] && rm "$file" \
+      && notify-send -i trashindicator "$file deleted."
+    ;;
 
   esac
 done
