@@ -1,0 +1,8 @@
+#!/bin/bash
+MOVIE_FOLDER='/run/media/sda3/Movie/ /home/morteza/Downloads'
+EXCLUDE_MOVIE='**Telegram**' # based on pattern
+
+fd -t f -e mp4 -e mkv . $MOVIE_FOLDER -E $EXCLUDE_MOVIE --color=never -x echo {/.} | \
+        dmenu -c -l 10 -bw 2 | \
+        xargs -I{} fd {} -t f . $MOVIE_FOLDER --color=never -0 | \
+        xargs -0 mpv

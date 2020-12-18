@@ -8,17 +8,16 @@ super + Return
 
 # program launcher
 super + d
-	rofi -display-drun "> " -show drun -modi drun \
-	-theme /home/morteza/.config/rofi/simple_launcher.rasi
+	j4-dmenu-desktop --dmenu="dmenu -c -l 10 -bw 2"
+
+# movie launcher
+super + w
+	$HOME/.config/scripts/dmenumovie
 
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd; notify-send -i gnome-settings 'sxhkd' 'Reloaded config!'
 
-# powermenu
-super + n
-	rofi -modi 'Powermenu: /home/morteza/.config/rofi/scripts/rofi-powermenu.sh' \
-	-show Powermenu -theme /home/morteza/.config/rofi/powermenu.rasi
 #
 # bspwm hotkeys
 #
@@ -26,6 +25,10 @@ super + n
 # quit/restart bspwm
 super + ctrl + {q,r}
 	bspc {quit,wm -r;notify-send -i gnome-settings 'bspwm' 'Reloaded config!'}
+
+# polybar restart
+super + ctrl + o
+	pkill polybar && polybar top -r
 
 # close/kill an instance
 super + shift + {q,b}
@@ -151,6 +154,6 @@ super + shift + v
 	--dimensions 50 15 \
 	--class pulsemixer,Alacritty -e pulsemixer
 
-# recordscreen
-super + shift + {r, p}
-	$HOME/.config/scripts/recordscreen {r, p}
+# powermenu
+super + ctrl + p
+	$HOME/.config/scripts/dmenupower

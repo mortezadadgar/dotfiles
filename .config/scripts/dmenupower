@@ -1,0 +1,29 @@
+#!/bin/bash
+
+LOGOFF_CMD="bspc quit"
+LOCK_CMD="dm-tool lock"
+
+SELECT=$(echo -e "Poweroff\nRestart\nLogoff\nLockscreen" |dmenu -bw 2 -h 29 -sb "#ffff00" -sf "#000" -bw 0)
+
+case $SELECT in
+        Poweroff)
+                notify-send -i system-shutdown "Shutting down..."
+                sleep 1
+                poweroff
+                ;;
+        Restart)
+                notify-send -i system-shutdown "Restarting..."
+                sleep 1
+                reboot
+                ;;
+        Logoff)
+                notify-send -i cs-user "Logging off..."
+                sleep 1
+                $LOGOFF_CMD
+                ;;
+        Lockscreen)
+                notify-send -i gnome-lockscreen "Locking..."
+                sleep 1
+                $LOCK_CMD
+                ;;
+esac

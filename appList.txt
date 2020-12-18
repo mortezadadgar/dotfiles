@@ -39,6 +39,7 @@ intel-media-driver
 intel-ucode
 intel-undervolt
 iotop-git
+j4-dmenu-desktop
 libgdiplus
 libimagequant
 libva-utils
@@ -48,7 +49,6 @@ lightdm-webkit2-greeter
 linux
 linux-firmware
 lxappearance
-m4
 make
 mesa-demos
 mpc
@@ -70,7 +70,6 @@ noto-fonts-emoji
 ntfs-3g
 nvme-cli
 nyx
-openresolv
 openssh
 openvpn
 os-prober
@@ -98,7 +97,6 @@ python-pynvim
 python-pyqt5
 python-rope
 python-simber
-python-watchdog
 qbittorrent
 qt5-graphicaleffects
 qt5-tools
@@ -106,8 +104,6 @@ redshift
 reflector
 repo
 ripgrep
-rofi
-source-highlight
 sudo
 sxhkd
 sxiv
@@ -118,8 +114,6 @@ telegram-desktop
 texinfo
 tor
 torsocks
-ttf-fira-code
-ttf-google-sans
 ttf-opensans
 udemy-dl-git
 udiskie
