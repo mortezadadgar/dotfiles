@@ -26,7 +26,8 @@ while read file; do
 
 # Yank
     "y")
-    echo -n "$file" | xclip -selection clipboard &&
+    echo -n "$file" | xargs -I{} xclip -selection clipboard \
+    -t image/png -i {} && \
       notify-send "$file copied to clipboard" &
     ;;
 

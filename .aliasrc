@@ -20,5 +20,6 @@ alias \
 		pc='sudo picocom -b 115200 /dev/ttyUSB0' \
 		sxiv='sxiv-rifle' \
 		reload='exec $SHELL' \
-		n='nnn -e' \
-		du='dust -rb'
+		n='nnn -Ruex' \
+		du='dust -rb' \
+		reboot='echo "OH REALLY!?" && read a && [ $a = "Y" ] && reboot'

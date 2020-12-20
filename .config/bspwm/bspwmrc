@@ -26,13 +26,10 @@ bspc rule -a Zathura state=fullscreen desktop='^4' follow=on
 bspc rule -a persepolis state=floating desktop='^5' follow=on
 bspc rule -a Alacritty:bc state=floating
 bspc rule -a Alacritty:pulsemixer state=floating
-bspc rule -a Pulseaudio-equalizer-gtk state=floating
 bspc rule -a Nm-connection-editor state=floating
 bspc rule -a qBittorrent state=floating
 bspc rule -a lxappearance state=floating
 bspc rule -a Alacritty:Downloader desktop=^5 state=floating follow=on
-
-bspc desktop 5 -l monocle
 
 # picom
 pidof picom || picom --experimental-backends &
@@ -44,13 +41,14 @@ pidof xfce4-power-manager || xfce4-power-manager &
 xwallpaper --stretch .config/wallp.jpg &
 
 # polybar
-pidof polybar || polybar top -r &
+pkill polybar
+polybar top -r &
 
 # nm-applet
-pidof nm-applet || nm-applet &
+pidof nm-applet || nm-applet --indicator &
 
 # redshift
-pidof redshift || redshift &
+pidof redshift || redshift -t 5000:4000 -l 35:51 &
 
 # repeat rate/delay
 xset r rate 300 30

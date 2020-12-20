@@ -26,10 +26,6 @@ super + Escape
 super + ctrl + {q,r}
 	bspc {quit,wm -r;notify-send -i gnome-settings 'bspwm' 'Reloaded config!'}
 
-# polybar restart
-super + ctrl + o
-	pkill polybar && polybar top -r
-
 # close/kill an instance
 super + shift + {q,b}
 	bspc node {-c,-k}

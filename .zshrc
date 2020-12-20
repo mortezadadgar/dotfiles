@@ -61,7 +61,7 @@ zinit wait"1" lucid for \
     OMZ::plugins/git/git.plugin.zsh \
     kutsan/zsh-system-clipboard \
     from'gh-r' as'program' mv'vivid* -> vivid' pick'vivid/vivid' \
-    atload'export LS_COLORS="$(vivid generate $HOME/one-dark.yml)"' \
+    atload'export LS_COLORS="$(vivid generate $HOME/.config/one-dark.yml)"' \
     @sharkdp/vivid
 
 # wait"2" plugins
@@ -106,7 +106,7 @@ export FZF_DEFAULT_OPTS="
 
 # n^3
 source ~/.nnn
-bindkey -s '^n' 'nnn -e\n'
+bindkey -s '^n' 'n\n'
 
 # override the clear the screen command
 bindkey -s '^l' 'clear\n'
@@ -130,3 +130,6 @@ _fix_cursor() {
 	echo -ne '\e[6 q'
 }
 precmd_functions+=(_fix_cursor)
+
+# Bat
+export BAT_THEME="ansi-dark"

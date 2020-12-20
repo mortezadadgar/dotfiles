@@ -27,4 +27,5 @@
 .config/zathura/zathurarc
 .config/scripts/
 .config/wallp.jpg
+.config/one-dark.yml
 .local/share/fonts/

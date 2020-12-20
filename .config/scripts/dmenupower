@@ -12,7 +12,7 @@ case $SELECT in
                 poweroff
                 ;;
         Restart)
-                notify-send -i system-shutdown "Restarting..."
+                notify-send -i system-reboot "Restarting..."
                 sleep 1
                 reboot
                 ;;
