@@ -1,0 +1,24 @@
+declare -A ZINIT
+ZINIT[HOME_DIR]=$ZDOTDIR/zinit
+ZINIT[BIN_DIR]=${ZINIT[HOME_DIR]}/bin
+ZINIT[PLUGINS_DIR]=${ZINIT[HOME_DIR]}/plugins
+ZINIT[COMPLETIONS_DIR]=${ZINIT[HOME_DIR]}/completions
+ZINIT[SNIPPETS_DIR]=${ZINIT[HOME_DIR]}/snippets
+
+if [[ ! -f ${ZINIT[HOME_DIR]}/bin/zinit.zsh ]]; then
+    print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
+    command mkdir -p "${ZINIT[HOME_DIR]}" && command chmod g-rwX "${ZINIT[HOME_DIR]}"
+    command git clone https://github.com/zdharma/zinit "${ZINIT[HOME_DIR]}/bin" && \
+        print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
+        print -P "%F{160}▓▒░ The clone has failed.%f%b"
+fi
+
+source "${ZINIT[HOME_DIR]}/bin/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+# Annexes
+zinit light-mode for \
+    zinit-zsh/z-a-patch-dl \
+    zinit-zsh/z-a-as-monitor \
+    zinit-zsh/z-a-bin-gem-node

@@ -1,8 +1,9 @@
-.nnn
-.zshrc
-.aliasrc
-.zinitrc
-.p10k.zsh
+.config/nnn/config
+.zshenv
+.config/zsh/aliasrc
+.config/zsh/zinitrc
+.config/zsh/p10k.zsh
+.config/zsh/.zshrc
 .config/alacritty
 .config/fontconfig
 .config/polybar

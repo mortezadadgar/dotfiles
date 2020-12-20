@@ -4,7 +4,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # configure zsh histroy
-HISTFILE=~/.histfile
+HISTFILE=$ZDOTDIR/histfile
 HISTSIZE=120000
 SAVEHIST=100000
 # share the zsh histroy across the terminal windows
@@ -15,7 +15,7 @@ setopt hist_expire_dups_first
 setopt hist_verify
 
 # zsh completion configuration
-zstyle :compinstall filename '~/.zshrc'
+zstyle :compinstall filename '$ZDOTDIR/zshrc'
 autoload -Uz compinit && compinit
 _comp_options+=(globdots)		# Include hidden files.
 # required by fzf-tab
@@ -25,7 +25,7 @@ zstyle ':completion:*files' ignored-patterns '*?.o' # Ignore *.o
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' # case insensitive completion
 
 # ZINIT Installer
-source $HOME/.zinitrc
+source $ZDOTDIR/zinitrc
 
 # set default editor
 export SUDO_EDITOR=/usr/bin/nvim
@@ -44,7 +44,7 @@ export GOBIN=$HOME/scripts/Go/bin
 # need to be loaded as fast as possible
 zinit snippet OMZ::lib/key-bindings.zsh
 zinit snippet OMZ::lib/termsupport.zsh
-zinit ice depth=1 atload'source ~/.p10k.zsh'
+zinit ice depth=1 atload'source $ZDOTDIR/p10k.zsh'
 zinit light romkatv/powerlevel10k
 
 # wait"0" plugins
@@ -85,7 +85,7 @@ export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 export ZSH_AUTOSUGGEST_MANUAL_REBIND=1
 
 # aliases
-source $HOME/.aliasrc
+source $ZDOTDIR/aliasrc
 
 # vi mode
 # NOTE: Should be configured before fzf
@@ -105,7 +105,7 @@ export FZF_DEFAULT_OPTS="
 --color=info:#af87ff,prompt:#5fff87,pointer:#ff87d7,marker:#ff87d7,spinner:#ff87d7"
 
 # n^3
-source ~/.nnn
+source $HOME/.config/nnn/config
 bindkey -s '^n' 'n\n'
 
 # override the clear the screen command
