@@ -11,6 +11,7 @@
 .config/sxhkd
 .config/bspwm
 .config/nvim/init.vim
+.config/nvim/plug.vim
 .config/nvim/coc-settings.json
 .config/htop/htoprc
 .config/mpv/mpv.conf

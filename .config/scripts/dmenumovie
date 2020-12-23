@@ -1,8 +1,7 @@
-#!/bin/bash
-MOVIE_FOLDER='/run/media/sda3/Movie/ /home/morteza/Downloads'
-EXCLUDE_MOVIE='**Telegram**' # based on pattern
+#!/bin/sh
+MOVIE_FOLDER="/run/media/sda3/Movie/ /home/morteza/Downloads"
+EXCLUDE_MOVIE="**Telegram**" # based on pattern
 
-fd -t f -e mp4 -e mkv . $MOVIE_FOLDER -E $EXCLUDE_MOVIE --color=never -x echo {/.} | \
-        dmenu -c -l 10 -bw 2 | \
-        xargs -I{} fd {} -t f . $MOVIE_FOLDER --color=never -0 | \
-        xargs -0 mpv
+du -a $MOVIE_FOLDER --exclude=$EXCLUDE_MOVIE | \
+        cut -f2 |cut -c -90 | grep "mp4\|mkv" --color=never | \
+        dmenu -l 10 -bw 2 -c |xargs -I{} mpv "{}"

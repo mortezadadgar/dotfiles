@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 while read file; do
   case "$1" in
@@ -6,7 +6,7 @@ while read file; do
 # Set Wallpaper
     "b")
     xwallpaper --stretch "$file" &&
-      cp "$file" $HOME/.config/wallp.jpg &
+      cp "$file" "$HOME/.config/wallp.jpg" &
     ;;
 
 # Rotate +90
@@ -26,16 +26,8 @@ while read file; do
 
 # Yank
     "y")
-    echo -n "$file" | xargs -I{} xclip -selection clipboard \
-    -t image/png -i {} && \
+    xclip -selection clipboard -t image/png -i "$file" && \
       notify-send "$file copied to clipboard" &
-    ;;
-
-# Minify
-    "j")
-    [[ $(file -b "${file}") =~ JPEG ]] &&
-      convert -quality 85% "$file" "$file-min.jpg" \
-      || notify-send "Error, $file isn't a jpg."
     ;;
 
 # Delete

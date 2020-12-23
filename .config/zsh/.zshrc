@@ -15,9 +15,8 @@ setopt hist_expire_dups_first
 setopt hist_verify
 
 # zsh completion configuration
-zstyle :compinstall filename '$ZDOTDIR/zshrc'
+zstyle :compinstall filename '$ZDOTDIR/.zshrc'
 autoload -Uz compinit && compinit
-_comp_options+=(globdots)		# Include hidden files.
 # required by fzf-tab
 zstyle ":completion:*:git-checkout:*" sort false
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls -1 --color=always $realpath'
@@ -117,6 +116,7 @@ bindkey -s '^s' 'sudo !!\n'
 # misc
 setopt interactivecomments
 setopt noflowcontrol
+setopt globdots
 
 # terminal title
 export ZSH_THEME_TERM_TITLE_IDLE='zsh: %~'

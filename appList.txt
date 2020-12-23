@@ -49,6 +49,7 @@ lightdm-mini-greeter
 lightdm-webkit2-greeter
 linux
 linux-firmware
+lolcat
 lxappearance
 make
 mediainfo
@@ -102,11 +103,12 @@ python-simber
 qbittorrent
 qt5-graphicaleffects
 qt5-tools
-qtile
 redshift
 reflector
 repo
 ripgrep
+rust
+shellcheck-bin
 sudo
 sxhkd
 sxiv

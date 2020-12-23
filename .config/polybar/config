@@ -156,7 +156,7 @@ label-volume-padding-right = 1
 label-muted = 婢
 label-muted-foreground = #666
 label-muted-padding-left = 0
-label-muted-padding-right = 2
+label-muted-padding-right = 1
 
 ramp-volume-0 = 
 ramp-volume-1 = 墳
@@ -219,11 +219,11 @@ label-song = %title%
 
 [module/netstat]
 type = custom/script
-interval = 90
+interval = 110
 format-prefix = ﯲ
 label-padding = 1
 label-padding-left = 1
-exec = bash -c vnstat |awk '/today/ {print $2,$3}' |tail -1
+exec = bash -c vnstat |awk '/today/ {print $2,$3}' |tail -1 |sed 's/[0-9\.]*\sKiB$/0< MiB/g'
 
 [module/github]
 type = internal/github

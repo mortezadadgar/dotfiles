@@ -1,9 +1,9 @@
-#!/bin/bash
+#!/bin/sh
 
 LOGOFF_CMD="bspc quit"
 LOCK_CMD="dm-tool lock"
 
-SELECT=$(echo -e "Poweroff\nRestart\nLogoff\nLockscreen" |dmenu -bw 2 -h 29 -sb "#ffff00" -sf "#000" -bw 0)
+SELECT=$(printf "Poweroff\nRestart\nLogoff\nLockscreen" |dmenu -bw 2 -h 29 -sb "#E5C07B" -sf "#000" -bw 0)
 
 case $SELECT in
         Poweroff)

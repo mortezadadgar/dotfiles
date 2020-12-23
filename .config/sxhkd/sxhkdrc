@@ -1,14 +1,14 @@
 #
 # wm independent hotkeys
 #
-# terminal emulator
 
+# terminal emulator
 super + Return
 	alacritty
 
 # program launcher
 super + d
-	j4-dmenu-desktop --dmenu="dmenu -c -l 10 -bw 2"
+	j4-dmenu-desktop --dmenu="dmenu -bw 2 -c -l 10"
 
 # movie launcher
 super + w
@@ -17,6 +17,30 @@ super + w
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd; notify-send -i gnome-settings 'sxhkd' 'Reloaded config!'
+
+# sound control
+XF86Audio{RaiseVolume,LowerVolume,Mute}
+	pulsemixer {--change-volume +10, --change-volume -10, --toggle-mute}
+
+# media keys
+XF86Audio{Next,Prev,Play,Stop}
+	mpc {next,prev,toggle,stop}
+
+# brightness keys
+XF86MonBrightness{Up,Down}
+	xbacklight {-inc 5, -dec 5}
+
+# screenshot (region)
+Print
+	flameshot gui
+
+# screenshot (full)
+super + Print
+	flameshot full -c
+
+# powermenu
+super + ctrl + p
+	$HOME/.config/scripts/dmenupower
 
 #
 # bspwm hotkeys
@@ -30,10 +54,6 @@ super + ctrl + {q,r}
 super + shift + {q,b}
 	bspc node {-c,-k}
 
-# alternate between the tiled and monocle layout
-super + m
-	bspc desktop -l next
-
 #
 # state/flags
 #
@@ -42,6 +62,10 @@ super + m
 # toggle fullscreen with only one key
 super + {t,s,f}
 	bspc node -t {tiled,\~floating,\~fullscreen}
+
+# alternate between the tiled and monocle layout
+super + m
+	bspc desktop -l next
 
 # set the node flags
 super + ctrl + {m,x,y,z}
@@ -70,6 +94,10 @@ super + {1-9,0}
 # send and focus to given desktop
 super + shift + {1-9,0}
 	bspc node -d '^{1-9,10}' --follow
+
+# Rotate tree
+super + shift + {d,a}
+    bspc node @/ -C {forward,backward}
 
 #
 # preselect
@@ -107,8 +135,12 @@ super + {Left,Down,Up,Right}
 super + o
 	bspc node -g sticky={on,off}
 
+#
 # apps
-super + shift + {f, End, e}
+#
+
+# firefox. telegram
+super + shift + {f, g, e}
 	{firefox, firefox --private-window, telegram-desktop}
 
 # ncmpcpp
@@ -125,31 +157,8 @@ super + shift + equal
 	| boxes -d stone \
 	&& BC_ENV_ARGS=<(echo "scale=2") \bc -q'
 
-# sound control
-XF86Audio{RaiseVolume,LowerVolume,Mute}
-	pulsemixer {--change-volume +10, --change-volume -10, --toggle-mute}
-
-# media keys
-XF86Audio{Next,Prev,Play,Stop}
-	mpc {next,prev,toggle,stop}
-
-XF86MonBrightness{Up,Down}
-	xbacklight {-inc 5, -dec 5}
-
-# screenshot (region)
-Print
-	flameshot gui
-
-# screenshot (full)
-super + Print
-	flameshot full -c
-
 # pulsemixer
 super + shift + v
 	alacritty \
 	--dimensions 50 15 \
 	--class pulsemixer,Alacritty -e pulsemixer
-
-# powermenu
-super + ctrl + p
-	$HOME/.config/scripts/dmenupower

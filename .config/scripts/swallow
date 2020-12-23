@@ -1,0 +1,13 @@
+#!/bin/bash
+NODE_CURRENT=$(bspc query -N -n focused)
+bspc node $NODE_CURRENT -i --flag hidden=on
+bspc rule --add "*" --one-shot focused=on state=locked \
+   node=$(bspc query -N -d -n '.leaf.!window')
+$@ &
+WATCH=$(bspc subscribe -c 1 node_add)
+NODE_NEW=${WATCH##* }
+while read EVENT
+do
+    [ "${EVENT##* }" = "$NODE_NEW" ] && break
+done < <(bspc subscribe node_remove)
+bspc node $NODE_CURRENT --flag hidden=off --focus

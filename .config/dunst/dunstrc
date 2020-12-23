@@ -56,8 +56,3 @@ history = ctrl+shift+h
 
 [fullscreen_delay_everything]
 fullscreen = delay
-
-[ignore]
-# This notification will not be displayed
-summary = "foobar"
-#format = ""

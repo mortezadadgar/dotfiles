@@ -5,6 +5,8 @@ lyrics_fetchers = sing365, justsomelyrics, jahlyrics, plyrics, tekstowo, zeneszo
 mpd_music_dir = "~/Music"
 message_delay_time = "2"
 connected_message_on_startup = no
+enable_window_title = yes
+song_window_title_format = "ncmpcpp"
 
 # Visualizer #
 visualizer_type = "ellipse"
