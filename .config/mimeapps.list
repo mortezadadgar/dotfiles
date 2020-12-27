@@ -1,4 +1,5 @@
 [Added Associations]
+x-scheme-handler/tg=userapp-Telegram Desktop-KVC2V0.desktop;
 
 [Default Applications]
 application/epub+zip=org.pwmt.zathura.desktop;
@@ -8,3 +9,5 @@ image/png=sxiv-rifle.desktop;
 image/webp=sxiv-rifle.desktop;
 video/mp4=mpv.desktop;
 video/x-matroska=mpv.desktop;
+video/x-msvideo=mpv.desktop;
+x-scheme-handler/tg=userapp-Telegram Desktop-KVC2V0.desktop;

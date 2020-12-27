@@ -8,22 +8,22 @@ SELECT=$(printf "Poweroff\nRestart\nLogoff\nLockscreen" |dmenu -bw 2 -h 29 -sb "
 case $SELECT in
         Poweroff)
                 notify-send -i system-shutdown "Shutting down..."
-                sleep 1
+                sleep 0.5
                 poweroff
                 ;;
         Restart)
                 notify-send -i system-reboot "Restarting..."
-                sleep 1
+                sleep 0.5
                 reboot
                 ;;
         Logoff)
                 notify-send -i cs-user "Logging off..."
-                sleep 1
+                sleep 0.5
                 $LOGOFF_CMD
                 ;;
         Lockscreen)
                 notify-send -i gnome-lockscreen "Locking..."
-                sleep 1
+                sleep 0.5
                 $LOCK_CMD
                 ;;
 esac

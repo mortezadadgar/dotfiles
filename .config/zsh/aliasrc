@@ -1,6 +1,9 @@
 alias \
 		ls='ls -Nh --color=always --group-directories-first' \
 		ll='ls -Nlh --color=always --group-directories-first' \
+		lh='ls -NAlh --color=always --group-directories-first' \
+		mkdir='mkdir --parents' \
+		du='du -h' \
 		grep='grep --color=always' \
 		pacman='pacman --color=always' \
 		yay='yay --color=always' \
@@ -19,5 +22,5 @@ alias \
 		gams='git commit --amend -s' \
 		pc='sudo picocom -b 115200 /dev/ttyUSB0' \
 		sxiv='sxiv-rifle' \
-		reload='exec $SHELL' \
+		zrel='exec $SHELL' \
 		n='nnn -Ruex'

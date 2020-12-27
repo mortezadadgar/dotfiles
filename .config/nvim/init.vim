@@ -40,7 +40,6 @@ command! W :w
 command! Q :q
 command! Qa :qa
 map Q gq
-let mapleader="\<Space>"
 
 " Shortcutting split navigation, saving a keypress
 map <C-h> <C-w>h

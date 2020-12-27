@@ -39,6 +39,14 @@ export MAKEFLAGS="-j$(nproc)"
 # GO
 export GOPATH=$HOME/scripts/Go
 export GOBIN=$HOME/scripts/Go/bin
+# colorize go test
+go_test() {
+  go test $* | sed ''/PASS/s//$(printf "\033[32mPASS\033[0m")/'' | \
+      sed ''/SKIP/s//$(printf "\033[34mSKIP\033[0m")/'' | \
+      sed ''/FAIL/s//$(printf "\033[31mFAIL\033[0m")/'' | \
+      sed ''/FAIL/s//$(printf "\033[31mFAIL\033[0m")/'' | \
+      GREP_COLOR="01;33" egrep --color=always '\s*[a-zA-Z0-9\-_.]+[:][0-9]+[:]|^'
+}
 
 # need to be loaded as fast as possible
 zinit snippet OMZ::lib/key-bindings.zsh
@@ -116,7 +124,7 @@ bindkey -s '^s' 'sudo !!\n'
 # misc
 setopt interactivecomments
 setopt noflowcontrol
-setopt globdots
+_comp_options+=(globdots)
 
 # terminal title
 export ZSH_THEME_TERM_TITLE_IDLE='zsh: %~'
@@ -124,10 +132,12 @@ export ZSH_THEME_TERM_TITLE_IDLE='zsh: %~'
 # P10K extra customizations
 # Disable P10K reporting exit codes
 typeset -g POWERLEVEL9K_STATUS_EXTENDED_STATES=false
+# same green color on last command failed
+typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND=76
 # change default cursor shape to Beam
 echo -ne '\e[6 q'
 _fix_cursor() {
-	echo -ne '\e[6 q'
+    echo -ne '\e[6 q'
 }
 precmd_functions+=(_fix_cursor)
 

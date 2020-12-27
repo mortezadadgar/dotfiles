@@ -17,6 +17,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'mcchrish/nnn.vim'
 Plug 'Raimondi/delimitMate'
+Plug 'norcalli/nvim-colorizer.lua'
 call plug#end()
 
 " --- Airline ---
@@ -36,9 +37,12 @@ endfunction
 call airline#parts#define('linenr', {'function': 'MyLineNumber', 'accents': 'bold'})
 let g:airline_section_z = airline#section#create(['linenr'])
 
-" --- Colorscheme ---
+" --- Colors ---
 " enable 24-bit colors
 set termguicolors
+
+" setup colorizer
+lua require'colorizer'.setup()
 
 " change configs and default white color
 let g:onedark_hide_endofbuffer=1
@@ -49,6 +53,9 @@ let g:onedark_color_overrides = {
 
 " finally change to onedark
 colorscheme onedark
+
+" fix foreground operator cursorline
+" hi! link Operator GruvboxFg1
 
 " --- NNN ---
 let g:nnn#action = {

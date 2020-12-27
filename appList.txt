@@ -4,6 +4,8 @@ alacritty
 android-tools
 aria2
 atool
+autoconf
+automake
 base
 bat
 bibata-cursor-theme
@@ -41,6 +43,7 @@ intel-ucode
 intel-undervolt
 iotop-git
 j4-dmenu-desktop
+krathalans-apparmor-profiles-git
 libgdiplus
 libimagequant
 libva-utils
@@ -49,6 +52,7 @@ lightdm-mini-greeter
 lightdm-webkit2-greeter
 linux
 linux-firmware
+linux-hardened
 lolcat
 lxappearance
 make
@@ -120,7 +124,6 @@ texinfo
 tor
 torsocks
 ttf-opensans
-udemy-dl-git
 udiskie
 unrar
 unzip

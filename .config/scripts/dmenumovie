@@ -1,7 +1,7 @@
 #!/bin/sh
-MOVIE_FOLDER="/run/media/sda3/Movie/ /home/morteza/Downloads"
+MOVIE_FOLDER="/run/media/sda3/Movie/ $HOME/Downloads"
 EXCLUDE_MOVIE="**Telegram**" # based on pattern
 
 du -a $MOVIE_FOLDER --exclude=$EXCLUDE_MOVIE | \
-        cut -f2 |cut -c -90 | grep "mp4\|mkv" --color=never | \
-        dmenu -l 10 -bw 2 -c |xargs -I{} mpv "{}"
+        cut -f2 |grep "mp4\|mkv\|avi" --color=never | \
+        dmenu -l 10 -bw 2 |xargs -I{} mpv "{}"
