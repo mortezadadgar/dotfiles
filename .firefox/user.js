@@ -1,14 +1,12 @@
-/*
-user_pref("gfx.webrender.all", false);
-user_pref("layers.acceleration.force-enabled", true)
-*/
+/* force enable hw acceleration */
+user_pref("layers.acceleration.force-enabled", true);
 user_pref("gfx.canvas.azure.accelerated", true);
 /* Disable restore session from crash */
 user_pref("browser.sessionstore.resume_from_crash", false);
 /* Disable Pocket */
 user_pref("extensions.pocket.enabled", false);
 /* Disable annoying Alt key */
-user_pref("ui.key.menuAccessKeyFocuses", false)
+user_pref("ui.key.menuAccessKeyFocuses", false);
 /* Disable WebRTC */
 user_pref("media.navigator.enabled", false);
 user_pref("media.peerconnection.enabled", false);
@@ -19,9 +17,11 @@ user_pref("browser.sessionstore.max_tabs_undo", 5);
 /* Status of battery and clipboar */
 user_pref("dom.battery.enabled", false);
 user_pref("dom.event.clipboardevents.enabled", false);
+user_pref("dom.allow_cut_copy", false);
 /* Control sending http referer */
 user_pref("network.http.referer.trimmingPolicy", 2);
-user_pref("network.http.referer.XOriginPolicy", 2);
+/// '2' breaks vimeo
+user_pref("network.http.referer.XOriginPolicy", 0);
 user_pref("network.http.referer.XOriginTrimmingPolicy", 2);
 /* Limit to firstparty cookies */
 user_pref("privacy.firstparty.isolate", true);
@@ -49,13 +49,6 @@ user_pref("browser.crashReports.unsubmittedCheck.enabled", false);
 user_pref("browser.crashReports.unsubmittedCheck.autoSubmit2", false);
 user_pref("browser.discovery.enabled", false);
 user_pref("dom.ipc.plugins.reportCrashURL", false);
-/* Disable Captive Portal detection */
-user_pref("captivedetect.canonicalURL", "");
-user_pref("network.captive-portal-service.enabled", false);
-user_pref("captivedetect.canonicalURL", "");
-user_pref("network.captive-portal-service.enabled", false);
-user_pref("network.connectivity-service.enabled", false);
-user_pref("toolkit.coverage.opt-out", true);
 /* Enable Always-on Https */
 user_pref("dom.security.https_only_mode", true);
 user_pref("dom.security.https_only_mode_send_http_background_request", false);
@@ -77,3 +70,6 @@ user_pref("browser.link.open_newwindow.restriction", 0);
 /* Pop-up windows */
 user_pref("dom.disable_open_during_load", true);
 user_pref("dom.popup_allowed_events", "click dblclick");
+/* disable two javascript options */
+user_pref("javascript.options.asmjs", false);
+user_pref("javascript.options.wasm", false);
