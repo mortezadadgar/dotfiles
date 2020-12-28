@@ -1,29 +1,28 @@
 #!/bin/sh
 
-LOGOFF_CMD="bspc quit"
-LOCK_CMD="dm-tool lock"
+SELECT=$(printf "Poweroff\nRestart\nLogoff\nSuspend" |dmenu -h 29 -sb '#FABD2F' -nf '#fff' -sf '#000')
 
-SELECT=$(printf "Poweroff\nRestart\nLogoff\nLockscreen" |dmenu -bw 2 -h 29 -sb "#E5C07B" -sf "#000" -bw 0)
+LOGOFF_CMD="bspc quit"
 
 case $SELECT in
-        Poweroff)
+        Power*)
                 notify-send -i system-shutdown "Shutting down..."
-                sleep 0.5
+                sleep 0.75
                 poweroff
                 ;;
-        Restart)
+        Rest*)
                 notify-send -i system-reboot "Restarting..."
-                sleep 0.5
+                sleep 0.75
                 reboot
                 ;;
-        Logoff)
+        Log*)
                 notify-send -i cs-user "Logging off..."
-                sleep 0.5
+                sleep 0.75
                 $LOGOFF_CMD
                 ;;
-        Lockscreen)
-                notify-send -i gnome-lockscreen "Locking..."
-                sleep 0.5
-                $LOCK_CMD
+        Sus*)
+                notify-send -i gnome-lockscreen "Suspend..."
+                sleep 0.75
+                systemctl suspend
                 ;;
 esac

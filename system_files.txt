@@ -1,9 +1,7 @@
 /etc/default/grub
-/etc/lightdm/lightdm.conf
 /etc/lightdm/Background-lines1k.jpg
 /etc/lightdm/lightdm-mini-greeter.conf
 /etc/sysctl.d/10_custom.conf
-/etc/systemd/system/suspend@.service
 /etc/udev/rules.d
 /etc/intel-undervolt.conf
 /etc/dnscrypt-proxy/dnscrypt-proxy.toml

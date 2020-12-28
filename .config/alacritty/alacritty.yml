@@ -17,8 +17,8 @@ font:
 draw_bold_text_with_bright_colors: true
 
 # Colors (One Dark)
-# NOTE: brighter foreground, dark yellow
-# from onedark.vim and a little brighter dark red
+# NOTE: brighter foreground, dark yellow from onedark.vim
+# and a little brighter dark red
 colors:
   primary:
     background: '#282c34'

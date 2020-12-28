@@ -1,6 +1,6 @@
 #!/bin/sh
 
-export SXHKD_SHELL='/usr/bin/sh'
+export SXHKD_SHELL='/bin/sh'
 sxhkd &
 
 # fix cursor displaying as X when not over windows
@@ -25,6 +25,7 @@ bspc rule -a mpv desktop='^4' follow=on
 bspc rule -a Alacritty:ncmpcpp desktop=^5 state=floating follow=on
 bspc rule -a Zathura state=fullscreen desktop='^4' follow=on
 bspc rule -a persepolis state=floating desktop='^5' follow=on
+bspc rule -a Xfce4-power-manager-settings state=floating
 bspc rule -a Alacritty:bc state=floating
 bspc rule -a Alacritty:pulsemixer state=floating
 bspc rule -a Nm-connection-editor state=floating
@@ -50,6 +51,9 @@ pidof nm-applet || nm-applet &
 
 # redshift
 pidof redshift || redshift -t 5000:4000 -l 35:51 &
+
+# dunst
+pidof dunst || dunst &
 
 # repeat rate/delay
 xset r rate 300 30

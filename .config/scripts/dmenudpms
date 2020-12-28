@@ -1,0 +1,32 @@
+#!/bin/sh
+
+SELECT=$(printf 'Default profile\nDisable suspend\nDisable DPMS\nDisable DPMS And Lock' \
+	|dmenu -h 29 -sb '#FABD2F' -nf '#fff' -sf '#000'| tr -d ' ')
+
+LOCK_CMD="dm-tool lock"
+XFCE_INA_AC_1="xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/inactivity-on-ac -s 20"
+XFCE_INA_BAT_1="xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/inactivity-on-battery -s 15"
+XFCE_INA_AC_2="xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/inactivity-on-ac -s 999"
+XFCE_INA_BAT_2="xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/inactivity-on-battery -s 999"
+DPMS_EN="xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/dpms-enabled -s true"
+DPMS_DI="xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/dpms-enabled -s false"
+
+case $SELECT in
+				Default*)
+								$XFCE_INA_BAT_1 && $XFCE_INA_AC_1 && $DPMS_EN
+								notify-send 'Default Power profile' -i mate-power-manager
+								;;
+				Disablesuspend)
+								$XFCE_INA_BAT_2 && $XFCE_INA_AC_2 && $DPMS_EN
+								notify-send 'Disabled entering suspend state' -i mate-power-manager
+								;;
+				DisableDPMS)
+								$XFCE_INA_BAT_2 && $XFCE_INA_AC_2 && $DPMS_DI
+								notify-send 'Disabled suspend and DPMS' -i mate-power-manager
+								;;
+				DisableDPMSA*)
+								$XFCE_INA_BAT_2 && $XFCE_INA_AC_2 && $DPMS_DI
+								notify-send 'locking the screen' -i mate-power-manager
+								$LOCK_CMD
+								;;
+esac

@@ -4,8 +4,6 @@ alacritty
 android-tools
 aria2
 atool
-autoconf
-automake
 base
 bat
 bibata-cursor-theme
@@ -91,7 +89,6 @@ pkgconf
 playerctl
 polybar
 powertop
-profile-sync-daemon
 pulseaudio
 pulseaudio-alsa
 pulseaudio-ctl

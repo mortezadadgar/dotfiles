@@ -23,6 +23,7 @@ XF86Audio{RaiseVolume,LowerVolume,Mute}
 	pulsemixer {--change-volume +10, --change-volume -10, --toggle-mute}
 
 # media keys
+# playerctl {next, previous, play-pause, stop}
 XF86Audio{Next,Prev,Play,Stop}
 	mpc {next,prev,toggle,stop}
 
@@ -42,6 +43,10 @@ super + Print
 super + ctrl + p
 	$HOME/.config/scripts/dmenupower
 
+# power managements
+super + ctrl + o
+	$HOME/.config/scripts/dmenudpms
+
 #
 # bspwm hotkeys
 #
@@ -51,8 +56,8 @@ super + ctrl + {q,r}
 	bspc {quit,wm -r;notify-send -i gnome-settings 'bspwm' 'Reloaded config!'}
 
 # close/kill an instance
-super + shift + {q,b}
-	bspc node {-c,-k}
+super + {shift + ,_}q
+	bspc node -{c,k}
 
 #
 # state/flags
@@ -60,16 +65,16 @@ super + shift + {q,b}
 
 # set the window state
 # toggle fullscreen with only one key
-super + {t,s,f}
-	bspc node -t {tiled,\~floating,\~fullscreen}
+super + {s,f}
+	bspc node -t {\~floating,\~fullscreen}
 
 # alternate between the tiled and monocle layout
 super + m
 	bspc desktop -l next
 
-# set the node flags
-super + ctrl + {m,x,y,z}
-	bspc node -g {marked,locked,sticky,private}
+# set the node sticky
+super + t
+	bspc node -g sticky
 
 #
 # focus/swap
@@ -95,29 +100,13 @@ super + {1-9,0}
 super + shift + {1-9,0}
 	bspc node -d '^{1-9,10}' --follow
 
-# Rotate tree
-super + shift + {d,a}
-    bspc node @/ -C {forward,backward}
+# Rotate view
+super + shift + {Left,Right}
+	{bspc node @/ -R 90,bspc node @/ -R -90}
 
 #
 # preselect
 #
-
-# preselect the direction
-super + ctrl + {h,j,k,l}
-	bspc node -p {west,south,north,east}
-
-# preselect the ratio
-super + ctrl + {1-9}
-	bspc node -o 0.{1-9}
-
-# cancel the preselection for the focused node
-super + ctrl + space
-	bspc node -p cancel
-
-# cancel the preselection for the focused desktop
-super + ctrl + shift + space
-	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 
 #
 # move/resize
@@ -141,7 +130,7 @@ super + o
 
 # firefox. telegram
 super + shift + {f, g, e}
-	{firefox, firefox --private-window, telegram-desktop}
+	 {firefox, firefox --private-window, telegram-desktop}
 
 # ncmpcpp
 super + shift + m
