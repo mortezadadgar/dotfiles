@@ -1,7 +1,10 @@
 #!/bin/sh
 
-export SXHKD_SHELL='/bin/sh'
-sxhkd &
+# helper to execute commands
+exec_cmd() {
+				[ -z "$2" ] && set -- $1 $1
+				which $1 && (pidof $1 || $2 &)
+}
 
 # fix cursor displaying as X when not over windows
 xsetroot -cursor_name left_ptr &
@@ -33,27 +36,29 @@ bspc rule -a qBittorrent state=floating
 bspc rule -a lxappearance state=floating
 bspc rule -a Alacritty:Downloader desktop=^5 state=floating follow=on
 
+export SXHKD_SHELL='/bin/sh'
+exec_cmd "sxhkd"
+
 # picom
-pidof picom || picom --experimental-backends &
+exec_cmd "picom" "picom --experimental-backends"
 
 # xfce power manager
-pidof xfce4-power-manager || xfce4-power-manager &
-
-# set wallpaper
-xwallpaper --stretch .config/wallp.jpg &
+exec_cmd "xfce4-power-manager"
 
 # polybar
-pkill polybar
-polybar top -r &
+exec_cmd "polybar" "polybar top -r"
 
 # nm-applet
-pidof nm-applet || nm-applet &
+exec_cmd "nm-applet"
 
 # redshift
-pidof redshift || redshift -t 5000:4000 -l 35:51 &
+exec_cmd "redshift" "redshift -t 5000:4000 -l 35:51"
 
 # dunst
-pidof dunst || dunst &
+exec_cmd "dunst"
+
+# set wallpaper
+xwallpaper --stretch $HOME/.config/wallp.jpg &
 
 # repeat rate/delay
 xset r rate 300 30

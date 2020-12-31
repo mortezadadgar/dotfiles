@@ -1,33 +1,22 @@
-# common #
-def_key "u"
-  update_database
+# views #
 def_key "b"
-  show_browser
+    show_browser
 def_key "y"
-  show_playlist
+    show_playlist
 def_key "v"
-  show_visualizer
-def_key "x"
-  delete_playlist_items
-def_key "x"
-  delete_stored_playlist
-def_key "x"
-  delete_browser_items
+    show_visualizer
 def_key "t"
-  show_tag_editor
+    show_tag_editor
 def_key "+"
     show_clock
-def_key "="
-    volume_up
 def_key "."
     show_lyrics
 def_key "?"
     show_help
-def_key "o"
-    start_searching
-def_key "s"
-    show_search_engine
-# vim-like movements #
+def_key "e"
+    edit_song
+
+# movements #
 def_key "j"
     scroll_down
 def_key "k"
@@ -36,31 +25,62 @@ def_key "h"
     previous_column
 def_key "l"
     next_column
+def_key "l"
+    enter_directory
+def_key "h"
+    jump_to_parent_directory
 def_key "L"
-  seek_forward
+    seek_forward
 def_key "H"
-  seek_backward
+    seek_backward
+def_key "l"
+    run_action
+def_key "l"
+    play_item
+def_key "G"
+    move_end
+def_key "g"
+    move_home
+
+# find #
+def_key "/"
+    find
 def_key "n"
     next_found_item
 def_key "N"
     previous_found_item
+
+# sorting #
+def_key "S"
+    toggle_browser_sort_mode
 def_key "J"
     move_sort_order_down
 def_key "K"
     move_sort_order_up
-def_key "h"
-  jump_to_parent_directory
-def_key "l"
-  enter_directory
-def_key "l"
-  run_action
-def_key "l"
-  play_item
-def_key "G"
-  move_end
-def_key "g"
-  move_home
-# nnn-like selection #
+
+# selection #
 def_key "space"
-  select_item
-  scroll_down
+    select_item
+    scroll_down
+def_key "m"
+    remove_selection
+def_key "M"
+    move_selected_items_to
+
+# misc #
+def_key "z"
+    toggle_random
+def_key "Z"
+    shuffle
+def_key "r"
+    toggle_repeat
+def_key "ctrl-h"
+    replay_song
+def_key "u"
+    update_database
+def_key "x"
+    delete_playlist_items
+def_key "x"
+    delete_stored_playlist
+def_key "x"
+    delete_browser_items
