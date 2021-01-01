@@ -17,7 +17,6 @@ user_pref("browser.sessionstore.max_tabs_undo", 5);
 /* Status of battery and clipboar */
 user_pref("dom.battery.enabled", false);
 user_pref("dom.event.clipboardevents.enabled", false);
-user_pref("dom.allow_cut_copy", false);
 /* Control sending http referer */
 user_pref("network.http.referer.trimmingPolicy", 2);
 /// '2' breaks vimeo
