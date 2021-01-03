@@ -72,3 +72,5 @@ user_pref("dom.popup_allowed_events", "click dblclick");
 /* disable two javascript options */
 user_pref("javascript.options.asmjs", false);
 user_pref("javascript.options.wasm", false);
+/* allow css customizations */
+user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true)

@@ -140,14 +140,21 @@ super + shift + m
 
 # calc
 super + shift + equal
-	alacritty \
-	--class bc,Alacritty --dimensions 25 20 \
-	-e bash -c 'figlet "+=/-" \
-	| boxes -d stone \
-	&& BC_ENV_ARGS=<(echo "scale=2") \bc -q'
+	$HOME/.config/scripts/dmenucalc
 
 # pulsemixer
 super + shift + v
 	alacritty \
 	--dimensions 50 15 \
 	--class pulsemixer,Alacritty -e pulsemixer
+
+# super + shift + w
+# 	alacritty \
+# 	--dimensions 63 21 \
+# 	--class wttr,Alacritty -e bash -c "curl -sf wttr.in/$LOCATION?2FQn |tail -n +6;read"
+
+# Weather
+# super + shift + w
+# 	alacritty \
+# 	--dimensions 31 7 \
+# 	--class wttr,Alacritty -e bash -c "echo $LOCATION;read"

@@ -1,4 +1,8 @@
 #!/bin/sh
+# Description: Script to list all movies in the specific folders
+# Dependencies: dmenu
+# Shell: POSIX compliant
+
 MOVIE_FOLDER="/run/media/sda3/Movie/ $HOME/Downloads"
 EXCLUDE_MOVIE="**Telegram**" # based on pattern
 

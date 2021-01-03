@@ -1,6 +1,10 @@
 #!/bin/sh
+# Description: A simple powermenu with dmenu
+# Dependencies: dmenu
+# Shell: POSIX compliant
 
-SELECT=$(printf "Poweroff\nRestart\nLogoff\nSuspend" |dmenu -h 29 -sb '#FABD2F' -nf '#fff' -sf '#000')
+SELECT=$(printf "Poweroff\nRestart\nLogoff\nSuspend" |\
+        dmenu -h 29 -sb '#FABD2F' -nf '#fff' -sf '#000')
 
 LOGOFF_CMD="bspc quit"
 

@@ -50,6 +50,3 @@ timeout = 15
 close = ctrl+space
 close_all = ctrl+shift+space
 history = ctrl+shift+h
-
-[fullscreen_delay_everything]
-fullscreen = delay

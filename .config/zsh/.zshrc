@@ -50,7 +50,6 @@ go_test() {
 
 # need to be loaded as fast as possible
 zinit snippet OMZ::lib/key-bindings.zsh
-zinit snippet OMZ::lib/termsupport.zsh
 zinit ice depth=1 atload'source $ZDOTDIR/p10k.zsh'
 zinit light romkatv/powerlevel10k
 
@@ -125,9 +124,6 @@ bindkey -s '^s' 'sudo !!\n'
 setopt interactivecomments
 setopt noflowcontrol
 _comp_options+=(globdots)
-
-# terminal title
-export ZSH_THEME_TERM_TITLE_IDLE='zsh: %~'
 
 # P10K extra customizations
 # Disable P10K reporting exit codes

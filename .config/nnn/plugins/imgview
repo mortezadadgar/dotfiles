@@ -57,7 +57,7 @@ elif which imvr >/dev/null 2>&1; then
     fi
 elif which sxiv >/dev/null 2>&1; then
     if [ -f "$1" ]; then
-        eval $HOME/.config/scripts/swallow "sxiv-rifle "$1" >/dev/null 2>&1 &"
+        $HOME/.config/scripts/swallow "sxiv-rifle "$1" >/dev/null 2>&1 &"
     fi
 elif which viu >/dev/null 2>&1; then
     viu -n "$1" | less -R

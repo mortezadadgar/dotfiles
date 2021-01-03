@@ -58,3 +58,9 @@ vnoremap . :normal .<CR>
 
 " Spell-check set to <leader>o, 'o' for 'orthography':
 map <leader>o :setlocal spell! spelllang=en_us<CR>
+
+" replace the current word under the cursor
+nnoremap <leader>m :%s/<C-r><C-w>//g<left><left>
+
+" map Ctrl-c to Esc -- Ctrl-c can't do some opertaions of esc
+imap <C-c> <Esc>

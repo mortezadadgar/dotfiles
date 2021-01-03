@@ -136,10 +136,10 @@ label-empty-foreground = ${colors.foreground-alt}
 type = internal/date
 interval = 60
 
-time = %H:%M
+time = %b %d - %H:%M
 
 format = <label>
-format-prefix = ""
+format-prefix = ""
 format-prefix-padding-left = 1
 label = %time%
 label-padding-left = 1
@@ -173,16 +173,16 @@ format-charging = <animation-charging> <label-charging>
 format-discharging = <ramp-capacity> <label-discharging>
 format-full = <label-full>
 
-format-full-prefix = "  "
+format-full-prefix = ""
 
 ramp-capacity-0-foreground = ${colors.red_dark}
-ramp-capacity-0 = " "
-ramp-capacity-1 = " "
-ramp-capacity-2 = " "
+ramp-capacity-0 = ""
+ramp-capacity-1 = ""
+ramp-capacity-2 = ""
 
-animation-charging-0 = " "
-animation-charging-1 = " "
-animation-charging-2 = " "
+animation-charging-0 = ""
+animation-charging-1 = ""
+animation-charging-2 = ""
 
 [module/memory]
 type = internal/memory

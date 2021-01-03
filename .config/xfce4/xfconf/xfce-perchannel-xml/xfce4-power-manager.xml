@@ -16,7 +16,7 @@
     <property name="critical-power-action" type="uint" value="1"/>
     <property name="show-tray-icon" type="bool" value="false"/>
     <property name="general-notification" type="bool" value="false"/>
-    <property name="critical-power-level" type="uint" value="15"/>
+    <property name="critical-power-level" type="uint" value="1"/>
     <property name="dpms-enabled" type="bool" value="true"/>
     <property name="handle-brightness-keys" type="bool" value="false"/>
   </property>
