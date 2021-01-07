@@ -8,7 +8,6 @@ set nobackup nowb noswapfile
 set cursorline
 set clipboard=unnamedplus
 set pumheight=10
-set colorcolumn=80
 set nofoldenable
 set shortmess=filnxtToOFI
 set splitbelow splitright

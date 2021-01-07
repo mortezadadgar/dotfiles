@@ -9,8 +9,6 @@ font:
     style: Regular
   size: 11.0
 
-draw_bold_text_with_bright_colors: true
-
 # Colors (One Dark)
 # NOTE: brighter foreground, dark yellow from onedark.vim
 # and a little brighter dark red

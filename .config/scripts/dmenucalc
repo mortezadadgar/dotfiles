@@ -8,5 +8,5 @@ CALC=$(printf "" |dmenu -p "Calc:" -h 29)
 
 [ -z "$CALC" ] && exit 1
 
-echo "scale=3; $CALC" | bc | sed 's/[\.0]*$//g'| dmenu -p "Result" -sb "#504945" -h 29
+echo "scale=3; $CALC" | bc | sed 's/[\.0]*$//g'| dmenu -r -p "Result" -sb "#504945" -h 29
 done

@@ -10,7 +10,6 @@ base
 bat
 bibata-cursor-theme
 binutils
-boxes
 bspwm
 ccache
 color-picker
@@ -20,6 +19,7 @@ dnscrypt-proxy
 dosfstools
 dunst
 efibootmgr
+exercism-bin
 f2fs-tools
 fakeroot
 fd
@@ -42,17 +42,14 @@ intel-media-driver
 intel-ucode
 intel-undervolt
 iotop-git
-j4-dmenu-desktop
+jq
 libgdiplus
 libimagequant
 libva-utils
-lightdm
-lightdm-mini-greeter
-lightdm-webkit2-greeter
 linux
 linux-firmware
 lolcat
-lxappearance
+maim
 make
 mediainfo
 mesa-demos
@@ -79,6 +76,7 @@ openssh
 openvpn
 os-prober
 pacman-cleanup-hook
+pamixer
 papirus-icon-theme
 patch
 perf
@@ -92,7 +90,6 @@ powertop
 pulseaudio
 pulseaudio-alsa
 pulseaudio-ctl
-pulsemixer
 python-beautifulsoup4
 python-dbus
 python-jedi
@@ -106,8 +103,8 @@ qt5-graphicaleffects
 qt5-tools
 redshift
 repo
-ripgrep
 shellcheck-bin
+slock
 sudo
 sxhkd
 sxiv
@@ -119,7 +116,6 @@ texinfo
 tor
 torsocks
 ttf-opensans
-udiskie
 unrar
 unzip
 usbutils
@@ -128,9 +124,9 @@ vimix-gtk-themes-git
 vnstat
 vulkan-intel
 wget
+xautolock
 xclip
 xf86-video-intel
-xfce4-power-manager
 xorg-bdftopcf
 xorg-docs
 xorg-font-util
@@ -158,6 +154,7 @@ xorg-xdriinfo
 xorg-xev
 xorg-xgamma
 xorg-xhost
+xorg-xinit
 xorg-xinput
 xorg-xkbcomp
 xorg-xkbevd
@@ -178,6 +175,7 @@ xorg-xwayland
 xorg-xwd
 xorg-xwininfo
 xorg-xwud
+xss-lock
 xwallpaper
 yapf
 yay-bin

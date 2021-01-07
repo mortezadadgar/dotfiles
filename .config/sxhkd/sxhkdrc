@@ -8,7 +8,7 @@ super + Return
 
 # program launcher
 super + d
-	j4-dmenu-desktop --dmenu="dmenu -bw 2 -c -l 10"
+	dmenu_run -bw 2 -c -l 10
 
 # movie launcher
 super + w
@@ -20,32 +20,24 @@ super + Escape
 
 # sound control
 XF86Audio{RaiseVolume,LowerVolume,Mute}
-	pulsemixer {--change-volume +10, --change-volume -10, --toggle-mute}
+	pamixer {-i 5,-d 5,-t}
 
 # media keys
-# playerctl {next, previous, play-pause, stop}
+# playerctl {next,previous,play-pause,stop}
 XF86Audio{Next,Prev,Play,Stop}
 	mpc {next,prev,toggle,stop}
 
 # brightness keys
 XF86MonBrightness{Up,Down}
-	xbacklight {-inc 5, -dec 5}
+	xbacklight {-inc 5,-dec 5}
 
-# screenshot (region)
-Print
-	flameshot gui
-
-# screenshot (full)
+# screenshot
 super + Print
-	flameshot full -c
+	$HOME/.config/scripts/maimpick
 
 # powermenu
 super + ctrl + p
 	$HOME/.config/scripts/dmenupower
-
-# power managements
-super + ctrl + o
-	$HOME/.config/scripts/dmenudpms
 
 #
 # bspwm hotkeys
@@ -64,7 +56,6 @@ super + {shift + ,_}q
 #
 
 # set the window state
-# toggle fullscreen with only one key
 super + {s,f}
 	bspc node -t {\~floating,\~fullscreen}
 
@@ -72,15 +63,19 @@ super + {s,f}
 super + m
 	bspc desktop -l next
 
-# set the node sticky
+# Make a window sticky/non-sticky
 super + t
-	bspc node -g sticky
+	bspc node -g sticky={on,off}
+
+# hide/unhide a window
+super + n
+	bspc node {,$(bspc query -N -n .hidden | tail -n1)} -g hidden={on,off}
 
 #
 # focus/swap
 #
 
-# focus the node in the given direction
+# focus or move the node in the given direction
 super + {_,shift + }{h,j,k,l}
 	bspc node -{f,s} {west,south,north,east}
 
@@ -105,10 +100,6 @@ super + shift + {Left,Right}
 	{bspc node @/ -R 90,bspc node @/ -R -90}
 
 #
-# preselect
-#
-
-#
 # move/resize
 #
 
@@ -116,45 +107,32 @@ super + shift + {Left,Right}
 super + {y,u,i,o}
 	$HOME/.config/sxhkd/scripts/bspwm_resize.sh {west,south,north,east}
 
+# Reset the split ratios to their default value
+super + shift + backslash
+		bspc node @/ -E
+
 # move a floating window
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
-
-# Make a window sticky/non-sticky
-super + o
-	bspc node -g sticky={on,off}
 
 #
 # apps
 #
 
-# firefox. telegram
-super + shift + {f, g, e}
-	 {firefox, firefox --private-window, telegram-desktop}
+# Browser
+super + shift + {f, g}
+	 {firefox,firefox --private-window}
 
-# ncmpcpp
+# Telegram
+super + shift + e
+	 telegram-desktop
+
+# Ncmpcpp
 super + shift + m
 	alacritty \
 	--dimensions 60 15 \
 	--class ncmpcpp,Alacritty -e ncmpcpp
 
-# calc
+# Calculator
 super + shift + equal
 	$HOME/.config/scripts/dmenucalc
-
-# pulsemixer
-super + shift + v
-	alacritty \
-	--dimensions 50 15 \
-	--class pulsemixer,Alacritty -e pulsemixer
-
-# super + shift + w
-# 	alacritty \
-# 	--dimensions 63 21 \
-# 	--class wttr,Alacritty -e bash -c "curl -sf wttr.in/$LOCATION?2FQn |tail -n +6;read"
-
-# Weather
-# super + shift + w
-# 	alacritty \
-# 	--dimensions 31 7 \
-# 	--class wttr,Alacritty -e bash -c "echo $LOCATION;read"

@@ -1,11 +1,13 @@
 .config/nnn/config
 .config/nnn/plugins/imgview
 .zshenv
+.xinitrc
 .fzf-marks
 .config/zsh/aliasrc
 .config/zsh/zinitrc
 .config/zsh/p10k.zsh
 .config/zsh/.zshrc
+.config/zsh/.zprofile
 .config/alacritty
 .config/fontconfig
 .config/polybar

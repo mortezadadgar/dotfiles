@@ -5,7 +5,8 @@ while read file; do
 
 # Set Wallpaper
     "b")
-    xwallpaper --stretch "$file" &&
+    xwallpaper --stretch "$file" && \
+      notify-send "Changed wallpaper" -i "$file" &
       cp "$file" "$HOME/.config/wallp.jpg" &
     ;;
 

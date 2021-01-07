@@ -39,6 +39,7 @@ export MAKEFLAGS="-j$(nproc)"
 # GO
 export GOPATH=$HOME/scripts/Go
 export GOBIN=$HOME/scripts/Go/bin
+
 # colorize go test
 go_test() {
   go test $* | sed ''/PASS/s//$(printf "\033[32mPASS\033[0m")/'' | \
@@ -104,7 +105,6 @@ source /usr/share/fzf/completion.zsh
 export FZF_DEFAULT_COMMAND="fd --type f --follow"
 export FZF_CTRL_T_COMMAND="fd --type f --follow"
 export FZF_ALT_C_COMMAND="fd --type d --follow"
-export FZF_ALT_C_OPTS="--preview 'ls -1 --color=always {}'"
 export FZF_DEFAULT_OPTS="
 --color=dark
 --color=fg:-1,bg:-1,hl:#5fff87,fg+:-1,bg+:-1,hl+:#ffaf5f
@@ -128,8 +128,10 @@ _comp_options+=(globdots)
 # P10K extra customizations
 # Disable P10K reporting exit codes
 typeset -g POWERLEVEL9K_STATUS_EXTENDED_STATES=false
+
 # same green color on last command failed
 typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND=76
+
 # change default cursor shape to Beam
 echo -ne '\e[6 q'
 _fix_cursor() {

@@ -9,22 +9,22 @@ SELECT=$(printf "Poweroff\nRestart\nLogoff\nSuspend" |\
 LOGOFF_CMD="bspc quit"
 
 case $SELECT in
-        Power*)
+        Poweroff)
                 notify-send -i system-shutdown "Shutting down..."
                 sleep 0.75
                 poweroff
                 ;;
-        Rest*)
+        Restart)
                 notify-send -i system-reboot "Restarting..."
                 sleep 0.75
                 reboot
                 ;;
-        Log*)
+        Logoff)
                 notify-send -i cs-user "Logging off..."
                 sleep 0.75
                 $LOGOFF_CMD
                 ;;
-        Sus*)
+        Suspend)
                 notify-send -i gnome-lockscreen "Suspend..."
                 sleep 0.75
                 systemctl suspend

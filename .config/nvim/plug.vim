@@ -18,6 +18,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'mcchrish/nnn.vim'
 Plug 'Raimondi/delimitMate'
 Plug 'norcalli/nvim-colorizer.lua'
+Plug 'dracula/vim'
 call plug#end()
 
 " --- Airline ---
