@@ -8,7 +8,7 @@ super + Return
 
 # program launcher
 super + d
-	dmenu_run -bw 2 -c -l 10
+ 	j4-dmenu-desktop --dmenu="dmenu -bw 2 -c -l 10"
 
 # movie launcher
 super + w
@@ -20,12 +20,16 @@ super + Escape
 
 # sound control
 XF86Audio{RaiseVolume,LowerVolume,Mute}
-	pamixer {-i 5,-d 5,-t}
+ 	pulsemixer {--change-volume +10, --change-volume -10, --toggle-mute}
 
 # media keys
 # playerctl {next,previous,play-pause,stop}
 XF86Audio{Next,Prev,Play,Stop}
 	mpc {next,prev,toggle,stop}
+
+# control media playback
+super + shift + {greater,less}
+	mpc {seek +15,seek -15}
 
 # brightness keys
 XF86MonBrightness{Up,Down}
