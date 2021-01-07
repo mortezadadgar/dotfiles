@@ -1,6 +1,4 @@
 /etc/default/grub
-/etc/lightdm/Background-lines1k.jpg
-/etc/lightdm/lightdm-mini-greeter.conf
 /etc/sysctl.d/10_custom.conf
 /etc/udev/rules.d
 /etc/intel-undervolt.conf

@@ -32,5 +32,4 @@
 .config/scripts/
 .config/wallp.jpg
 .config/one-dark.yml
-.config/xfce4/
 .local/share/fonts/
