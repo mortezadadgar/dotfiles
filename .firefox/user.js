@@ -1,6 +1,8 @@
 /* force enable hw acceleration */
-user_pref("layers.acceleration.force-enabled", true);
-user_pref("gfx.canvas.azure.accelerated", true);
+user_pref("gfx.webrender.all", true);
+user_pref("media.ffmpeg.vaapi.enabled", true);
+user_pref("media.ffvpx.enabled", false);
+user_pref("media.av1.enabled", false);
 /* Disable restore session from crash */
 user_pref("browser.sessionstore.resume_from_crash", false);
 /* Disable Pocket */
@@ -69,8 +71,5 @@ user_pref("browser.link.open_newwindow.restriction", 0);
 /* Pop-up windows */
 user_pref("dom.disable_open_during_load", true);
 user_pref("dom.popup_allowed_events", "click dblclick");
-/* disable two javascript options */
-user_pref("javascript.options.asmjs", false);
-user_pref("javascript.options.wasm", false);
 /* allow css customizations */
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true)
