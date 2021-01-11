@@ -5,6 +5,7 @@
 # Variables
 battery_path="/sys/class/power_supply/BAT1"
 notif_on_cap="7"
+running="1"
 
 # check if the specified path is valid
 [ ! -f "$battery_path/capacity" ] &&
@@ -20,11 +21,16 @@ while true; do
     status=$(cat "$battery_path"/status)
 
     # skip this loop if it's charging
-    [ "$status" = "Charging" ] && continue
+    # change running var but still don't let loop running
+    [ "$status" = "Charging" ] && running="1" && continue
+
+    # check if we need to keep running loop
+    [ "$running" = "0" ] && echo "running=0" && continue
 
     # check capacity
     if [ "$capacity" -le "$notif_on_cap" ]; then
         notify-send "Battery notification" "Running low on battery (""$capacity""%)" -i cs-power -u critical
-        break
+        running="0"
+        # break
     fi
 done

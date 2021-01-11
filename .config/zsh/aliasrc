@@ -13,7 +13,7 @@ alias \
 		pt='sudo powertop' \
 		cl='clear' \
 		nf='neofetch' \
-		g='git'
+		g='git' \
 		glg='git log --no-merges' \
 		gcp='git cherry-pick' \
 		gcps='git cherry-pick --skip' \
