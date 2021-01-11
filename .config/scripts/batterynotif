@@ -1,0 +1,30 @@
+#!/bin/sh
+# Description: Notify user's low battery level
+# Shell: POSIX compliant
+
+# Variables
+battery_path="/sys/class/power_supply/BAT1"
+notif_on_cap="7"
+
+# check if the specified path is valid
+[ ! -f "$battery_path/capacity" ] &&
+    notify-send "Battery notification" "there's no such path" -i system-error &&
+    exit 1
+
+while true; do
+    # don't let this loop constantly polling for stats
+    sleep 3
+
+    # get battery stats
+    capacity=$(cat "$battery_path"/capacity)
+    status=$(cat "$battery_path"/status)
+
+    # skip this loop if it's charging
+    [ "$status" = "Charging" ] && continue
+
+    # check capacity
+    if [ "$capacity" -le "$notif_on_cap" ]; then
+        notify-send "Battery notification" "Running low on battery (""$capacity""%)" -i cs-power -u critical
+        break
+    fi
+done

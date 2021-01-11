@@ -1,26 +1,48 @@
 alias \
-		ls='ls -Nh --color=always --group-directories-first' \
-		ll='ls -Nlh --color=always --group-directories-first' \
-		lh='ls -NAlh --color=always --group-directories-first' \
+		ls='ls -Nh --color=auto --group-directories-first' \
+		ll='ls -Nlh --color=auto --group-directories-first' \
 		mkdir='mkdir --parents' \
 		du='du -h' \
-		grep='grep --color=always' \
-		pacman='pacman --color=always' \
-		yay='yay --color=always' \
+		grep='grep --color=auto' \
+		pacman='pacman --color=auto' \
+		yay='yay --color=auto' \
 		ht='htop' \
 		vi='nvim' \
 		svi='sudoedit' \
-		sudo='sudo -v; sudo ' \
+		s='sudo -v; sudo ' \
 		pt='sudo powertop' \
-		mkdef='make shadow_defconfig; cp .config arch/arm64/configs/shadow_defconfig' \
-		pacorph='sudo pacman -Rns $(pacman -Qtdq)' \
 		cl='clear' \
 		nf='neofetch' \
-		grevn='git revert --no-edit' \
+		g='git'
 		glg='git log --no-merges' \
+		gcp='git cherry-pick' \
 		gcps='git cherry-pick --skip' \
 		gams='git commit --amend -s' \
+		gst='git status' \
+		alias grba='git rebase --abort' \
+		alias grbc='git rebase --continue' \
+		alias grbi='git rebase -i' \
+		alias grhh='git reset --hard' \
+		alias gp='git push' \
+		alias gpf='git push --force' \
+		alias ga='git add' \
+		alias gaa='git add --all' \
+		alias gam='git am' \
+		alias grm='git rm' \
+		alias glg='git log --stat' \
+		alias glog='git log --oneline --decorate --graph' \
+		alias grev='git revert' \
+		alias gamc='git am --continue' \
+		alias gams='git am --skip' \
+		alias gama='git am --abort' \
+		alias gco='git checkout' \
+		alias yaorph='yay -Rns $(yay -Qtdq)' \
+		alias yarem='yay -Rns' \
+		alias yaupg='yay -Syu' \
+		alias yain='yay -S' \
+		alias scres='sudo systemctl restart' \
+		alias scen='sudo systemctl enable' \
+		alias scst='sudo systemctl start' \
 		pc='sudo picocom -b 115200 /dev/ttyUSB0' \
-		sxiv='sxiv-rifle' \
 		zrel='exec $SHELL' \
 		n='nnn -Ruex'

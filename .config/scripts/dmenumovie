@@ -6,6 +6,6 @@
 MOVIE_FOLDER="/run/media/sda3/Movie/ $HOME/Downloads"
 EXCLUDE_MOVIE="**Telegram**" # based on pattern
 
-du -a $MOVIE_FOLDER --exclude=$EXCLUDE_MOVIE | \
-        awk '{print $2}' |grep "mp4\|mkv\|avi" --color=never | \
-        dmenu -l 10 -bw 2 |xargs -r mpv
+du -a $MOVIE_FOLDER --exclude=$EXCLUDE_MOVIE |
+    awk '{print $2}' | grep "mp4\|mkv\|avi" --color=never |
+    dmenu -l 10 -bw 2 | xargs -r mpv

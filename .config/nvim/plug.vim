@@ -9,7 +9,6 @@ endif
 
 call plug#begin()
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-surround'
 Plug 'joshdick/onedark.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'vim-airline/vim-airline'
@@ -18,7 +17,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'mcchrish/nnn.vim'
 Plug 'Raimondi/delimitMate'
 Plug 'norcalli/nvim-colorizer.lua'
-Plug 'dracula/vim'
 call plug#end()
 
 " --- Airline ---
@@ -29,6 +27,11 @@ let g:airline#extensions#tabline#show_splits = 0
 let g:airline#extensions#tabline#tabs_label = ''
 let g:airline#extensions#tabline#show_close_button = 0
 let g:airline#extensions#tabline#show_tab_nr = 0
+let g:airline#extensions#tabline#show_tab_type = 0
+let g:airline#extensions#tabline#tabs_label = ''
+let g:airline#extensions#tabline#buffers_label = ''
+let g:airline#extensions#tabline#show_tab_count = 0
+let g:airline#extensions#tabline#show_buffers = 0
 
 " Human readable Line number
 function! MyLineNumber()
@@ -109,6 +112,9 @@ nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
 
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
+
+" CocRestart
+map <leader>cr :CocRestart<CR><CR>
 
 " --- delimitMate ---
 let delimitMate_expand_cr = 2

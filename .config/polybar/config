@@ -1,15 +1,16 @@
 [colors]
-#background = #282c34
 background = #1A1A1A
-foreground = #dfdfdf
-foreground-alt = #616161
-yellow = #ffff00
-blue = #61AFEF
-grey = #333842
-red_dark = #9d000f
-red = #ff3333
 black = #000000
 blue_dark = #062135
+grey = #ABB2BF
+foreground = #dfdfdf
+yellow = #E5C07B
+blue = #61AFEF
+cyan = #56B6C2
+magenta = #c678dd
+green = #98C379
+red = #FF7571
+orange = #D19A66
 
 # NOTE: use label-padding instead of format-prefix-padding
 [bar/top]
@@ -35,7 +36,7 @@ font-2 = "RobotoMono Nerd Font:style=Bold:size=11;3"
 
 modules-left = bspwm title
 modules-center = mpd
-modules-right = netstat cpu temperature pulseaudio backlight battery date
+modules-right = cpu temperature pulseaudio backlight battery network date
 
 tray-position = right
 tray-padding = 2
@@ -51,6 +52,7 @@ type = internal/xbacklight
 enable-scroll = false
 
 format = <ramp> <label>
+ramp-foreground = ${colors.yellow}
 ramp-0 = 
 ramp-1 = 
 ramp-2 = 
@@ -60,18 +62,6 @@ ramp-5 = ﯦ
 label = %percentage%%
 label-padding-left = 0
 label-padding-right = 1
-
-[module/xkeyboard]
-type = internal/xkeyboard
-blacklist-0 = num lock
-
-format = <label-layout>
-format-spacing = 0
-
-format-prefix = %{T2}LAY%{T-}
-format-prefix-foreground = ${colors.foreground-alt}
-
-label-layout = %layout%
 
 [module/temperature]
 type = internal/temperature
@@ -88,12 +78,14 @@ label-padding-right = 1
 label-warn = %{T3}%temperature-c%%{T-}
 label-warn-padding-left = 0
 label-warn-padding-right = 1
+ramp-foreground = ${colors.grey}
 ramp-0 = 
 
 [module/cpu]
 type = internal/cpu
 interval = 3
 
+format-prefix-foreground = ${colors.magenta}
 format-prefix = ""
 label = %percentage%%
 label-padding-right = 1
@@ -107,8 +99,9 @@ format = <label-state>
 
 label-focused-background = ${colors.blue_dark}
 label-occupied-background = ${colors.background}
+label-urgent-background = ${colors.red}
+label-urgent-foreground = ${colors.background}
 label-empty-background = ${colors.background}
-label-empty-foreground = ${colors.background}
 
 label-focused = [%{T2}%name%%{T-}]
 label-focused-padding = 1
@@ -130,7 +123,7 @@ label = %title%
 label-maxlen = 32
 
 label-empty = Empty
-label-empty-foreground = ${colors.foreground-alt}
+label-empty-foreground = ${colors.grey}
 
 [module/date]
 type = internal/date
@@ -140,6 +133,7 @@ time = %b %d - %H:%M
 
 format = <label>
 format-prefix = ""
+format-prefix-foreground = ${colors.blue}
 format-prefix-padding-left = 1
 label = %time%
 label-padding-left = 1
@@ -155,10 +149,11 @@ label-volume-padding-left = 0
 label-volume-padding-right = 1
 
 label-muted = 婢
-label-muted-foreground = #666
+label-muted-foreground = ${colors.grey}
 label-muted-padding-left = 0
 label-muted-padding-right = 1
 
+ramp-volume-foreground = ${colors.cyan}
 ramp-volume-0 = 
 ramp-volume-1 = 墳
 ramp-volume-2 = 
@@ -174,34 +169,20 @@ format-discharging = <ramp-capacity> <label-discharging>
 format-full = <label-full>
 
 format-full-prefix = " "
+format-full-prefix-foreground = ${colors.green}
 
-ramp-capacity-0-foreground = ${colors.red_dark}
 ramp-capacity-0 = ""
 ramp-capacity-1 = ""
 ramp-capacity-2 = ""
+ramp-capacity-0-foreground = ${colors.red}
+ramp-capacity-1-foreground = ${colors.green}
+ramp-capacity-2-foreground = ${colors.green}
 
 animation-charging-0 = ""
 animation-charging-1 = ""
 animation-charging-2 = ""
+animation-charging-foreground = ${colors.green}
 
-[module/memory]
-type = internal/memory
-interval = 45
-format = <label>
-format-prefix = %{T2}MEM%{T-}
-format-foreground = ${colors.foreground-alt}
-label = %percentage_used%%
-label-foreground = ${colors.foreground}
-label-padding = 1
-
-[module/spotify]
-type = custom/script
-interval = 10
-format-prefix = 
-format-prefix-foreground = ${colors.foreground-alt}
-format-prefix-padding = 2
-format = <label>
-exec = python $HOME/.config/polybar/scripts/spotify_status.py -f '{artist}: {song}' --font=1 -t 40 -q
 
 [module/mpd]
 type = internal/mpd
@@ -224,12 +205,16 @@ interval = 110
 format-prefix = ﯲ
 label-padding = 1
 label-padding-left = 1
-exec = bash -c vnstat |awk '/today/ {print $2,$3}' |tail -1 |sed 's/[0-9\.]*\sKiB$/0< MiB/g'
+exec = bash -c vnstat |awk '/today/ {print $2,$3}' |tail -1 |sed 's/[0-9\.]*\sKiB$/0 MiB/g'
 
-[module/github]
-type = internal/github
-token = ${file:$HOME/.cache/gh.token}
-user = mortezadadgar
-empty-notifications = false
-interval = 200
-label =   %notifications%
+[module/network]
+type = internal/network
+interface = wlan0
+interval = 2
+
+format-connected = <ramp-signal> <label-connected>
+format-disconnected = <label-disconnected>
+label-connected = %signal%%
+label-disconnected = " 睊"
+ramp-signal-0 =" 直"
+ramp-signal-foreground = ${colors.orange}

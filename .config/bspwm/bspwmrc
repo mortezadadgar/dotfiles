@@ -8,8 +8,9 @@ exec_cmd() {
 # fix cursor displaying X when not over windows
 xsetroot -cursor_name left_ptr
 
-# bspc monitor
+# bspc monitor & desktop
 bspc monitor -d 1 2 3 4 5
+# bspc desktop 5 -l monocle
 
 # border & gaps
 bspc config border_width         1
@@ -32,7 +33,7 @@ bspc rule -a firefox:Browser state=floating #About window
 bspc rule -a TelegramDesktop desktop='^3' follow=on
 bspc rule -a mpv desktop='^4' follow=on
 bspc rule -a Alacritty:ncmpcpp desktop=^5 state=floating follow=on
-bspc rule -a Zathura state=fullscreen desktop='^4' follow=on
+bspc rule -a Zathura desktop='^4' state=tiled follow=on
 bspc rule -a persepolis state=floating desktop='^5' follow=on
 bspc rule -a Xfce4-power-manager-settings state=floating
 bspc rule -a Nm-connection-editor state=floating
@@ -64,6 +65,10 @@ exec_cmd redshift -t 5000:4000
 
 # dunst
 exec_cmd dunst
+
+# batterynotif
+pkill batterynotif
+setsid -f $HOME/.config/scripts/batterynotif
 
 # set wallpaper
 xwallpaper --stretch $HOME/.config/wallp.jpg

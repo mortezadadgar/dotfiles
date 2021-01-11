@@ -43,6 +43,10 @@ super + Print
 super + ctrl + p
 	$HOME/.config/scripts/dmenupower
 
+# iwd
+super + b
+	$HOME/.config/scripts/dmenuiwd
+
 #
 # bspwm hotkeys
 #
@@ -72,7 +76,7 @@ super + t
 	bspc node -g sticky={on,off}
 
 # hide/unhide a window
-super + n
+super + slash
 	bspc node {,$(bspc query -N -n .hidden | tail -n1)} -g hidden={on,off}
 
 #
@@ -100,7 +104,7 @@ super + shift + {1-9,0}
 	bspc node -d '^{1-9,10}' --follow
 
 # Rotate view
-super + shift + {Left,Right}
+super + shift + {bracketright,bracketleft}
 	{bspc node @/ -R 90,bspc node @/ -R -90}
 
 #

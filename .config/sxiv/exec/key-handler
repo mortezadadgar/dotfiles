@@ -1,41 +1,44 @@
 #!/bin/sh
 
 while read file; do
-  case "$1" in
+    case "$1" in
 
-# Set Wallpaper
+    # Set Wallpaper
     "b")
-    xwallpaper --stretch "$file" && \
-      notify-send "Changed wallpaper" -i "$file" &
-      cp "$file" "$HOME/.config/wallp.jpg" &
-    ;;
+        filename=$(basename "$file")
+        xwallpaper --stretch "$file" &&
+            notify-send "Changed wallpaper" "$filename" -i preferences-wallpaper &
+        cp "$file" "$HOME/.config/wallp.jpg" &
+        ;;
 
-# Rotate +90
+    # Rotate +90
     "r")
-    convert -rotate 90 "$file" "$file"
-    ;;
+        convert -rotate 90 "$file" "$file"
+        ;;
 
-# Rotate -90
+    # Rotate -90
     "R")
-    convert -rotate -90 "$file" "$file"
-    ;;
+        convert -rotate -90 "$file" "$file"
+        ;;
 
-# Flip Image
+    # Flip Image
     "f")
-    convert -flop "$file" "$file"
-    ;;
+        convert -flop "$file" "$file"
+        ;;
 
-# Yank
+    # Yank
     "y")
-    xclip -selection clipboard -t image/png -i "$file" && \
-      notify-send "$file copied to clipboard" &
-    ;;
+        filename=$(basename "$file")
+        xclip -selection clipboard -t image/png -i "$file" &&
+            notify-send "copied to clipboard" "$filename" &
+        ;;
 
-# Delete
+    # Delete
     "d")
-    [ "$(printf "No\\nYes" | dmenu -h 29 -sb "#FF7571" -sf "#000" \
-      -p "Really delete $file ?")" = "Yes" ] && rm "$file" \
-      && notify-send -i trashindicator "$file deleted."
-    ;;
-  esac
+        filename=$(basename "$file")
+        [ "$(printf "No\\nYes" | dmenu -h 29 -sb "#FF7571" -sf "#000" \
+            -p "Really delete $filename?")" = "Yes" ] && rm "$file" &&
+            notify-send -i trashindicator "Deleted" "$filename"
+        ;;
+    esac
 done

@@ -7,6 +7,7 @@ User=%i
 Environment=DISPLAY=:0
 ExecStartPre=/usr/bin/xset dpms force suspend
 ExecStart=/usr/bin/slock
+ExecStartPost=/usr/bin/sleep 0.5
 
 [Install]
 WantedBy=sleep.target

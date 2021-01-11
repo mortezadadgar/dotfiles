@@ -2,10 +2,26 @@ set selection-clipboard clipboard
 set scroll-step 100
 set statusbar-home-tilde true
 set window-title-home-tilde true
-set default-bg "#2A2A2E"
-set statusbar-bg "#121213"
-set inputbar-bg "#121213"
-set font "Iosevka Nerd Font 12"
+set completion-bg "#FFFFFF"
+set completion-fg "#000000"
+set completion-group-bg "#FFFFFF"
+set completion-group-fg "#000000"
+set completion-highlight-bg "#FFFFFF"
+set completion-highlight-fg "#000000"
+set default-bg "#FFFFFF"
+set default-fg "#000000"
+set inputbar-bg "#FFFFFF"
+set inputbar-fg "#000000"
+set statusbar-bg "#FFFFFF"
+set statusbar-fg "#000000"
+set index-bg "#FFFFFF"
+set index-fg "#000000"
+set index-active-fg "#FFFFFF"
+set index-active-bg "#000000"
+set highlight-color "#000000"
+set highlight-active-color "#0000FF"
+set highlight-transparency 0.3
+set font "OpenSans 12"
 set page-padding 5
 map K zoom in
 map J zoom out

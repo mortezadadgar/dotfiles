@@ -1,52 +1,45 @@
 [global]
-font = Open Sans 11
-markup = yes
-plain_text = no
-format = "<b>%s</b>\n%b"
-sort = yes
-indicate_hidden = yes
-alignment = left
-show_age_threshold = -1
-word_wrap = yes
-ignore_newline = no
-stack_duplicates = no
-geometry = "280x30-10-37"
-shrink = no
-transparency = 0
-idle_threshold = 0
-monitor = 0
-follow = none
-sticky_history = yes
-history_length = 15
-show_indicators = no
-line_height = 3
-separator_height = 2
-padding = 6
-horizontal_padding = 6
-separator_color = auto
-icon_position = left
-max_icon_size = 80
-icon_path = /usr/share/icons/Papirus-Dark/48x48/status/:/usr/share/icons/Papirus-Dark/16x16/devices/:/usr/share/icons/Papirus-Dark/48x48/notifications/:/usr/share/icons/Papirus-Dark/48x48/emblems/:/usr/share/icons/Papirus-Dark/48x48/apps:/usr/share/icons/Papirus-Dark/48x48/status
+    font = Open Sans 11
+    show_age_threshold = -1
+    idle_threshold = 0
+    format = "<b><span foreground='#61AFEF'>%s</span></b>\n%b"
+    stack_duplicates = no
+    geometry = "280x30-10-37"
+    follow = none
+    word_wrap = yes
+    line_height = 3
+    frame_width = 1
+    separator_height = 1
+    padding = 6
+    horizontal_padding = 6
+    separator_color = "#3E4451"
+    show_indicators = no
+    icon_position = left
+    max_icon_size = 80
+    icon_path = /usr/share/icons/Papirus-Dark/48x48/status/:/usr/share/icons/Papirus-Dark/16x16/devices/:/usr/share/icons/Papirus-Dark/48x48/notifications/:/usr/share/icons/Papirus-Dark/48x48/emblems/:/usr/share/icons/Papirus-Dark/48x48/apps:/usr/share/icons/Papirus-Dark/48x48/status
 
 [urgency_low]
-msg_urgency = low
-foreground = "#C0C0C0"
-background = "#1A1A1A"
-timeout = 3
+    msg_urgency = low
+    foreground = "#C0C0C0"
+    background = "#1A1A1A"
+    frame_color = "#3E4451"
+    timeout = 2
 
 [urgency_normal]
-msg_urgency = medium
-foreground = "#C0C0C0"
-background = "#1A1A1A"
-timeout = 7
+    msg_urgency = medium
+    foreground = "#C0C0C0"
+    background = "#1A1A1A"
+    frame_color = "#3E4451"
+    timeout = 7
 
 [urgency_critical]
-msg_urgency = critical
-foreground = "#C0C0C0"
-background = "#1A1A1A"
-timeout = 15
+    msg_urgency = critical
+    foreground = "#C0C0C0"
+    background = "#1A1A1A"
+    frame_color = "#3E4451"
+    timeout = 15
 
 [shortcuts]
-close = ctrl+space
-close_all = ctrl+shift+space
-history = ctrl+shift+h
+    close = ctrl+space
+    close_all = ctrl+shift+space
+    history = ctrl+shift+h
