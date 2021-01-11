@@ -4,29 +4,29 @@
 # Shell: POSIX compliant
 
 SELECT=$(printf "Poweroff\nRestart\nLogoff\nSuspend" |
-    dmenu -h 29 -sb '#FABD2F' -nf '#fff' -sf '#000')
+	dmenu -h 29 -sb '#FABD2F' -nf '#fff' -sf '#000')
 
 LOGOFF_CMD="bspc quit"
 
 case $SELECT in
 Poweroff)
-    notify-send -i system-shutdown "Shutting down..."
-    sleep 0.75
-    poweroff
-    ;;
+	notify-send -i system-shutdown "Shutting down..."
+	sleep 0.75
+	poweroff
+	;;
 Restart)
-    notify-send -i system-reboot "Restarting..."
-    sleep 0.75
-    reboot
-    ;;
+	notify-send -i system-reboot "Restarting..."
+	sleep 0.75
+	reboot
+	;;
 Logoff)
-    notify-send -i cs-user "Logging off..." -u low
-    sleep 0.75
-    $LOGOFF_CMD
-    ;;
+	notify-send -i cs-user "Logging off..." -u low
+	sleep 0.75
+	$LOGOFF_CMD
+	;;
 Suspend)
-    notify-send -i gnome-lockscreen "Suspend..." -u low
-    sleep 0.75
-    systemctl suspend
-    ;;
+	notify-send -i gnome-lockscreen "Suspend..." -u low
+	sleep 0.75
+	systemctl suspend
+	;;
 esac

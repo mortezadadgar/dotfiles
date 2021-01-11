@@ -58,9 +58,6 @@ let g:onedark_color_overrides = {
 " finally change to onedark
 colorscheme onedark
 
-" fix foreground operator cursorline
-" hi! link Operator GruvboxFg1
-
 " --- NNN ---
 let g:nnn#action = {
       \ '<c-t>': 'tab split',
