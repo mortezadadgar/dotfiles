@@ -1,8 +1,6 @@
-/etc/default/grub
 /etc/sysctl.d/10_custom.conf
 /etc/udev/rules.d
 /etc/intel-undervolt.conf
-/etc/dnscrypt-proxy/dnscrypt-proxy.toml
 /etc/X11/xorg.conf.d/01-login.conf
 /etc/systemd/system/suspend@.service
 /etc/systemd/system/resume@.service

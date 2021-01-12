@@ -10,4 +10,4 @@ let g:nnn#layout = { 'window': { 'width': 0.5, 'height': 0.6, 'xoffset': 40, 'hi
 nnoremap <C-n> :Np<CR>
 
 " nnn default options
-let g:nnn#command = 'nnn -Ruex'
+let g:nnn#command = 'nnn -uex'

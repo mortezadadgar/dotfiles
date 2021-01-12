@@ -1,0 +1,18 @@
+# Set io scheduler to bfq
+ACTION=="add|change", KERNEL=="nvme[0-9]n[0-9]", ATTR{queue/scheduler}="bfq"
+ACTION=="add|change", KERNEL=="sd[a-z]|mmcblk[0-9]*", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="bfq"
+
+# Unload nvidia-gc,cardreader,realtek-lan
+ACTION=="add", KERNEL=="0000:01:00.0", SUBSYSTEM=="pci", RUN+="/bin/sh -c 'echo 1 > /sys/bus/pci/devices/0000:01:00.0/remove'"
+ACTION=="add", KERNEL=="0000:01:00.1", SUBSYSTEM=="pci", RUN+="/bin/sh -c 'echo 1 > /sys/bus/pci/devices/0000:01:00.1/remove'"
+ACTION=="add", KERNEL=="0000:04:00.0", SUBSYSTEM=="pci", RUN+="/bin/sh -c 'echo 1 > /sys/bus/pci/devices/0000:04:00.0/remove'"
+ACTION=="add", KERNEL=="0000:04:00.1", SUBSYSTEM=="pci", RUN+="/bin/sh -c 'echo 1 > /sys/bus/pci/devices/0000:04:00.1/remove'"
+
+# PCI Runtime Power Management
+SUBSYSTEM=="pci", ATTR{power/control}="auto"
+
+# SATA Active Link Power Management
+ACTION=="add", SUBSYSTEM=="scsi_host", KERNEL=="host*", ATTR{link_power_management_policy}="med_power_with_dipm"
+
+# USB autosuspend
+ACTION=="add", SUBSYSTEM=="usb", TEST=="power/control", ATTR{power/control}="auto"

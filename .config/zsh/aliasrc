@@ -45,10 +45,11 @@ alias \
 		yaupg='yay -Syu' \
 		yain='yay -S' \
 		scre='sudo systemctl restart' \
-		scdis='sudo systemctl disable' \
-		scen='sudo systemctl enable' \
-		scst='sudo systemctl start' \
-		scstu='sudo systemctl status' \
+		sc-disable='sudo systemctl disable' \
+		sc-enable='sudo systemctl enable' \
+		sc-start='sudo systemctl start' \
+		sc-restart='sudo systemctl restart' \
+		sc-status='sudo systemctl status' \
 		pc='sudo picocom -b 115200 /dev/ttyUSB0' \
 		zrel='exec $SHELL' \
-		n='nnn -Ruex'
+		n='nnn -uex'

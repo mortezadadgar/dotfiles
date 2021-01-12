@@ -1,5 +1,0 @@
-# unload nvidia-gc,cardreader,realtek-lan
-ACTION=="add", KERNEL=="0000:01:00.0", SUBSYSTEM=="pci", RUN+="/bin/sh -c 'echo 1 > /sys/bus/pci/devices/0000:01:00.0/remove'"
-ACTION=="add", KERNEL=="0000:01:00.1", SUBSYSTEM=="pci", RUN+="/bin/sh -c 'echo 1 > /sys/bus/pci/devices/0000:01:00.1/remove'"
-ACTION=="add", KERNEL=="0000:04:00.0", SUBSYSTEM=="pci", RUN+="/bin/sh -c 'echo 1 > /sys/bus/pci/devices/0000:04:00.0/remove'"
-ACTION=="add", KERNEL=="0000:04:00.1", SUBSYSTEM=="pci", RUN+="/bin/sh -c 'echo 1 > /sys/bus/pci/devices/0000:04:00.1/remove'"
