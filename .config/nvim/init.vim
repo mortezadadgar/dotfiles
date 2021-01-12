@@ -1,52 +1,69 @@
-" --- Plug-ins ---
-source $HOME/.config/nvim/plug.vim
+" install vim-plug in case it's missing
+if empty(glob('~/.config/nvim/autoload/plug.vim'))
+echo "Downloading junegunn/vim-plug to manage plugins..."
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
-" --- Basic ---
+" --- Plug-ins
+call plug#begin()
+Plug 'tpope/vim-commentary'
+Plug 'joshdick/onedark.vim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'vim-airline/vim-airline'
+Plug 'ryanoasis/vim-devicons'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'mcchrish/nnn.vim'
+Plug 'norcalli/nvim-colorizer.lua'
+call plug#end()
+" ---
+
+" --- Basic
 set number relativenumber
-set incsearch nohlsearch
-set nobackup nowb noswapfile
+set hidden
+set nohlsearch
+set nobackup noswapfile
 set cursorline
 set clipboard=unnamedplus
 set pumheight=10
 set nofoldenable
-set shortmess=filnxtToOFI
 set splitbelow splitright
 set noshowmode
 set updatetime=300
+set tabstop=4 softtabstop=4 shiftwidth=4
+set smartindent
 set completeopt-=preview shortmess+=c signcolumn=yes
+set termguicolors
+set scrolloff=8
+set colorcolumn=80
 
-" Disables automatic commenting on newline:
+" Disables automatic commenting on newline
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
-" Automatically deletes all trailing whitespace and newlines at end of file on save.
+" Automatically deletes all trailing whitespace and newlines at end of file on save
 autocmd BufWritePre * %s/\s\+$//e
 autocmd BufWritePre * %s/\n\+\%$//e
 
 " display comments and strings in italic style
 highlight Comment cterm=italic gui=italic
 highlight String cterm=italic gui=italic
+" ---
 
-" --- KeyMaps ---
+" --- KeyMaps
 " Change a few annoying keys
 nnoremap q: <nop>
-no <F1> <Nop>
-ino <F1> <Nop>
-command! W :w
-command! Q :q
-command! Qa :qa
-map Q gq
+nnoremap <F1> <nop>
+inoremap <F1> <nop>
+com! W :w
+com! Q :q
+com! Qa :qa
 
 " Shortcutting split navigation, saving a keypress
 map <C-h> <C-w>h
 map <C-l> <C-w>l
 map <C-j> <C-w>j
 map <C-k> <C-w>k
-
-" Disable arrow keys
-no <down> <Nop>
-no <left> <Nop>
-no <right> <Nop>
-no <up> <Nop>
 
 " Perform dot commands over visual blocks:
 vnoremap . :normal .<CR>
@@ -56,6 +73,5 @@ map <leader>o :setlocal spell! spelllang=en_us<CR>
 
 " replace the current word under the cursor
 nnoremap <leader>m :%s/<C-r><C-w>//g<left><left>
-
-" map Ctrl-c to Esc -- Ctrl-c can't do some opertaions of esc
-imap <C-c> <Esc>
+nnoremap <leader>rn :%s/<C-r><C-w>/<C-r><C-w>/g<left><left>
+" ---

@@ -7,13 +7,13 @@ SELECT=$(printf 'Default profile\nDisable suspend\nDisable DPMS' |
 	dmenu -h 29 -sb '#FABD2F' -nf '#fff' -sf '#000' | tr -d ' ')
 
 case $SELECT in
-Default*)
-	notify-send 'Default Power profile' -i mate-power-manager
-	;;
-Disablesuspend)
-	notify-send 'Disabled entering suspend state' -i mate-power-manager
-	;;
-DisableDPMS)
-	notify-send 'Disabled DPMS' -i mate-power-manager
-	;;
+	Default*)
+		notify-send 'Default Power profile' -i mate-power-manager
+		;;
+	Disablesuspend)
+		notify-send 'Disabled entering suspend state' -i mate-power-manager
+		;;
+	DisableDPMS)
+		notify-send 'Disabled DPMS' -i mate-power-manager
+		;;
 esac

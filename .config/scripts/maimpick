@@ -12,26 +12,26 @@ SELECT=$(printf "selected area (copy)\nfull screen (copy)\nselected area\nfull s
 	dmenu -l 6 -p "Screenshot which area?")
 
 case $SELECT in
-"selected area")
-	sleep 0.2
-	maim -us "$SCR_FORMAT" &&
-		notify-send "Maim" "Screenshot saved to $SCR_FORMAT" -i screengrab -u low
-	;;
-"full screen")
-	sleep 0.2
-	maim -u "$SCR_FORMAT" &&
-		notify-send "Maim" "Screenshot saved to $SCR_FORMAT" -i screengrab -u low
-	;;
-"selected area (copy)")
-	sleep 0.2
-	maim -us | xclip -selection clipboard -t image/png
-	# only required for this case
-	[ "${PIPESTATUS[0]}" = 0 ] &&
-		notify-send "Maim" "Screenshot saved to clipboard" -i screengrab -u low
-	;;
-"full screen (copy)")
-	sleep 0.2
-	maim -u | xclip -selection clipboard -t image/png &&
-		notify-send "Maim" "Screenshot saved to clipboard" -i screengrab -u low
-	;;
+	"selected area")
+		sleep 0.2
+		maim -us "$SCR_FORMAT" &&
+			notify-send "Maim" "Screenshot saved to $SCR_FORMAT" -i screengrab -u low
+		;;
+	"full screen")
+		sleep 0.2
+		maim -u "$SCR_FORMAT" &&
+			notify-send "Maim" "Screenshot saved to $SCR_FORMAT" -i screengrab -u low
+		;;
+	"selected area (copy)")
+		sleep 0.2
+		maim -us | xclip -selection clipboard -t image/png
+		# only required for this case
+		[ "${PIPESTATUS[0]}" = 0 ] &&
+			notify-send "Maim" "Screenshot saved to clipboard" -i screengrab -u low
+		;;
+	"full screen (copy)")
+		sleep 0.2
+		maim -u | xclip -selection clipboard -t image/png &&
+			notify-send "Maim" "Screenshot saved to clipboard" -i screengrab -u low
+		;;
 esac

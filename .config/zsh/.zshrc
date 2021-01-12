@@ -18,7 +18,6 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*' menu select
 zstyle ':completion:*:default' menu yes select
 zstyle :compinstall filename '$ZDOTDIR/.zshrc'
-_comp_options+=(globdots)
 autoload -Uz compinit && compinit
 zmodload zsh/complist
 

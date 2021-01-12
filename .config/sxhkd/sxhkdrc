@@ -44,7 +44,7 @@ super + ctrl + p
 	$HOME/.config/scripts/dmenupower
 
 # iwd
-super + b
+super + n
 	$HOME/.config/scripts/dmenuiwd
 
 #
