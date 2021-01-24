@@ -1,6 +1,5 @@
 [Added Associations]
 x-scheme-handler/tg=userapp-Telegram Desktop-KVC2V0.desktop;
-application/x-httpd-php=firefox.desktop;
 
 [Default Applications]
 application/epub+zip=org.pwmt.zathura.desktop;

@@ -1,3 +1,4 @@
+.pam_environment
 .config/nnn/config
 .config/nnn/plugins/imgview
 .zshenv

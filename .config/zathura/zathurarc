@@ -1,4 +1,5 @@
 set selection-clipboard clipboard
+set adjust-open width
 set scroll-step 100
 set statusbar-home-tilde true
 set window-title-home-tilde true
@@ -23,5 +24,3 @@ set highlight-active-color "#0000FF"
 set highlight-transparency 0.3
 set font "OpenSans 12"
 set page-padding 5
-map K zoom in
-map J zoom out

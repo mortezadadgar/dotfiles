@@ -9,7 +9,7 @@ alias \
 		ht='htop' \
 		vi='nvim' \
 		svi='sudoedit' \
-		s='sudo -v; sudo ' \
+		sudo='sudo -v; sudo ' \
 		pt='sudo powertop' \
 		cl='clear' \
 		nf='neofetch' \
@@ -48,6 +48,7 @@ alias \
 		sc-disable='sudo systemctl disable' \
 		sc-enable='sudo systemctl enable' \
 		sc-start='sudo systemctl start' \
+		sc-stop='sudo systemctl stop' \
 		sc-restart='sudo systemctl restart' \
 		sc-status='sudo systemctl status' \
 		pc='sudo picocom -b 115200 /dev/ttyUSB0' \

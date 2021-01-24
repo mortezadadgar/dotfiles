@@ -3,7 +3,7 @@
 # Dependencies: dmenu
 # Shell: POSIX compliant
 
-SELECT=$(printf "Poweroff\nRestart\nLogoff\nSuspend" |
+SELECT=$(printf "Poweroff\nRestart\nLogoff\nLockscreen" |
 	dmenu -h 29 -sb '#FABD2F' -nf '#fff' -sf '#000')
 
 LOGOFF_CMD="bspc quit"
@@ -24,9 +24,10 @@ case $SELECT in
 		sleep 0.75
 		$LOGOFF_CMD
 		;;
-	Suspend)
-		notify-send -i gnome-lockscreen "Suspend..." -u low
+	Lockscreen)
+		notify-send -i gnome-lockscreen "Lockscreen..." -u low
 		sleep 0.75
-		systemctl suspend
+		xset s activate
+		xset dpms force off
 		;;
 esac

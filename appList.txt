@@ -38,6 +38,7 @@ handlr-bin
 htop
 imagemagick
 intel-gpu-tools
+intel-media-driver
 intel-ucode
 intel-undervolt
 iotop-git
@@ -47,10 +48,10 @@ j4-dmenu-desktop
 jq
 libgdiplus
 libimagequant
-libva-intel-driver
 libva-utils
 linux
 linux-firmware
+linux-hardened
 maim
 make
 mediainfo
@@ -63,9 +64,10 @@ nano
 ncmpcpp-git
 ncurses5-compat-libs
 neofetch
-neovim
+neovim-nightly-bin
 net-tools
 nethogs
+newsboat
 nnn-nerd
 nodejs
 noto-fonts-emoji
@@ -98,12 +100,13 @@ python-pip
 python-pynvim
 python-pyqt5
 python-rope
-python-simber
 qbittorrent
 qt5-graphicaleffects
 qt5-tools
 redshift
+reflector
 repo
+rsync
 shellcheck-bin
 shfmt
 simple-mtpfs
@@ -112,11 +115,9 @@ sudo
 sxhkd
 sxiv
 sxiv-rifle
-systemd-swap
 taglib
 telegram-desktop
 texinfo
-todotxt
 tor
 torsocks
 ttf-opensans
@@ -129,7 +130,6 @@ vnstat
 vulkan-intel
 wget
 wireshark-qt
-xautolock
 xclip
 xf86-video-intel
 xorg-bdftopcf
@@ -167,7 +167,6 @@ xorg-xkbutils
 xorg-xkill
 xorg-xlsatoms
 xorg-xlsclients
-xorg-xlsfonts
 xorg-xmodmap
 xorg-xpr
 xorg-xprop
@@ -189,4 +188,5 @@ zathura
 zathura-cb
 zathura-pdf-mupdf
 zip
+zramswap
 zsh

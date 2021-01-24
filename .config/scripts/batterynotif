@@ -29,8 +29,7 @@ while true; do
 
 	# check capacity
 	if [ "$capacity" -le "$notif_on_cap" ]; then
-		notify-send "Battery notification" "Running low on battery (""$capacity""%)" -i cs-power -u critical
+		notify-send "Battery notification" "Running low on battery (""$capacity""%)" -i battery-low -u critical
 		running="0"
-		# break
 	fi
 done

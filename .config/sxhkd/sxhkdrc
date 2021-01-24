@@ -138,8 +138,10 @@ super + shift + e
 # Ncmpcpp
 super + shift + m
 	alacritty \
-	--dimensions 60 15 \
-	--class ncmpcpp,Alacritty -e ncmpcpp
+	--class ncmpcpp,Alacritty \
+	-o window.dimensions.columns=65 \
+	-o window.dimensions.lines=15 \
+	-e ncmpcpp
 
 # Calculator
 super + shift + equal
