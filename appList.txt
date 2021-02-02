@@ -1,8 +1,10 @@
 aarch64-linux-gnu-gcc
 aarch64-linux-gnu-gdb
 alacritty
+alsa-utils
 android-tools
 aria2
+arm-none-eabi-gcc
 atool
 autoconf
 automake
@@ -37,6 +39,7 @@ grub
 handlr-bin
 htop
 imagemagick
+inetutils
 intel-gpu-tools
 intel-media-driver
 intel-ucode
@@ -52,6 +55,7 @@ libva-utils
 linux
 linux-firmware
 linux-hardened
+llvm-proton-bin
 maim
 make
 mediainfo
@@ -64,10 +68,9 @@ nano
 ncmpcpp-git
 ncurses5-compat-libs
 neofetch
-neovim-nightly-bin
+neovim
 net-tools
 nethogs
-newsboat
 nnn-nerd
 nodejs
 noto-fonts-emoji
@@ -106,10 +109,12 @@ qt5-tools
 redshift
 reflector
 repo
+ripgrep
 rsync
 shellcheck-bin
 shfmt
 simple-mtpfs
+skypeforlinux-stable-bin
 slock
 sudo
 sxhkd
@@ -120,6 +125,7 @@ telegram-desktop
 texinfo
 tor
 torsocks
+traceroute
 ttf-opensans
 unrar
 unzip

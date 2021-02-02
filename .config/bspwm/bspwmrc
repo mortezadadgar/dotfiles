@@ -42,7 +42,12 @@ bspc rule -a Lxappearance:lxappearance state=floating
 
 # screen lock
 xset s 420 10
-exec_cmd xss-lock -n $HOME/.config/scripts/dim-screen -l -- slock
+# exec_cmd xss-lock -n $HOME/.config/scripts/dim-screen -l -- \
+# 	env XSECURELOCK_NO_COMPOSITE=1 \
+# 	xsecurelock
+
+exec_cmd xss-lock -n $HOME/.config/scripts/dim-screen -l -- \
+	slock
 
 # sxhkd
 export SXHKD_SHELL='/bin/sh'
@@ -55,7 +60,6 @@ exec_cmd picom --experimental-backends
 exec_cmd xfce4-power-manager
 
 # polybar
-pkill polybar
 exec_cmd polybar top -r
 
 # nm-applet

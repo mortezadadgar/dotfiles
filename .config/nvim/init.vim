@@ -10,12 +10,12 @@ endif
 call plug#begin()
 Plug 'tpope/vim-commentary'
 Plug 'joshdick/onedark.vim'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'vim-airline/vim-airline'
 Plug 'ryanoasis/vim-devicons'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'mcchrish/nnn.vim'
 Plug 'norcalli/nvim-colorizer.lua'
+Plug 'sheerun/vim-polyglot'
 call plug#end()
 " ---
 
@@ -41,8 +41,7 @@ set colorcolumn=80
 " Disables automatic commenting on newline
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
-" Automatically deletes all trailing whitespace and newlines at end of file on save
-autocmd BufWritePre * %s/\s\+$//e
+" Automatically delete newlines at end of file on save
 autocmd BufWritePre * %s/\n\+\%$//e
 
 " display comments and strings in italic style
@@ -55,9 +54,7 @@ highlight String cterm=italic gui=italic
 nnoremap q: <nop>
 nnoremap <F1> <nop>
 inoremap <F1> <nop>
-com! W :w
-com! Q :q
-com! Qa :qa
+command! W :w
 
 " Shortcutting split navigation, saving a keypress
 map <C-h> <C-w>h

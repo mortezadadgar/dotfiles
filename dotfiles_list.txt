@@ -9,6 +9,7 @@
 .config/zsh/p10k.zsh
 .config/zsh/.zshrc
 .config/zsh/.zprofile
+.config/zsh/prompt
 .config/alacritty
 .config/fontconfig
 .config/polybar

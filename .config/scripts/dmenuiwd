@@ -17,7 +17,7 @@ case $SELECT in
 		iwctl station "$INTERFACE" scan
 
 		# Give enough time to iwctl to find networks
-		sleep 2
+		sleep 1
 
 		networks=$(iwctl station "$INTERFACE" get-networks |
 			sed 's/>//g' |

@@ -1,0 +1,15 @@
+git_info() {
+	local ref=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
+	local head=$(git rev-parse --verify --short=8 HEAD 2> /dev/null)
+	if [ -n "${ref}" ]; then
+		echo "%F{green}${ref}%f %B[%b${head}%B]%b"
+	else
+		echo ""
+	fi
+}
+
+# Enable colors and change prompt
+autoload -U colors && colors
+setopt prompt_subst
+RPS1='$(git_info)'
+PS1=$'\n%F{120}%(4~|%-1~/…/%3~|%~)%f\n%B%F{blue}❯%f%b '

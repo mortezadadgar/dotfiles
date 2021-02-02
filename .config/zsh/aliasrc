@@ -3,6 +3,7 @@ alias \
 		ll='ls -Nlh --color=auto --group-directories-first' \
 		mkdir='mkdir --parents' \
 		du='du -h' \
+		gr='grep --color=auto -RIin' \
 		grep='grep --color=auto' \
 		pacman='pacman --color=auto' \
 		yay='yay --color=auto' \
@@ -14,6 +15,7 @@ alias \
 		cl='clear' \
 		nf='neofetch' \
 		g='git' \
+		gg='git grep' \
 		glg='git log --no-merges' \
 		gcp='git cherry-pick' \
 		gcps='git cherry-pick --skip' \
@@ -40,6 +42,8 @@ alias \
 		gama='git am --abort' \
 		gco='git checkout' \
 		gbD='git branch -D' \
+		gf='git fetch' \
+		gcl='git clone' \
 		yaorph='yay -Rns $(yay -Qtdq)' \
 		yarem='yay -Rns' \
 		yaupg='yay -Syu' \

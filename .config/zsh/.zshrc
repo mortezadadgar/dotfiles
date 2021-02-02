@@ -1,7 +1,5 @@
-# Powerlevel10k instant prompt.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# prompt
+source $ZDOTDIR/prompt
 
 # configure zsh histroy
 HISTFILE=$ZDOTDIR/histfile
@@ -13,6 +11,10 @@ setopt hist_ignore_space
 setopt hist_expire_dups_first
 setopt hist_verify
 
+# misc
+setopt noflowcontrol
+setopt interactive_comments
+
 # zsh completion configuration
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*' menu select
@@ -21,17 +23,11 @@ zstyle :compinstall filename '$ZDOTDIR/.zshrc'
 autoload -Uz compinit && compinit
 zmodload zsh/complist
 
-# misc
-setopt interactivecomments
-setopt noflowcontrol
-
 # ZINIT Installer
 source $ZDOTDIR/zinitrc
 
 # need to be loaded as fast as possible
 zinit snippet OMZ::lib/key-bindings.zsh
-zinit ice depth=1 atload'source $ZDOTDIR/p10k.zsh'
-zinit light romkatv/powerlevel10k
 
 # wait"0" plugins
 zinit wait lucid for \
@@ -80,8 +76,10 @@ bindkey -s '^n' 'n\n'
 # sudo the last entered command
 bindkey -s '^s' 'sudo !!\n'
 
+bindkey -s '^l' 'clear\n'
+
 # WORKAROUND
-# change cursor style to Beam/NVIM changing it back to block
+# change cursor style to Beam - NVIM changing it back to block
 _beam_cursor() {
     echo -ne '\e[6 q'
 }
