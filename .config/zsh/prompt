@@ -1,14 +1,19 @@
 git_info() {
 	local ref=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
 	local head=$(git rev-parse --verify --short=8 HEAD 2> /dev/null)
+
 	if [ -n "${ref}" ]; then
-		echo "%F{green}${ref}%f %B[%b${head}%B]%b"
+		# if [ -z "$(git status --porcelain)" ]; then
+		# 	gstatuscolor="blue"
+		# else
+		# 	gstatuscolor="red"
+		# fi
+		echo "%F{black}%K{green}${ref}%k%f|%F{black}%K{blue}${head}%k%f"
 	else
 		echo ""
 	fi
 }
 
-# Enable colors and change prompt
 autoload -U colors && colors
 setopt prompt_subst
 RPS1='$(git_info)'

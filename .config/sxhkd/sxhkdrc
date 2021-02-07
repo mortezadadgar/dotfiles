@@ -23,9 +23,10 @@ XF86Audio{RaiseVolume,LowerVolume,Mute}
  	pulsemixer {--change-volume +10, --change-volume -10, --toggle-mute}
 
 # media keys
-# playerctl {next,previous,play-pause,stop}
-XF86Audio{Next,Prev,Play,Stop}
-	mpc {next,prev,toggle,stop}
+XF86Audio{Next,Prev,Play}
+	pidof ncmpcpp && mpc {next,prev,toggle} 
+XF86AudioStop
+	mpc stop
 
 # control media playback
 super + shift + {greater,less}

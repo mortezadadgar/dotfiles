@@ -51,10 +51,6 @@ export ZSH_AUTOSUGGEST_MANUAL_REBIND=1
 # aliases
 source $ZDOTDIR/aliasrc
 
-# vi mode
-bindkey -v
-export KEYTIMEOUT=1
-
 # fzf
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh

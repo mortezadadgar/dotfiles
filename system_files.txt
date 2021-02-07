@@ -1,6 +1,2 @@
-/etc/sysctl.d/10_custom.conf
 /etc/udev/rules.d
 /etc/intel-undervolt.conf
-/etc/X11/xorg.conf.d/01-login.conf
-/etc/systemd/system/suspend@.service
-/etc/systemd/system/resume@.service

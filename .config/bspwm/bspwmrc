@@ -2,7 +2,9 @@
 
 # helper to execute commands
 exec_cmd() {
-		which $1 && (pidof $1 || $@&)
+		which $1 >/dev/null 2>&1 && \
+		(pidof $1 >/dev/null 2>&1 || \
+		$@& >/dev/null 2>&1)
 }
 
 # fix cursor displaying X when not over windows
@@ -38,14 +40,11 @@ bspc rule -a persepolis desktop='^5' state=floating follow=on
 bspc rule -a Xfce4-power-manager-settings state=floating
 bspc rule -a Nm-connection-editor state=floating
 bspc rule -a qBittorrent state=floating
+bspc rule -a Nitrogen state=floating
 bspc rule -a Lxappearance:lxappearance state=floating
 
 # screen lock
 xset s 420 10
-# exec_cmd xss-lock -n $HOME/.config/scripts/dim-screen -l -- \
-# 	env XSECURELOCK_NO_COMPOSITE=1 \
-# 	xsecurelock
-
 exec_cmd xss-lock -n $HOME/.config/scripts/dim-screen -l -- \
 	slock
 
@@ -56,11 +55,8 @@ exec_cmd sxhkd
 # picom
 exec_cmd picom --experimental-backends
 
-# xfce power manager
-exec_cmd xfce4-power-manager
-
 # polybar
-exec_cmd polybar top -r
+exec_cmd polybar top -r -q
 
 # nm-applet
 exec_cmd nm-applet
@@ -88,3 +84,10 @@ setxkbmap -layout us,ir -variant ,pes_win -option grp:alt_shift_toggle
 # enable tapping, natural scrolling
 xinput set-prop "ETPS/2 Elantech Touchpad" "libinput Tapping Enabled" 1
 xinput set-prop "ETPS/2 Elantech Touchpad" "libinput Natural Scrolling Enabled" 1
+
+# Enable Echo Cancellation
+pactl load-module module-echo-cancel use_master_format=1 aec_method=webrtc \
+	aec_args="analog_gain_control=0\ digital_gain_control=1" \
+	source_name=echoCancel_source sink_name=echoCancel_sink
+pacmd set-default-source echoCancel_source
+pacmd set-default-sink echoCancel_sink

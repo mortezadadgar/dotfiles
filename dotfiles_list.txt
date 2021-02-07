@@ -3,6 +3,7 @@
 .config/nnn/plugins/imgview
 .zshenv
 .xinitrc
+.xserverrc
 .fzf-marks
 .config/zsh/aliasrc
 .config/zsh/zinitrc

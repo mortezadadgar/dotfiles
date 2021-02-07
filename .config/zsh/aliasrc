@@ -55,6 +55,8 @@ alias \
 		sc-stop='sudo systemctl stop' \
 		sc-restart='sudo systemctl restart' \
 		sc-status='sudo systemctl status' \
+		sc-mask='sudo systemctl mask' \
+		sc-unmask='sudo systemctl unmask' \
 		pc='sudo picocom -b 115200 /dev/ttyUSB0' \
 		zrel='exec $SHELL' \
 		n='nnn -uex'
