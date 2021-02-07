@@ -1,0 +1,1 @@
+loglevel=3 quiet rd.systemd.show_status=auto rd.udev.log_priority=3 vt.global_cursor_default=0 nowatchdog msr.allow_writes=on audit=0 psi=0
