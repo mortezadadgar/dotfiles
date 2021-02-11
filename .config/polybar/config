@@ -87,6 +87,7 @@ interval = 3
 
 format-prefix-foreground = ${colors.magenta}
 format-prefix = ""
+
 label = %percentage%%
 label-padding-right = 1
 label-padding-left = 1

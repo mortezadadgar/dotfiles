@@ -48,6 +48,10 @@ super + ctrl + p
 super + n
 	$HOME/.config/scripts/dmenuiwd
 
+# pass
+super + p
+	$HOME/.config/scripts/dmenupass
+
 #
 # bspwm hotkeys
 #

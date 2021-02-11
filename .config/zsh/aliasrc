@@ -15,6 +15,9 @@ alias \
 		cl='clear' \
 		nf='neofetch' \
 		g='git' \
+		grh='git reset' \
+		grhh='git reset --hard' \
+		grm='git rm' \
 		gg='git grep' \
 		glg='git log --no-merges' \
 		gcp='git cherry-pick' \

@@ -72,7 +72,11 @@ bindkey -s '^n' 'n\n'
 # sudo the last entered command
 bindkey -s '^s' 'sudo !!\n'
 
+# overrride clear command
 bindkey -s '^l' 'clear\n'
+
+# avoid closing terminal window
+bindkey -s '^d' ''
 
 # WORKAROUND
 # change cursor style to Beam - NVIM changing it back to block
