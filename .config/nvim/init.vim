@@ -16,6 +16,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'mcchrish/nnn.vim'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-fugitive'
 call plug#end()
 " ---
 

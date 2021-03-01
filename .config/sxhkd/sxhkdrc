@@ -10,7 +10,7 @@ super + Return
 super + d
  	j4-dmenu-desktop --dmenu="dmenu -bw 2 -c -l 10"
 
-# movie launcher
+# movie player
 super + w
 	$HOME/.config/scripts/dmenumovie
 
@@ -52,13 +52,25 @@ super + n
 super + p
 	$HOME/.config/scripts/dmenupass
 
+# pulsemixer
+super + v
+	alacritty \
+	--class pulsemixer,Alacritty \
+	-o window.dimensions.columns=65 \
+	-o window.dimensions.lines=15 \
+	-e pulsemixer
+
 #
 # bspwm hotkeys
 #
 
 # quit/restart bspwm
-super + ctrl + {q,r}
-	bspc {quit,wm -r;notify-send -i gnome-settings 'bspwm' 'Reloaded config!'}
+super + ctrl + r
+	bspc wm -r;notify-send -i gnome-settings 'bspwm' 'Reloaded config!'
+
+# quit bspwm
+super + ctrl + q
+	[ "$(printf "No\nYes" | dmenu -p "Quit out of bspwm?")" = "Yes" ] && bspc quit
 
 # close/kill an instance
 super + {shift + ,_}q
@@ -144,6 +156,8 @@ super + shift + e
 super + shift + m
 	alacritty \
 	--class ncmpcpp,Alacritty \
+	-o window.padding.x=5 \
+	-o window.padding.y=5 \
 	-o window.dimensions.columns=65 \
 	-o window.dimensions.lines=15 \
 	-e ncmpcpp
