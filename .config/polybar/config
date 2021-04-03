@@ -4,7 +4,8 @@ black = #000000
 blue_dark = #062135
 grey = #ABB2BF
 foreground = #dfdfdf
-yellow = #E5C07B
+yellow = #e5c07b
+yellow_dr = #f4f99d
 blue = #61AFEF
 cyan = #56B6C2
 magenta = #c678dd
@@ -15,14 +16,16 @@ orange = #D19A66
 # NOTE: use label-padding instead of format-prefix-padding
 [bar/top]
 width = 100%
-height = 29
-radius = 0
+height = 25
 fixed-center = true
 
 background = ${colors.background}
 foreground = ${colors.foreground}
 
 line-size = 3
+
+border-size = 5
+border-color = ${colors.background}
 
 padding-left = 0
 padding-right = 0
@@ -31,16 +34,16 @@ module-margin-left = 0
 module-margin-right = 1
 
 font-0 = "RobotoMono Nerd Font:style=Regular:size=11;3"
-font-1 = "RobotoMono Nerd Font:style=Bold Italic:size=12;3"
+font-1 = "RobotoMono Nerd Font:style=Italic:size=12;3"
 font-2 = "RobotoMono Nerd Font:style=Bold:size=11;3"
 
-modules-left = bspwm title
+modules-left = bspwm sleep
 modules-center = mpd
-modules-right = cpu temperature pulseaudio backlight battery network date
+modules-right = pulseaudio backlight battery temperature network date
 
 tray-position = right
 tray-padding = 2
-enable-ipc = false
+enable-ipc = true
 
 cursor-click = pointer
 cursor-scroll = ns-resize
@@ -52,16 +55,13 @@ type = internal/xbacklight
 enable-scroll = false
 
 format = <ramp> <label>
-ramp-foreground = ${colors.yellow}
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
-ramp-3 = ﯦ
-ramp-4 = ﯦ
-ramp-5 = ﯦ
-label = %percentage%%
-label-padding-left = 0
+
+label = %percentage%
+# label-foreground = ${colors.yellow_dr}
 label-padding-right = 1
+
+ramp-0 = 
+ramp-foreground = ${colors.yellow_dr}
 
 [module/temperature]
 type = internal/temperature
@@ -73,13 +73,15 @@ format = <ramp> <label>
 format-warn = <ramp> <label-warn>
 
 label = %temperature-c%
-label-padding-left = 0
+# label-foreground = ${colors.yellow}
 label-padding-right = 1
+
 label-warn = %{T3}%temperature-c%%{T-}
-label-warn-padding-left = 0
+# label-warn-foreground = ${colors.yellow}
 label-warn-padding-right = 1
-ramp-foreground = ${colors.grey}
+
 ramp-0 = 
+ramp-foreground = ${colors.yellow}
 
 [module/cpu]
 type = internal/cpu
@@ -92,26 +94,41 @@ label = %percentage%%
 label-padding-right = 1
 label-padding-left = 1
 
+[module/bspmod]
+type = internal/bspwm
+
+format = <label-mode>
+format-background = ${colors.yellow}
+format-foreground = ${colors.background}
+format-padding = 1
+
+label-monocle = "Monocle"
+label-tiled = "Tiled"
+label-floating = ", Float"
+label-sticky = " Sticky"
+
 [module/bspwm]
 type = internal/bspwm
 enable-scroll = false
 
 format = <label-state>
 
-label-focused-background = ${colors.blue_dark}
+label-focused = %name%
+label-focused-background = ${colors.blue}
+label-focused-foreground = ${colors.background}
+label-focused-padding = 1
+
+label-occupied = %name%
 label-occupied-background = ${colors.background}
+label-occupied-foreground = ${colors.foreground}
+label-occupied-padding = 1
+
+label-urgent = %name%
 label-urgent-background = ${colors.red}
 label-urgent-foreground = ${colors.background}
-label-empty-background = ${colors.background}
-
-label-focused = [%{T2}%name%%{T-}]
-label-focused-padding = 1
-label-occupied = %{T2}%name%%{T-}
-label-occupied-padding = 1
-label-empty =
-label-empty-padding = 1
-label-urgent = %{T2}%name%%{T-}
 label-urgent-padding = 1
+
+label-empty =
 
 [module/title]
 type = internal/xwindow
@@ -133,9 +150,11 @@ interval = 60
 time = %b %d - %H:%M
 
 format = <label>
-format-prefix = ""
-format-prefix-foreground = ${colors.blue}
-format-prefix-padding-left = 1
+format-background = ${colors.grey}
+format-foreground = ${colors.background}
+# format-prefix = ""
+# format-prefix-foreground = ${colors.blue}
+
 label = %time%
 label-padding-left = 1
 label-padding-right = 1
@@ -144,44 +163,42 @@ label-padding-right = 1
 type = internal/pulseaudio
 
 format-volume = <ramp-volume> <label-volume>
-label-volume = %percentage%%
-label-volume-foreground = ${root.foreground}
-label-volume-padding-left = 0
+
+label-volume = %percentage%
+# label-volume-foreground = ${colors.magenta}
 label-volume-padding-right = 1
 
 label-muted = 婢
 label-muted-foreground = ${colors.grey}
-label-muted-padding-left = 0
-label-muted-padding-right = 1
+label-muted-padding = 1
 
-ramp-volume-foreground = ${colors.cyan}
-ramp-volume-0 = 
-ramp-volume-1 = 墳
-ramp-volume-2 = 
+ramp-volume-0 = 墳
+ramp-volume-foreground = ${colors.magenta}
 
 [module/battery]
 type = internal/battery
 battery = BAT1
 adapter = ACAD
-full-at = 100
+full-at = 99
 
 format-charging = <animation-charging> <label-charging>
 format-discharging = <ramp-capacity> <label-discharging>
-format-full = <label-full>
+format-full = "%{T2}Fully Charged %{T-}"
+format-full-foreground = ${colors.grey}
 
-format-full-prefix = " "
-format-full-prefix-foreground = ${colors.green}
+# label-charging-foreground = ${colors.green}
+# label-discharging-foreground = ${colors.green}
+label-charging-padding-right = 1
+label-discharging-padding-right = 1
 
-ramp-capacity-0 = ""
-ramp-capacity-1 = ""
-ramp-capacity-2 = ""
-ramp-capacity-0-foreground = ${colors.red}
-ramp-capacity-1-foreground = ${colors.green}
-ramp-capacity-2-foreground = ${colors.green}
+ramp-capacity-0 = " "
+ramp-capacity-1 = " "
+ramp-capacity-2 = " "
+ramp-capacity-foreground = ${colors.green}
 
-animation-charging-0 = ""
-animation-charging-1 = ""
-animation-charging-2 = ""
+animation-charging-0 = " "
+animation-charging-1 = " "
+animation-charging-2 = " "
 animation-charging-foreground = ${colors.green}
 
 [module/mpd]
@@ -202,11 +219,27 @@ label-song = %title%
 [module/network]
 type = internal/network
 interface = wlan0
-interval = 2
+interval = 5
 
 format-connected = <ramp-signal> <label-connected>
 format-disconnected = <label-disconnected>
-label-connected = %signal%%
-label-disconnected = " 睊"
-ramp-signal-0 =" 直"
-ramp-signal-foreground = ${colors.orange}
+
+label-connected = %essid%
+# label-connected-foreground = ${colors.cyan}
+label-connected-padding-right = 1
+
+label-disconnected = "睊"
+label-disconnected-padding-right = 1
+label-disconnected-foreground = ${colors.grey}
+
+ramp-signal-0 ="直"
+ramp-signal-foreground = ${colors.cyan}
+
+[module/sleep]
+type = custom/ipc
+hook-0 = 
+hook-1 = echo "零"
+format-background = ${colors.red}
+format-foreground = ${colors.background}
+format-padding = 1
+initial = 0

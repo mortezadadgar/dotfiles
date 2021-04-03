@@ -1,5 +1,0 @@
-# NNN
-export NNN_COLORS='#04e2f4ff'
-export NNN_PLUG='u:getplugs;b:bookmarks;z:fzcd;o:fzopen;X:_chmod +x $nnn;D:_dust -rb $nnn'
-export NNN_BMS='h:~/;d:~/Downloads;v:~/Downloads/Persepolis/Videos;b:~/bullhead_device;m:~/Music;p:~/Pictures;s:~/scripts;Z:/run/media/sda2;X:/run/media/sda3;C:/run/media/sda5'
-export NNN_ARCHIVE="\\.(7z|a|ace|alz|arc|arj|bz|bz2|cab|cpio|deb|gz|jar|lha|lz|lzh|lzma|lzo|rar|rpm|rz|t7z|tar|tbz|tbz2|tgz|tlz|txz|tZ|tzo|war|xpi|xz|Z|zip)$"

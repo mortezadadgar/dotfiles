@@ -2,7 +2,8 @@ window:
   padding:
     x: 2
     y: 2
-  title: ""
+background_opacity: 0.95
+
 font:
   normal:
     family: JetBrainsMono Nerd Font
@@ -10,8 +11,10 @@ font:
   size: 11.0
 
 # Colors (One Dark)
-# NOTE: brighter foreground, dark yellow from onedark.vim
-# and a little brighter dark red
+# NOTE:
+#  - brighter foreground
+#  - dark yellow from onedark.vim
+#  - brighter dark red
 colors:
   primary:
     background: '#282c34'
@@ -42,7 +45,9 @@ colors:
     white:   '#ffffff'
 
 cursor:
-  style: Beam
+  style:
+    shape: Beam
+    blinking: Never
 
 key_bindings:
   - { key: U,  mods: Alt,  action: ScrollHalfPageUp  }

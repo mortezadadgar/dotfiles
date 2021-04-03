@@ -3,7 +3,7 @@
 # Dependencies: dmenu
 # Shell: POSIX compliant
 
-select=$(printf "Poweroff\nRestart\nLogoff\nLockscreen" |
+select=$(printf "Poweroff\nRestart\nLogoff\nLockscreen\nSwitch sleep mode" |
 	dmenu -h 29 -sb '#FABD2F' -nf '#fff' -sf '#000')
 
 LOGOFF_CMD="bspc quit"
@@ -30,4 +30,13 @@ case $select in
 		xset s activate
 		xset dpms force off
 		;;
+	Switch*)
+		notify-send -i sleep "Switching sleep mode..." -u low
+		if [ "$(xset q |awk '/timeout/ {print $2}')" -ne 0 ]; then
+			xset s off
+			polybar-msg -p $(pidof polybar) hook sleep 2
+		else
+			$(grep "xset s" "$HOME/.config/bspwm/bspwmrc")
+			polybar-msg -p $(pidof polybar) hook sleep 1
+		fi
 esac

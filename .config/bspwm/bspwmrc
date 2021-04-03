@@ -7,9 +7,6 @@ exec_cmd() {
 		$@& >/dev/null 2>&1)
 }
 
-# fix cursor displaying X when not over windows
-xsetroot -cursor_name left_ptr
-
 # bspc monitor
 bspc monitor -d 1 2 3 4 5 6
 
@@ -31,6 +28,7 @@ bspc config normal_border_color '#0f0f0f'
 bspc rule -a firefox:Navigator desktop='^2' follow=on #Main window
 bspc rule -a firefox:Toolkit state=floating rectangle=900x500+0+0 sticky=on #Picture-in-Picture window
 bspc rule -a firefox:Browser state=floating #About window
+bspc rule -a Chromium desktop='^2' follow=on
 bspc rule -a TelegramDesktop desktop='^3' follow=on
 bspc rule -a mpv desktop='^4' follow=on
 bspc rule -a Zathura desktop='^4' state=tiled follow=on
@@ -67,20 +65,6 @@ exec_cmd dunst
 # batterynotif
 pkill batterynotif
 setsid -f $HOME/.config/scripts/batterynotif
-
-# set wallpaper
-xwallpaper --stretch $HOME/.config/wallp.jpg
-
-# repeat rate/delay
-xset r rate 300 30
-
-# keyboard layouts
-setxkbmap -layout us,ir -option grp:alt_shift_toggle
-
-# touchpad
-# enable tapping, natural scrolling
-xinput set-prop "ETPS/2 Elantech Touchpad" "libinput Tapping Enabled" 1
-xinput set-prop "ETPS/2 Elantech Touchpad" "libinput Natural Scrolling Enabled" 1
 
 # Enable Echo Cancellation
 pactl load-module module-echo-cancel \

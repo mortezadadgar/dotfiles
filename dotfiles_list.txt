@@ -4,8 +4,11 @@
 .xinitrc
 .xserverrc
 .fzf-marks
-.zshrc
+.config/chromium-flags.conf
 .config/zsh/.zprofile
+.config/zsh/.prompt
+.config/zsh/.aliasrc
+.config/zsh/.zshrc
 .config/alacritty
 .config/fontconfig
 .config/polybar

@@ -10,10 +10,6 @@ super + Return
 super + d
  	j4-dmenu-desktop --dmenu="dmenu -bw 2 -c -l 10"
 
-# movie player
-super + w
-	$HOME/.config/scripts/dmenumovie
-
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd; notify-send -i gnome-settings 'sxhkd' 'Reloaded config!'
@@ -144,9 +140,13 @@ super + {Left,Down,Up,Right}
 # apps
 #
 
-# Browser
+# Firefox
 super + shift + {f, g}
 	 {firefox,firefox --private-window}
+
+# Chromium
+super + shift + c
+	chromium
 
 # Telegram
 super + shift + e

@@ -4,12 +4,8 @@
 # Shell: POSIX compliant
 
 INTERFACE="wlan0"
-connected=$(iwctl station "$INTERFACE" show |
-	sed 's/\x1b\[[0-9;]*m//g' |
-	grep 'Connected' |
-	sed 's/^\s*//g;s/\s*$//g')
 
-select=$(printf "Connect to a network\nDisconnect current network\nForget a network\n %s" "$([ -n "$connected" ] && echo "::$connected::")" | dmenu -h 29)
+select=$(printf "Connect to a network\nDisconnect current network\nForget a network\n %s" | dmenu -h 29)
 
 case $select in
 	"Connect to a network")

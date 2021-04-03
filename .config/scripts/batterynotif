@@ -8,24 +8,25 @@ notif_on_cap="7"
 running="1"
 
 # check if the specified path is valid
-[ ! -f "$battery_path/capacity" ] &&
-	notify-send "Battery notification" "there's no such path" -i system-error &&
+if [ ! -f "$battery_path/capacity" ]; then
+	notify-send "Battery notification" "there's no such path" -i system-error
 	exit 1
+fi
 
 while true; do
 	# don't let this loop constantly polling for stats
 	sleep 3
 
-	# get battery stats
-	capacity=$(cat "$battery_path"/capacity)
-	status=$(cat "$battery_path"/status)
-
-	# skip this loop if it's charging
+	# skip this loop if battery is charging
 	# change running var but still don't let loop running
 	[ "$status" = "Charging" ] && running="1" && continue
 
 	# check if we need to keep running loop
 	[ "$running" = "0" ] && echo "running=0" && continue
+
+	# get battery stats
+	capacity=$(cat "$battery_path"/capacity)
+	status=$(cat "$battery_path"/status)
 
 	# check capacity
 	if [ "$capacity" -le "$notif_on_cap" ]; then

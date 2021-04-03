@@ -1,18 +1,22 @@
 [Added Associations]
 x-scheme-handler/tg=userapp-Telegram Desktop-KVC2V0.desktop;
+x-scheme-handler/http=chromium-browser.desktop
 
 [Default Applications]
 application/epub+zip=org.pwmt.zathura.desktop;
+application/octet-stream=mpv.desktop;
 application/pdf=org.pwmt.zathura.desktop;
 audio/mp4=mpv.desktop;
 image/jpeg=sxiv-rifle.desktop;
 image/png=sxiv-rifle.desktop;
 image/webp=sxiv-rifle.desktop;
-video/3gpp=mpv.desktop;
-video/3gpp2=mpv.desktop;
-video/mj2=mpv.desktop;
+text/html=chromium.desktop
 video/mp4=mpv.desktop;
 video/quicktime=mpv.desktop;
 video/x-matroska=mpv.desktop;
 video/x-msvideo=mpv.desktop;
 x-scheme-handler/tg=userapp-Telegram Desktop-KVC2V0.desktop;
+x-scheme-handler/http=chromium.desktop
+x-scheme-handler/https=chromium.desktop
+x-scheme-handler/about=chromium.desktop
+x-scheme-handler/unknown=chromium.desktop
