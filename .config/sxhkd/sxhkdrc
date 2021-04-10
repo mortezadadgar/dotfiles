@@ -33,7 +33,7 @@ XF86MonBrightness{Up,Down}
 	xbacklight {-inc 5,-dec 5}
 
 # screenshot
-super + Print
+super + u
 	$HOME/.config/scripts/maimpick
 
 # powermenu
@@ -146,7 +146,7 @@ super + shift + {f, g}
 
 # Chromium
 super + shift + c
-	chromium
+	 chromium
 
 # Telegram
 super + shift + e

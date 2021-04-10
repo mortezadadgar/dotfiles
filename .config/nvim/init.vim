@@ -42,9 +42,6 @@ set colorcolumn=80
 " Disables automatic commenting on newline
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
-" Automatically delete newlines at end of file on save
-autocmd BufWritePre * %s/\n\+\%$//e
-
 " display comments and strings in italic style
 highlight Comment cterm=italic gui=italic
 highlight String cterm=italic gui=italic
@@ -63,13 +60,31 @@ map <C-l> <C-w>l
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 
-" Perform dot commands over visual blocks:
+" Perform dot commands over visual blocks
 vnoremap . :normal .<CR>
 
 " Spell-check set to <leader>o, 'o' for 'orthography':
 map <leader>o :setlocal spell! spelllang=en_us<CR>
 
 " replace the current word under the cursor
-nnoremap <leader>m :%s/<C-r><C-w>//g<left><left>
 nnoremap <leader>rn :%s/<C-r><C-w>/<C-r><C-w>/g<left><left>
+
+" Open a terminal window
+function! OpenTerminal()
+  split term://zsh
+  resize 10
+endfunction
+nnoremap <c-t> :call OpenTerminal()<CR>
 " ---
+
+" Automatticaly enter the prompt and close terminal window
+augroup terminal_settings
+	autocmd BufWinEnter,WinEnter term://* startinsert
+	autocmd BufLeave term://* stopinsert
+
+	" Ignore coc filetype as those will close terminal automatically
+	autocmd TermClose term://*
+				\ if (expand('<afile>') !~ "coc") |
+				\   call nvim_input('<CR>')  |
+				\ endif
+augroup END

@@ -10,6 +10,3 @@ let g:onedark_color_overrides = {
 
 " finally change to onedark
 colorscheme onedark
-
-" for transparent bkg
-hi Normal guibg=NONE ctermbg=NONE
