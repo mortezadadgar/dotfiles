@@ -56,7 +56,7 @@ label = %percentage%
 label-padding-right = 1
 
 ramp-0 = 
-ramp-foreground = ${colors.yellow_dr}
+ramp-foreground = ${colors.yellow}
 
 [module/temperature]
 type = internal/temperature
@@ -147,8 +147,9 @@ full-at = 99
 format-charging = <animation-charging> <label-charging>
 format-discharging = <ramp-capacity> <label-discharging>
 format-full-prefix = "  "
-label-full-padding-right = 1
+format-full-prefix-foreground = ${colors.green}
 
+label-full-padding-right = 1
 label-charging-padding-right = 1
 label-discharging-padding-right = 1
 

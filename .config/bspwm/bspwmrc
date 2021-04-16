@@ -2,9 +2,9 @@
 
 # helper to execute commands
 exec_cmd() {
-		which $1 >/dev/null 2>&1 && \
-		(pidof $1 >/dev/null 2>&1 || \
-		$@& >/dev/null 2>&1)
+		which $1 && \
+		(pidof $1 || \
+		$@&)
 }
 
 # bspc monitor
@@ -39,6 +39,7 @@ bspc rule -a Alacritty:pulsemixer state=floating
 bspc rule -a qBittorrent state=floating
 
 # screen lock
+xset -dpms
 xset s 420 10
 exec_cmd xss-lock -n $HOME/.config/scripts/dim-screen -l -- \
 	slock

@@ -5,10 +5,7 @@
 .xserverrc
 .fzf-marks
 .config/chromium-flags.conf
-.config/zsh/.zprofile
-.config/zsh/.prompt
-.config/zsh/.aliasrc
-.config/zsh/.zshrc
+.zshrc
 .config/alacritty
 .config/fontconfig
 .config/polybar

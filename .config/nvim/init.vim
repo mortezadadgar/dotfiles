@@ -66,25 +66,11 @@ vnoremap . :normal .<CR>
 " Spell-check set to <leader>o, 'o' for 'orthography':
 map <leader>o :setlocal spell! spelllang=en_us<CR>
 
-" replace the current word under the cursor
+" Replace the current word under the cursor
 nnoremap <leader>rn :%s/<C-r><C-w>/<C-r><C-w>/g<left><left>
 
-" Open a terminal window
-function! OpenTerminal()
-  split term://zsh
-  resize 10
-endfunction
-nnoremap <c-t> :call OpenTerminal()<CR>
-" ---
-
-" Automatticaly enter the prompt and close terminal window
-augroup terminal_settings
-	autocmd BufWinEnter,WinEnter term://* startinsert
-	autocmd BufLeave term://* stopinsert
-
-	" Ignore coc filetype as those will close terminal automatically
-	autocmd TermClose term://*
-				\ if (expand('<afile>') !~ "coc") |
-				\   call nvim_input('<CR>')  |
-				\ endif
+" Restore the default terminal cursor
+augroup RestoreCursorShapeOnExit
+    autocmd!
+    autocmd VimLeave * set guicursor=a:ver20
 augroup END

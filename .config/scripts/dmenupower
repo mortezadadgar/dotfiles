@@ -12,11 +12,13 @@ case $select in
 	Poweroff)
 		notify-send -i system-shutdown "Shutting down..."
 		sleep 0.75
+		clear > /dev/tty1
 		poweroff
 		;;
 	Restart)
 		notify-send -i system-reboot "Restarting..."
 		sleep 0.75
+		clear > /dev/tty1
 		reboot
 		;;
 	Logoff)
