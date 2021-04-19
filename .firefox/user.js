@@ -15,16 +15,17 @@ user_pref("dom.timeout.throttling_delay", 10000);
 user_pref("dom.min_background_timeout_value", 60000);
 // Show 'Not secure' text on insecure connections
 user_pref("security.insecure_connection_text.enabled", true);
-// Smooth scrolling
-user_pref("general.smoothScroll.lines.durationMaxMS", 125);
-user_pref("general.smoothScroll.lines.durationMinMS", 125);
-user_pref("general.smoothScroll.mouseWheel.durationMaxMS", 200);
-user_pref("general.smoothScroll.mouseWheel.durationMinMS", 100);
-user_pref("general.smoothScroll.msdPhysics.enabled", true);
-user_pref("general.smoothScroll.other.durationMaxMS", 125);
-user_pref("general.smoothScroll.other.durationMinMS", 125);
-user_pref("general.smoothScroll.pages.durationMaxMS", 125);
-user_pref("general.smoothScroll.pages.durationMinMS", 125);
+// SSL/TLS hardening
+user_pref("security.ssl.require_safe_negotiation", true);
+user_pref("security.tls.version.enable-deprecated", false);
+user_pref("security.tls.enable_0rtt_data", false);
+// Disable DRM
+user_pref("media.eme.enabled", false);
+// Disable beforeunload
+user_pref("dom.disable_beforeunload", true);
+// Referers
+user_pref("network.http.referer.XOriginPolicy", 1);
+user_pref("network.http.referer.XOriginTrimmingPolicy", 2);
 // Misc
 user_pref("ui.key.menuAccessKeyFocuses", false);
 user_pref("network.trr.mode", 3);
