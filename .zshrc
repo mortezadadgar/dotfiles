@@ -56,6 +56,10 @@ bindkey -M menuselect 'l' vi-forward-char
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 bindkey "^E" backward-delete-word
+#bindkey '^W' backward-kill-word
+
+
+#WORDCHARS=${WORDCHARS/\/}
 
 # Exports
 export SUDO_EDITOR=/usr/bin/nvim
@@ -77,6 +81,7 @@ zinit for \
 zinit light-mode for \
 	compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh' \
 	sindresorhus/pure \
+	kutsan/zsh-system-clipboard \
 	urbainvaes/fzf-marks
 
 # wait"0"

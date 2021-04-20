@@ -68,9 +68,3 @@ map <leader>o :setlocal spell! spelllang=en_us<CR>
 
 " Replace the current word under the cursor
 nnoremap <leader>rn :%s/<C-r><C-w>/<C-r><C-w>/g<left><left>
-
-" Restore the default terminal cursor
-augroup RestoreCursorShapeOnExit
-    autocmd!
-    autocmd VimLeave * set guicursor=a:ver20
-augroup END

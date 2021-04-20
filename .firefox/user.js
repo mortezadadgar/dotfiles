@@ -8,11 +8,6 @@ user_pref("extensions.pocket.enabled", false);
 user_pref("gfx.webrender.all", true);
 // Fingerprint resisting
 user_pref("privacy.resistFingerprinting", true);
-// Disable WebRTC
-user_pref("media.peerconnection.enabled", false);
-// Replicate chromium 'Throttle Javascript timers in background'
-user_pref("dom.timeout.throttling_delay", 10000);
-user_pref("dom.min_background_timeout_value", 60000);
 // Show 'Not secure' text on insecure connections
 user_pref("security.insecure_connection_text.enabled", true);
 // SSL/TLS hardening
@@ -23,9 +18,16 @@ user_pref("security.tls.enable_0rtt_data", false);
 user_pref("media.eme.enabled", false);
 // Disable beforeunload
 user_pref("dom.disable_beforeunload", true);
-// Referers
-user_pref("network.http.referer.XOriginPolicy", 1);
-user_pref("network.http.referer.XOriginTrimmingPolicy", 2);
+// Disable telemetry
+user_pref("toolkit.telemetry.unified", false);
+user_pref("toolkit.telemetry.enabled", false);
+// limit events that can cause a popup
+user_pref("dom.popup_allowed_events", "click dblclick mousedown pointerdown");
+// Disable WebAssembly -- risk of crytopmining 
+user_pref("javascript.options.wasm", false);
 // Misc
+user_pref("browser.aboutConfig.showWarning", false);
 user_pref("ui.key.menuAccessKeyFocuses", false);
 user_pref("network.trr.mode", 3);
+user_pref("browser.send_pings", false);
+user_pref("beacon.enabled", false);

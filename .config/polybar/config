@@ -191,7 +191,7 @@ label-connected-padding-right = 1
 
 label-disconnected = "睊"
 label-disconnected-padding-right = 1
-label-disconnected-foreground = ${colors.grey}
+label-disconnected-foreground = ${colors.cyan}
 
 ramp-signal-0 ="直"
 ramp-signal-foreground = ${colors.cyan}

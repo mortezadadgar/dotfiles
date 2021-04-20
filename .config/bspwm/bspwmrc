@@ -2,7 +2,7 @@
 
 # helper to execute commands
 exec_cmd() {
-		which $1 && \
+		command -v $1 && \
 		(pidof $1 || \
 		$@&)
 }
@@ -28,6 +28,7 @@ bspc config normal_border_color '#0f0f0f'
 bspc rule -a firefox:Navigator desktop='^2' follow=on #Main window
 bspc rule -a firefox:Toolkit state=floating rectangle=900x500+0+0 sticky=on #Picture-in-Picture window
 bspc rule -a firefox:Browser state=floating #About window
+bspc rule -a firefox:Places state=floating #Bookmark window
 bspc rule -a Chromium desktop='^2' follow=on
 bspc rule -a TelegramDesktop desktop='^3' follow=on
 bspc rule -a mpv desktop='^4' follow=on
