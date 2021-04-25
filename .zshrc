@@ -140,6 +140,7 @@ zle -N zle-keymap-select
 
 # Aliases
 alias pacman='pacman --color=auto'
+alias sc-status='sudo systemctl status'
 alias grep='grep --color=auto'
 alias ls='ls --color=auto -p'
 alias mkdir='mkdir --parents'
@@ -148,7 +149,7 @@ alias sudo='sudo -v; sudo'
 alias svi='sudoedit'
 alias src='exec zsh'
 alias nf='neofetch'
-alias n='nnn -ex'
+alias n='nnn -eux'
 alias du='du -h'
 alias ht='htop'
 alias vi='nvim'

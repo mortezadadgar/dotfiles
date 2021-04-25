@@ -3,17 +3,28 @@
 # Dependencies: pass
 # Shell: POSIX compliant
 
-select=$(printf "generate a password\nshow password list" | dmenu -h 29)
+# Variables
+pass_store="$HOME/.password-store"
+
+select=$(printf "generate a password\nshow password list" | dmenu)
 
 case $select in
 	"generate a password")
-		pass_name=$(printf "" | dmenu -p "Name:")
+		pass_dirs=$(ls -1 "$pass_store")
+
+		pass_dir=$(printf "$pass_dirs"| dmenu -p "select a folder")
+		[ -z "$pass_dir" ] && exit 1
+
+		pass_name=$(printf "" | dmenu -p "password name:")
 		[ -z "$pass_name" ] && exit 1
-		pass generate -c "$pass_name" 2>/dev/null &&
+
+		pass generate -c "$pass_dir/$pass_name" &&
 		notify-send "PASS" \
-			"password ""$pass_name"" has been copied to clipboard" -i password
+		"password copied to clipboard (Will clear in 45s)" -i password
 		;;
 	"show password list")
-		passmenu 2>/dev/null
+		passmenu &&
+		notify-send "PASS" \
+		"password copied to clipboard (Will clear in 45s)" -i password
 		;;
 esac

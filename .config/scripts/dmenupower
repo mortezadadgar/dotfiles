@@ -4,7 +4,7 @@
 # Shell: POSIX compliant
 
 select=$(printf "Poweroff\nRestart\nLogoff\nLockscreen\nSwitch sleep mode" |
-	dmenu -h 29 -sb '#FABD2F' -nf '#fff' -sf '#000')
+	dmenu -sb '#FABD2F' -nf '#fff' -sf '#000')
 
 LOGOFF_CMD="bspc quit"
 

@@ -5,7 +5,7 @@
 
 INTERFACE="wlan0"
 
-select=$(printf "Connect to a network\nDisconnect current network\nForget a network\n %s" | dmenu -h 29)
+select=$(printf "Connect to a network\nDisconnect current network\nForget a network\n %s" | dmenu)
 
 case $select in
 	"Connect to a network")
@@ -27,7 +27,7 @@ case $select in
 
 		[ -z "$network" ] && exit 1
 
-		password=$(printf 'No\nYes' | dmenu -h 29 -p "Password required?")
+		password=$(printf 'No\nYes' | dmenu -p "Password required?")
 
 		[ -z "$password" ] && exit 1
 
@@ -39,7 +39,7 @@ case $select in
 			notify-send "IWCTL" "Failed connecting to $network" \
 				-i notification-network-wireless-disconnected
 		elif [ "$password" = "Yes" ]; then
-			dmenu -h 29 -p "enter password" -P <&- |
+			dmenu -p "enter password" -P <&- |
 				xargs -r -I{} iwctl station -P {} "$INTERFACE" connect "$network" &&
 				notify-send "IWCTL" "Connected to $network" -i wifi-radar && exit 0
 

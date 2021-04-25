@@ -4,7 +4,7 @@
 # Shell: POSIX compliant
 
 select=$(printf 'Default profile\nDisable suspend\nDisable DPMS' |
-	dmenu -h 29 -sb '#FABD2F' -nf '#fff' -sf '#000' | tr -d ' ')
+	dmenu -sb '#FABD2F' -nf '#fff' -sf '#000' | tr -d ' ')
 
 case $select in
 	Default*)
