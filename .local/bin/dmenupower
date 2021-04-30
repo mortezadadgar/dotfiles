@@ -1,0 +1,37 @@
+#!/bin/sh
+# Description: A simple powermenu with dmenu
+# Dependencies: dmenu
+# Shell: POSIX compliant
+
+select=$(printf "Poweroff\nRestart\nLogoff\nLockscreen\nSwitch sleep mode" |
+	dmenu -sb '#98c379')
+
+case $select in
+	Poweroff)
+		notify-send -i system-shutdown "Shutting down..."
+		sleep 0.75
+		clear > /dev/tty1
+		poweroff
+		;;
+	Restart)
+		notify-send -i system-reboot "Restarting..."
+		sleep 0.75
+		clear > /dev/tty1
+		reboot
+		;;
+	Lockscreen)
+		notify-send -i gnome-lockscreen "Lockscreen..." -u low
+		xset s activate
+		sleep 0.75
+		xset dpms force off
+		;;
+	Switch*)
+		notify-send -i sleep "Switching sleep mode..." -u low
+		if [ "$(xset q |awk '/timeout/ {print $2}')" -ne 0 ]; then
+			xset s off
+			polybar-msg -p "$(pidof polybar)" hook sleep 2
+		else
+			$(grep "xset s" "$HOME/.xinitrc")
+			polybar-msg -p "$(pidof polybar)" hook sleep 1
+		fi
+esac

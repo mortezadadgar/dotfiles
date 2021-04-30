@@ -8,53 +8,40 @@ super + Return
 
 # program launcher
 super + d
- 	j4-dmenu-desktop --dmenu="dmenu -bw 2 -c -l 10"
+ 	 dmenu_run -bw 2 -c -l 10
 
 # make sxhkd reload its configuration files:
 super + Escape
-	pkill -USR1 -x sxhkd; notify-send -i gnome-settings 'sxhkd' 'Reloaded config!'
+	pkill -USR1 -x sxhkd; \
+	notify-send -i gnome-settings 'sxhkd' 'Reloaded config!'
 
 # sound control
 XF86Audio{RaiseVolume,LowerVolume,Mute}
  	pulsemixer {--change-volume +10, --change-volume -10, --toggle-mute}
 
 # media keys
-XF86Audio{Next,Prev,Play}
-	pidof ncmpcpp && mpc {next,prev,toggle} 
-XF86AudioStop
-	mpc stop
-
-# control media playback
-super + shift + {greater,less}
-	mpc {seek +15,seek -15}
+XF86Audio{Next,Prev,Play,Stop}
+	mpc {next,prev,toggle,stop}
 
 # brightness keys
 XF86MonBrightness{Up,Down}
 	xbacklight {-inc 5,-dec 5}
 
 # screenshot
-super + u
-	$HOME/.config/scripts/maimpick
+super + Print
+	dmenumaim
 
 # powermenu
 super + ctrl + p
-	$HOME/.config/scripts/dmenupower
+	dmenupower
 
 # iwd
 super + n
-	$HOME/.config/scripts/dmenuiwd
+	dmenuiwd
 
 # pass
 super + p
-	$HOME/.config/scripts/dmenupass
-
-# pulsemixer
-super + v
-	alacritty \
-	--class pulsemixer,Alacritty \
-	-o window.dimensions.columns=65 \
-	-o window.dimensions.lines=15 \
-	-e pulsemixer
+	dmenupass
 
 #
 # bspwm hotkeys
@@ -62,11 +49,13 @@ super + v
 
 # quit/restart bspwm
 super + ctrl + r
-	bspc wm -r;notify-send -i gnome-settings 'bspwm' 'Reloaded config!'
+	bspc wm -r; \
+	notify-send -i gnome-settings 'bspwm' 'Reloaded config!'
 
 # quit bspwm
 super + ctrl + q
-	[ "$(printf "No\nYes" | dmenu -h 32 -p "Quit out of bspwm?")" = "Yes" ] && bspc quit
+	[ "$(printf "No\nYes" | dmenu -h 32 -p "Quit out of bspwm?")" = "Yes" ] && \
+	bspc quit
 
 # close/kill an instance
 super + {shift + ,_}q
@@ -100,41 +89,27 @@ super + slash
 super + {_,shift + }{h,j,k,l}
 	bspc node -{f,s} {west,south,north,east}
 
-# focus desktop {1-9,0} (or bounce to last desktop)
-super + {1-9,0}
-	target='^{1-9,10}'; \
-	[ "$(bspc query -D -d "$target")" \
-	!= "$(bspc query -D -d)" ] \
-	&& bspc desktop -f "$target" \
-	|| bspc desktop -f last.local
-
-# send to the given desktop
-super + {1-9,0}
-	bspc desktop -f '^{1-9,10}'
-
-# send and focus to given desktop
-super + shift + {1-9,0}
-	bspc node -d '^{1-9,10}' --follow
+# focus or send and focus to the given desktop
+super + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,10}' --follow
 
 # Rotate view
 super + shift + {bracketright,bracketleft}
 	{bspc node @/ -R 90,bspc node @/ -R -90}
 
-#
-# move/resize
-#
+# focus the last node/desktop
+super + Tab
+	bspc desktop -f last
 
-# expand a window by moving one of its side outward
-super + {y,u,i,o}
-	$HOME/.config/sxhkd/scripts/bspwm_resize.sh {west,south,north,east}
+# swap the current node and the biggest window
+super + space
+	bspc node -s biggest.local
 
-# Reset the split ratios to their default value
-super + shift + backslash
-		bspc node @/ -E
-
-# move a floating window
-super + {Left,Down,Up,Right}
-	bspc node -v {-20 0,0 20,0 -20,20 0}
+# resize windows to the right/left
+super + Right
+	bspc node -z right 50 0 || bspc node -z left 50 0
+super + Left
+	bspc node -z left -50 0 || bspc node -z right -50 0
 
 #
 # apps
@@ -143,10 +118,6 @@ super + {Left,Down,Up,Right}
 # Firefox
 super + shift + {f, g}
 	 {firefox,firefox --private-window}
-
-# Chromium
-super + shift + c
-	 chromium
 
 # Telegram
 super + shift + e
@@ -158,10 +129,10 @@ super + shift + m
 	--class ncmpcpp,Alacritty \
 	-o window.padding.x=5 \
 	-o window.padding.y=5 \
-	-o window.dimensions.columns=65 \
-	-o window.dimensions.lines=15 \
-	-e ncmpcpp
+	-o window.dimensions.columns=85 \
+	-o window.dimensions.lines=18 \
+	-e ncmpcpp -q
 
 # Calculator
 super + shift + equal
-	$HOME/.config/scripts/dmenucalc
+	dmenucalc

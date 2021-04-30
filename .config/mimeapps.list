@@ -1,40 +1,16 @@
 [Added Associations]
-x-scheme-handler/tg=userapp-Telegram Desktop-KVC2V0.desktop;
-x-scheme-handler/http=chromium-browser.desktop;userapp-Firefox-SAO7V0.desktop;
-x-scheme-handler/https=userapp-Firefox-SAO7V0.desktop;
-x-scheme-handler/ftp=userapp-Firefox-SAO7V0.desktop;
-x-scheme-handler/chrome=userapp-Firefox-SAO7V0.desktop;
-text/html=userapp-Firefox-SAO7V0.desktop;
-application/x-extension-htm=userapp-Firefox-SAO7V0.desktop;
-application/x-extension-html=userapp-Firefox-SAO7V0.desktop;
-application/x-extension-shtml=userapp-Firefox-SAO7V0.desktop;
-application/xhtml+xml=userapp-Firefox-SAO7V0.desktop;
-application/x-extension-xhtml=userapp-Firefox-SAO7V0.desktop;
-application/x-extension-xht=userapp-Firefox-SAO7V0.desktop;
+x-scheme-handler/tg=userapp-Telegram Desktop-0JHT20.desktop;
 
 [Default Applications]
 application/epub+zip=org.pwmt.zathura.desktop;
 application/octet-stream=mpv.desktop;
 application/pdf=org.pwmt.zathura.desktop;
 audio/mp4=mpv.desktop;
-image/jpeg=sxiv-rifle.desktop;
-image/png=sxiv-rifle.desktop;
-image/webp=sxiv-rifle.desktop;
-text/html=userapp-Firefox-SAO7V0.desktop
+image/jpeg=sxiv.desktop;
+image/png=sxiv.desktop;
+image/webp=sxiv.desktop;
 video/mp4=mpv.desktop;
 video/quicktime=mpv.desktop;
 video/x-matroska=mpv.desktop;
 video/x-msvideo=mpv.desktop;
-x-scheme-handler/tg=userapp-Telegram Desktop-KVC2V0.desktop;
-x-scheme-handler/http=userapp-Firefox-SAO7V0.desktop
-x-scheme-handler/https=userapp-Firefox-SAO7V0.desktop
-x-scheme-handler/about=chromium.desktop
-x-scheme-handler/unknown=chromium.desktop
-x-scheme-handler/ftp=userapp-Firefox-SAO7V0.desktop
-x-scheme-handler/chrome=userapp-Firefox-SAO7V0.desktop
-application/x-extension-htm=userapp-Firefox-SAO7V0.desktop
-application/x-extension-html=userapp-Firefox-SAO7V0.desktop
-application/x-extension-shtml=userapp-Firefox-SAO7V0.desktop
-application/xhtml+xml=userapp-Firefox-SAO7V0.desktop
-application/x-extension-xhtml=userapp-Firefox-SAO7V0.desktop
-application/x-extension-xht=userapp-Firefox-SAO7V0.desktop
+x-scheme-handler/tg=userapp-Telegram Desktop-0JHT20.desktop

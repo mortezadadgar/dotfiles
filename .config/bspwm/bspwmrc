@@ -1,12 +1,5 @@
 #!/bin/sh
 
-# helper to execute commands
-exec_cmd() {
-		command -v $1 && \
-		(pidof $1 || \
-		$@&)
-}
-
 # bspc monitor
 bspc monitor -d 1 2 3 4 5 6
 
@@ -15,10 +8,11 @@ bspc config border_width         1
 bspc config window_gap          10
 
 # general
-bspc config split_ratio          0.5
+bspc config split_ratio          0.52
 bspc config borderless_monocle   false
 bspc config gapless_monocle      true
-bspc config directional_focus_tightness low
+bspc config directional_focus_tightness low # Allow focusing to floating windows with keyboard
+bspc config removal_adjustment false # Avoid screwing windows up after closing the biggest forth window
 
 # colors
 bspc config focused_border_color '#64656A'
@@ -29,39 +23,9 @@ bspc rule -a firefox:Navigator desktop='^2' follow=on #Main window
 bspc rule -a firefox:Toolkit state=floating rectangle=900x500+0+0 sticky=on #Picture-in-Picture window
 bspc rule -a firefox:Browser state=floating #About window
 bspc rule -a firefox:Places state=floating #Bookmark window
-bspc rule -a Chromium desktop='^2' follow=on
 bspc rule -a TelegramDesktop desktop='^3' follow=on
 bspc rule -a mpv desktop='^4' follow=on
 bspc rule -a Zathura desktop='^4' state=tiled follow=on
-bspc rule -a Alacritty:ncmpcpp desktop=^5 state=floating follow=on
-bspc rule -a persepolis desktop='^5' state=floating follow=on
+bspc rule -a Alacritty:ncmpcpp state=floating desktop=^5 follow=on
 bspc rule -a Joplin desktop='^6' follow=on
-bspc rule -a Alacritty:pulsemixer state=floating
 bspc rule -a qBittorrent state=floating
-
-# polybar
-exec_cmd polybar top -r -q
-
-# sxhkd
-export SXHKD_SHELL='/bin/sh'
-exec_cmd sxhkd
-
-# picom
-exec_cmd picom --experimental-backends
-
-# redshift
-exec_cmd redshift -t 5000:4000 -l 35:51
-
-# dunst
-exec_cmd dunst
-
-# batterynotif
-pkill batterynotif
-setsid -f $HOME/.config/scripts/batterynotif
-
-# udiskie
-exec_cmd udiskie -sq
-
-# screen lock
-exec_cmd xss-lock -n $HOME/.config/scripts/dim-screen -l -- \
-	slock

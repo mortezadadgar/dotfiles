@@ -4,25 +4,27 @@ lyrics_directory = "~/.local/share/lyrics"
 mpd_music_dir = "~/Music"
 
 # Visualizer #
-visualizer_type = "ellipse"
 visualizer_look = "▮▋"
+visualizer_type = "ellipse"
 
 # Appearance #
-playlist_display_mode = "classic"
+playlist_display_mode = "columns"
 user_interface = classic
 header_visibility = "no"
-titles_visibility = "no"
+titles_visibility = "yes"
 progressbar_look = "━|━"
-progressbar_elapsed_color = "blue"
+progressbar_elapsed_color = "red"
 progressbar_color = "black"
 song_list_format = "{{%a %t}|{%f}}{$R%l}"
-current_item_prefix = $(cyan)$r
-main_window_color = white
-empty_tag_color = "9"
-now_playing_prefix = $b$(green)$r
-now_playing_suffix = $/r$(end)$/b
+current_item_prefix = $(yellow)$r
+main_window_color = cyan
+empty_tag_color = 9
+now_playing_prefix = "$b  "
+now_playing_suffix = $/b
 selected_item_prefix = $b$(red)
 selected_item_suffix = $(end)$/b
+player_state_color = blue
+statusbar_time_color = green:b
 
 # Misc #
 execute_on_song_change = notify-send -i deepin-music "Now Playing" "$(mpc current)"
@@ -32,5 +34,5 @@ connected_message_on_startup = no
 enable_window_title = yes
 song_window_title_format = "ncmpcpp"
 allow_for_physical_item_deletion = yes
-startup_screen = "browser"
 seek_time = 15
+startup_screen = browser

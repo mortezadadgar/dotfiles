@@ -38,6 +38,7 @@ set completeopt-=preview shortmess+=c signcolumn=yes
 set termguicolors
 set scrolloff=8
 set colorcolumn=80
+set nowrap
 
 " Disables automatic commenting on newline
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
@@ -50,8 +51,6 @@ highlight String cterm=italic gui=italic
 " --- KeyMaps
 " Change a few annoying keys
 nnoremap q: <nop>
-nnoremap <F1> <nop>
-inoremap <F1> <nop>
 command! W :w
 
 " Shortcutting split navigation, saving a keypress

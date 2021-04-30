@@ -56,19 +56,6 @@ bindkey -M menuselect 'l' vi-forward-char
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 bindkey "^E" backward-delete-word
-#bindkey '^W' backward-kill-word
-
-
-#WORDCHARS=${WORDCHARS/\/}
-
-# Exports
-export SUDO_EDITOR=/usr/bin/nvim
-export EDITOR=nvim
-export BROWSER=firefox
-export LESS="-x4R"
-export MAKEFLAGS="-j$(nproc)"
-export GOPATH=$HOME/scripts/Go
-export GOBIN=$HOME/scripts/Go/bin
 
 # Plugins -- Zinit
 # snippets
@@ -86,7 +73,7 @@ zinit light-mode for \
 
 # wait"0"
 zinit wait lucid for \
-	atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+	atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" nocd \
 	zdharma/fast-syntax-highlighting \
 	blockf \
 	zsh-users/zsh-completions \
@@ -95,7 +82,7 @@ zinit wait lucid for \
 
 # wait"1"
 zinit wait"1" lucid for \
-	ael-code/zsh-colored-man-pages
+	ael-code/zsh-colored-man-pages \
 
 # Autosuggestion
 ZSH_AUTOSUGGEST_USE_ASYNC=1

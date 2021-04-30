@@ -28,7 +28,8 @@
 .config/picom/picom.conf
 .config/mimeapps.list
 .config/zathura/zathurarc
-.config/scripts/
 .config/wallp.jpg
 .config/one-dark.yml
+.local/bin
 .local/share/fonts/
+.local/share/applications/sxiv.desktop
