@@ -16,7 +16,6 @@ batterynotif &
 dunst &
 mpd &
 udiskie -sq &
-xrdb ~/.Xresources &
 polybar top -rq &
 
 # WM

@@ -4,7 +4,7 @@
 
 # terminal emulator
 super + Return
-	alacritty
+	st
 
 # program launcher
 super + d
@@ -125,12 +125,8 @@ super + shift + e
 
 # Ncmpcpp
 super + shift + m
-	alacritty \
-	--class ncmpcpp,Alacritty \
-	-o window.padding.x=5 \
-	-o window.padding.y=5 \
-	-o window.dimensions.columns=85 \
-	-o window.dimensions.lines=18 \
+	st \
+	-c ncmpcpp \
 	-e ncmpcpp -q
 
 # Calculator

@@ -1,58 +1,104 @@
-" install vim-plug in case it's missing
-if empty(glob('~/.config/nvim/autoload/plug.vim'))
-echo "Downloading junegunn/vim-plug to manage plugins..."
-  silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
+" Vim-plug
+call plug#begin('~/.vim/plugged')
+	" Comment lines
+	Plug 'tpope/vim-commentary'
+	
+	" Git
+	Plug 'tpope/vim-fugitive'
+	
+	" Colorscheme
+	Plug 'joshdick/onedark.vim'
+	
+	" LSP & Completition
+	Plug 'neovim/nvim-lspconfig'
+	Plug 'hrsh7th/nvim-compe'
+	
+	" Formatting
+	Plug 'sbdchd/neoformat'
 
-" --- Plug-ins
-call plug#begin()
-Plug 'tpope/vim-commentary'
-Plug 'joshdick/onedark.vim'
-Plug 'vim-airline/vim-airline'
-Plug 'ryanoasis/vim-devicons'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'mcchrish/nnn.vim'
-Plug 'norcalli/nvim-colorizer.lua'
-Plug 'sheerun/vim-polyglot'
-Plug 'tpope/vim-fugitive'
+	" File manager
+	Plug 'mcchrish/nnn.vim'
 call plug#end()
-" ---
 
-" --- Basic
+" Load LSP config
+lua << EOF
+require('lsp')
+EOF
+
+" General settings
 set number relativenumber
 set hidden
 set nohlsearch
-set nobackup noswapfile
-set cursorline
 set clipboard=unnamedplus
+set nobackup noswapfile
 set pumheight=10
 set nofoldenable
-set splitbelow splitright
 set noshowmode
 set updatetime=300
+set splitbelow splitright
 set tabstop=4 softtabstop=4 shiftwidth=4
+set completeopt=menuone,noinsert,noselect
 set smartindent
-set completeopt-=preview shortmess+=c signcolumn=yes
-set termguicolors
 set scrolloff=8
-set colorcolumn=80
+set showbreak=↪
 set nowrap
+
+" Colors
+set termguicolors
+colorscheme onedark
 
 " Disables automatic commenting on newline
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
-" display comments and strings in italic style
+" Display comments and strings in italic style
 highlight Comment cterm=italic gui=italic
 highlight String cterm=italic gui=italic
-" ---
 
-" --- KeyMaps
-" Change a few annoying keys
-nnoremap q: <nop>
-command! W :w
+" Statusline
+let g:currentmode={
+       \ 'n'  : 'NORMAL',
+       \ 'v'  : 'VISUAL',
+       \ 'V'  : 'V·Line',
+       \ "\<C-v>" : 'V·BLOCK',
+       \ 'i'  : 'INSERT',
+       \ 'R'  : 'R',
+       \ 'c'  : 'COMMAND',
+       \}
 
+set statusline+=\ %{g:currentmode[mode()]}
+set statusline+=\ %f
+set statusline+=\ %m
+set statusline+=\ %r
+set statusline+=%=
+set statusline+=\ %{&spell?'[SPELL]':''}
+set statusline+=\ %y
+set statusline+=\ \|\ %l:%L\ 
+set statusline+=\|
+set statusline+=\ W:%{LSPWarnings()}\ 
+set statusline+=E:%{LSPErrors()}\ 
+
+fun LSPErrors()
+    let errs = luaeval('vim.lsp.diagnostic.get_count(0, "Error")')
+    return errs
+endfun
+
+fun LSPWarnings()
+    let warns = luaeval('vim.lsp.diagnostic.get_count(0, "Warning")')
+    return warns
+endfun
+
+" Statusline colors
+au InsertEnter * hi statusline guifg=#98c379 " Green
+au InsertLeave * hi statusline guifg=#61afef " Blue
+hi statusline guifg=#61afef " Blue
+
+" Neoformat
+augroup FORMATTER
+	autocmd!
+    autocmd Filetype go,sh,py autocmd BufWritePre * Neoformat
+augroup END
+
+" Mappings
 " Shortcutting split navigation, saving a keypress
 map <C-h> <C-w>h
 map <C-l> <C-w>l
@@ -67,3 +113,8 @@ map <leader>o :setlocal spell! spelllang=en_us<CR>
 
 " Replace the current word under the cursor
 nnoremap <leader>rn :%s/<C-r><C-w>/<C-r><C-w>/g<left><left>
+
+" Vim-plug
+nnoremap <silent> <leader>pi :PlugInstall<CR>
+nnoremap <silent> <leader>pc :PlugClean<CR>
+nnoremap <silent> <leader>pu :PlugUpdate<CR>

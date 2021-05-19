@@ -1,0 +1,49 @@
+#!/bin/sh
+
+d="^d^"
+vol_color="^c#98C379^"
+term_color="^c#ff7571^"
+battery_color="^c#98C379^"
+wlan_color="^c#ABB2BF^"
+mpd_color="^c#61AFEF^"
+term_icon="$term_color󰔄 $d"
+vol_icon="$vol_color󰕾 $d"
+light_icon="$light_color󰃠 $d"
+mpd_icon="$mpd_color󰎆 $d"
+
+case "$1" in
+	-b)
+		case "$(cat /sys/class/power_supply/BAT*/status)" in
+			Full|Charging) icon="$battery_color󰂄 $d" ;;
+			Discharging) icon="$battery_color󰁹 $d" ;;
+		esac
+
+		printf "%s%s%%" "$icon" "$(cat /sys/class/power_supply/BAT*/capacity)"
+		;;
+	-t)
+		printf "%s%.2s" "$term_icon" "$(cat /sys/class/thermal/thermal_zone0/temp)"
+		;;
+	-a)
+		[ "$(pamixer --get-mute)" = true ] && echo " 婢" && exit
+		vol="$(pamixer --get-volume)"
+
+		printf "%s%s" "$vol_icon" "$vol"
+		;;
+	-w)
+		case "$(cat /sys/class/net/w*/operstate 2>/dev/null)" in
+			down) icon="$wlan_col󰤭$d" ;;
+			up) icon="$wlan_color󰤨 $d" ;;
+		esac
+
+		printf "%s%s" "$icon" "$(iwctl station wlan0 show|grep 'Connected\s'|awk '{print $3}')"
+		;;
+	-m)
+		isrunning="$(mpc status |grep '\[*\]')"
+		if [ -z "$isrunning" ]; then
+			return
+		fi
+
+		# Remove () in title
+		printf "%s%s" "$mpd_icon" "$(mpc current |sed 's/\s(.*)$//g')"
+		;;
+esac

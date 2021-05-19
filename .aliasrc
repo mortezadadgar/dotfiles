@@ -1,0 +1,56 @@
+# common
+alias \
+		mkdir='mkdir --parents' \
+		grep='grep --color=auto' \
+		pacman='pacman --color=auto' \
+		zstd='zstd -T0' \
+		ls="exa -F" \
+		ll="exa -F --long --header" \
+		yay='yay --color=auto' \
+		du='du -h' \
+		ht='htop' \
+		vi='nvim' \
+		svi='sudoedit' \
+		cl='clear' \
+		nf='neofetch' \
+		src='exec zsh' \
+		n='nnn -ex'
+# git
+alias \
+		g='git' \
+		grh='git reset' \
+		grhh='git reset --hard' \
+		grm='git rm' \
+		gg='git grep' \
+		glg='git log --no-merges' \
+		gcp='git cherry-pick' \
+		gcps='git cherry-pick --skip' \
+		gcpa='git cherry-pick --abort' \
+		gcpc='git cherry-pick --continue' \
+		gca='git commit --amend -s -v' \
+		gc='git commit -v' \
+		gst='git status' \
+		grba='git rebase --abort' \
+		grbc='git rebase --continue' \
+		grbi='git rebase -i' \
+		grhh='git reset --hard' \
+		gp='git push' \
+		gpf='git push --force' \
+		ga='git add' \
+		gaa='git add --all' \
+		grm='git rm' \
+		glg='git log --stat' \
+		glog='git log --oneline --decorate --graph' \
+		grev='git revert' \
+		gam='git am' \
+		gamc='git am --continue' \
+		gams='git am --skip' \
+		gama='git am --abort' \
+		gco='git checkout' \
+		gf='git fetch' \
+		gcl='git clone' \
+# yay
+alias \
+		yarem='yay -Rns' \
+		yaupg='yay -Syu' \
+		yain='yay -S'
