@@ -1,0 +1,12 @@
+[options]
+overlay = true
+overlay_font = Monospace:11
+overlay_position_bottom = true
+
+[binds]
+p = prev
+n = next
+d = exec prompt "Remove this image?" "rm $imv_current_file"; close
+b = exec setbg "$imv_current_file"
+c = exec xclip -t image/png -selection clipboard $imv_current_file
+r = exec convert -rotate 90 $imv_current_file $imv_current_file

@@ -1,0 +1,32 @@
+#!/bin/sh
+# Description: safely edit non-regular user files
+# Dependencies: doas
+# Shell: POSIX compliant
+set -e
+
+# checks
+[ "$#" = 1 ] || exit
+[ -d "$1" ] && exit
+[ -h "$1" ] && exit
+[ "$(id -u)" = "0" ] && exit
+
+# create temp file
+base_name=$(basename "$1")
+temp_file=$(mktemp -p "/tmp" --suffix="$base_name" "XXXXXX")
+
+# remove temp file
+trap 'rm "$temp_file"' TERM INT HUP EXIT
+
+# create file if needed
+[ ! -f "$1" ] && doas touch "$1"
+
+# edit file as regular user
+cp "$1" "$temp_file"
+${EDITOR:-nvim} "$temp_file"
+
+# check if are identical
+if ! cmp -s "$temp_file" "$1"; then
+	doas cp "$temp_file" "$1"
+else
+	echo "doasedit: $1 unchanged"
+fi

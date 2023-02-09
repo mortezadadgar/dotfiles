@@ -1,0 +1,18 @@
+#!/bin/sh
+# Description: An rsync alias to sync same folder on src and dest
+# Shell: POSIX compliant
+# Dependencies: rsync
+
+usage() {
+	echo "Usage: sync-files [folder] [destination]"
+	exit
+}
+
+# checks
+[ "$#" = 2 ] || usage
+[ -d "$1" ] || usage
+
+folder=$1
+dest=$2
+
+rsync -azP "$folder"/ "$dest":"$folder" --log-file="$XDG_CACHE_HOME"/sync.log

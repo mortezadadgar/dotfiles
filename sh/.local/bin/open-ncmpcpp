@@ -1,0 +1,6 @@
+#!/bin/sh
+
+st \
+	-t ncmpcpp \
+	-g 85x18 \
+	-e ncmpcpp -q

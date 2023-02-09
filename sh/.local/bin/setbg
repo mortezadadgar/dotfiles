@@ -1,0 +1,3 @@
+#!/bin/sh
+xwallpaper --stretch "$1"
+cp -v "$1" ~/.local/share/bg.jpg

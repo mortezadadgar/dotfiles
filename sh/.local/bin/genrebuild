@@ -1,0 +1,14 @@
+#!/bin/sh
+exclude_pkg="
+	sys-kernel/*
+	sys-firmware/*
+	x11-themes/*
+	acct-user/*
+	acct-group/*
+	virtual/*
+	*-bin
+	llvm
+	gcc
+"
+
+sudo emerge -e --quiet-build --exclude "${exclude_pkg}" @world "$@"

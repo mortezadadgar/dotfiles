@@ -1,0 +1,19 @@
+#!/bin/zsh
+# lowers screen brightness, then waits to be killed
+# and restores previous brightness on exit.
+
+brightness_sub=10
+
+get_brightness() {
+	light -G
+}
+
+set_brightness() {
+	light -S "$1"
+}
+
+trap 'exit 0' TERM INT
+trap "set_brightness $(get_brightness); kill %%" EXIT
+set_brightness $(($(get_brightness)-brightness_sub))
+sleep 2147483647 &
+wait

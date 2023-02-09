@@ -1,0 +1,87 @@
+#!/bin/sh
+
+# INIT
+echo "$$" > ~/.cache/pidofbar
+sec=0
+interface="wlan0"
+
+update_time() { 
+	time=$(printf " ")"$(date "+%b %d - %H:%M")"
+}
+
+update_wifi() {
+	hash iw || return
+	test -d /sys/class/net/$interface || return
+	ssid=$(iw $interface link | awk -F': ' '/SSID/ {print $2}')
+
+	read -r state </sys/class/net/$interface/operstate
+	if [ "$state" = "down" ]; then
+		icon=""
+	else
+		icon=" "
+	fi
+
+	wifi="$(printf "%s%s" "$icon" "$ssid")"
+}
+
+update_temp(){
+	test -d /sys/class/thermal/thermal_zone1 || return
+	read -r temperature </sys/class/thermal/thermal_zone1/temp
+	temp="$(printf " %.2s" "$temperature")"
+}
+
+update_bat() { 
+	test -d /sys/class/power_supply/BAT1 || return
+	read -r bat_status </sys/class/power_supply/BAT1/status
+	read -r bat_capacity </sys/class/power_supply/BAT1/capacity
+	if [ "$bat_status" = "Charging" ]; then
+		bat_status=""
+	else 
+		bat_status=""
+	fi
+
+	bat="$(printf "%s %s%%" "$bat_status" "$bat_capacity")"
+}
+
+update_vol() {
+	hash pamixer || return
+	avol="$(pamixer --get-volume)"
+	vol="$(printf "墳 %s" "$avol")"
+}
+
+update_mpd() {
+	if ! mpc | grep "playing" > /dev/null; then
+		mediainfo=""
+		return
+	fi
+
+	# get currently playing music's name and remove ()
+	mpc="$(mpc current -f "[%artist% - %title%]" | sed "s/\s(.*)$//g")"
+	mediainfo="$(printf " %s" "$mpc")"
+}
+
+# We have to run this only once.
+update_vol
+
+display() {
+	xsetroot -name "$mediainfo $vol  $temp  $time"
+}
+
+# Handles receiving signal
+trap   "update_vol;display"    "RTMIN"
+trap   "update_mpd;display"    "RTMIN+1"
+
+while true
+do
+	sleep 1 &
+	wait && {
+		# to update item ever n seconds with a offset of m
+		[ $((sec % 9 )) -eq 0 ] && update_time
+		[ $((sec % 3 )) -eq 0 ] && update_temp
+		[ $((sec % 9 )) -eq 0 ] && update_vol
+
+		# how often the display updates
+		[ $((sec % 3 )) -eq 0 ] && display
+		sec=$((sec + 1))
+	}
+done

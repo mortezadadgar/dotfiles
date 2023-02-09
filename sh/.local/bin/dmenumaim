@@ -1,0 +1,29 @@
+#!/bin/sh
+# Description: dmenu script to take screenshots with maim
+# Dependencies: dmenu, maim
+# Shell: POSIX compliant
+
+# Variables
+SCR_PATH="$HOME/Pictures/screenshots"
+SCR_PREFIX="Screenshot"
+SCR_FORMAT="$SCR_PATH/$SCR_PREFIX-$(date '+%y%m%d-%H%M-%S').png"
+
+[ ! -d "SCR_PATH" ] && mkdir -p "$SCR_PATH"
+
+select=$(printf "selected area (copy)\nfull screen (copy)\nselected area\nfull screen" |
+	dmenu -l 6 -p "Screenshot which area?")
+
+case $select in
+	"selected area")
+		maim -us "$SCR_FORMAT"
+		;;
+	"full screen")
+		maim -u "$SCR_FORMAT"
+		;;
+	"selected area (copy)")
+		maim -us | xclip -selection clipboard -t image/png
+		;;
+	"full screen (copy)")
+		maim -u | xclip -selection clipboard -t image/png
+		;;
+esac

@@ -1,0 +1,28 @@
+# mpv
+watch_later/
+
+# mpd
+playlists/
+database
+log
+pid
+state
+
+# zsh
+**/zsh/.zcompdump
+**/zsh/.zcalc_history
+
+# nvim
+**/nvim/lazy-lock.json
+
+# wallpaper
+*.jpg
+
+# local/share
+**/share/nvim/
+**/share/recently-used.xbel
+**/share/xorg/
+
+# common
+*.log
+*.cache

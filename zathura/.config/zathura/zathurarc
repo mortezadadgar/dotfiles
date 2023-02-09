@@ -1,0 +1,28 @@
+# general settings
+set selection-clipboard clipboard
+set adjust-open width
+set scroll-step 60
+set page-padding 5
+set window-title-basename true
+set statusbar-basename true
+set highlight-transparency  0.3
+
+# balck and white theme
+set completion-bg           "#FFFFFF"
+set completion-fg           "#000000"
+set completion-group-bg     "#FFFFFF"
+set completion-group-fg     "#000000"
+set completion-highlight-bg "#000000"
+set completion-highlight-fg "#FFFFFF"
+set default-bg              "#FFFFFF"
+set default-fg              "#000000"
+set inputbar-bg             "#FFFFFF"
+set inputbar-fg             "#000000"
+set statusbar-bg            "#FFFFFF"
+set statusbar-fg            "#000000"
+set index-bg                "#FFFFFF"
+set index-fg                "#000000"
+set index-active-fg         "#FFFFFF"
+set index-active-bg         "#000000"
+set highlight-color         "#000000"
+set highlight-active-color  "#0000FF"

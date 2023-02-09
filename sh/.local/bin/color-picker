@@ -1,0 +1,7 @@
+#!/bin/sh
+# Description: simple color picker
+# Shell: POSIX compliant
+# Dependencies: sxcs, xclip
+
+sxcs -o --hex | cut -f 2 | xclip -selection clipboard
+

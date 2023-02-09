@@ -1,0 +1,24 @@
+#!/bin/sh
+# Description: Open files based on their mime
+# Shell: POSIX compliant
+
+[ "$#" = 1 ] || exit 1
+
+list_images() {
+	find . -maxdepth 1 -type f -not -name "$1" |
+		grep -iE '\.(png|jpe?g|webp|gif|svg|bmp|ico)$'
+}
+
+q() {
+	"$@" >/dev/null 2>&1
+}
+
+mimetype="$(file -bL --mime-type "$1")"
+# shellcheck disable=SC2046
+case "$mimetype" in
+	video/*) q mpv "$1" &;;
+	audio/*) q mpv "$1" &;;
+	text/html) q firefox "$1" &;;
+	image/*) q imv "$1" $(list_images "$1") &;;
+	*/pdf) q zathura "$1" &;;
+esac

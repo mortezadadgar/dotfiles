@@ -1,0 +1,36 @@
+#!/bin/sh
+# Description: A simple powermenu with dmenu
+# Dependencies: dmenu
+# Shell: POSIX compliant
+
+select=$(printf " Poweroff\n Restart\n Logoff\n Lockscreen\n Sleep"| dmenu -i)
+
+case $select in
+	" Poweroff")
+		notify-send -i system-shutdown "Shutting down..."
+		sleep 0.75
+		clear > /dev/tty1
+		poweroff || loginctl poweroff
+		;;
+	" Restart")
+		notify-send -i system-reboot "Restarting..."
+		sleep 0.75
+		clear > /dev/tty1
+		reboot || loginctl reboot
+		;;
+	" Logoff")
+		notify-send -i system-reboot "Loggging off..."
+		sleep 0.75
+		clear > /dev/tty1
+		kill -TERM "$(pgrep "dwm$")"
+		;;
+	" Lockscreen")
+		notify-send -i gnome-lockscreen "Lockscreen..."
+		xset s activate
+		sleep 0.75
+		;;
+	" Sleep")
+		notify-send -i gnome-lockscreen "Going to Sleep..."
+		systemctl suspend
+		;;
+esac

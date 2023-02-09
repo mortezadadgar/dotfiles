@@ -1,0 +1,6 @@
+#!/bin/sh
+export SFEED_AUTOCMD="3"
+export SFEED_URL_FILE="$HOME/.sfeed/urls"
+[ -f "$SFEED_URL_FILE" ] || touch "$SFEED_URL_FILE"
+sfeed_update ~/.config/sfeed/sfeedrc
+sfeed_curses ~/.sfeed/feeds/*

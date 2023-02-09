@@ -1,0 +1,51 @@
+/* normal */
+#define _color0 #282c34  /*  black    */
+#define _color1 #ff7571  /*  red      */
+#define _color2 #98c379  /*  green    */
+#define _color3 #d19a66  /*  yellow   */
+#define _color4 #61afef  /*  blue     */
+#define _color5 #c678dd  /*  magenta  */
+#define _color6 #56b6c2  /*  cyan     */
+#define _color7 #c0c0c0  /*  white    */
+/* bright */
+#define _color8 #5c6370  /*  black    */                 
+#define _color9 #e06c75  /*  red      */ 
+#define _color10 #98c379 /*  green    */ 
+#define _color11 #e5c07b /*  yellow   */ 
+#define _color12 #61afef /*  blue     */ 
+#define _color13 #c678dd /*  magenta  */ 
+#define _color14 #56b6c2 /*  cyan     */ 
+#define _color15 #c0c0c0 /*  white    */ 
+
+/* st */
+st.color0:   _color0
+st.color1:   _color1
+st.color2:   _color2
+st.color3:   _color3
+st.color4:   _color4
+st.color5:   _color5
+st.color6:   _color6
+st.color7:   _color7
+st.color8:   _color8
+st.color9:   _color9
+st.color10:  _color10
+st.color11:  _color11
+st.color12:  _color12
+st.color13:  _color13
+st.color14:  _color14
+st.color15:  _color15
+st.font:     JetBrainsMono Nerd Font:size=13
+
+/* dwm */
+dwm.normfgcolor:    _color7
+dwm.normbgcolor:    _color0
+dwm.selbordercolor: _color4
+dwm.selfgcolor:     _color0
+dwm.selbgcolor:     _color4
+
+/* dmenu */
+dmenu.font:          Open Sans:size=12
+dmenu.background:    _color0
+dmenu.foreground:    _color7
+dmenu.selbackground: _color4
+dmenu.selforeground: _color0
