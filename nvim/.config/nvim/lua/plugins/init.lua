@@ -6,7 +6,7 @@ if not vim.loop.fs_stat(lazypath) then
 		"clone",
 		"--filter=blob:none",
 		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable", -- latest stable release
+		"--branch=stable",
 		lazypath,
 	}
 end
@@ -14,11 +14,12 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup {
 	-- Comment lines
-	"numToStr/Comment.nvim",
+  { 'numToStr/Comment.nvim', opts = {} },
 
 	-- Colorscheme
 	{
 		"mortezadadgar/onedark-nvim",
+		priority = 1000,
 		config = function()
 			vim.cmd.colorscheme "onedark-nvim"
 		end,
@@ -45,6 +46,8 @@ require("lazy").setup {
 		dependencies = {
 			"williamboman/mason-lspconfig.nvim",
 			"williamboman/mason.nvim",
+
+			{ "j-hui/fidget.nvim", opts = {} },
 		},
 		config = function()
 			require "plugins.configs.lspconfig"
@@ -89,12 +92,11 @@ require("lazy").setup {
 	},
 
 	-- Auto close pairs
-	"windwp/nvim-autopairs",
+	{ "windwp/nvim-autopairs", opts = {} },
 
 	-- Colorizer
 	{
 		"norcalli/nvim-colorizer.lua",
-		priority = 1000,
 		config = function()
 			require("colorizer").setup {
 				css = { css = true },

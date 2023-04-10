@@ -22,6 +22,7 @@ state
 **/share/nvim/
 **/share/recently-used.xbel
 **/share/xorg/
+**/share/go/
 
 # common
 *.log

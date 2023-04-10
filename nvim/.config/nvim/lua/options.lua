@@ -1,4 +1,5 @@
 local set = vim.o
+local g = vim.g
 
 set.number = true
 set.relativenumber = true
@@ -28,3 +29,4 @@ set.smartcase = true
 set.mouse = ""
 set.path = "**"
 set.spelllang = "en_us"
+g.mapleader = " "
