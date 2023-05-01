@@ -1,5 +1,5 @@
-local lsp = require("feline.providers.lsp")
-local vi_mode = require("feline.providers.vi_mode")
+local lsp = require "feline.providers.lsp"
+local vi_mode = require "feline.providers.vi_mode"
 
 local colors = {
 	bg = "#282c34",
@@ -55,12 +55,13 @@ components.active[1][2] = {
 		bg = "bg",
 	},
 	right_sep = "",
+	icon = "",
 }
 
 components.active[1][3] = {
 	provider = "diagnostic_errors",
 	enabled = function()
-		return lsp.diagnostics_exist("Error")
+		return lsp.diagnostics_exist "Error"
 	end,
 	hl = {
 		fg = "red",
@@ -72,7 +73,7 @@ components.active[1][3] = {
 components.active[1][4] = {
 	provider = "diagnostic_warnings",
 	enabled = function()
-		return lsp.diagnostics_exist("Warn")
+		return lsp.diagnostics_exist "Warn"
 	end,
 	hl = {
 		fg = "yellow",
@@ -84,7 +85,7 @@ components.active[1][4] = {
 components.active[1][5] = {
 	provider = "diagnostic_info",
 	enabled = function()
-		return lsp.diagnostics_exist("Info")
+		return lsp.diagnostics_exist "Info"
 	end,
 	hl = {
 		fg = "blue",
@@ -96,7 +97,7 @@ components.active[1][5] = {
 components.active[1][6] = {
 	provider = "diagnostic_hints",
 	enabled = function()
-		return lsp.diagnostics_exist("Hint")
+		return lsp.diagnostics_exist "Hint"
 	end,
 	hl = {
 		fg = "blue",
@@ -107,7 +108,7 @@ components.active[1][6] = {
 
 components.active[3][1] = {
 	provider = function()
-		return string.format("%i:%i", vim.fn.line("."), vim.fn.line("$"))
+		return string.format("%i:%i", vim.fn.line ".", vim.fn.line "$")
 	end,
 	hl = {
 		bg = "bg",
@@ -118,8 +119,8 @@ components.active[3][1] = {
 	priority = 1,
 }
 
-require("feline").setup({
+require("feline").setup {
 	theme = colors,
 	vi_mode_colors = vi_mode_colors,
 	components = components,
-})
+}

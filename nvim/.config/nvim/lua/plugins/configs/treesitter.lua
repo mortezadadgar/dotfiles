@@ -1,7 +1,9 @@
-local treesitter = require("nvim-treesitter.configs")
+local treesitter = require "nvim-treesitter.configs"
+
+require("treesitter-context").setup()
 
 -- Treesitter setup
-treesitter.setup({
+treesitter.setup {
 	ensure_installed = {
 		"markdown",
 		"comment",
@@ -13,37 +15,25 @@ treesitter.setup({
 		"javascript",
 		"html",
 		"css",
+		"org",
 	},
+
 	highlight = {
 		enable = true,
+		additional_vim_regex_highlighting = { "org" },
 	},
-	textobjects = {
-		select = {
-			enable = true,
-			lookahead = true,
-			keymaps = {
-				["af"] = "@function.outer",
-				["if"] = "@function.inner",
-			},
-		},
-		move = {
-			enable = true,
-			set_jumps = true,
-			goto_next_end = {
-				["]]"] = "@function.outer",
-			},
-			goto_previous_start = {
-				["[["] = "@function.outer",
-			},
-		},
-		swap = {
-			enable = true,
-			swap_next = {
-				["<leader>a"] = "@parameter.inner",
-			},
-			swap_previous = {
-				["<leader>A"] = "@parameter.inner",
-			},
-		},
+
+	indent = {
+		enable = true,
 	},
-})
+
+	-- incremental_selection = {
+	-- 	enable = true,
+	-- 	keymaps = {
+	-- 		init_selection = "<CR>",
+	-- 		node_incremental = "<CR>",
+	-- 		scope_incremental = "-",
+	-- 		node_decremental = "grm",
+	-- 	},
+	-- },
+}

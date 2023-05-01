@@ -13,9 +13,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup {
-	-- Comment lines
-  { 'numToStr/Comment.nvim', opts = {} },
-
 	-- Colorscheme
 	{
 		"mortezadadgar/onedark-nvim",
@@ -66,10 +63,11 @@ require("lazy").setup {
 	-- Better syntax highlighting
 	{
 		"nvim-treesitter/nvim-treesitter",
+		dependencies = "nvim-treesitter/nvim-treesitter-context",
 		config = function()
 			require "plugins.configs.treesitter"
-			pcall(require("nvim-treesitter.install").update())
 		end,
+		build = ":TSUpdate",
 	},
 
 	-- Snippets
@@ -85,14 +83,11 @@ require("lazy").setup {
 
 	-- Statusline
 	{
-		"feline-nvim/feline.nvim",
+		"freddiehaddad/feline.nvim",
 		config = function()
 			require "plugins.configs.feline"
 		end,
 	},
-
-	-- Auto close pairs
-	{ "windwp/nvim-autopairs", opts = {} },
 
 	-- Colorizer
 	{
@@ -104,15 +99,26 @@ require("lazy").setup {
 		end,
 	},
 
-	-- Telescope
+	-- Auto close pairs
+	{ "windwp/nvim-autopairs", opts = {} },
+
+	-- Comment lines
+	{ "numToStr/Comment.nvim", opts = {} },
+
+	-- Undotree
+	{ "mbbill/undotree" },
+
+	-- Org mode
 	{
-		"nvim-telescope/telescope.nvim",
-		dependencies = "nvim-lua/plenary.nvim",
-		tag = "0.1.1",
+		"nvim-orgmode/orgmode",
+		dependencies = {
+			"akinsho/org-bullets.nvim",
+			config = function()
+				require("org-bullets").setup()
+			end,
+		},
 		config = function()
-			require "plugins.configs.telescope"
+			require "plugins.configs.orgmode"
 		end,
 	},
-
-	"kyazdani42/nvim-web-devicons",
 }

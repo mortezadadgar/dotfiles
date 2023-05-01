@@ -1,5 +1,7 @@
 local map = vim.keymap.set
 
+vim.g.mapleader = " "
+
 -- better window movement
 map("n", "<C-h>", "<C-w>h")
 map("n", "<C-j>", "<C-w>j")
@@ -14,10 +16,20 @@ map("x", ">", ">gv")
 map("i", "<C-c>", "<Esc>")
 
 -- fuzzy finder
-map("n", "<Space><Space>", ":Telescope find_files<CR>")
-map("n", "<Space>b", ":Telescope buffers<CR>")
-map("n", "<Space>k", ":Telescope keymaps<CR>")
-map("n", "<Space>g", ":vim //j **<S-Left><S-Left><Right>")
+map("n", "<leader><leader>", ":find *")
+map("n", "<leader>b", ":ls<CR>:b<leader>")
+map("n", "<leader>g", ":vim //j **<S-Left><S-Left><Right>")
 
 -- Spell checker
-map("n", "<leader>o", ":setlocal spell!<CR>", { desc = "Spell Checker" })
+-- map("n", "<leader>o", ":setlocal spell!<CR>", { desc = "Spell Checker" })
+
+-- file explorer
+map("n", "<leader>pv", ":Ex<CR>")
+
+-- undotree
+map("n", "<leader>u", ":UndotreeToggle<CR>")
+
+-- usefull maps
+map("v", "J", ":m '>+1<CR>gv=gv")
+map("v", "K", ":m '<-2<CR>gv=gv")
+map("x", "<leader>p", [["_dP]])

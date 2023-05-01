@@ -19,10 +19,11 @@ state
 *.jpg
 
 # local/share
-**/share/nvim/
-**/share/recently-used.xbel
-**/share/xorg/
-**/share/go/
+**/share/*
+!**/share/fonts
+
+# syncthing
+.stignore
 
 # common
 *.log

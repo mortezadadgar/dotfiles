@@ -3,20 +3,20 @@
 # Dependencies: dmenu
 # Shell: POSIX compliant
 
-select=$(printf " Poweroff\n Restart\n Logoff\n Lockscreen\n Sleep"| dmenu -i)
+select=$(printf " Poweroff\n Restart\n Logoff\n Lockscreen\n󰤄 Sleep"| dmenu -i)
 
 case $select in
 	" Poweroff")
 		notify-send -i system-shutdown "Shutting down..."
 		sleep 0.75
 		clear > /dev/tty1
-		poweroff || loginctl poweroff
+		loginctl poweroff
 		;;
 	" Restart")
 		notify-send -i system-reboot "Restarting..."
 		sleep 0.75
 		clear > /dev/tty1
-		reboot || loginctl reboot
+		loginctl reboot
 		;;
 	" Logoff")
 		notify-send -i system-reboot "Loggging off..."
@@ -25,12 +25,12 @@ case $select in
 		kill -TERM "$(pgrep "dwm$")"
 		;;
 	" Lockscreen")
-		notify-send -i gnome-lockscreen "Lockscreen..."
+		notify-send -i system-suspend "Lockscreen..."
 		xset s activate
 		sleep 0.75
 		;;
-	" Sleep")
-		notify-send -i gnome-lockscreen "Going to Sleep..."
-		systemctl suspend
+	"󰤄 Sleep")
+		notify-send -i system-lock-screen "Going to Sleep..."
+		loginctl suspend
 		;;
 esac

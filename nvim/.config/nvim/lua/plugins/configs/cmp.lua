@@ -1,8 +1,8 @@
-local cmp = require("cmp")
+local cmp = require "cmp"
 local map = cmp.mapping
-local luasnip = require("luasnip")
+local luasnip = require "luasnip"
 
-cmp.setup({
+cmp.setup {
 	snippet = {
 		expand = function(args)
 			luasnip.lsp_expand(args.body)
@@ -10,10 +10,12 @@ cmp.setup({
 	},
 	mapping = {
 		["<C-e>"] = map.close(),
-		["<CR>"] = map.confirm({
+		["<CR>"] = map.confirm {
 			behavior = cmp.ConfirmBehavior.Replace,
 			select = true,
-		}),
+		},
+		["<C-k>"] = cmp.mapping.select_prev_item(),
+		["<C-j>"] = cmp.mapping.select_next_item(),
 
 		["<Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
@@ -40,6 +42,7 @@ cmp.setup({
 		{ name = "nvim_lsp" },
 		{ name = "path" },
 		{ name = "luasnip" },
+		{ name = "orgmode" },
 		{
 			name = "buffer",
 			option = {
@@ -54,4 +57,4 @@ cmp.setup({
 		format = require("lspkind").cmp_format(),
 	},
 	-- preselect = cmp.PreselectMode.None,
-})
+}

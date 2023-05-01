@@ -1,5 +1,5 @@
 local lsp = vim.lsp
-local lspconfig = require("lspconfig")
+local lspconfig = require "lspconfig"
 
 -- enable lsp capabilities
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -16,12 +16,13 @@ local on_attach = function(client, bufnr)
 	end
 
 	map("n", "gr", function()
-		lsp.buf.references({ includeDeclaration = false })
+		lsp.buf.references { includeDeclaration = false }
 	end, "List References")
 	map("n", "gd", vim.lsp.buf.definition, "Goto definition")
 	map("n", "K", vim.lsp.buf.hover, "Hover Documentation")
 	map("n", "<leader>rn", vim.lsp.buf.rename, "Rename")
 	map("n", "<leader>d", vim.diagnostic.setloclist, "List Diagnostics")
+	map("n", "<leader>ca", vim.lsp.buf.code_action, "Code action")
 	map("i", "<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
 
 	-- diagnostics symbols
@@ -56,23 +57,23 @@ require("mason").setup()
 require("mason-lspconfig").setup()
 
 -- lsp servers
-local servers = { "stylelint_lsp", "html", "cssls", "tsserver" }
+local servers = { "html", "cssls", "tsserver", "bashls" }
 for _, server in pairs(servers) do
-	lspconfig[server].setup({
+	lspconfig[server].setup {
 		on_attach = on_attach,
 		capabilities = capabilities,
-	})
+	}
 end
 
 -- go
-lspconfig.gopls.setup({
+lspconfig.gopls.setup {
 	settings = {
 		gopls = {
 			analyses = {
 				unusedparams = true,
 				nilness = true,
 				unusedwrite = true,
-				fieldalignment = true,
+				-- fieldalignment = true,
 				useany = true,
 			},
 			linksInHover = false,
@@ -81,12 +82,15 @@ lspconfig.gopls.setup({
 	},
 	on_attach = on_attach,
 	capabilities = capabilities,
-})
+}
 
 -- lua
-lspconfig.lua_ls.setup({
+lspconfig.lua_ls.setup {
 	settings = {
 		Lua = {
+			diagnostics = {
+				globals = { "vim" },
+			},
 			telemetry = {
 				enable = false,
 			},
@@ -94,4 +98,4 @@ lspconfig.lua_ls.setup({
 	},
 	on_attach = on_attach,
 	capabilities = capabilities,
-})
+}

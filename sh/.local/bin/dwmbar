@@ -26,7 +26,11 @@ update_wifi() {
 
 update_temp(){
 	test -d /sys/class/thermal/thermal_zone1 || return
-	read -r temperature </sys/class/thermal/thermal_zone1/temp
+	if [ "$(get-device)" = "Laptop" ]; then
+		read -r temperature </sys/class/thermal/thermal_zone0/temp
+	else
+		read -r temperature </sys/class/thermal/thermal_zone1/temp
+	fi
 	temp="$(printf " %.2s" "$temperature")"
 }
 

@@ -28,7 +28,6 @@ export GOPROXY="https://proxy.golang.org,direct"
 # Other programs
 export MAKEFLAGS="-j$(nproc)"
 export LESS="-x4Rg"
-# export MOZ_ENABLE_WAYLAND=1
 
 # man page highlighting
 export LESS_TERMCAP_md=$'\e[01;34m'

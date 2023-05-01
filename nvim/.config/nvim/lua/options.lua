@@ -1,5 +1,4 @@
 local set = vim.o
-local g = vim.g
 
 set.number = true
 set.relativenumber = true
@@ -7,12 +6,13 @@ set.hlsearch = false
 set.clipboard = "unnamedplus"
 set.splitbelow = true
 set.showmode = false
-set.splitright = true
 set.tabstop = 4
 set.shiftwidth = 4
 set.shiftwidth = 4
 set.backup = false
 set.swapfile = false
+set.undotree = os.getenv "XDG_DATA_HOME" .. "/nvim/undotree"
+set.undofile = true
 set.smartindent = true
 set.signcolumn = "number"
 set.termguicolors = true
@@ -29,4 +29,6 @@ set.smartcase = true
 set.mouse = ""
 set.path = "**"
 set.spelllang = "en_us"
-g.mapleader = " "
+-- set.statusline = "[%n] %t%m%=%l:%L"
+vim.g.netrw_banner = 0
+vim.g.netrw_browse_split = 0

@@ -10,11 +10,11 @@ alias mkdir='mkdir -p'
 alias ls='ls -NF --color=auto --group-directories-first'
 alias ht='htop'
 alias vi='nvim'
-alias svi='doasedit'
 alias src='exec zsh'
+alias svi='sudoedit'
 alias iclip='xclip -target image/png -selection clipboard'
 alias fclip='xclip -selection clipboard'
-alias cp='rsync -ah --info=progress2'
+alias sudo='sudo -v; sudo '
 
 # syslog
 alias log='less +G /var/log/syslog'
