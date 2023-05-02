@@ -19,4 +19,4 @@ picom &
 dwmbar &
 
 # WM
-ssh-agent dwm
+exec dwm

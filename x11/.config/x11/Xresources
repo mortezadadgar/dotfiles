@@ -41,13 +41,13 @@ st.font:     JetBrainsMono Nerd Font:size=13
 /* dwm */
 dwm.normfgcolor:    _color7
 dwm.normbgcolor:    _color0
-dwm.selbordercolor: _color4
+dwm.selbordercolor: _color11
 dwm.selfgcolor:     _color0
-dwm.selbgcolor:     _color4
+dwm.selbgcolor:     _color11
 
 /* dmenu */
-dmenu.font:          Open Sans:size=12
+dmenu.font:          JetBrainsMono Nerd Font:size=11
 dmenu.background:    _color0
 dmenu.foreground:    _color7
-dmenu.selbackground: _color4
+dmenu.selbackground: _color11
 dmenu.selforeground: _color0

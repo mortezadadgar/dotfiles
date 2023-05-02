@@ -2,7 +2,6 @@
 
 # utilities
 alias grep='grep --color=auto'
-alias wiki='nvim -c VimwikiIndex'
 alias ping='ping -c 5'
 alias cp='cp -v'
 alias mv='mv -v'
@@ -11,10 +10,8 @@ alias ls='ls -NF --color=auto --group-directories-first'
 alias ht='htop'
 alias vi='nvim'
 alias src='exec zsh'
-alias svi='sudoedit'
 alias iclip='xclip -target image/png -selection clipboard'
 alias fclip='xclip -selection clipboard'
-alias sudo='sudo -v; sudo '
 
 # syslog
 alias log='less +G /var/log/syslog'
