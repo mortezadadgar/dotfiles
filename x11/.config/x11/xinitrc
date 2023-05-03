@@ -17,6 +17,7 @@ dunst &
 mpd &
 picom &
 dwmbar &
+syncthing --no-browser >/dev/null 2>&1 &
 
 # WM
 exec dwm

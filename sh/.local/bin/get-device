@@ -1,2 +1,3 @@
 #!/bin/sh
-cat "$XDG_DATA_HOME/device"
+file="$XDG_DATA_HOME/device"
+[ -f "$file" ] && cat "$file"

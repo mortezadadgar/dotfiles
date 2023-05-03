@@ -49,6 +49,7 @@ components.active[1][2] = {
 		name = "file_info",
 		opts = {
 			colored_icon = false,
+			file_readonly_icon = "󰌾 ",
 		},
 	},
 	hl = {

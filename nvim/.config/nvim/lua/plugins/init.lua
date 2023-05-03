@@ -107,18 +107,4 @@ require("lazy").setup {
 
 	-- Undotree
 	{ "mbbill/undotree" },
-
-	-- Org mode
-	{
-		"nvim-orgmode/orgmode",
-		dependencies = {
-			"akinsho/org-bullets.nvim",
-			config = function()
-				require("org-bullets").setup()
-			end,
-		},
-		config = function()
-			require "plugins.configs.orgmode"
-		end,
-	},
 }
