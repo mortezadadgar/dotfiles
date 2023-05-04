@@ -57,7 +57,7 @@ require("mason").setup()
 require("mason-lspconfig").setup()
 
 -- lsp servers
-local servers = { "html", "cssls", "tsserver", "bashls" }
+local servers = { "html", "cssls", "tsserver" }
 for _, server in pairs(servers) do
 	lspconfig[server].setup {
 		on_attach = on_attach,
