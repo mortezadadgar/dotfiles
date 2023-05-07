@@ -56,14 +56,16 @@ end
 require("mason").setup()
 require("mason-lspconfig").setup()
 
--- lsp servers
-local servers = { "html", "cssls", "tsserver" }
-for _, server in pairs(servers) do
-	lspconfig[server].setup {
-		on_attach = on_attach,
-		capabilities = capabilities,
-	}
-end
+-- config installed lsp servers
+require("mason-lspconfig").setup_handlers {
+	function (server_name)
+		require("lspconfig")[server_name].setup {
+			on_attach = on_attach,
+			capabilities = capabilities,
+		}
+	end,
+}
+
 
 -- go
 lspconfig.gopls.setup {

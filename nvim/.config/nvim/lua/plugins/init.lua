@@ -63,7 +63,10 @@ require("lazy").setup {
 	-- Better syntax highlighting
 	{
 		"nvim-treesitter/nvim-treesitter",
-		dependencies = "nvim-treesitter/nvim-treesitter-context",
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter-context",
+			{ "Wansmer/treesj", opts = {} }
+		},
 		config = function()
 			require "plugins.configs.treesitter"
 		end,

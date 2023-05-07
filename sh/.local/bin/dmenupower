@@ -26,11 +26,12 @@ case $select in
 		;;
 	" Lockscreen")
 		notify-send -i system-suspend "Lockscreen..."
-		xset s activate
 		sleep 0.75
+		xset s activate
 		;;
 	"󰤄 Sleep")
 		notify-send -i system-lock-screen "Going to Sleep..."
+		sleep 0.75
 		loginctl suspend
 		;;
 esac
