@@ -1,5 +1,7 @@
 #!/bin/sh
 exclude_pkg="
+	dev-python/*
+	app-alternatives/*
 	sys-kernel/*
 	sys-firmware/*
 	x11-themes/*

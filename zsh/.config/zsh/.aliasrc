@@ -14,6 +14,7 @@ alias dvi='doasedit'
 alias svi='sudoedit'
 alias iclip='xclip -target image/png -selection clipboard'
 alias fclip='xclip -selection clipboard'
+alias eshowkw='eshowkw -a amd64'
 
 # syslog
 alias log='less +G /var/log/syslog'

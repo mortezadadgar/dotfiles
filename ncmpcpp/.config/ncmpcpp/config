@@ -6,7 +6,6 @@ mpd_music_dir = "~/Music"
 # Appearance
 playlist_display_mode = "classic"
 user_interface = classic
-# header_visibility = "no"
 progressbar_look = "━|━"
 progressbar_elapsed_color = "red"
 progressbar_color = "black"
@@ -20,14 +19,6 @@ selected_item_prefix = $b$(cyan)
 selected_item_suffix = $(end)$/b
 player_state_color = blue
 statusbar_time_color = green:b
-
-# Visualizer
-visualizer_in_stereo = "no";
-visualizer_type = "spectrum";
-visualizer_spectrum_dft_size = 4
-visualizer_spectrum_hz_max = 6000
-visualizer_look = "●▮";
-visualizer_color = "33,39,63,75,81,99,117,153,189";
 
 # Misc
 execute_on_song_change = notify-send -i deepin-music "Now Playing" "$(mpc current)" 

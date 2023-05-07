@@ -3,3 +3,5 @@
 	name = mortezadadgar
 [credential]
 	helper = cache --timeout=3600
+; [http]
+; 	proxy = http://localhost:8118

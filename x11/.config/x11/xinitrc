@@ -13,9 +13,7 @@ xwallpaper --stretch $XDG_DATA_HOME/bg.jpg
 redshift -O 5500 &
 xss-lock -n dim-screen -l -- slock &
 batterynotif &
-dunst &
 mpd &
-picom &
 dwmbar &
 syncthing --no-browser >/dev/null 2>&1 &
 
