@@ -6,6 +6,7 @@ mpd_music_dir = "~/Music"
 # Appearance
 playlist_display_mode = "classic"
 user_interface = classic
+header_visibility = "no"
 progressbar_look = "━|━"
 progressbar_elapsed_color = "red"
 progressbar_color = "black"

@@ -59,13 +59,12 @@ require("mason-lspconfig").setup()
 -- config installed lsp servers
 require("mason-lspconfig").setup_handlers {
 	function (server_name)
-		require("lspconfig")[server_name].setup {
+		lspconfig[server_name].setup {
 			on_attach = on_attach,
 			capabilities = capabilities,
 		}
 	end,
 }
-
 
 -- go
 lspconfig.gopls.setup {
@@ -75,10 +74,8 @@ lspconfig.gopls.setup {
 				unusedparams = true,
 				nilness = true,
 				unusedwrite = true,
-				-- fieldalignment = true,
 				useany = true,
 			},
-			linksInHover = false,
 			staticcheck = true,
 		},
 	},
