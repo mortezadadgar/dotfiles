@@ -15,6 +15,7 @@ alias svi='sudoedit'
 alias iclip='xclip -target image/png -selection clipboard'
 alias fclip='xclip -selection clipboard'
 alias eshowkw='eshowkw -a amd64'
+alias fvi='$EDITOR $(fzf)'
 
 # syslog
 alias log='less +G /var/log/syslog'

@@ -5,6 +5,10 @@ echo "$$" > ~/.cache/pidofbar
 sec=0
 interface="wlan0"
 
+if [ "$(get-device)" = "Laptop" ]; then
+	is_laptop=1
+fi
+
 update_time() { 
 	time=$(printf " ")"$(date "+%b %d - %H:%M")"
 }
@@ -26,7 +30,7 @@ update_wifi() {
 
 update_temp(){
 	test -d /sys/class/thermal/thermal_zone1 || return
-	if [ "$(get-device)" = "Laptop" ]; then
+	if [ "$is_laptop" = 1 ]; then
 		read -r temperature </sys/class/thermal/thermal_zone0/temp
 	else
 		read -r temperature </sys/class/thermal/thermal_zone1/temp
@@ -34,7 +38,7 @@ update_temp(){
 	temp="$(printf " %.2s" "$temperature")"
 }
 
-update_bat() { 
+update_bat() {
 	test -d /sys/class/power_supply/BAT1 || return
 	read -r bat_status </sys/class/power_supply/BAT1/status
 	read -r bat_capacity </sys/class/power_supply/BAT1/capacity
@@ -68,7 +72,7 @@ update_mpd() {
 update_vol
 
 display() {
-	if [ "$(get-device)" = "Laptop" ]; then
+	if [ "$is_laptop" = 1 ]; then
 		xsetroot -name "$mediainfo $vol  $wifi  $temp  $bat  $time"
 	else
 		xsetroot -name "$mediainfo $vol  $temp  $time"
@@ -87,7 +91,7 @@ do
 		[ $((sec % 9 )) -eq 0 ] && update_time
 		[ $((sec % 3 )) -eq 0 ] && update_temp
 		[ $((sec % 9 )) -eq 0 ] && update_vol
-		if [ "$(get-device)" = "Laptop" ]; then
+		if [ "$is_laptop" = 1 ]; then
 			[ $((sec % 12 )) -eq 0 ] && update_bat
 			[ $((sec % 3 )) -eq 0 ] && update_wifi
 		fi

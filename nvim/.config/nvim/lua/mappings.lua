@@ -21,7 +21,7 @@ map("n", "<leader>b", ":ls<CR>:b<leader>")
 map("n", "<leader>g", ":vim //j **<S-Left><S-Left><Right>")
 
 -- Spell checker
--- map("n", "<leader>o", ":setlocal spell!<CR>", { desc = "Spell Checker" })
+map("n", "<leader>o", ":setlocal spell!<CR>", { desc = "Spell Checker" })
 
 -- file explorer
 map("n", "<leader>pv", ":Ex<CR>")

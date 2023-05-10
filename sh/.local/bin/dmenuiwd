@@ -12,24 +12,24 @@ case $select in
 		notify-send "IWCTL" "searching for networks" -i wifi-radar -u low
 		iwctl station "$interface" scan
 
-		while iwctl station wlan0 show |grep 'yes' > /dev/null
+		while iwctl station "$interface" show |grep "yes" > /dev/null
 		do
 			sleep 0.5
 		done
 
 		networks=$(iwctl station "$interface" get-networks |
-			sed 's/>//g' |
-			sed 's/\x1b\[[0-9;]*m//g' |
+			sed "s/>//g" |
+			sed "s/\x1b\[[0-9;]*m//g" |
 			tail -n +5 | head -n -1 |
-			sed 's/psk\s*\**//g' |
-			sed 's/^\s*//g;s/\s*$//g' |
+			sed "s/psk\s*\**//g" |
+			sed "s/^\s*//g;s/\s*$//g" |
 			sort)
 
 		network=$(echo "$networks" | dmenu -l 10)
 
 		[ -z "$network" ] && exit 1
 
-		password=$(printf 'No\nYes' | dmenu -p "Password required?")
+		password=$(printf "No\nYes" | dmenu -p "Password required?")
 
 		[ -z "$password" ] && exit 1
 
@@ -59,11 +59,11 @@ case $select in
 		;;
 	"Forget a network")
 		networks=$(iwctl known-networks list |
-			sed 's/>//g' |
-			sed 's/\x1b\[[0-9;]*m//g' |
+			sed "s/>//g" |
+			sed "s/\x1b\[[0-9;]*m//g" |
 			tail -n +5 | head -n -1 |
-			sed 's/psk.*$//g' |
-			sed 's/^\s*//g;s/\s*$//g' |
+			sed "s/psk.*$//g" |
+			sed "s/^\s*//g;s/\s*$//g" |
 			sort)
 
 		network=$(echo "$networks" | dmenu -l 10)
