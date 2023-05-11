@@ -3,7 +3,7 @@
 # Dependencies: dmenu
 # Shell: POSIX compliant
 
-select=$(printf " Poweroff\n Restart\n Logoff\n Lockscreen\n󰤄 Sleep"| dmenu -i)
+select=$(printf " Poweroff\n Restart\n󰍃 Logoff\n Lockscreen\n󰤄 Sleep"| dmenu -i)
 
 case $select in
 	" Poweroff")
@@ -18,7 +18,7 @@ case $select in
 		clear > /dev/tty1
 		loginctl reboot
 		;;
-	" Logoff")
+	"󰍃 Logoff")
 		notify-send -u low -i system-reboot "Loggging off..."
 		sleep 0.75
 		clear > /dev/tty1

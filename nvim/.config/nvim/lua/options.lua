@@ -29,6 +29,7 @@ set.smartcase = true
 set.mouse = ""
 set.path = "**"
 set.spelllang = "en_us"
+set.conceallevel = 2
 -- set.statusline = "[%n] %t%m%=%l:%L"
 vim.g.netrw_banner = 0
 vim.g.netrw_browse_split = 0

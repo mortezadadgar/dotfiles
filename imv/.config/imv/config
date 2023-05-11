@@ -2,6 +2,8 @@
 overlay = true
 overlay_font = Monospace:11
 overlay_position_bottom = true
+background = #00171d
+overlay_background_color = #00171d
 
 [binds]
 p = prev
@@ -10,3 +12,5 @@ d = exec prompt "Remove this image?" "rm $imv_current_file"; close
 b = exec setbg "$imv_current_file"
 c = exec xclip -t image/png -selection clipboard $imv_current_file
 r = exec convert -rotate 90 $imv_current_file $imv_current_file
+
+# vim: ft=dosini

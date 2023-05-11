@@ -6,6 +6,7 @@ require("treesitter-context").setup()
 treesitter.setup {
 	ensure_installed = {
 		"markdown",
+		"markdown_inline",
 		"comment",
 		"bash",
 		"c",
@@ -24,14 +25,4 @@ treesitter.setup {
 	indent = {
 		enable = true,
 	},
-
-	-- incremental_selection = {
-	-- 	enable = true,
-	-- 	keymaps = {
-	-- 		init_selection = "<CR>",
-	-- 		node_incremental = "<CR>",
-	-- 		scope_incremental = "-",
-	-- 		node_decremental = "grm",
-	-- 	},
-	-- },
 }

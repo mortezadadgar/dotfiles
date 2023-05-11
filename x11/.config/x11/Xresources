@@ -51,3 +51,8 @@ dmenu.background:    _color0
 dmenu.foreground:    _color7
 dmenu.selbackground: _color5
 dmenu.selforeground: _color0
+
+/* nsxiv */
+Nsxiv.window.background: #000000
+Nsxiv.bar.background: _color5
+Nsxiv.bar.foreground: _color0

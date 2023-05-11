@@ -18,4 +18,4 @@ dwmbar &
 syncthing --no-browser >/dev/null 2>&1 &
 
 # WM
-exec dwm
+exec dwm 2>$XDG_DATA_HOME/dwm.log

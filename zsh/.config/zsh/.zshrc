@@ -13,7 +13,7 @@ setopt globdots
 setopt cd_silent
 
 # History
-HISTFILE=$HOME/.zhistory
+HISTFILE="$XDG_CACHE_HOME/zsh/history"
 HISTSIZE=100000
 SAVEHIST=100000
 
@@ -21,7 +21,7 @@ SAVEHIST=100000
 zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
 zstyle ':completion:*:default' menu yes select
 fpath+=($ZDOTDIR/plugins/zsh-z)
-autoload -U compinit; compinit
+autoload -U compinit; compinit -d "$XDG_CACHE_HOME/zsh/compdump"
 zmodload zsh/complist
 
 # Ls colors

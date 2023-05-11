@@ -1,12 +1,14 @@
 #!/bin/sh
 
 # utilities
-alias grep='grep --color=auto'
+alias grep='grep --color'
+alias diff='diff --color'
+alias ip="ip -color"
 alias ping='ping -c 5'
 alias cp='cp -v'
 alias mv='mv -v'
 alias mkdir='mkdir -p'
-alias ls='ls -NF --color=auto --group-directories-first'
+alias ls='ls -NFh --color --group-directories-first'
 alias ht='htop'
 alias vi='nvim'
 alias src='exec zsh'
@@ -16,7 +18,6 @@ alias sudo='doas'
 alias iclip='xclip -target image/png -selection clipboard'
 alias fclip='xclip -selection clipboard'
 alias eshowkw='eshowkw -a amd64'
-alias fvi='$EDITOR $(fzf)'
 
 # syslog
 alias log='less +G /var/log/syslog'

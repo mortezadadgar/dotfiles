@@ -21,7 +21,7 @@ map("n", "<leader>b", ":ls<CR>:b<leader>")
 map("n", "<leader>g", ":vim //j **<S-Left><S-Left><Right>")
 
 -- Spell checker
-map("n", "<leader>o", ":setlocal spell!<CR>", { desc = "Spell Checker" })
+map("n", "<leader>s", ":setlocal spell!<CR>", { desc = "Spell Checker" })
 
 -- file explorer
 map("n", "<leader>pv", ":Ex<CR>")
@@ -30,6 +30,4 @@ map("n", "<leader>pv", ":Ex<CR>")
 map("n", "<leader>u", ":UndotreeToggle<CR>")
 
 -- usefull maps
-map("v", "J", ":m '>+1<CR>gv=gv")
-map("v", "K", ":m '<-2<CR>gv=gv")
 map("x", "<leader>p", [["_dP]])

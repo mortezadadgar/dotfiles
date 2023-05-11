@@ -4,21 +4,19 @@
 
 [ "$#" = 1 ] || exit 1
 
-list_images() {
-	find . -maxdepth 1 -type f -not -name "$1" |
-		grep -iE '\.(png|jpe?g|webp|gif|svg|bmp|ico)$'
-}
+exec >/dev/null 2>&1
 
-q() {
-	"$@" >/dev/null 2>&1
+list_images() {
+	find "$(dirname "$1")" -maxdepth 1 -type f -not -name "$1" |
+		grep -iE '\.(png|jpe?g|webp|gif|svg|bmp|ico)$'
 }
 
 mimetype="$(file -bL --mime-type "$1")"
 # shellcheck disable=SC2046
 case "$mimetype" in
-	video/*) q mpv "$1" &;;
-	audio/*) q mpv "$1" &;;
-	text/html) q firefox "$1" &;;
-	image/*) q imv "$1" $(list_images "$1") &;;
-	*/pdf) q zathura "$1" &;;
+	video/*) mpv "$1" &;;
+	audio/*) mpv "$1" &;;
+	text/html) firefox "$1" &;;
+	image/*) nsxiv "$1" $(list_images "$1") &;;
+	*/pdf) zathura "$1" &;;
 esac

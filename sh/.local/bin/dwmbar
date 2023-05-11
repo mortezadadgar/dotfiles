@@ -10,7 +10,7 @@ if [ "$(get-device)" = "Laptop" ]; then
 fi
 
 update_time() { 
-	time=$(printf " ")"$(date "+%b %d - %H:%M")"
+	time=$(printf "󰃰 ")"$(date "+%b %d - %H:%M")"
 }
 
 update_wifi() {
@@ -35,7 +35,7 @@ update_temp(){
 	else
 		read -r temperature </sys/class/thermal/thermal_zone1/temp
 	fi
-	temp="$(printf " %.2s" "$temperature")"
+	temp="$(printf "󰈐 %.2s" "$temperature")"
 }
 
 update_bat() {
@@ -43,9 +43,9 @@ update_bat() {
 	read -r bat_status </sys/class/power_supply/BAT1/status
 	read -r bat_capacity </sys/class/power_supply/BAT1/capacity
 	if [ "$bat_status" = "Charging" ]; then
-		bat_status=""
+		bat_status="󰂄"
 	else 
-		bat_status=""
+		bat_status="󰁹"
 	fi
 
 	bat="$(printf "%s %s%%" "$bat_status" "$bat_capacity")"
@@ -53,7 +53,7 @@ update_bat() {
 
 update_vol() {
 	avol="$(amixer sget Master |awk -F"[][]" '/dB/ {print $2}')"
-	vol="$(printf "墳 %s" "$avol")"
+	vol="$(printf "󰕾 %s" "$avol")"
 }
 
 update_mpd() {
@@ -64,7 +64,7 @@ update_mpd() {
 
 	# get currently playing music's name and remove ()
 	mpc="$(mpc current -f "[%artist% - %title%]" | sed "s/\s(.*)$//g")"
-	mediainfo="$(printf "  %s " "$mpc")"
+	mediainfo="$(printf " 󰋄 %s " "$mpc")"
 }
 
 
@@ -80,8 +80,8 @@ display() {
 }
 
 # Handles receiving signal
-trap   "update_vol;display"    "RTMIN"
-trap   "update_mpd;display"    "RTMIN+1"
+trap   "update_vol; display"    "RTMIN"
+trap   "update_mpd; display"    "RTMIN+1"
 
 while true
 do
