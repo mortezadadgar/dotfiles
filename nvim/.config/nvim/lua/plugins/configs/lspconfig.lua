@@ -20,9 +20,9 @@ local on_attach = function(client, bufnr)
 	end, "List References")
 	map("n", "gd", vim.lsp.buf.definition, "Goto definition")
 	map("n", "K", vim.lsp.buf.hover, "Hover Documentation")
-	map("n", "<leader>rn", vim.lsp.buf.rename, "Rename")
-	map("n", "<leader>d", vim.diagnostic.setloclist, "List Diagnostics")
-	map("n", "<leader>ca", vim.lsp.buf.code_action, "Code action")
+	map("n", "<Space>rn", vim.lsp.buf.rename, "Rename")
+	map("n", "<Space>d", vim.diagnostic.setloclist, "List Diagnostics")
+	map("n", "<Space>ca", vim.lsp.buf.code_action, "Code action")
 	map("i", "<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
 
 	-- diagnostics symbols

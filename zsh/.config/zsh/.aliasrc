@@ -12,12 +12,11 @@ alias ls='ls -NFh --color --group-directories-first'
 alias ht='htop'
 alias vi='nvim'
 alias src='exec zsh'
-# alias svi='sudoedit'
-alias svi='doas $EDITOR'
-alias sudo='doas'
+alias svi='sudoedit'
 alias iclip='xclip -target image/png -selection clipboard'
 alias fclip='xclip -selection clipboard'
 alias eshowkw='eshowkw -a amd64'
+alias sxiv="nsxiv"
 
 # syslog
 alias log='less +G /var/log/syslog'

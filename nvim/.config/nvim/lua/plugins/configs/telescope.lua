@@ -1,7 +1,7 @@
-local actions = require("telescope.actions")
-require("telescope").setup({
+local actions = require "telescope.actions"
+require("telescope").setup {
 	defaults = {
-		prompt_prefix = " ",
+		prompt_prefix = "  ",
 		borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
 		file_ignore_patterns = { "%.svg", "%.jpg", "%.png" },
 		mappings = {
@@ -12,4 +12,4 @@ require("telescope").setup({
 			},
 		},
 	},
-})
+}

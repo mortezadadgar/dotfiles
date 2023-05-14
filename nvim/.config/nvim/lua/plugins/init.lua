@@ -102,6 +102,18 @@ require("lazy").setup {
 		end,
 	},
 
+	{
+		"nvim-telescope/telescope.nvim",
+		tag = "0.1.1",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-tree/nvim-web-devicons",
+		},
+		config = function()
+			require "plugins.configs.telescope"
+		end,
+	},
+
 	-- Auto close pairs
 	{ "windwp/nvim-autopairs", opts = {} },
 
