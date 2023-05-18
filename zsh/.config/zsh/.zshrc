@@ -70,6 +70,16 @@ function zle-line-init() {
 }
 zle -N zle-line-init
 
+# Yank to system clipboard
+function vi-yank-clip {
+	zle vi-yank
+	echo "$CUTBUFFER" | xclip -sel clip
+}
+
+zle -N vi-yank-clip
+bindkey -M vicmd 'y' vi-yank-clip
+
+
 # Edit line in editor
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^E' edit-command-line
