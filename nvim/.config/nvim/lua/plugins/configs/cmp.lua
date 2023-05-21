@@ -10,10 +10,7 @@ cmp.setup {
 	},
 	mapping = {
 		["<C-e>"] = map.close(),
-		["<CR>"] = map.confirm {
-			behavior = cmp.ConfirmBehavior.Replace,
-			select = true,
-		},
+		["<CR>"] = map.confirm { select = true },
 		["<C-k>"] = cmp.mapping.select_prev_item(),
 		["<C-j>"] = cmp.mapping.select_next_item(),
 

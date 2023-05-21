@@ -114,6 +114,12 @@ require("lazy").setup {
 		end,
 	},
 
+	-- Surrounding
+	{ "kylechui/nvim-surround", opts = {} },
+
+	-- treesitter autotag
+	{ "windwp/nvim-ts-autotag", opts = {} },
+
 	-- Auto close pairs
 	{ "windwp/nvim-autopairs", opts = {} },
 
