@@ -6,7 +6,6 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 -- custom attach
 local on_attach = function(client, bufnr)
-	-- mappings
 	local map = function(mode, keys, func, desc)
 		if desc then
 			desc = "LSP: " .. desc
@@ -15,6 +14,7 @@ local on_attach = function(client, bufnr)
 		vim.keymap.set(mode, keys, func, { buffer = bufnr, desc = desc })
 	end
 
+	-- mappings
 	map("n", "gr", function()
 		lsp.buf.references { includeDeclaration = false }
 	end, "List References")
@@ -56,36 +56,20 @@ end
 require("mason").setup()
 require("mason-lspconfig").setup()
 
--- config installed lsp servers
-require("mason-lspconfig").setup_handlers {
-	function(server_name)
-		lspconfig[server_name].setup {
-			on_attach = on_attach,
-			capabilities = capabilities,
-		}
-	end,
-}
-
--- go
-lspconfig.gopls.setup {
-	settings = {
+local servers = {
+	gopls = {
 		gopls = {
 			analyses = {
 				unusedparams = true,
 				nilness = true,
 				unusedwrite = true,
+				unusedvariable = true,
 				useany = true,
 			},
 			staticcheck = true,
 		},
 	},
-	on_attach = on_attach,
-	capabilities = capabilities,
-}
-
--- lua
-lspconfig.lua_ls.setup {
-	settings = {
+	lua_ls = {
 		Lua = {
 			diagnostics = {
 				globals = { "vim" },
@@ -95,6 +79,15 @@ lspconfig.lua_ls.setup {
 			},
 		},
 	},
-	on_attach = on_attach,
-	capabilities = capabilities,
+}
+
+-- config installed lsp servers
+require("mason-lspconfig").setup_handlers {
+	function(server_name)
+		lspconfig[server_name].setup {
+			on_attach = on_attach,
+			capabilities = capabilities,
+			settings = servers[server_name],
+		}
+	end,
 }

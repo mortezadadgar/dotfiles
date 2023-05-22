@@ -22,7 +22,7 @@ case $select in
 		notify-send -u low -i system-reboot "Loggging off..."
 		sleep 0.75
 		clear > /dev/tty1
-		pkill -SIGKILL "dwm$"
+		pkill -TERM "dwm$"
 		;;
 	" Lockscreen")
 		notify-send -u low -i system-suspend "Lockscreen..."

@@ -114,6 +114,8 @@ require("lazy").setup {
 		end,
 	},
 
+	{ "folke/which-key.nvim", opts = {} },
+
 	-- Surrounding
 	{ "kylechui/nvim-surround", opts = {} },
 
