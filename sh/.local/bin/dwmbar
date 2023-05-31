@@ -52,8 +52,8 @@ update_bat() {
 }
 
 update_vol() {
-	avol="$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep -Po '(?<=\.)[0-9]*')"
-	vol="$(printf "󰕾 %s%%" "$avol")"
+	avol="$(amixer sget Master |awk -F"[][]" '/dB/ {print $2}')"
+	vol="$(printf "󰕾 %s" "$avol")"
 }
 
 update_mpd() {
