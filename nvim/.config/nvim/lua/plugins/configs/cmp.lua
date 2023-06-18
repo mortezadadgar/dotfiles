@@ -49,6 +49,7 @@ cmp.setup {
 		},
 	},
 
+	-- preselect = cmp.PreselectMode.None,
 	formatting = {
 		format = require("lspkind").cmp_format(),
 	},

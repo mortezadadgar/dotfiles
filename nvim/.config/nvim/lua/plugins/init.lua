@@ -44,7 +44,7 @@ require("lazy").setup {
 			"williamboman/mason-lspconfig.nvim",
 			"williamboman/mason.nvim",
 
-			{ "j-hui/fidget.nvim", opts = {} },
+			{ "j-hui/fidget.nvim", tag = "legacy", opts = {} },
 		},
 		config = function()
 			require "plugins.configs.lspconfig"
@@ -117,7 +117,10 @@ require("lazy").setup {
 	{ "folke/which-key.nvim", opts = {} },
 
 	-- Surrounding
-	{ "kylechui/nvim-surround", opts = {} },
+	{ "tpope/vim-surround" },
+
+	-- Comment lines
+	{ "tpope/vim-commentary" },
 
 	-- treesitter autotag
 	{ "windwp/nvim-ts-autotag", opts = {} },
@@ -125,9 +128,9 @@ require("lazy").setup {
 	-- Auto close pairs
 	{ "windwp/nvim-autopairs", opts = {} },
 
-	-- Comment lines
-	{ "numToStr/Comment.nvim", opts = {} },
-
 	-- Undotree
 	{ "mbbill/undotree" },
+
+	-- GitSigns
+	{ "lewis6991/gitsigns.nvim", opts = {} },
 }

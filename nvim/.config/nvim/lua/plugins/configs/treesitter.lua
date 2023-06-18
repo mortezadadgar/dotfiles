@@ -22,7 +22,13 @@ treesitter.setup {
 		enable = true,
 	},
 
-	indent = {
+	incremental_selection = {
 		enable = true,
+		keymaps = {
+			init_selection = "+",
+			node_incremental = "<BS>",
+			scope_incremental = "=",
+			node_decremental = "-",
+		},
 	},
 }

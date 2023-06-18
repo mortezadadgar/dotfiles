@@ -1,0 +1,2 @@
+#!/bin/sh
+xargs -ra "$XDG_CONFIG_HOME/chromium-flags.conf" chromium

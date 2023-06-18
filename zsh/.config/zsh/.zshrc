@@ -11,6 +11,7 @@ setopt complete_in_word
 setopt prompt_subst
 setopt globdots
 setopt cd_silent
+setopt extendedglob
 
 # History
 HISTFILE="$HOME/.zhistory"

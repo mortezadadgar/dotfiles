@@ -1,6 +1,6 @@
 # X settings
 xset -dpms
-xset s 300 10
+xset s 900 10
 xset r rate 300 50
 xrdb -merge $XDG_CONFIG_HOME/x11/Xresources
 setxkbmap -option caps:escape
@@ -16,7 +16,10 @@ batterynotif &
 mpd &
 dwmbar &
 picom &
-dbus-update-activation-environment --systemd DISPLAY &
+dunst &
+syncthing --no-browser & >/dev/null 2>&1
+easyeffects --gapplication-service & >/dev/null 2>&1
+gentoo-pipewire-launcher & >/dev/null 2>&1
 
 # WM
-exec dwm 2>$XDG_DATA_HOME/dwm.log
+dwm 2>$XDG_DATA_HOME/dwm.log

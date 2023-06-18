@@ -8,7 +8,7 @@ pass_store="$HOME/.password-store"
 
 notify_pass() {
 	notify-send \
-		"password-store" "password copied to clipboard (will clear in 45s)" -i password
+		"Password Store" "password copied to clipboard (will clear in 45s)" -i password
 }
 
 select=$(printf "generate a password\nshow password list" | dmenu)

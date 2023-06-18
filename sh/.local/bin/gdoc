@@ -1,0 +1,2 @@
+#!/bin/sh
+go doc "$1" | bat --language go

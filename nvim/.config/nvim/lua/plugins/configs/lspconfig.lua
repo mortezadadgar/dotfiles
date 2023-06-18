@@ -43,7 +43,6 @@ local on_attach = function(client, bufnr)
 	-- disable lsp formatting
 	client.server_capabilities.documentFormattingProvider = false
 
-	-- format on save
 	vim.api.nvim_create_autocmd("BufWritePre", {
 		pattern = "<buffer>",
 		callback = function()
@@ -76,6 +75,15 @@ local servers = {
 			},
 			telemetry = {
 				enable = false,
+			},
+		},
+	},
+	emmet_ls = {
+		init_options = {
+			html = {
+				options = {
+					["bem.enabled"] = true,
+				},
 			},
 		},
 	},
