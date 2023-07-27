@@ -2,6 +2,10 @@
 # lowers screen brightness, then waits to be killed
 # and restores previous brightness on exit.
 
+if ! command -v light 2>/dev/null; then
+	exit 1
+fi
+
 brightness_sub=10
 
 get_brightness() {

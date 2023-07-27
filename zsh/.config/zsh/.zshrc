@@ -61,13 +61,13 @@ function git-info() {
 # Change cursor shape for different vi modes
 function zle-keymap-select() {
     case $KEYMAP in
-        vicmd) print -n '\e[1 q';;      # block
-        viins|main) print -n '\e[5 q';; # beam
+        vicmd) print -n '\e[2 q';;      # block
+        viins|main) print -n '\e[6 q';; # beam
     esac
 }
 zle -N zle-keymap-select
 function zle-line-init() {
-    print -n "\e[5 q" # beam
+    print -n "\e[6 q" # beam
 }
 zle -N zle-line-init
 

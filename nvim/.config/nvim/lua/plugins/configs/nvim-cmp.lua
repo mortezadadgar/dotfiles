@@ -1,11 +1,12 @@
 local cmp = require "cmp"
+local ls = require "luasnip"
+local compare = require "cmp.config.compare"
 local map = cmp.mapping
-local luasnip = require "luasnip"
 
 cmp.setup {
 	snippet = {
 		expand = function(args)
-			luasnip.lsp_expand(args.body)
+			ls.lsp_expand(args.body)
 		end,
 	},
 	mapping = {
@@ -17,8 +18,8 @@ cmp.setup {
 		["<Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_next_item()
-			elseif luasnip.expand_or_jumpable() then
-				luasnip.expand_or_jump()
+			elseif ls.expand_or_locally_jumpable() then
+				ls.expand_or_jump()
 			else
 				fallback()
 			end
@@ -27,8 +28,8 @@ cmp.setup {
 		["<S-Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_prev_item()
-			elseif luasnip.jumpable(-1) then
-				luasnip.jump(-1)
+			elseif ls.locally_jumpable(-1) then
+				ls.jump(-1)
 			else
 				fallback()
 			end
@@ -49,7 +50,20 @@ cmp.setup {
 		},
 	},
 
-	-- preselect = cmp.PreselectMode.None,
+	sorting = {
+		comparators = {
+			-- compare.sort_text,
+			compare.offset,
+			compare.exact,
+			compare.score,
+			-- compare.recently_used,
+			-- compare.locality,
+			compare.kind,
+			compare.length,
+			compare.order,
+		},
+	},
+
 	formatting = {
 		format = require("lspkind").cmp_format(),
 	},

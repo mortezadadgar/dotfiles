@@ -3,7 +3,7 @@ require("telescope").setup {
 	defaults = {
 		prompt_prefix = "  ",
 		borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
-		file_ignore_patterns = { "%.svg", "%.jpg", "%.png" },
+		file_ignore_patterns = { "%.svg", "%.jpg", "%.png", "node_modules" },
 		mappings = {
 			i = {
 				["<Esc>"] = actions.close,
@@ -13,3 +13,5 @@ require("telescope").setup {
 		},
 	},
 }
+
+require("telescope").load_extension "fzf"

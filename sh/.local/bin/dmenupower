@@ -33,6 +33,6 @@ case $select in
 	"󰤄 Sleep")
 		notify-send -u low -i system-lock-screen "Going to Sleep..."
 		sleep 0.75
-		loginctl suspend
+		loginctl suspend -i
 		;;
 esac

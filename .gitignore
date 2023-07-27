@@ -14,6 +14,7 @@ state
 
 # nvim
 **/nvim/lazy-lock.json
+**/nvim/.luarc.json
 
 # wallpaper
 *.jpg
@@ -24,6 +25,9 @@ state
 
 # syncthing
 .stignore
+
+# newsboat
+**/newsboat/urls
 
 # common
 *.log

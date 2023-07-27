@@ -26,7 +26,7 @@ require("lazy").setup {
 	{
 		"hrsh7th/nvim-cmp",
 		config = function()
-			require "plugins.configs.cmp"
+			require "plugins.configs.nvim-cmp"
 		end,
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp",
@@ -41,22 +41,19 @@ require("lazy").setup {
 	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
-			"williamboman/mason-lspconfig.nvim",
-			"williamboman/mason.nvim",
-
-			{ "j-hui/fidget.nvim", tag = "legacy", opts = {} },
+			{ "williamboman/mason-lspconfig.nvim" },
+			{ "williamboman/mason.nvim" },
+			{
+				"j-hui/fidget.nvim",
+				tag = "legacy",
+				event = "LspAttach",
+				opts = {},
+			},
+			{ "hrsh7th/cmp-nvim-lsp" },
+			{ "folke/neodev.nvim", opts = {} },
 		},
 		config = function()
 			require "plugins.configs.lspconfig"
-		end,
-	},
-
-	-- Null language server
-	{
-		"jose-elias-alvarez/null-ls.nvim",
-		dependencies = "nvim-lua/plenary.nvim",
-		config = function()
-			require "plugins.configs.null_ls"
 		end,
 	},
 
@@ -64,8 +61,9 @@ require("lazy").setup {
 	{
 		"nvim-treesitter/nvim-treesitter",
 		dependencies = {
-			{ "nvim-treesitter/nvim-treesitter-context" },
-			{ "Wansmer/treesj", opts = {} },
+			{ "nvim-treesitter/nvim-treesitter-textobjects" },
+			{ "JoosepAlviste/nvim-ts-context-commentstring" },
+			{ "nvim-treesitter/nvim-treesitter-context", opts = {} },
 		},
 		config = function()
 			require "plugins.configs.treesitter"
@@ -102,35 +100,65 @@ require("lazy").setup {
 		end,
 	},
 
+	-- Telescope
 	{
 		"nvim-telescope/telescope.nvim",
-		tag = "0.1.1",
 		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"nvim-tree/nvim-web-devicons",
+			{ "nvim-lua/plenary.nvim" },
+			{ "nvim-tree/nvim-web-devicons" },
+			{
+				"nvim-telescope/telescope-fzf-native.nvim",
+				build = "make",
+			},
 		},
 		config = function()
 			require "plugins.configs.telescope"
 		end,
 	},
 
-	{ "folke/which-key.nvim", opts = {} },
+	-- GitSigns
+	{
+		"lewis6991/gitsigns.nvim",
+		config = function()
+			require "plugins.configs.gitsigns"
+		end,
+	},
 
 	-- Surrounding
-	{ "tpope/vim-surround" },
+	{
+		"echasnovski/mini.surround",
+		config = function()
+			require "plugins.configs.mini-surround"
+		end,
+	},
 
 	-- Comment lines
-	{ "tpope/vim-commentary" },
-
-	-- treesitter autotag
-	{ "windwp/nvim-ts-autotag", opts = {} },
+	{
+		"echasnovski/mini.comment",
+		config = function()
+			require "plugins.configs.mini-comment"
+		end,
+	},
 
 	-- Auto close pairs
-	{ "windwp/nvim-autopairs", opts = {} },
+	{
+		"echasnovski/mini.pairs",
+		config = function()
+			require "plugins.configs.mini-pairs"
+		end,
+	},
+
+	-- File explorer
+	{
+		"echasnovski/mini.files",
+		config = function()
+			require "plugins.configs.mini-files"
+		end,
+	},
+
+	-- Split and join arguments
+	{ "echasnovski/mini.splitjoin", opts = {} },
 
 	-- Undotree
 	{ "mbbill/undotree" },
-
-	-- GitSigns
-	{ "lewis6991/gitsigns.nvim", opts = {} },
 }

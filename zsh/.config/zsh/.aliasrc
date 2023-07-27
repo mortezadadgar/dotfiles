@@ -4,7 +4,7 @@
 alias grep='grep --color'
 alias diff='diff --color'
 alias ip="ip -color"
-alias ping='ping -c 5'
+alias ping='ping'
 alias cp='cp -v'
 alias mv='mv -v'
 alias mkdir='mkdir -p'
@@ -17,6 +17,7 @@ alias iclip='xclip -target image/png -selection clipboard'
 alias fclip='xclip -selection clipboard'
 alias eshowkw='eshowkw -a amd64'
 alias sxiv="nsxiv"
+alias wget="wget --continue --content-disposition"
 
 # syslog
 alias log='less +G /var/log/syslog'

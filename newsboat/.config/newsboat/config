@@ -1,0 +1,28 @@
+use-proxy yes
+proxy localhost:8118
+refresh-on-startup yes
+reload-threads 8
+show-keymap-hint no
+confirm-mark-all-feeds-read no
+confirm-mark-feed-read no
+feedlist-format "%4i %n %10u %t [%T] %S"
+articlelist-format "%4i %f %?T?|%-17T|  ?%t"
+
+bind-key j down
+bind-key k up
+bind-key G end
+bind-key g home
+bind-key d pagedown
+bind-key u pageup
+bind-key l open
+bind-key h quit
+bind-key n next-unread
+bind-key N prev-unread
+bind-key a toggle-article-read
+
+color listnormal white default
+color listfocus blue black standout bold
+color listnormal_unread blue black
+color listfocus_unread blue black standout bold
+color article white default bold
+color title blue black

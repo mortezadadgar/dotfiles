@@ -53,7 +53,14 @@ update_bat() {
 
 update_vol() {
 	avol="$(amixer sget Master |grep -m1 -o "[0-9]*%")"
-	vol="$(printf "󰕾 %s" "$avol")"
+	vol_status="$(amixer sget Master |grep -c "\[on\]")"
+	if [ "$vol_status" = "1" ]; then
+		vol_icon="󰕾"
+	else
+		vol_icon="󰖁"
+	fi
+
+	vol="$(printf "%s %s" "$vol_icon" "$avol")"
 }
 
 update_mpd() {
@@ -68,7 +75,6 @@ update_mpd() {
 	mediainfo="$(printf " 󰋄 %s " "$mpc")"
 }
 
-
 # We have to run this only once.
 update_vol
 
@@ -77,6 +83,7 @@ display() {
 		xsetroot -name "$mediainfo $vol  $wifi  $temp  $bat  $time"
 	else
 		xsetroot -name "$mediainfo $vol  $temp  $time"
+		# dwlb -status all "$mediainfo $vol  $temp  $time"
 	fi
 }
 

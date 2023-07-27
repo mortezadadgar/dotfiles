@@ -16,8 +16,6 @@
 #define _color13 #c678dd /*  magenta  */ 
 #define _color14 #56b6c2 /*  cyan     */ 
 #define _color15 #c0c0c0 /*  white    */ 
-/* extra colors */
-#define _darkbg  #1d2026
 
 /* st */
 st.color0:   _color0
@@ -41,9 +39,9 @@ st.font:     JetBrainsMono Nerd Font:size=13
 /* dwm */
 dwm.normfgcolor:    _color7
 dwm.normbgcolor:    _color0
-dwm.selbordercolor: _color5
+dwm.selbordercolor: _color4
 dwm.selfgcolor:     _color0
-dwm.selbgcolor:     _color5
+dwm.selbgcolor:     _color4
 
 /* dmenu */
 dmenu.font:          JetBrainsMono Nerd Font:size=11

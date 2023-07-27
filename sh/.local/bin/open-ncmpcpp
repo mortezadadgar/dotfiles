@@ -2,5 +2,5 @@
 
 st \
 	-t ncmpcpp \
-	-g 85x18 \
+	-g 75x15 \
 	-e ncmpcpp -q

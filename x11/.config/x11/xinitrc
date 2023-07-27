@@ -11,15 +11,15 @@ xwallpaper --stretch $XDG_DATA_HOME/bg.jpg
 
 # Autostart
 redshift -O 5500 &
-xss-lock -n dim-screen -l -- slock &
+xss-lock -n dim-screen -l -- slock loginctl suspend -i &
 batterynotif &
 mpd &
 dwmbar &
 picom &
 dunst &
-syncthing --no-browser & >/dev/null 2>&1
-easyeffects --gapplication-service & >/dev/null 2>&1
-gentoo-pipewire-launcher & >/dev/null 2>&1
+syncthing --no-browser &
+easyeffects --gapplication-service &
+gentoo-pipewire-launcher &
 
 # WM
 dwm 2>$XDG_DATA_HOME/dwm.log
