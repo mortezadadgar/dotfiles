@@ -37,6 +37,14 @@ require("lazy").setup {
 		},
 	},
 
+	{
+		"echasnovski/mini.completion",
+		enabled = false,
+		config = function()
+			require "plugins.configs.mini-completions"
+		end,
+	},
+
 	-- Language server configs
 	{
 		"neovim/nvim-lspconfig",
@@ -49,7 +57,7 @@ require("lazy").setup {
 				event = "LspAttach",
 				opts = {},
 			},
-			{ "hrsh7th/cmp-nvim-lsp" },
+			-- { "hrsh7th/cmp-nvim-lsp" },
 			{ "folke/neodev.nvim", opts = {} },
 		},
 		config = function()
@@ -153,6 +161,13 @@ require("lazy").setup {
 		"echasnovski/mini.files",
 		config = function()
 			require "plugins.configs.mini-files"
+		end,
+	},
+
+	{
+		"kosayoda/nvim-lightbulb",
+		config = function()
+			require "plugins.configs.nvim-lightbulb"
 		end,
 	},
 

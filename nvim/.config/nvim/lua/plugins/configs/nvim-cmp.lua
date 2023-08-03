@@ -9,9 +9,10 @@ cmp.setup {
 			ls.lsp_expand(args.body)
 		end,
 	},
+
 	mapping = {
 		["<C-e>"] = map.close(),
-		["<CR>"] = map.confirm { select = true },
+		["<CR>"] = map.confirm { select = false },
 		["<C-k>"] = cmp.mapping.select_prev_item(),
 		["<C-j>"] = cmp.mapping.select_next_item(),
 
@@ -65,6 +66,9 @@ cmp.setup {
 	},
 
 	formatting = {
-		format = require("lspkind").cmp_format(),
+		format = require("lspkind").cmp_format {
+			mode = "text",
+			with_text = true,
+		},
 	},
 }

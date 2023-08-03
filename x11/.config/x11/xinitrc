@@ -15,10 +15,9 @@ xss-lock -n dim-screen -l -- slock loginctl suspend -i &
 batterynotif &
 mpd &
 dwmbar &
-picom &
+xbanish -i all &
 dunst &
 syncthing --no-browser &
-easyeffects --gapplication-service &
 gentoo-pipewire-launcher &
 
 # WM

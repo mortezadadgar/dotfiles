@@ -4,7 +4,9 @@ local lsp = vim.lsp
 require("neodev").setup()
 
 -- lsp capabilities
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = true
+vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
 -- custom attach
 local on_attach = function(client, bufnr)
@@ -49,8 +51,15 @@ local on_attach = function(client, bufnr)
 	lsp.handlers["textDocument/signatureHelp"] = lsp.with(lsp.handlers.signature_help, {
 		border = "single",
 	})
+
 	vim.diagnostic.config {
-		float = { border = "single" },
+		virtual_text = {
+			source = "if_many",
+		},
+		float = {
+			border = "single",
+		},
+		severity_sort = true,
 	}
 
 	-- enable lsp formatting
@@ -68,7 +77,7 @@ local on_attach = function(client, bufnr)
 		end,
 	})
 
-	if client.supports_method "textDocument/codeAction" then
+	if client.supports_method "textDocument/codeLens" then
 		vim.api.nvim_create_autocmd({ "CursorHold", "InsertLeave" }, {
 			pattern = "<buffer>",
 			callback = function()
@@ -147,5 +156,10 @@ require("mason-lspconfig").setup_handlers {
 			capabilities = capabilities,
 			settings = servers[server_name],
 		}
+		if server_name == "clangd" then
+			require("lspconfig").clangd.setup {
+				cmd = { "clangd", "--offset-encoding=utf-16" },
+			}
+		end
 	end,
 }

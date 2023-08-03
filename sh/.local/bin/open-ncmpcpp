@@ -1,6 +1,10 @@
 #!/bin/sh
 
-st \
-	-t ncmpcpp \
-	-g 75x15 \
-	-e ncmpcpp -q
+if pidof ncmpcpp 2>/dev/null; then
+	exit 1
+fi
+
+foot \
+	-T ncmpcpp \
+	-W 75x15 \
+	ncmpcpp -q

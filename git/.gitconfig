@@ -3,3 +3,8 @@
 	name = mortezadadgar
 [credential]
 	helper = cache --timeout=3600
+[sendemail]
+	smtpEncryption = tls
+	smtpServer = smtp.gmail.com
+	smtpUser = mortezadadgar97@gmail.com
+	smtpServerPort = 587
