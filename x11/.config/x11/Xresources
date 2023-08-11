@@ -51,8 +51,8 @@ dmenu.selbackground: _color4
 dmenu.selforeground: _color0
 
 /* nsxiv */
-Nsxiv.window.background: #000000
-Nsxiv.bar.background: _color5
+Nsxiv.window.background: #ffffff
+Nsxiv.bar.background: _color4
 Nsxiv.bar.foreground: _color0
 
 /* herbe */

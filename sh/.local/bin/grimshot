@@ -1,2 +1,2 @@
 #!/bin/sh
-grim -g "$(slurp)" - | wl-copy -t image/png
+grim - | wl-copy -t image/png

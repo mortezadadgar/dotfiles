@@ -22,28 +22,19 @@ require("lazy").setup {
 		end,
 	},
 
-	-- Completion engine
-	{
-		"hrsh7th/nvim-cmp",
-		config = function()
-			require "plugins.configs.nvim-cmp"
-		end,
-		dependencies = {
-			"hrsh7th/cmp-nvim-lsp",
-			"hrsh7th/cmp-buffer",
-			"hrsh7th/cmp-path",
-			"onsails/lspkind-nvim",
-			"saadparwaiz1/cmp_luasnip",
-		},
-	},
-
-	{
-		"echasnovski/mini.completion",
-		enabled = false,
-		config = function()
-			require "plugins.configs.mini-completions"
-		end,
-	},
+	-- -- Completion engine
+	-- {
+	-- 	"hrsh7th/nvim-cmp",
+	-- 	config = function()
+	-- 		require "plugins.configs.nvim-cmp"
+	-- 	end,
+	-- 	dependencies = {
+	-- 		"hrsh7th/cmp-nvim-lsp",
+	-- 		"hrsh7th/cmp-buffer",
+	-- 		"hrsh7th/cmp-path",
+	-- 		"dcampos/nvim-snippy",
+	-- 	},
+	-- },
 
 	-- Language server configs
 	{
@@ -57,7 +48,6 @@ require("lazy").setup {
 				event = "LspAttach",
 				opts = {},
 			},
-			-- { "hrsh7th/cmp-nvim-lsp" },
 			{ "folke/neodev.nvim", opts = {} },
 		},
 		config = function()
@@ -81,20 +71,9 @@ require("lazy").setup {
 
 	-- Snippets
 	{
-		"L3MON4D3/LuaSnip",
-		dependencies = {
-			"rafamadriz/friendly-snippets",
-		},
+		"dcampos/nvim-snippy",
 		config = function()
-			require "plugins.configs.luasnip"
-		end,
-	},
-
-	-- Statusline
-	{
-		"freddiehaddad/feline.nvim",
-		config = function()
-			require "plugins.configs.feline"
+			require "plugins.configs.nvim-snippy"
 		end,
 	},
 
@@ -148,27 +127,12 @@ require("lazy").setup {
 		end,
 	},
 
-	-- Auto close pairs
 	{
-		"echasnovski/mini.pairs",
-		config = function()
-			require "plugins.configs.mini-pairs"
+		"folke/which-key.nvim",
+		init = function()
+			vim.o.timeoutlen = 300
 		end,
-	},
-
-	-- File explorer
-	{
-		"echasnovski/mini.files",
-		config = function()
-			require "plugins.configs.mini-files"
-		end,
-	},
-
-	{
-		"kosayoda/nvim-lightbulb",
-		config = function()
-			require "plugins.configs.nvim-lightbulb"
-		end,
+		opts = {},
 	},
 
 	-- Split and join arguments

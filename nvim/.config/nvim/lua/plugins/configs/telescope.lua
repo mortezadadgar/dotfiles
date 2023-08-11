@@ -1,4 +1,7 @@
 local actions = require "telescope.actions"
+local builtin = require "telescope.builtin"
+local map = vim.keymap.set
+
 require("telescope").setup {
 	defaults = {
 		prompt_prefix = "  ",
@@ -15,3 +18,12 @@ require("telescope").setup {
 }
 
 require("telescope").load_extension "fzf"
+
+-- fuzzy finder
+map("n", "<Space><Space>", builtin.find_files, { desc = "Telescope: find files" })
+map("n", "<leader><leader>", builtin.resume, { desc = "Telescope: Resume" })
+map("n", "<Space>b", builtin.buffers, { desc = "Telescope: Buffers" })
+map("n", "<Space>k", builtin.keymaps, { desc = "Telescope: Keymaps" })
+map("n", "<Space>g", builtin.live_grep, { desc = "Telescope: Live grep" })
+map("n", "<Space>v", builtin.grep_string, { desc = "Telescope: Grep string" })
+map("n", "<Space>o", builtin.oldfiles, { desc = "Telescope: Old files" })

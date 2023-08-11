@@ -3,5 +3,4 @@
 # Shell: POSIX compliant
 # Dependencies: sxcs, xclip
 
-sxcs -o --hex | cut -f 2 | xclip -selection clipboard
-
+sxcs -qo --hex | cut -f 2 | xclip -selection clipboard

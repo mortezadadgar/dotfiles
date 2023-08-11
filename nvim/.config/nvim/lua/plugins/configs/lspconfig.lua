@@ -5,8 +5,7 @@ require("neodev").setup()
 
 -- lsp capabilities
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = true
-vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- custom attach
 local on_attach = function(client, bufnr)
@@ -62,13 +61,13 @@ local on_attach = function(client, bufnr)
 		severity_sort = true,
 	}
 
-	-- enable lsp formatting
 	client.server_capabilities.documentFormattingProvider = true
+	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
 	vim.api.nvim_create_autocmd("BufWritePre", {
 		pattern = "<buffer>",
 		callback = function()
-			local disabled_formatter = { "cssls", "html", "lua_ls" }
+			local disabled_formatter = { "cssls", "html", "lua_ls", "clangd" }
 			vim.lsp.buf.format {
 				filter = function(client_format)
 					return not vim.tbl_contains(disabled_formatter, client_format.name)
@@ -145,7 +144,15 @@ local servers = {
 }
 
 -- setup mason so it can manage external tooling
-require("mason").setup()
+require("mason").setup {
+	ui = {
+		icons = {
+			package_installed = "○",
+			package_pending = "●",
+			package_uninstalled = "●",
+		},
+	},
+}
 require("mason-lspconfig").setup()
 
 -- config installed lsp servers
@@ -158,7 +165,10 @@ require("mason-lspconfig").setup_handlers {
 		}
 		if server_name == "clangd" then
 			require("lspconfig").clangd.setup {
-				cmd = { "clangd", "--offset-encoding=utf-16" },
+				cmd = {
+					"clangd",
+					"--offset-encoding=utf-16",
+				},
 			}
 		end
 	end,

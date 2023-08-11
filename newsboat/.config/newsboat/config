@@ -1,4 +1,5 @@
 use-proxy yes
+browser "setsid $BROWSER %u 2>/dev/null &"
 proxy localhost:8118
 reload-threads 8
 show-keymap-hint no
@@ -20,9 +21,9 @@ bind-key N prev-unread
 bind-key a toggle-article-read
 
 color listnormal white default
-color listfocus blue black standout bold
+color listfocus green black standout
 color listnormal_unread blue black
-color listfocus_unread blue black standout bold
+color listfocus_unread black green bold
 color article white default bold
 color title blue black
 

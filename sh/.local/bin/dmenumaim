@@ -1,7 +1,8 @@
-#!/bin/sh
+#!/bin/bash
 # Description: dmenu script to take screenshots with maim
 # Dependencies: dmenu, maim
-# Shell: POSIX compliant
+# Shell: Bash
+set -o pipefail
 
 # Variables
 SCR_PATH="$HOME/Pictures/screenshots"
@@ -15,15 +16,19 @@ select=$(printf "selected area (copy)\nfull screen (copy)\nselected area\nfull s
 
 case $select in
 	"selected area")
-		maim -us "$SCR_FORMAT"
+		maim -us "$SCR_FORMAT" || exit
+		notify-send "Main" "Screenshot saved as $(basename "$SCR_FORMAT")"
 		;;
 	"full screen")
-		maim -u "$SCR_FORMAT"
+		maim -u "$SCR_FORMAT" || exit
+		notify-send "Main" "Screenshot saved as $(basename "$SCR_FORMAT")"
 		;;
 	"selected area (copy)")
-		maim -us | xclip -selection clipboard -t image/png
+		(maim -us | xclip -selection clipboard -t image/png) || exit
+		notify-send "Main" "Screenshot copied to clipboard"
 		;;
 	"full screen (copy)")
-		maim -u | xclip -selection clipboard -t image/png
+		(maim -u | xclip -selection clipboard -t image/png) || exit
+		notify-send "Main" "Screenshot copied to clibboard"
 		;;
 esac

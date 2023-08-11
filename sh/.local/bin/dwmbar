@@ -82,8 +82,8 @@ display() {
 	if [ "$is_laptop" = 1 ]; then
 		xsetroot -name "$mediainfo $vol  $wifi  $temp  $bat  $time"
 	else
-		# xsetroot -name "$mediainfo $vol  $temp  $time"
-		somebar -c status "$mediainfo $vol  $temp  $time"
+		xsetroot -name "$mediainfo $vol  $temp  $time"
+		# somebar -c status "$mediainfo $vol  $temp  $time"
 	fi
 }
 
@@ -99,6 +99,7 @@ do
 		[ $((sec % 9 )) -eq 0 ] && update_time
 		[ $((sec % 3 )) -eq 0 ] && update_temp
 		[ $((sec % 9 )) -eq 0 ] && update_vol
+		[ $((sec % 12 )) -eq 0 ] && update_mpd
 		if [ "$is_laptop" = 1 ]; then
 			[ $((sec % 12 )) -eq 0 ] && update_bat
 			[ $((sec % 3 )) -eq 0 ] && update_wifi

@@ -33,6 +33,6 @@ export LESS_TERMCAP_us=$'\e[01;32m'
 export LESS_TERMCAP_ue=$'\e[0m'
 
 if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
-	# exec startx
-	exec dbus-launch --exit-with-session dwl -s 'somebar <&-' 2>$HOME/dwl.log
+	exec startx
+	# exec dbus-launch --exit-with-session dwl -s 'somebar <&-' 2>$HOME/dwl.log
 fi

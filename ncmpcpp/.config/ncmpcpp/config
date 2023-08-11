@@ -2,6 +2,7 @@
 ncmpcpp_directory = "~/.config/ncmpcpp"
 lyrics_directory = "~/.local/share/lyrics"
 mpd_music_dir = "~/Music"
+lyrics_fetchers="justsomelyrics, tekstowo"
 
 # Appearance
 playlist_display_mode = "classic"
