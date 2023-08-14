@@ -1,3 +1,8 @@
 #!/bin/sh
+# Description: set default desktop wallpaper
+# Dependencies: xwallpaper
+# Shell: POSIX compliant
+set -eu
+
 xwallpaper --stretch "$1"
 cp -v "$1" ~/.local/share/bg.jpg

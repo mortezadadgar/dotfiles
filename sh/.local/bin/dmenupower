@@ -1,7 +1,8 @@
 #!/bin/sh
 # Description: A simple powermenu with dmenu
-# Dependencies: dmenu
+# Dependencies: dmenu, slock, elogind
 # Shell: POSIX compliant
+set -eu
 
 select=$(printf " Poweroff\n Restart\n󰍃 Logoff\n Lockscreen\n󰤄 Sleep"| dmenu -i)
 

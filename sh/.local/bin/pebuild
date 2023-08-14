@@ -1,2 +1,7 @@
 #!/bin/sh
-[ -n "$1" ] && equery -q which --ebuild "$1" | nvim
+# Description: open package ebuild in editor
+# Dependencies: xwallpaper
+# Shell: POSIX compliant
+set -eu
+
+[ -n "$1" ] && equery -q which --ebuild "$1" | tail -n +5 | "$EDITOR"

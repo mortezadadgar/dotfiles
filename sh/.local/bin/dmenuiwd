@@ -2,6 +2,7 @@
 # Description: manage network with iwctl
 # Dependencies: dmenu, iwd
 # Shell: POSIX compliant
+set -eu
 
 interface="wlan0"
 

@@ -5,13 +5,13 @@ local map = cmp.mapping
 cmp.setup {
 	snippet = {
 		expand = function(args)
-			require("snippy").expand_snippet(args.body)
+			require("luasnip").lsp_expand(args.body)
 		end,
 	},
 
 	mapping = {
 		["<C-e>"] = map.close(),
-		["<CR>"] = map.confirm { select = false },
+		["<CR>"] = map.confirm { select = true },
 		["<C-k>"] = cmp.mapping.select_prev_item(),
 		["<C-j>"] = cmp.mapping.select_next_item(),
 
@@ -35,15 +35,8 @@ cmp.setup {
 	sources = {
 		{ name = "nvim_lsp" },
 		{ name = "path" },
-		{ name = "snippy" },
-		{
-			name = "buffer",
-			option = {
-				get_bufnrs = function()
-					return vim.api.nvim_list_bufs()
-				end,
-			},
-		},
+		{ name = "luasnip", keyword_length = 2 },
+		{ name = "buffer", keyword_length = 3 },
 	},
 
 	sorting = {

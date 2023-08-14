@@ -1,0 +1,18 @@
+#!/bin/sh
+# Description: Extract files
+# Shell: POSIX compliant
+set -eu
+
+[ "$#" = 1 ] || exit
+[ -d "$1" ] && exit
+
+file=$1
+ext_dir="$(basename "${file%.*}")"
+mime_type="$(file -bL --mime-type "$file")"
+
+case "$mime_type" in
+	*/x-bzip2|*/gzip|*/xz) tar -xvaf -C "$ext_dir" "$file";;
+	*/zip) unzip "$file" -d "$ext_dir";;
+	*/x-rar) unrar x "$file";;
+	*) echo "Unsupported or invalid file type"
+esac

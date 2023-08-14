@@ -7,13 +7,16 @@ setxkbmap -option caps:escape
 setxkbmap -layout us,ir -option grp:alt_shift_toggle
 xinput set-prop "ELAN0501:00 04F3:3019 Touchpad" "libinput Tapping Enabled" 1
 xinput set-prop "ELAN0501:00 04F3:3019 Touchpad" "libinput Natural Scrolling Enabled" 1
-xwallpaper --stretch $XDG_DATA_HOME/bg.jpg
 
 # Autostart
+gensec &
+xbanish -i all &
 redshift -O 5500 &
+xwallpaper --stretch $XDG_DATA_HOME/bg.jpg &
 xss-lock -n dim-screen -l -- slock loginctl suspend -i &
 batterynotif &
-mpd &
+mpd
+pgrep mpd-notify || mpd-notify &
 dwmbar &
 dunst &
 syncthing --no-browser &

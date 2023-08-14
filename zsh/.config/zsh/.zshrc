@@ -1,7 +1,6 @@
 # Change prompt
 [[ $SSH_CONNECTION ]] && local uath='%F{green}%M%f '
 PROMPT=$'${uath}%F{blue}%B%(7~|...%5~|%~)%f%b $(git-info)\n%F{green}%B➜%b%f '
-precmd() { precmd() { print "" } }
 
 # Options
 setopt share_history hist_ignore_space hist_ignore_dups
@@ -21,15 +20,15 @@ SAVEHIST=100000
 # Completion
 zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
 zstyle ':completion:*:default' menu yes select
-fpath+=($ZDOTDIR/plugins/zsh-z)
+zstyle ':completion:*' rehash true
 autoload -U compinit; compinit
 zmodload zsh/complist
 
 # Ls colors
-export LS_COLORS=$(cat $XDG_CONFIG_HOME/zsh/.lscolors)
+export LS_COLORS="$(<$XDG_CONFIG_HOME/zsh/.lscolors)"
 
-# Auto rehash
-zstyle ':completion:*' rehash true
+# Z completion
+fpath+=($ZDOTDIR/plugins/zsh-z)
 
 # Fuzzy find history
 autoload up-line-or-beginning-search
@@ -38,9 +37,14 @@ zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
 bindkey "^[[A" up-line-or-beginning-search
 bindkey "^[[B" down-line-or-beginning-search
+bindkey "^K" up-line-or-beginning-search
+bindkey "^J" down-line-or-beginning-search
 
 # Allow backspace to remove newlines
 bindkey '^?' backward-delete-char
+
+# Remove entire words using C-W
+bindkey "^W" backward-kill-word
 
 # vi mode tab completion
 bindkey -M menuselect 'j' vi-down-line-or-history
@@ -51,6 +55,9 @@ bindkey -M menuselect 'l' vi-forward-char
 # vi mode
 bindkey -v
 KEYTIMEOUT=1
+
+# fzf
+source /usr/share/fzf/key-bindings.zsh
 
 # Git branch name
 function git-info() {
@@ -72,13 +79,16 @@ function zle-line-init() {
 zle -N zle-line-init
 
 # Yank to system clipboard
-function vi-yank-clip {
-	zle vi-yank
-	echo "$CUTBUFFER" | xclip -sel clip
+function vi-xclip {
+	case $KEYS in
+		y) zle vi-yank;;
+		d) zle vi-delete;;
+	esac
+	echo "$CUTBUFFER" | tr -d "\n" | xclip -sel clip
 }
-
-zle -N vi-yank-clip
-bindkey -M vicmd 'y' vi-yank-clip
+zle -N vi-xclip
+bindkey -M vicmd 'y' vi-xclip
+bindkey -M vicmd 'd' vi-xclip
 
 # Edit line in editor
 autoload edit-command-line; zle -N edit-command-line

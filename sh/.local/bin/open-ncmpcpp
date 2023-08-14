@@ -1,4 +1,8 @@
 #!/bin/sh
+# Description: open ncmpcpp window
+# Shell: POSIX compliant
+# Dependencies: st, ncmpcpp
+set -eu
 
 if pidof ncmpcpp 2>/dev/null; then
 	exit 1

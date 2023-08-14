@@ -1,0 +1,11 @@
+#!/bin/sh
+# Description: Nag cloudflare until we are up
+# Shell: POSIX compliant
+set -eu
+
+while ! ping -c1 1.1.1.1 >/dev/null 2>&1;
+do
+	sleep 1
+done
+
+echo "We are back!"

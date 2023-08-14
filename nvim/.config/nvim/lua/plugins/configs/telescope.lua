@@ -1,12 +1,25 @@
 local actions = require "telescope.actions"
 local builtin = require "telescope.builtin"
-local map = vim.keymap.set
 
 require("telescope").setup {
 	defaults = {
 		prompt_prefix = "  ",
 		borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
 		file_ignore_patterns = { "%.svg", "%.jpg", "%.png", "node_modules" },
+		color_devicons = false,
+		vimgrep_arguments = {
+			"grep",
+			"--color=never",
+			"--with-filename",
+			"--line-number",
+			"-b",
+			"--ignore-case",
+			"--recursive",
+			"--no-messages",
+			"--exclude-dir=*.git",
+			"--exclude-dir=node_modules",
+			"--binary-files=without-match",
+		},
 		mappings = {
 			i = {
 				["<Esc>"] = actions.close,
@@ -19,11 +32,11 @@ require("telescope").setup {
 
 require("telescope").load_extension "fzf"
 
--- fuzzy finder
-map("n", "<Space><Space>", builtin.find_files, { desc = "Telescope: find files" })
-map("n", "<leader><leader>", builtin.resume, { desc = "Telescope: Resume" })
-map("n", "<Space>b", builtin.buffers, { desc = "Telescope: Buffers" })
-map("n", "<Space>k", builtin.keymaps, { desc = "Telescope: Keymaps" })
-map("n", "<Space>g", builtin.live_grep, { desc = "Telescope: Live grep" })
-map("n", "<Space>v", builtin.grep_string, { desc = "Telescope: Grep string" })
-map("n", "<Space>o", builtin.oldfiles, { desc = "Telescope: Old files" })
+vim.keymap.set("n", "<Space><Space>", builtin.find_files, { desc = "Telescope: find files" })
+vim.keymap.set("n", "<leader><leader>", builtin.resume, { desc = "Telescope: Resume" })
+vim.keymap.set("n", "<Space>b", builtin.buffers, { desc = "Telescope: Buffers" })
+vim.keymap.set("n", "<Space>k", builtin.keymaps, { desc = "Telescope: Keymaps" })
+vim.keymap.set("n", "<Space>g", builtin.live_grep, { desc = "Telescope: Live grep" })
+vim.keymap.set("n", "<Space>v", builtin.grep_string, { desc = "Telescope: Grep string" })
+vim.keymap.set("n", "<Space>o", builtin.oldfiles, { desc = "Telescope: Old files" })
+vim.keymap.set("n", "<Space>p", builtin.git_files, { desc = "Telescope: Git files" })

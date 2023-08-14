@@ -2,6 +2,7 @@
 # Description: An rsync alias to sync same folder on src and dest
 # Shell: POSIX compliant
 # Dependencies: rsync
+set -eu
 
 usage() {
 	echo "Usage: sync-files [folder] [destination]"

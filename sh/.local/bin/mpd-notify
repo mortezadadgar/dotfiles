@@ -1,0 +1,36 @@
+#!/bin/sh
+# Description: display notificatinos on mpd event with album cover
+# Dependencies: ffmpeg, mpd, mpc
+# Shell: POSIX compliant
+set -eu
+
+exec 2>/dev/null
+
+if ! pgrep mpd$ > /dev/null; then
+	echo "no mpd process"
+	exit 1
+fi
+
+cover="/tmp/mpd_cover.png"
+music_library="$HOME/Music"
+
+trap 'rm "$cover"' TERM INT HUP EXIT
+
+while true;
+do
+	mpc idle player > /dev/null
+
+	# update statusbar
+	kill -RTMIN+1 "$(cat ~/.cache/pidofbar)"
+
+	if ! mpc | grep "playing" > /dev/null; then
+		continue
+	fi
+
+	if ! ffmpeg -y -i "$(mpc --format "$music_library"/%file% | head -n 1)" "$cover"; then
+		notify-send -i apple-music "Now Playing" "$(mpc current)"
+		continue
+	fi
+
+	notify-send -i "$cover" "Now Playing" "$(mpc current)"
+done

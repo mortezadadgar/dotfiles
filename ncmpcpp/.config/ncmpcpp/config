@@ -23,8 +23,6 @@ player_state_color = blue
 statusbar_time_color = green:b
 
 # Misc
-execute_on_song_change = notify-send -i deepin-music "Now Playing" "$(mpc current)"
-execute_on_player_state_change = /bin/sh -c 'kill -RTMIN+1 "$(cat ~/.cache/pidofbar)"'
 message_delay_time = "2"
 enable_window_title = yes
 song_window_title_format = "ncmpcpp: {{%a %t}|{%f}}"

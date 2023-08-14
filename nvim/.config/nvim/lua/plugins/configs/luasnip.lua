@@ -1,18 +1,14 @@
 local ls = require "luasnip"
-local map = vim.keymap.set
 
 ls.config.set_config {
-	history = false,
+	history = true,
 	delete_check_events = "TextChanged",
 }
 
-map({ "i" }, "<C-K>", function()
-	ls.expand()
-end, { silent = true })
-map({ "i", "s" }, "<C-L>", function()
+vim.keymap.set({ "i", "s" }, "<C-l>", function()
 	ls.jump(1)
 end, { silent = true })
-map({ "i", "s" }, "<C-J>", function()
+vim.keymap.set({ "i", "s" }, "<C-h>", function()
 	ls.jump(-1)
 end, { silent = true })
 

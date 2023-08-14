@@ -1,4 +1,8 @@
 #!/bin/sh
+# Description: rebuild all gentoo packages
+# Shell: POSIX compliant
+set -eu
+
 exclude_pkg="
 	dev-python/*
 	app-alternatives/*

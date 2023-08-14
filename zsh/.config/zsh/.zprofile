@@ -21,8 +21,6 @@ export ZSHZ_DATA="$XDG_DATA_HOME/z"
 
 # Other programs
 export LESS="-x4Rg"
-# export XDG_CURRENT_DESKTOP="dwl"
-export BEMENU_OPTS="--fn JetBrainsMono Nerd Font 11px --tb #61afef --tf #282c34 --fb #282c34 --ff #c0c0c0 --nb #282c34 --nf #c0c0c0 --hb #61afef --hf #282c34 --ab=#282c34 --af=#c0c0c0 --hp 10px --cw 1px"
 
 # man page highlighting
 export LESS_TERMCAP_md=$'\e[01;34m'

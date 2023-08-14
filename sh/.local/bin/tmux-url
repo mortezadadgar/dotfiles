@@ -1,0 +1,7 @@
+#!/bin/sh
+regex="(http(s)?://|www\.)[^] \)<\"\']+"
+urls=$(tmux capture-pane -J -p | grep -oE "$regex" | sort -u)
+[ -z "$urls" ] && exit
+url=$(echo "$urls" | dmenu -l 10 -w "$WINDOWID")
+[ -z "$url" ] && exit
+${BROWSER:-firefox} "$url" &

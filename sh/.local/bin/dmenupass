@@ -2,6 +2,7 @@
 # Description: dmenu "pass" manager
 # Dependencies: pass
 # Shell: POSIX compliant
+set -eu
 
 # Variables
 pass_store="$HOME/.password-store"

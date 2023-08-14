@@ -18,23 +18,23 @@ require("lazy").setup {
 		"mortezadadgar/onedark-nvim",
 		priority = 1000,
 		config = function()
-			vim.cmd.colorscheme "onedark-nvim"
+			vim.cmd.colorscheme "onedark.nvim"
 		end,
 	},
 
-	-- -- Completion engine
-	-- {
-	-- 	"hrsh7th/nvim-cmp",
-	-- 	config = function()
-	-- 		require "plugins.configs.nvim-cmp"
-	-- 	end,
-	-- 	dependencies = {
-	-- 		"hrsh7th/cmp-nvim-lsp",
-	-- 		"hrsh7th/cmp-buffer",
-	-- 		"hrsh7th/cmp-path",
-	-- 		"dcampos/nvim-snippy",
-	-- 	},
-	-- },
+	-- Completion engine
+	{
+		"hrsh7th/nvim-cmp",
+		config = function()
+			require "plugins.configs.nvim-cmp"
+		end,
+		dependencies = {
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-path",
+			"saadparwaiz1/cmp_luasnip",
+		},
+	},
 
 	-- Language server configs
 	{
@@ -42,12 +42,6 @@ require("lazy").setup {
 		dependencies = {
 			{ "williamboman/mason-lspconfig.nvim" },
 			{ "williamboman/mason.nvim" },
-			{
-				"j-hui/fidget.nvim",
-				tag = "legacy",
-				event = "LspAttach",
-				opts = {},
-			},
 			{ "folke/neodev.nvim", opts = {} },
 		},
 		config = function()
@@ -71,15 +65,18 @@ require("lazy").setup {
 
 	-- Snippets
 	{
-		"dcampos/nvim-snippy",
+		"L3MON4D3/LuaSnip",
+		dependencies = {
+			"rafamadriz/friendly-snippets",
+		},
 		config = function()
-			require "plugins.configs.nvim-snippy"
+			require "plugins.configs.luasnip"
 		end,
 	},
 
 	-- Colorizer
 	{
-		"norcalli/nvim-colorizer.lua",
+		"NvChad/nvim-colorizer.lua",
 		config = function()
 			require("colorizer").setup {
 				css = { css = true },
@@ -127,10 +124,11 @@ require("lazy").setup {
 		end,
 	},
 
+	-- Which key
 	{
 		"folke/which-key.nvim",
 		init = function()
-			vim.o.timeoutlen = 300
+			vim.o.timeoutlen = 500
 		end,
 		opts = {},
 	},
@@ -138,6 +136,8 @@ require("lazy").setup {
 	-- Split and join arguments
 	{ "echasnovski/mini.splitjoin", opts = {} },
 
-	-- Undotree
-	{ "mbbill/undotree" },
+	-- Smooth scrolling
+	{ "karb94/neoscroll.nvim", opts = {} },
+
+	{ "ThePrimeagen/vim-be-good" },
 }

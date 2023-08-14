@@ -1,2 +1,7 @@
 #!/bin/sh
+# Description: list files with giving name
+# Dependencies: find
+# Shell: POSIX compliant
+set -eu
+
 find . -type f -iname "*$1*"

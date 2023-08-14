@@ -1,10 +1,7 @@
-#!/bin/sh
-
 # utilities
 alias grep='grep --color'
 alias diff='diff --color'
 alias ip="ip -color"
-alias ping='ping'
 alias cp='cp -v'
 alias mv='mv -v'
 alias mkdir='mkdir -p'
@@ -14,41 +11,12 @@ alias vi='nvim'
 alias src='exec zsh'
 alias svi='sudoedit'
 alias sudo='sudo -v; sudo '
-alias iclip='xclip -target image/png -selection clipboard'
-alias fclip='xclip -selection clipboard'
+alias xclip='xclip -selection clipboard'
 alias eshowkw='eshowkw -a amd64'
-alias sxiv="nsxiv"
-alias wget="wget --continue --content-disposition"
+alias wget="wget -c --content-disposition"
+alias grep="grep --color"
+alias gr="grep -rn --color --binary-files=without-match"
 
 # syslog
 alias log='less +G /var/log/syslog'
 alias logtail='tail -fn 5 /var/log/syslog'
-
-# git
-alias g='git'
-alias grh='git reset'
-alias grhh='git reset --hard'
-alias grm='git rm'
-alias gg='git grep'
-alias glg='git log --no-merges'
-alias gcp='git cherry-pick'
-alias gcps='git cherry-pick --skip'
-alias gcpa='git cherry-pick --abort'
-alias gcpc='git cherry-pick --continue'
-alias gca='git commit --amend -s'
-alias gc='git commit'
-alias gst='git status'
-alias grbi='git rebase -i'
-alias grba='git rebase --abort'
-alias grbc='git rebase --continue'
-alias grhh='git reset --hard'
-alias gp='git push'
-alias gpf='git push --force'
-alias ga='git add'
-alias gaa='git add --all'
-alias glg='git log --stat'
-alias glog='git log --oneline --decorate --graph'
-alias grev='git revert'
-alias gco='git checkout'
-alias gf='git fetch'
-alias gcl='git clone'

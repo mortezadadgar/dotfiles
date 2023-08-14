@@ -1,6 +1,7 @@
 #!/bin/zsh
 # lowers screen brightness, then waits to be killed
 # and restores previous brightness on exit.
+set -eu
 
 if ! command -v light 2>/dev/null; then
 	exit 1

@@ -1,4 +1,7 @@
 #!/bin/sh
+# Description: check gentoo system for vulnerabilities
+# Dependencies: glsa-check
+# Shell: POSIX compliant
 
 if ! command -v glsa-check > /dev/null; then
 	notify-send "Gentoo Security" "glsa-check is not installed"

@@ -2,7 +2,7 @@
 # Description: safely edit non-regular user files
 # Dependencies: doas
 # Shell: POSIX compliant
-set -e
+set -eu
 
 # checks
 [ "$#" = 1 ] || exit

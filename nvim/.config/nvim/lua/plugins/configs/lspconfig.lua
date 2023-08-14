@@ -4,8 +4,7 @@ local lsp = vim.lsp
 require("neodev").setup()
 
 -- lsp capabilities
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 -- custom attach
 local on_attach = function(client, bufnr)
@@ -61,8 +60,7 @@ local on_attach = function(client, bufnr)
 		severity_sort = true,
 	}
 
-	client.server_capabilities.documentFormattingProvider = true
-	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+	-- vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
 	vim.api.nvim_create_autocmd("BufWritePre", {
 		pattern = "<buffer>",
@@ -96,15 +94,6 @@ local stylua = {
 	formatStdin = true,
 }
 
-local shellcheck = {
-	lintCommand = "shellcheck -f gcc -x -",
-	lintFormats = {
-		"%f:%l:%c: %trror: %m",
-		"%f:%l:%c: %tarning: %m",
-		"%f:%l:%c: %tote: %m",
-	},
-}
-
 local servers = {
 	gopls = {
 		gopls = {
@@ -135,7 +124,6 @@ local servers = {
 	},
 	efm = {
 		languages = {
-			sh = { shellcheck },
 			html = { prettierd },
 			css = { prettierd },
 			lua = { stylua },
@@ -158,13 +146,26 @@ require("mason-lspconfig").setup()
 -- config installed lsp servers
 require("mason-lspconfig").setup_handlers {
 	function(server_name)
+		if server_name == "efm" or server_name == "clangd" then
+			goto continue
+		end
 		require("lspconfig")[server_name].setup {
 			on_attach = on_attach,
 			capabilities = capabilities,
 			settings = servers[server_name],
 		}
+		::continue::
+		if server_name == "efm" then
+			require("lspconfig").efm.setup {
+				init_options = { documentFormatting = true },
+				filetypes = { "html", "css", "lua", "sh" },
+				settings = servers.efm,
+			}
+		end
 		if server_name == "clangd" then
 			require("lspconfig").clangd.setup {
+				on_attach = on_attach,
+				capabilities = capabilities,
 				cmd = {
 					"clangd",
 					"--offset-encoding=utf-16",

@@ -2,5 +2,6 @@
 # Description: simple color picker
 # Shell: POSIX compliant
 # Dependencies: sxcs, xclip
+set -eu
 
-sxcs -qo --hex | cut -f 2 | xclip -selection clipboard
+sxcs -q -o --hex | cut -f 2 | xclip -selection clipboard

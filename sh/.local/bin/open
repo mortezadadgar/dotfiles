@@ -1,6 +1,7 @@
 #!/bin/sh
 # Description: Open files based on their mime
 # Shell: POSIX compliant
+set -eu
 
 [ "$#" = 1 ] || exit 1
 
@@ -11,12 +12,13 @@ list_images() {
 		grep -iE '\.(png|jpe?g|webp|gif|svg|bmp|ico)$'
 }
 
-mimetype="$(file -bL --mime-type "$1")"
+mime_type="$(file -bL --mime-type "$1")"
 # shellcheck disable=SC2046
-case "$mimetype" in
+case "$mime_type" in
 	video/*) mpv "$1" &;;
 	audio/*) mpv "$1" &;;
 	text/html) firefox "$1" &;;
 	image/*) nsxiv "$1" $(list_images "$1") &;;
 	*/pdf) zathura "$1" &;;
+	*) echo "Unsupported or invalid file type"
 esac
