@@ -17,11 +17,20 @@ vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increa
 -- Map C-c to Esc
 vim.keymap.set("i", "<C-c>", "<Esc>")
 
--- dont override clipboard on paste
-vim.keymap.set("x", "<Space>p", [["_dP]])
-
 -- Spell checker
 vim.keymap.set("n", "<Space>s", ":setlocal spell!<CR>", { desc = "Spell Checker" })
 
 -- netrw
 vim.keymap.set("n", "<Space>fm", ":Ex<CR>", { desc = "Netrw file explorer" })
+
+-- traverse quicklist
+vim.keymap.set("n", "<C-p>", ":cprevious<CR>", { desc = "Previous quicklist item" })
+vim.keymap.set("n", "<C-n>", ":cnext<CR>", { desc = "Next quicklist item" })
+
+-- cd to current buffer directory
+vim.keymap.set(
+	"n",
+	"<leader>cd",
+	"':cd ' . expand('%:p:h')",
+	{ expr = true, desc = "Prompt to change directory to current buffer" }
+)

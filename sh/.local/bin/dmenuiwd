@@ -1,5 +1,5 @@
 #!/bin/sh
-# Description: manage network with iwctl
+# Description: Manage wirless connections with iwctl
 # Dependencies: dmenu, iwd
 # Shell: POSIX compliant
 set -eu

@@ -108,22 +108,6 @@ require("lazy").setup {
 		end,
 	},
 
-	-- Surrounding
-	{
-		"echasnovski/mini.surround",
-		config = function()
-			require "plugins.configs.mini-surround"
-		end,
-	},
-
-	-- Comment lines
-	{
-		"echasnovski/mini.comment",
-		config = function()
-			require "plugins.configs.mini-comment"
-		end,
-	},
-
 	-- Which key
 	{
 		"folke/which-key.nvim",
@@ -134,10 +118,24 @@ require("lazy").setup {
 	},
 
 	-- Split and join arguments
-	{ "echasnovski/mini.splitjoin", opts = {} },
+	{
+		"Wansmer/treesj",
+		config = function()
+			require "plugins.configs.treesj"
+		end,
+	},
+
+	-- Comment lines
+	{
+		"numToStr/Comment.nvim",
+		config = function()
+			require "plugins.configs.comment-nvim"
+		end,
+	},
 
 	-- Smooth scrolling
 	{ "karb94/neoscroll.nvim", opts = {} },
 
-	{ "ThePrimeagen/vim-be-good" },
+	-- Surrounding
+	{ "kylechui/nvim-surround", opts = {} },
 }

@@ -1,4 +1,4 @@
-# general settings
+# general
 set selection-clipboard clipboard
 set adjust-open width
 set scroll-step 60
@@ -6,6 +6,10 @@ set page-padding 5
 set window-title-basename true
 set statusbar-basename true
 set highlight-transparency  0.3
+
+# maps
+map d scroll down
+map u scroll up
 
 # balck and white theme
 set completion-bg           "#FFFFFF"

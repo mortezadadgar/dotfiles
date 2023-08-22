@@ -4,4 +4,4 @@
 # Shell: POSIX compliant
 set -eu
 
-[ -n "$1" ] && equery -q which --ebuild "$1" | tail -n +5 | "$EDITOR"
+[ -n "$1" ] && equery -q which --ebuild "$1" | "$EDITOR"

@@ -1,4 +1,11 @@
 #!/bin/sh
+# Description: Open tmux scrollback URLs using dmenu
+# Dependencies: dmenu, tmux
+# Shell: POSIX compliant
+# Note: tmux likes to print exit status code in dmenu cancellation 
+# so set -e should not be used here.
+set -u
+
 regex="(http(s)?://|www\.)[^] \)<\"\']+"
 urls=$(tmux capture-pane -J -p | grep -oE "$regex" | sort -u)
 [ -z "$urls" ] && exit

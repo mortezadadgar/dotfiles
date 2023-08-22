@@ -4,7 +4,7 @@
     idle_threshold = 45
     format = "<b><span foreground='#61AFEF'>%s</span></b>\n%b"
     stack_duplicates = no
-	width = 300
+	width = 305
 	height = 150
 	origin = bottom-right
 	offset = 15x25
@@ -14,7 +14,7 @@
     separator_height = 1
     padding = 8
     horizontal_padding = 8
-    separator_color = "#3E4451"
+    separator_color = "#282c34"
     show_indicators = no
     icon_position = left
 	enable_recursive_icon_lookup = true

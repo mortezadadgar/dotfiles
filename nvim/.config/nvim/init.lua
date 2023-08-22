@@ -1,5 +1,5 @@
 require "options"
+require "statusline"
 require "plugins"
 require "mappings"
 require "autocmd"
-require "statusline"

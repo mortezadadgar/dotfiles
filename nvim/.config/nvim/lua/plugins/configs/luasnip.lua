@@ -3,6 +3,7 @@ local ls = require "luasnip"
 ls.config.set_config {
 	history = true,
 	delete_check_events = "TextChanged",
+	region_check_events = "InsertEnter",
 }
 
 vim.keymap.set({ "i", "s" }, "<C-l>", function()

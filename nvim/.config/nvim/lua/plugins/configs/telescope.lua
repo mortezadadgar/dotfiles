@@ -7,19 +7,6 @@ require("telescope").setup {
 		borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
 		file_ignore_patterns = { "%.svg", "%.jpg", "%.png", "node_modules" },
 		color_devicons = false,
-		vimgrep_arguments = {
-			"grep",
-			"--color=never",
-			"--with-filename",
-			"--line-number",
-			"-b",
-			"--ignore-case",
-			"--recursive",
-			"--no-messages",
-			"--exclude-dir=*.git",
-			"--exclude-dir=node_modules",
-			"--binary-files=without-match",
-		},
 		mappings = {
 			i = {
 				["<Esc>"] = actions.close,

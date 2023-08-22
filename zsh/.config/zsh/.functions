@@ -1,0 +1,14 @@
+# List current non-hidden folders by size
+dsize() {
+	du -sh *(/^D) | sort -h
+}
+
+# List current files by size
+fsize() {
+	du -sh *(.) | sort -h
+}
+
+# Quickly find files with giving name
+ffile() {
+	find . -type f -iname "*$1*"
+}
