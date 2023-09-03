@@ -11,6 +11,7 @@ state
 # zsh
 **/zsh/.zcompdump
 **/zsh/.zcalc_history
+**/zsh/hashed
 
 # nvim
 **/nvim/lazy-lock.json

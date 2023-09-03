@@ -44,7 +44,7 @@ require("lazy").setup {
 		config = function()
 			require("nvim-treesitter.configs").setup {
 				ensure_installed = {
-					"python",
+					"c",
 				},
 
 				-- auto_install = true,

@@ -21,6 +21,8 @@ export ZSHZ_DATA="$XDG_DATA_HOME/z"
 
 # Other programs
 export LESS="-x4Rg"
+export LS_COLORS="$(<$XDG_CONFIG_HOME/zsh/lscolors)"
+export BEMENU_OPTS="--fn JetBrainsMono Nerd Font 11px --tb #61afef --tf #282c34 --fb #282c34 --ff #c0c0c0 --nb #282c34 --nf #c0c0c0 --hb #61afef --hf #282c34 --ab=#282c34 --af=#c0c0c0 --hp 10px --cw 1px"
 
 # man page highlighting
 export LESS_TERMCAP_md=$'\e[01;34m'
@@ -30,6 +32,10 @@ export LESS_TERMCAP_se=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[01;32m'
 export LESS_TERMCAP_ue=$'\e[0m'
 
+ulimit -c unlimited
+
 if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
-	exec startx
+	# exec startx
+	# exec dbus-launch --exit-with-session dwl -s '$XDG_CONFIG_HOME/dwl/autostart.sh' 2>$HOME/dwl.log
+	exec dbus-daemon --session --address=unix:path=/run/user/1000/bus dwl -s '$XDG_CONFIG_HOME/dwl/autostart.sh' 2>$HOME/dwl.log
 fi

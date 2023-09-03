@@ -9,24 +9,32 @@ setopt globstarshort globdots complete_in_word extendedglob
 setopt interactive_comments
 setopt noflowcontrol
 setopt prompt_subst
-setopt cd_silent
+setopt auto_pushd pushd_ignore_dups cd_silent cdable_vars
 
 # History
 HISTFILE="$HOME/.zhistory"
 HISTSIZE=100000
 SAVEHIST=100000
 
-# Ls colors
-export LS_COLORS="$(<$XDG_CONFIG_HOME/zsh/.lscolors)"
+# time format
+TIMEFMT=$'user\t%U\nsystem\t%S\ncpu\t%P\ntotal\t%*E'
+
+# report time
+REPORTTIME="180"
+
+# Z completion
+fpath+=($ZDOTDIR/plugins/zsh-z)
 
 # Completion
 zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
 zstyle ":completion:*:default" list-colors ${(s.:.)LS_COLORS} "ma=48;5;12;38;5;0"
 zstyle ':completion:*:default' menu yes select
 zstyle ':completion:*' rehash true
-fpath+=($ZDOTDIR/plugins/zsh-z) # source before compinit
 autoload -U compinit; compinit
 zmodload zsh/complist
+
+# only list files for open command
+compdef _files open
 
 # Rebind TAB to make it work with globbing expansion
 bindkey $'\t' complete-word
@@ -40,8 +48,6 @@ zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
 bindkey "^[[A" up-line-or-beginning-search
 bindkey "^[[B" down-line-or-beginning-search
-bindkey "^K" up-line-or-beginning-search
-bindkey "^J" down-line-or-beginning-search
 
 # Allow backspace to remove newlines
 bindkey '^?' backward-delete-char
@@ -51,9 +57,6 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'l' vi-forward-char
-
-# get previous argument
-bindkey -M viins '^O' copy-prev-shell-word
 
 # vi mode
 bindkey -v
@@ -80,24 +83,25 @@ function zle-line-init() {
 zle -N zle-line-init
 
 # Support system clipboard
-function vi-xclip {
+function vi-clip {
 	case $KEYS in
 		y) zle vi-yank;;
 		d) zle vi-delete;;
 	esac
-	echo "$CUTBUFFER" | xclip -r -sel clip
+	echo "$CUTBUFFER" | wl-copy -n
 }
-zle -N vi-xclip
-bindkey -M vicmd 'y' vi-xclip
-bindkey -M vicmd 'd' vi-xclip
+zle -N vi-clip
+bindkey -M vicmd 'y' vi-clip
+bindkey -M vicmd 'd' vi-clip
 
 # Edit line in editor
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^E' edit-command-line
 
 # Other config files
-. $ZDOTDIR/.aliasrc
-. $ZDOTDIR/.functions
+. $ZDOTDIR/aliasrc
+. $ZDOTDIR/functions
+. $ZDOTDIR/hashed
 
 # zsh-autosuggestions
 ZSH_AUTOSUGGEST_MANUAL_REBIND=1

@@ -12,8 +12,6 @@ cmp.setup {
 	mapping = {
 		["<C-e>"] = map.close(),
 		["<CR>"] = map.confirm { select = true },
-		["<C-k>"] = cmp.mapping.select_prev_item(),
-		["<C-j>"] = cmp.mapping.select_next_item(),
 
 		["<Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
@@ -21,7 +19,7 @@ cmp.setup {
 			else
 				fallback()
 			end
-		end, { "i", "s" }),
+		end),
 
 		["<S-Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
@@ -29,7 +27,7 @@ cmp.setup {
 			else
 				fallback()
 			end
-		end, { "i", "s" }),
+		end),
 	},
 
 	sources = {
@@ -39,17 +37,10 @@ cmp.setup {
 		{ name = "buffer", keyword_length = 3 },
 	},
 
-	sorting = {
-		comparators = {
-			-- compare.sort_text,
-			compare.offset,
-			compare.exact,
-			compare.score,
-			-- compare.recently_used,
-			-- compare.locality,
-			compare.kind,
-			compare.length,
-			compare.order,
-		},
+	formatting = {
+		format = function(_, vim_item)
+			vim_item.abbr = string.sub(vim_item.abbr, 1, 45)
+			return vim_item
+		end,
 	},
 }

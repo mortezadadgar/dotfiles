@@ -8,3 +8,5 @@
 	smtpServer = smtp.gmail.com
 	smtpUser = mortezadadgar97@gmail.com
 	smtpServerPort = 587
+[http]
+	proxy = http://localhost:1091

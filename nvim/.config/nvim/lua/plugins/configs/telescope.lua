@@ -6,7 +6,6 @@ require("telescope").setup {
 		prompt_prefix = "  ",
 		borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
 		file_ignore_patterns = { "%.svg", "%.jpg", "%.png", "node_modules" },
-		color_devicons = false,
 		mappings = {
 			i = {
 				["<Esc>"] = actions.close,
@@ -26,4 +25,4 @@ vim.keymap.set("n", "<Space>k", builtin.keymaps, { desc = "Telescope: Keymaps" }
 vim.keymap.set("n", "<Space>g", builtin.live_grep, { desc = "Telescope: Live grep" })
 vim.keymap.set("n", "<Space>v", builtin.grep_string, { desc = "Telescope: Grep string" })
 vim.keymap.set("n", "<Space>o", builtin.oldfiles, { desc = "Telescope: Old files" })
-vim.keymap.set("n", "<Space>p", builtin.git_files, { desc = "Telescope: Git files" })
+-- vim.keymap.set("n", "<Space>p", builtin.git_files, { desc = "Telescope: Git files" })

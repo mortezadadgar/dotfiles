@@ -1,3 +1,20 @@
+local template = {
+	sources = {
+		vscode = {
+			"./friendly-snippets/snippets/",
+		},
+	},
+	output = {
+		snipmate = {
+			vim.fn.stdpath "data" .. "/site/snippets",
+		},
+	},
+}
+
+require("snippet_converter").setup {
+	templates = { template },
+}
+
 local snippy = require "snippy"
 
 vim.api.nvim_create_autocmd("CompleteDone", {

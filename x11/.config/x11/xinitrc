@@ -10,14 +10,14 @@ xinput set-prop "ELAN0501:00 04F3:3019 Touchpad" "libinput Natural Scrolling Ena
 
 # Autostart
 gensec &
-xbanish -i all &
+xbanish -i all -t 15 &
 redshift -O 5500 &
 xwallpaper --stretch $XDG_DATA_HOME/bg.jpg &
 xss-lock -n dim-screen -l -- slock loginctl suspend -i &
 batterynotif &
 mpd
 pgrep mpd-notify || mpd-notify &
-dwmbar &
+pgrep dwmbar || dwmbar &
 dunst &
 syncthing --no-browser &
 gentoo-pipewire-launcher &

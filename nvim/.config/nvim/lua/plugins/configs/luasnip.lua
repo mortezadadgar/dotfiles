@@ -1,10 +1,8 @@
 local ls = require "luasnip"
 
-ls.config.set_config {
-	history = true,
-	delete_check_events = "TextChanged",
-	region_check_events = "InsertEnter",
-}
+-- ls.config.set_config {
+-- 	delete_check_events = "TextChanged",
+-- }
 
 vim.keymap.set({ "i", "s" }, "<C-l>", function()
 	ls.jump(1)

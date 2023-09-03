@@ -88,7 +88,8 @@ display() {
 	if [ "$is_laptop" = 1 ]; then
 		xsetroot -name "${mediainfo:-} $vol  $wifi  $temp  $bat  $time"
 	else
-		xsetroot -name "${mediainfo:-} $vol  $temp  $time"
+		# xsetroot -name "${mediainfo:-} $vol  $temp  $time"
+		somebar -c status "${mediainfo:-} $vol  $temp  $time"
 	fi
 }
 

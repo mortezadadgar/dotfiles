@@ -1,10 +1,7 @@
 local lsp = vim.lsp
 
--- start neodev first
-require("neodev").setup()
-
--- lsp capabilities
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+-- capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- custom attach
 local on_attach = function(client, bufnr)
@@ -12,7 +9,6 @@ local on_attach = function(client, bufnr)
 		if desc then
 			desc = "LSP: " .. desc
 		end
-
 		vim.keymap.set(mode, keys, func, { buffer = bufnr, desc = desc })
 	end
 
@@ -57,8 +53,6 @@ local on_attach = function(client, bufnr)
 		},
 		severity_sort = true,
 	}
-
-	-- vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
 	vim.api.nvim_create_autocmd("BufWritePre", {
 		pattern = "<buffer>",
@@ -156,7 +150,7 @@ require("mason-lspconfig").setup_handlers {
 		if server_name == "efm" then
 			require("lspconfig").efm.setup {
 				init_options = { documentFormatting = true },
-				filetypes = { "html", "css", "lua", "sh" },
+				filetypes = { "html", "css", "lua" },
 				settings = servers.efm,
 			}
 		end

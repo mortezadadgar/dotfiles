@@ -25,6 +25,7 @@ require("lazy").setup {
 	-- Completion engine
 	{
 		"hrsh7th/nvim-cmp",
+		enabled = false,
 		config = function()
 			require "plugins.configs.nvim-cmp"
 		end,
@@ -42,7 +43,6 @@ require("lazy").setup {
 		dependencies = {
 			{ "williamboman/mason-lspconfig.nvim" },
 			{ "williamboman/mason.nvim" },
-			{ "folke/neodev.nvim", opts = {} },
 		},
 		config = function()
 			require "plugins.configs.lspconfig"
@@ -52,20 +52,34 @@ require("lazy").setup {
 	-- Better syntax highlighting
 	{
 		"nvim-treesitter/nvim-treesitter",
+		build = ":TSUpdate",
 		dependencies = {
 			{ "nvim-treesitter/nvim-treesitter-textobjects" },
 			{ "JoosepAlviste/nvim-ts-context-commentstring" },
-			{ "nvim-treesitter/nvim-treesitter-context", opts = {} },
+			{ "nvim-treesitter/nvim-treesitter-context", opts = { max_lines = 2 } },
 		},
 		config = function()
 			require "plugins.configs.treesitter"
 		end,
-		build = ":TSUpdate",
+	},
+
+	{
+		"dcampos/nvim-snippy",
+		enabled = false,
+		dependencies = {
+			"smjonas/snippet-converter.nvim",
+			"rafamadriz/friendly-snippets",
+		},
+		config = function()
+			require "plugins.configs.nvim-snippy"
+		end,
 	},
 
 	-- Snippets
 	{
 		"L3MON4D3/LuaSnip",
+		enabled = false,
+		keys = { "<C-l>", "<C-h>" },
 		dependencies = {
 			"rafamadriz/friendly-snippets",
 		},
@@ -77,6 +91,7 @@ require("lazy").setup {
 	-- Colorizer
 	{
 		"NvChad/nvim-colorizer.lua",
+		ft = { "css", "html" },
 		config = function()
 			require("colorizer").setup {
 				css = { css = true },
@@ -111,6 +126,7 @@ require("lazy").setup {
 	-- Which key
 	{
 		"folke/which-key.nvim",
+		enabled = false,
 		init = function()
 			vim.o.timeoutlen = 500
 		end,
@@ -120,6 +136,7 @@ require("lazy").setup {
 	-- Split and join arguments
 	{
 		"Wansmer/treesj",
+		keys = { "gS" },
 		config = function()
 			require "plugins.configs.treesj"
 		end,
@@ -132,9 +149,6 @@ require("lazy").setup {
 			require "plugins.configs.comment-nvim"
 		end,
 	},
-
-	-- Smooth scrolling
-	{ "karb94/neoscroll.nvim", opts = {} },
 
 	-- Surrounding
 	{ "kylechui/nvim-surround", opts = {} },

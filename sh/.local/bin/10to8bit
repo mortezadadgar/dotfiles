@@ -1,0 +1,16 @@
+#!/bin/bash
+# Description: simply convert 10bit decoded files to 8bit
+# Dependencies: ffmpeg
+# Shell: Bash
+set -eu -o pipefail
+
+# shellcheck disable=SC2124
+dir="${@: -1}"
+
+[ "$#" = 1 ] &&  exit 1
+[ -d "$dir" ] || exit 1
+
+for file in "${@:1: $#-1}"; do
+	[ -f "$file" ] || continue
+	ffmpeg -i "$file" -vf format=yuv420p -c:a copy -c:s copy "./$dir/$file"
+done

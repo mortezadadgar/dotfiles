@@ -6,11 +6,6 @@ set -eu
 
 exec 2>/dev/null
 
-if ! pgrep mpd$ > /dev/null; then
-	echo "no mpd process"
-	exit 1
-fi
-
 cover="/tmp/mpd_cover.png"
 music_library="$HOME/Music"
 cached_song=""

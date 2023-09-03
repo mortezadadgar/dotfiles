@@ -8,4 +8,4 @@ do
 	sleep 1
 done
 
-echo "We are back!"
+printf "%s\n\a" "We are back!"

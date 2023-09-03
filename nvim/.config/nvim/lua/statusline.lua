@@ -7,48 +7,35 @@ local icons = {
 		hint = "",
 		info = "",
 	},
-
 	buffers = {
 		readonly = "󰌾",
-		modiefied = "●",
+		modified = "●",
 		unsaved_others = "○",
 	},
 }
 
-local function get_diagnostics_count()
-	local results = {}
-	-- this table must be keep in sync with icons.diagnostics keys
-	local severity = {
-		error = vim.diagnostic.severity.ERROR,
-		warning = vim.diagnostic.severity.WARN,
-		hint = vim.diagnostic.severity.HINT,
-		info = vim.diagnostic.severity.INFO,
-	}
-
-	for key, value in pairs(severity) do
-		results[key] = #vim.diagnostic.get(0, { severity = value })
-	end
-
-	return results
-end
+local diagnostics_attrs = {
+	{ "Error", icons.diagnostics.error },
+	{ "Warn", icons.diagnostics.warning },
+	{ "Hint", icons.diagnostics.hint },
+	{ "Info", icons.diagnostics.info },
+}
 
 local diagnostics = ""
 local function diagnostics_section()
-	local diagnostics_count = get_diagnostics_count()
-
 	local results = {}
-	for key, value in pairs(icons.diagnostics) do
-		if diagnostics_count[key] > 0 then
-			local diagnostic = " " .. diagnostics_count[key] .. " " .. value
-			table.insert(results, diagnostic)
+
+	for _, attr in pairs(diagnostics_attrs) do
+		local n = vim.diagnostic.get(0, { severity = attr[1] })
+		if #n > 0 then
+			table.insert(results, string.format(" %d %s", #n, attr[2]))
 		end
 	end
 
 	return table.concat(results)
 end
 
-vim.api.nvim_create_autocmd({ "DiagnosticChanged" }, {
-	pattern = "<buffer>",
+vim.api.nvim_create_autocmd({ "DiagnosticChanged", "BufWinEnter" }, {
 	group = group,
 	callback = function()
 		diagnostics = diagnostics_section()
@@ -71,15 +58,20 @@ end
 
 local function file_section()
 	local file_attr = ""
+	local file_icon = ""
 	local file_name, file_ext = vim.fn.expand "%:t", vim.fn.expand "%:e"
-	local file_icon = require("nvim-web-devicons").get_icon("", file_ext, { default = true })
+
+	local ok, nvim_devicons = pcall(require, "nvim-web-devicons")
+	if ok then
+		file_icon = nvim_devicons.get_icon("", file_ext, { default = true })
+	end
 
 	if vim.bo.modified and vim.bo.readonly then
-		file_attr = icons.buffers.modiefied .. " " .. icons.buffers.readonly
+		file_attr = icons.buffers.modified .. " " .. icons.buffers.readonly
 	elseif vim.bo.readonly then
 		file_attr = icons.buffers.readonly
 	elseif vim.bo.modified then
-		file_attr = icons.buffers.modiefied
+		file_attr = icons.buffers.modified
 	end
 
 	if file_attr ~= "" then
@@ -106,7 +98,6 @@ _G.set_statusline = function()
 end
 
 vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter" }, {
-	pattern = "<buffer>",
 	group = group,
-	command = "set statusline=%!v:lua.set_statusline()",
+	command = "setlocal statusline=%!v:lua.set_statusline()",
 })

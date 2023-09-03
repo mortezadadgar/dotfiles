@@ -1,3 +1,5 @@
+#!/bin/zsh
+
 # List current non-hidden folders by size
 dsize() {
 	du -sh *(/^D) | sort -h
@@ -10,5 +12,5 @@ fsize() {
 
 # Quickly find files with giving name
 ffile() {
-	find . -type f -iname "*$1*"
+	find . -type f -iname "*$1*" 2>/dev/null
 }
