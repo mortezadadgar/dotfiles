@@ -1,5 +1,5 @@
 require "options"
 require "statusline"
-require "plugins"
+require "paq-nvim"
 require "mappings"
 require "autocmd"

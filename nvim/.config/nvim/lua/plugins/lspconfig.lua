@@ -1,7 +1,5 @@
 local lsp = vim.lsp
-
-local capabilities = vim.lsp.protocol.make_client_capabilities()
--- capabilities.textDocument.completion.completionItem.snippetSupport = true
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 -- custom attach
 local on_attach = function(client, bufnr)
@@ -76,16 +74,6 @@ local on_attach = function(client, bufnr)
 	end
 end
 
-local prettierd = {
-	formatCommand = "prettierd --stdin-filepath --use-tabs ${INPUT}",
-	formatStdin = true,
-}
-
-local stylua = {
-	formatCommand = "stylua -s --stdin-filepath ${INPUT} -",
-	formatStdin = true,
-}
-
 local servers = {
 	gopls = {
 		gopls = {
@@ -114,45 +102,19 @@ local servers = {
 			},
 		},
 	},
-	efm = {
-		languages = {
-			html = { prettierd },
-			css = { prettierd },
-			lua = { stylua },
-		},
-	},
 }
 
 -- setup mason so it can manage external tooling
-require("mason").setup {
-	ui = {
-		icons = {
-			package_installed = "○",
-			package_pending = "●",
-			package_uninstalled = "●",
-		},
-	},
-}
+require("mason").setup()
 require("mason-lspconfig").setup()
 
 -- config installed lsp servers
 require("mason-lspconfig").setup_handlers {
 	function(server_name)
-		if server_name == "efm" then
-			goto continue
-		end
 		require("lspconfig")[server_name].setup {
 			on_attach = on_attach,
 			capabilities = capabilities,
 			settings = servers[server_name],
 		}
-		::continue::
-		if server_name == "efm" then
-			require("lspconfig").efm.setup {
-				init_options = { documentFormatting = true },
-				filetypes = { "html", "css", "lua" },
-				settings = servers.efm,
-			}
-		end
 	end,
 }

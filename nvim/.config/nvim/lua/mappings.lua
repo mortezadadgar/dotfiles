@@ -38,13 +38,3 @@ vim.keymap.set(
 -- include jumping with j and k to jumplist
 vim.keymap.set("n", "k", [[(v:count > 0 ? "m'" . v:count : '') . 'k']], { expr = true })
 vim.keymap.set("n", "j", [[(v:count > 0 ? "m'" . v:count : '') . 'j']], { expr = true })
-
--- better completion
-local function map_completion(lhs, rhs)
-	vim.keymap.set("i", lhs, function()
-		return vim.fn.pumvisible() ~= 0 and rhs or lhs
-	end, { expr = true })
-end
-map_completion("<TAB>", "<C-n>")
-map_completion("<S-TAB>", "<C-p>")
-map_completion("<CR>", "<C-y>")
