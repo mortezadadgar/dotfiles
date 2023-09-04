@@ -40,19 +40,3 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.opt_local.spell = true
 	end,
 })
-
--- formatting
-vim.api.nvim_create_autocmd("BufWritePre", {
-	pattern = { "*.lua", "*.html", "*.css" },
-	group = group,
-	callback = function()
-		local ft = vim.fn.expand "%:e"
-		local saved_cursor = vim.fn.getcurpos()
-		if ft == "html" or ft == "css" then
-			vim.cmd "silent :%!prettierd --stdin-filepath %"
-		elseif ft == "lua" then
-			vim.cmd "silent :%!stylua -s --stdin-filepath % -"
-		end
-		vim.fn.setpos(".", saved_cursor)
-	end,
-})

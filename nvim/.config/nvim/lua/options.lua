@@ -24,5 +24,7 @@ vim.o.spelllang = "en_us"
 vim.o.spelloptions = "camel"
 vim.o.updatetime = 250
 vim.o.completeopt = "menuone,noselect"
+vim.o.wildignore = "**/node_modules/**,**/.git/**"
+vim.o.path = ".,,**"
 vim.g.netrw_banner = 0
 vim.g.netrw_browse_split = 0

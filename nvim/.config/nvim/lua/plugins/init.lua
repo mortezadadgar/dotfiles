@@ -1,11 +1,9 @@
 local configs = {
 	"gitsigns",
 	"lspconfig",
-	"telescope",
 	"treesitter",
-	"luasnip",
-	"nvim-cmp",
 	"mini-splitjoin",
+	"formatter",
 }
 
 for _, config in pairs(configs) do

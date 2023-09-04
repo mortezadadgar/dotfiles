@@ -1,5 +1,5 @@
 local lsp = vim.lsp
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
+-- local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 -- custom attach
 local on_attach = function(client, bufnr)
@@ -113,7 +113,7 @@ require("mason-lspconfig").setup_handlers {
 	function(server_name)
 		require("lspconfig")[server_name].setup {
 			on_attach = on_attach,
-			capabilities = capabilities,
+			-- capabilities = capabilities,
 			settings = servers[server_name],
 		}
 	end,

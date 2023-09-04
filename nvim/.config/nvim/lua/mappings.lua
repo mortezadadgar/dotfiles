@@ -8,12 +8,6 @@ vim.keymap.set("n", "<C-j>", "<C-w>j")
 vim.keymap.set("n", "<C-k>", "<C-w>k")
 vim.keymap.set("n", "<C-l>", "<C-w>l")
 
--- Resize window using <ctrl> arrow keys
-vim.keymap.set("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
-vim.keymap.set("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
-vim.keymap.set("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
-vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
-
 -- Map C-c to Esc
 vim.keymap.set("i", "<C-c>", "<Esc>")
 
@@ -38,3 +32,9 @@ vim.keymap.set(
 -- include jumping with j and k to jumplist
 vim.keymap.set("n", "k", [[(v:count > 0 ? "m'" . v:count : '') . 'k']], { expr = true })
 vim.keymap.set("n", "j", [[(v:count > 0 ? "m'" . v:count : '') . 'j']], { expr = true })
+
+-- finder
+vim.keymap.set("n", "<Space><Space>", ":find ")
+vim.keymap.set("n", "<Space>b", ":ls<CR>:buffer ")
+vim.keymap.set("n", "<Space>g", ":Grep ")
+vim.keymap.set("n", "<Space>o", ":Oldfiles ")
