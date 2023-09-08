@@ -13,7 +13,7 @@ start swaybg --image "$XDG_DATA_HOME"/bg.jpg
 start mpd
 sleep 0.5
 start mpd-notify
-start gammastep -O 5500
+start gammastep -PO 5500
 
 pkill pipewire; pwait pipewire; gentoo-pipewire-launcher &
 swayidle -w \

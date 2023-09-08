@@ -21,7 +21,6 @@ alias -g NF="*(.oc[1])"
 alias -g LD="~/Downloads/*(.oc[1])"
 alias -g LB="~/Books/*(.oc[1])"
 alias -g LS="~/Pictures/screenshots/*(.oc[1])"
-alias -g NM="~/.config/nvim/minimal_init.lua"
 
 # syslog
 alias log="less +G /var/log/syslog"

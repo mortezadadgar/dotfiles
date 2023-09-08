@@ -13,11 +13,6 @@ vim.keymap.set("n", "<C-n>", ":cnext<CR>", { desc = "Next quicklist item" })
 vim.keymap.set("n", "k", [[(v:count > 0 ? "m'" . v:count : '') . 'k']], { expr = true })
 vim.keymap.set("n", "j", [[(v:count > 0 ? "m'" . v:count : '') . 'j']], { expr = true })
 
--- -- better completion
--- vim.keymap.set("i", "<Tab>", [[pumvisible() ? "<C-n>" : "<Tab>"]], { expr = true })
--- vim.keymap.set("i", "<S-Tab>", [[pumvisible() ? "<C-p>" : "<S-Tab>"]], { expr = true })
--- vim.keymap.set("i", "<CR>", [[pumvisible() ? "<C-y>" : "<CR>"]], { expr = true })
-
 -- Spell checker
 vim.keymap.set("n", "<Space>s", ":setlocal spell!<CR>", { desc = "Spell Checker" })
 

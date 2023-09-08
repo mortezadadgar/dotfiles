@@ -1,0 +1,31 @@
+#!/bin/bash
+# Description: dmenu script to take screenshots
+# Dependencies: dmenu, grim
+# Shell: Bash
+set -eu -o pipefail
+
+# Variables
+DIR="$HOME/Pictures/screenshots"
+FORMAT="$DIR/$(date '+%y%m%d-%H%M-%S').png"
+
+select=$(printf "selected area (copy)\nfull screen (copy)\nselected area\nfull screen" |
+	dmenu -l 6 -p "Screenshot which area?")
+
+case $select in
+	"selected area")
+		grim -g "$(slurp)" "$FORMAT"
+		notify-send "grimshot" "Screenshot taken"
+		;;
+	"full screen")
+		grim "$FORMAT"
+		notify-send "grimshot" "Screenshot taken"
+		;;
+	"selected area (copy)")
+		grim -g "$(slurp)" - | wl-copy -t image/png
+		notify-send "grimshot" "Screenshot copied to clipboard"
+		;;
+	"full screen (copy)")
+		grim - | wl-copy -t image/png
+		notify-send "grimshot" "Screenshot copied to clibboard"
+		;;
+esac

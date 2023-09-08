@@ -14,7 +14,7 @@ case $select in
 			word=$(echo "" | dmenu -p "Add word: ") || exit 1
 			meaning=$(echo "" | dmenu -p "Add meaning: ") || exit 1
 
-			line_number=$(($(wc -l "$dictionary" | cut -b 1) + 1))
+			line_number=$(($(wc -l "$dictionary" | cut -d " " -f 1) + 1))
 
 			echo "$line_number. $word : $meaning" >> "$dictionary"
 			;;

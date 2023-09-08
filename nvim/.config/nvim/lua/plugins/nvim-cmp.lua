@@ -33,7 +33,7 @@ cmp.setup {
 		{ name = "nvim_lsp" },
 		{ name = "path" },
 		{ name = "luasnip", keyword_length = 2 },
-		{ name = "buffer", keyword_length = 3 },
+		{ name = "buffer", keyword_length = 2 },
 	},
 
 	formatting = {
@@ -42,6 +42,4 @@ cmp.setup {
 			return vim_item
 		end,
 	},
-
-	view = { docs = { auto_open = false } },
 }

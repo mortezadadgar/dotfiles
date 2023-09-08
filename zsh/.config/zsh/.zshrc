@@ -5,7 +5,7 @@ precmd() { precmd() { print "" } }
 
 # Options
 setopt share_history hist_ignore_space hist_ignore_dups
-setopt globstarshort globdots complete_in_word extendedglob
+setopt globstarshort globdots globcomplete complete_in_word extendedglob
 setopt interactive_comments
 setopt noflowcontrol
 setopt prompt_subst
@@ -35,11 +35,6 @@ zmodload zsh/complist
 
 # only list files for open command
 compdef _files open
-
-# Rebind TAB to make it work with globbing expansion
-bindkey $'\t' complete-word
-zstyle ':completion:*' completer _expand _complete _ignored
-zstyle :completion::expand::: tag-order expansions original
 
 # Fuzzy find history
 autoload up-line-or-beginning-search
