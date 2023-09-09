@@ -7,6 +7,8 @@ require("nvim-treesitter.configs").setup {
 		"html",
 	},
 
+	ignore_install = { "ini" },
+
 	auto_install = true,
 
 	highlight = {
@@ -22,14 +24,11 @@ require("nvim-treesitter.configs").setup {
 		},
 	},
 
-	context_commentstring = {
-		enable = true,
-	},
-
 	textobjects = {
 		select = {
 			enable = true,
-			lookahead = true,
+			lookahead = false,
+			include_surrounding_whitespace = true,
 			keymaps = {
 				["aa"] = "@parameter.outer",
 				["ia"] = "@parameter.inner",
@@ -41,8 +40,6 @@ require("nvim-treesitter.configs").setup {
 				["if"] = "@function.inner",
 				["ac"] = "@conditional.outer",
 				["ic"] = "@conditional.inner",
-				["ad"] = "@comment.outer",
-				["id"] = "@comment.inner",
 			},
 		},
 		move = {

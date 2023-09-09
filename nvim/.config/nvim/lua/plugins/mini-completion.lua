@@ -3,7 +3,5 @@ require("mini.completion").setup {
 	window = {
 		signature = { border = "single" },
 	},
-	lsp_completion = {
-		process_items = require("mini.fuzzy").process_lsp_items,
-	},
+	delay = { signature = 10 ^ 7 },
 }

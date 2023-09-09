@@ -57,32 +57,31 @@ local function unsaved_buffers()
 end
 
 local function file_section()
-	local file_attr = ""
-	local file_icon = ""
-	local file_name, file_ext = vim.fn.expand "%:t", vim.fn.expand "%:e"
+	local name, ext = vim.fn.expand "%:t", vim.fn.expand "%:e"
+	local attr, icon = "", ""
 
 	local ok, nvim_devicons = pcall(require, "nvim-web-devicons")
 	if ok then
-		file_icon = nvim_devicons.get_icon("", file_ext, { default = true })
+		icon = nvim_devicons.get_icon("", ext, { default = true })
 	end
 
 	if vim.bo.modified and vim.bo.readonly then
-		file_attr = icons.buffers.modified .. " " .. icons.buffers.readonly
+		attr = icons.buffers.modified .. " " .. icons.buffers.readonly
 	elseif vim.bo.readonly then
-		file_attr = icons.buffers.readonly
+		attr = icons.buffers.readonly
 	elseif vim.bo.modified then
-		file_attr = icons.buffers.modified
+		attr = icons.buffers.modified
 	end
 
-	if file_attr ~= "" then
-		file_attr = " " .. file_attr
+	if attr ~= "" then
+		attr = " " .. attr
 	end
 
-	if file_name == "" then
-		file_name = "No Name"
+	if name == "" then
+		name = "No Name"
 	end
 
-	return string.format("%s %s%s", file_icon, file_name, file_attr)
+	return string.format("%s %s%s", icon, name, attr)
 end
 
 local function left_section()

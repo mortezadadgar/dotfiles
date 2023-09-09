@@ -1,11 +1,11 @@
 local configs = {
 	"lspconfig",
 	"treesitter",
-	"mini-splitjoin",
 	"telescope",
 	"formatter",
 	"nvim-cmp",
 	"luasnip",
+	"mini-splitjoin",
 }
 
 for _, config in pairs(configs) do

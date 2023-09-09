@@ -12,7 +12,7 @@ cmp.setup {
 		["<C-e>"] = map.close(),
 		["<CR>"] = map.confirm { select = true },
 
-		["<Tab>"] = cmp.mapping(function(fallback)
+		["<Tab>"] = map(function(fallback)
 			if cmp.visible() then
 				cmp.select_next_item()
 			else
@@ -20,7 +20,7 @@ cmp.setup {
 			end
 		end),
 
-		["<S-Tab>"] = cmp.mapping(function(fallback)
+		["<S-Tab>"] = map(function(fallback)
 			if cmp.visible() then
 				cmp.select_prev_item()
 			else

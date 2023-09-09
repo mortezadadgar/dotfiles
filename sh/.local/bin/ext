@@ -11,7 +11,7 @@ ext_dir="$(basename "${file%.*}")"
 mime_type="$(file -bL --mime-type "$file")"
 
 case "$mime_type" in
-	*/x-bzip2|*/gzip|*/xz) tar -xvaf -C "$ext_dir" "$file";;
+	*/x-bzip2|*/gzip|*/xz) tar -xvaf "$file" --one-top-level;;
 	*/zip) unzip "$file" -d "$ext_dir";;
 	*/x-rar) unrar x "$file";;
 	*) echo "Unsupported or invalid file type"

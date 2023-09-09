@@ -23,6 +23,7 @@ vim.o.spelllang = "en_us"
 vim.o.spelloptions = "camel"
 vim.o.updatetime = 250
 vim.o.completeopt = "menuone,noselect"
+vim.o.shortmess = vim.o.shortmess .. "c"
 vim.o.laststatus = 3
 vim.o.mouse = ""
 vim.o.wildignore = "**/node_modules/**,**/.git/**"

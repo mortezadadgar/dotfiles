@@ -5,7 +5,7 @@ text-color=#c0c0c0
 border-color=#64656a
 padding=8
 icon-path=/usr/share/icons/Papirus-Dark
-max-icon-size=56
+max-icon-size=48
 default-timeout=10000
 anchor=bottom-right
 format=<b><span foreground='#61AFEF'>%s</span></b>\n%b

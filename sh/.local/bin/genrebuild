@@ -4,7 +4,7 @@
 set -eu
 
 exclude_pkg="
-	dev-python/*
+	dev--prompt-textython/*
 	app-alternatives/*
 	sys-kernel/*
 	sys-firmware/*
@@ -13,9 +13,6 @@ exclude_pkg="
 	acct-group/*
 	virtual/*
 	*-bin
-	clang
-	llvm
-	gcc
 "
 
-sudo emerge -e --quiet-build --exclude "${exclude_pkg}" @world "$@"
+sudo emerge -e --update --newuse --quiet-build --exclude "${exclude_pkg}" @world "$@"

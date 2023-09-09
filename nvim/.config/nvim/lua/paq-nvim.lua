@@ -1,19 +1,8 @@
-local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-	vim.fn.system {
-		"git",
-		"clone",
-		"--filter=blob:none",
-		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable",
-		lazypath,
-	}
-	print "Installing lazy.nvim..."
-end
-vim.opt.rtp:prepend(lazypath)
+-- enable fast loader
+vim.loader.enable()
 
-require("lazy").setup {
-	"mortezadadgar/onedark-nvim",
+require "paq" {
+	{ "mortezadadgar/onedark-nvim", run = vim.cmd.colorscheme "onedark.nvim" },
 	"neovim/nvim-lspconfig",
 	"mhartington/formatter.nvim",
 	"williamboman/mason-lspconfig.nvim",
@@ -25,19 +14,16 @@ require("lazy").setup {
 	"saadparwaiz1/cmp_luasnip",
 	"L3MON4D3/LuaSnip",
 	"rafamadriz/friendly-snippets",
-	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+	{ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" },
 	"nvim-treesitter/nvim-treesitter-textobjects",
 	"nvim-telescope/telescope.nvim",
-	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+	{ "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
 	"nvim-lua/plenary.nvim",
 	"nvim-tree/nvim-web-devicons",
 	"tpope/vim-commentary",
 	"tpope/vim-surround",
 	"echasnovski/mini.splitjoin",
 }
-
--- default colorscheme
-vim.cmd.colorscheme "onedark.nvim"
 
 -- load configs
 require "plugins"

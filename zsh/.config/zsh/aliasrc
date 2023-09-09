@@ -21,6 +21,7 @@ alias -g NF="*(.oc[1])"
 alias -g LD="~/Downloads/*(.oc[1])"
 alias -g LB="~/Books/*(.oc[1])"
 alias -g LS="~/Pictures/screenshots/*(.oc[1])"
+alias yay="yay --askyesremovemake"
 
 # syslog
 alias log="less +G /var/log/syslog"

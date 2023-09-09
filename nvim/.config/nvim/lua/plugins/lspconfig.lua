@@ -10,22 +10,21 @@ local on_attach = function(client, bufnr)
 		vim.keymap.set(mode, keys, func, { buffer = bufnr, desc = desc })
 	end
 
-	-- local t = require "telescope.builtin"
+	local t = require "telescope.builtin"
 
 	-- mappings
-	map("n", "gr", vim.lsp.buf.references, "List References")
-	map("n", "gd", vim.lsp.buf.definition, "Goto definition")
-	map("n", "gI", vim.lsp.buf.implementation, "Goto definition")
+	map("n", "gr", t.lsp_references, "List References")
+	map("n", "gd", t.lsp_definitions, "Goto definition")
+	map("n", "gI", t.lsp_implementations, "Goto definition")
 	map("n", "K", vim.lsp.buf.hover, "Hover Documentation")
 	map("n", "<Space>rn", vim.lsp.buf.rename, "Rename")
-	map("n", "<Space>d", vim.diagnostic.setqflist, "List Diagnostics")
+	map("n", "<Space>d", t.diagnostics, "List Diagnostics")
 	map({ "v", "n" }, "<Space>ca", vim.lsp.buf.code_action, "Code action")
 	map("n", "<Space>cl", vim.lsp.codelens.run, "Code lens")
 	map("i", "<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
 	map("n", "<Space>e", vim.diagnostic.open_float, "Diagnostic float")
 	map("n", "[d", vim.diagnostic.goto_prev, "Next diagnostic")
 	map("n", "]d", vim.diagnostic.goto_next, "Next diagnostic")
-	map("n", "<C-w>d", ":split | Telescope lsp_definitions<CR>")
 
 	-- diagnostics symbols
 	local signs = { Error = "", Warn = "", Hint = "", Info = "" }
@@ -115,6 +114,23 @@ require("mason-lspconfig").setup_handlers {
 			on_attach = on_attach,
 			capabilities = capabilities,
 			settings = servers[server_name],
+		}
+	end,
+	["clangd"] = function()
+		require("lspconfig").clangd.setup {
+			on_attach = on_attach,
+			capabilities = capabilities,
+			cmd = {
+				"clangd",
+				"--all-scopes-completion",
+				"--background-index",
+				"--clang-tidy",
+				"--pch-storage=memory",
+				"--header-insertion-decorators",
+				"--enable-config",
+				"--function-arg-placeholders",
+				"--log=error",
+			},
 		}
 	end,
 }

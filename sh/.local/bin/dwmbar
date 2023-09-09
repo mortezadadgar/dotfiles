@@ -2,7 +2,7 @@
 # Description: display system information on dwm bar
 # Dependencies: iw, alsa-utils, mpc, xsetroot
 # Shell: POSIX compliant
-set -eu
+# set -eu
 
 # INIT
 echo "$$" > ~/.cache/pidofbar

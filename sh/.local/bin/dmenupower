@@ -8,32 +8,31 @@ select=$(printf " Poweroff\n Restart\n󰍃 Logoff\n Lockscreen\n󰤄 Sl
 
 case $select in
 	" Poweroff")
-		notify-send -u low -i system-shutdown "Shutting down..."
+		notify-send -i system-shutdown "Shutting down..."
 		sleep 0.75
 		clear > /dev/tty1
-		loginctl poweroff
+		systemctl poweroff
 		;;
 	" Restart")
-		notify-send -u low -i system-reboot "Restarting..."
+		notify-send -i system-reboot "Restarting..."
 		sleep 0.75
 		clear > /dev/tty1
-		loginctl reboot
+		systemctl reboot
 		;;
 	"󰍃 Logoff")
-		notify-send -u low -i system-reboot "Loggging off..."
+		notify-send -i system-reboot "Loggging off..."
 		sleep 0.75
 		clear > /dev/tty1
-		pkill -TERM "dwl$"
+		pkill "dwl$"
 		;;
 	" Lockscreen")
-		notify-send -u low -i system-suspend "Lockscreen..."
+		notify-send -i system-suspend "Lockscreen..."
 		sleep 0.75
-		# xset s activate
-		slock
+		waylock
 		;;
 	"󰤄 Sleep")
-		notify-send -u low -i system-lock-screen "Going to Sleep..."
+		notify-send -i system-lock-screen "Going to Sleep..."
 		sleep 0.75
-		loginctl suspend -i
+		systemctl suspend -i
 		;;
 esac
