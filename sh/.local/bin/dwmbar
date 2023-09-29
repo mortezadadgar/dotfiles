@@ -78,7 +78,7 @@ update_mpd() {
 	# get currently playing music's name and remove ()
 	mpc="$(mpc current -f "[%artist% - %title%]" | sed "s/\s(.*)$//g")"
 	[ -z "$mpc" ] && mediainfo="" && return
-	mediainfo="$(printf " 󰋄 %s " "$mpc")"
+	mediainfo="$(printf "󰋄 %s " "$mpc")"
 }
 
 # We have to run this only once.
@@ -89,7 +89,7 @@ display() {
 		xsetroot -name "${mediainfo:-} $vol  $wifi  $temp  $bat  $time"
 	else
 		# xsetroot -name "${mediainfo:-} $vol  $temp  $time"
-		somebar -c status "${mediainfo:-} $vol  $temp  $time"
+		somebar -c status "${mediainfo:-}$vol  $temp  $time"
 	fi
 }
 
@@ -104,6 +104,7 @@ do
 		# to update item ever n seconds with a offset of m
 		[ $((sec % 9 )) -eq 0 ] && update_time
 		[ $((sec % 3 )) -eq 0 ] && update_temp
+		[ $((sec % 12 )) -eq 0 ] && update_vol
 		if [ "$is_laptop" = 1 ]; then
 			[ $((sec % 12 )) -eq 0 ] && update_bat
 			[ $((sec % 3 )) -eq 0 ] && update_wifi

@@ -1,5 +1,5 @@
 #!/bin/sh
-# Description: dmenu "pass" manager
+# Description: tofi "pass" manager
 # Dependencies: pass
 # Shell: POSIX compliant
 set -eu
@@ -12,16 +12,16 @@ notify_pass() {
 		"Password Store" "password copied to clipboard (will clear in 45s)" -i password
 }
 
-select=$(printf "generate a password\nshow password list" | dmenu)
+select=$(printf "generate a password\nshow password list" | tofi)
 
 case $select in
 	"generate a password")
 		pass_dirs=$(ls -1 -D "$pass_store")
 
-		pass_dir=$(printf "%s" "$pass_dirs"| dmenu -p "select a folder")
+		pass_dir=$(printf "%s" "$pass_dirs"| tofi --prompt-text "select a folder")
 		[ -z "$pass_dir" ] && exit 1
 
-		pass_name=$(printf "" | dmenu -p "password name:")
+		pass_name=$(printf "" | tofi --prompt-text "password name:")
 		[ -z "$pass_name" ] && exit 1
 
 		pass generate -c "$pass_dir/$pass_name" && notify_pass

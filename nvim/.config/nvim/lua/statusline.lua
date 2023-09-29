@@ -1,5 +1,3 @@
-local group = vim.api.nvim_create_augroup("StatusLine", { clear = true })
-
 local icons = {
 	diagnostics = {
 		error = "",
@@ -21,7 +19,6 @@ local diagnostics_attrs = {
 	{ "Info", icons.diagnostics.info },
 }
 
-local diagnostics = ""
 local function diagnostics_section()
 	local results = {}
 
@@ -34,13 +31,6 @@ local function diagnostics_section()
 
 	return table.concat(results)
 end
-
-vim.api.nvim_create_autocmd({ "DiagnosticChanged", "BufWinEnter" }, {
-	group = group,
-	callback = function()
-		diagnostics = diagnostics_section()
-	end,
-})
 
 local function unsaved_buffers()
 	for _, buf in pairs(vim.api.nvim_list_bufs()) do
@@ -85,7 +75,7 @@ local function file_section()
 end
 
 local function left_section()
-	return file_section() .. unsaved_buffers() .. diagnostics
+	return file_section() .. unsaved_buffers() .. diagnostics_section()
 end
 
 local function right_section()
@@ -96,7 +86,4 @@ _G.set_statusline = function()
 	return " " .. left_section() .. "%=" .. right_section() .. " "
 end
 
-vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter" }, {
-	group = group,
-	command = "setlocal statusline=%!v:lua.set_statusline()",
-})
+vim.cmd "set statusline=%!v:lua.set_statusline()"

@@ -23,9 +23,7 @@ require("gitsigns").setup {
 		map("n", "<Space>hu", gs.undo_stage_hunk, "Undo stage hunk")
 		map("n", "<Space>hR", gs.reset_buffer, "Reset buffer")
 		map("n", "<Space>hp", gs.preview_hunk, "Preview hunk")
-		map("n", "<Space>tb", gs.toggle_current_line_blame, "Toggle current line blame")
-
-		-- Text object
-		map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "Select textobject hunk")
+		map("n", "<Space>hb", gs.toggle_current_line_blame, "Toggle current line blame")
+		map("n", "<Space>hd", gs.diffthis, "Run diff on current buffer")
 	end,
 }

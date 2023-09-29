@@ -5,19 +5,16 @@ precmd() { precmd() { print "" } }
 
 # Options
 setopt share_history hist_ignore_space hist_ignore_dups
-setopt globstarshort globdots globcomplete complete_in_word extendedglob
+setopt globstarshort globdots complete_in_word extendedglob
 setopt interactive_comments
 setopt noflowcontrol
 setopt prompt_subst
-setopt auto_pushd pushd_ignore_dups cd_silent cdable_vars
+setopt auto_pushd pushd_ignore_dups cd_silent
 
 # History
 HISTFILE="$HOME/.zhistory"
 HISTSIZE=100000
 SAVEHIST=100000
-
-# time format
-TIMEFMT=$'user\t%U\nsystem\t%S\ncpu\t%P\ntotal\t%*E'
 
 # report time
 REPORTTIME="180"
@@ -35,6 +32,11 @@ zmodload zsh/complist
 
 # only list files for open command
 compdef _files open
+
+# Rebind TAB to make it work with globbing expansion
+bindkey $'\t' complete-word
+zstyle ':completion:*' completer _expand _complete _ignored
+zstyle :completion::expand::: tag-order expansions original
 
 # Fuzzy find history
 autoload up-line-or-beginning-search
@@ -96,7 +98,6 @@ bindkey '^E' edit-command-line
 # Other config files
 . $ZDOTDIR/aliasrc
 . $ZDOTDIR/functions
-. $ZDOTDIR/hashed
 
 # zsh-autosuggestions
 ZSH_AUTOSUGGEST_MANUAL_REBIND=1

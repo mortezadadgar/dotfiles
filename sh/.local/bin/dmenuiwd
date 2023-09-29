@@ -1,12 +1,12 @@
 #!/bin/sh
 # Description: Manage wirless connections with iwctl
-# Dependencies: dmenu, iwd
+# Dependencies: tofi, iwd
 # Shell: POSIX compliant
 set -eu
 
 interface="wlan0"
 
-select=$(printf "Connect to a network\nDisconnect current network\nForget a network\n" | dmenu)
+select=$(printf "Connect to a network\nDisconnect current network\nForget a network\n" | tofi)
 
 case $select in
 	"Connect to a network")
@@ -26,11 +26,11 @@ case $select in
 			sed "s/^\s*//g;s/\s*$//g" |
 			sort)
 
-		network=$(echo "$networks" | dmenu -l 10)
+		network=$(echo "$networks" | tofi -l 10)
 
 		[ -z "$network" ] && exit 1
 
-		password=$(printf "No\nYes" | dmenu -p "Password required?")
+		password=$(printf "No\nYes" | tofi --prompt-text "Password required?")
 
 		[ -z "$password" ] && exit 1
 
@@ -42,7 +42,7 @@ case $select in
 			notify-send "IWCTL" "Failed connecting to $network" \
 				-i notification-network-wireless-disconnected
 		elif [ "$password" = "Yes" ]; then
-			dmenu -p "enter password" <&- |
+			tofi --prompt-text "enter password" <&- |
 				xargs -r -I{} timeout 3 iwctl station -P {} "$interface" connect "$network" &&
 				notify-send "IWCTL" "Connected to $network" -i wifi-radar && exit 0
 
@@ -67,7 +67,7 @@ case $select in
 			sed "s/^\s*//g;s/\s*$//g" |
 			sort)
 
-		network=$(echo "$networks" | dmenu -l 10)
+		network=$(echo "$networks" | tofi -l 10)
 
 		echo "$network"
 

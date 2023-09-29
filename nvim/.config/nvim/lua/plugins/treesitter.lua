@@ -1,17 +1,24 @@
 -- Treesitter setup
 require("nvim-treesitter.configs").setup {
 	ensure_installed = {
-		"markdown",
 		"markdown_inline",
 		"comment",
 		"html",
+		"css",
+		"typescript",
 	},
 
-	ignore_install = { "ini" },
+	ignore_install = {
+		"ini",
+	},
 
 	auto_install = true,
 
 	highlight = {
+		enable = true,
+	},
+
+	indent = {
 		enable = true,
 	},
 

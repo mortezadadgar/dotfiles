@@ -8,11 +8,6 @@ if pidof ncmpcpp 2>/dev/null; then
 	exit 1
 fi
 
-# st \
-# 	-t ncmpcpp \
-# 	-g 75x15 \
-# 	-e ncmpcpp -q
-
 foot \
 	-T ncmpcpp \
 	-W 75x15 \

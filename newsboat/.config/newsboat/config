@@ -1,6 +1,6 @@
 use-proxy yes
-browser "setsid $BROWSER %u 2>/dev/null &"
-proxy localhost:8118
+browser "setsid $BROWSER %u >/dev/null 2>&1 &"
+proxy localhost:10809
 reload-threads 8
 show-keymap-hint no
 confirm-mark-all-feeds-read no

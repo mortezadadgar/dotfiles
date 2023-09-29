@@ -1,49 +1,36 @@
-local group = vim.api.nvim_create_augroup("UserAutocmd", { clear = true })
+local function augroup(name)
+	return vim.api.nvim_create_augroup(name, { clear = true })
+end
 
 -- highlight on yank
 vim.api.nvim_create_autocmd("TextYankPost", {
 	pattern = "*",
-	group = group,
+	group = augroup "highlightYank",
 	callback = function()
 		vim.highlight.on_yank()
 	end,
 })
 
--- disables automatic commenting on newline
-vim.api.nvim_create_autocmd("BufEnter", {
-	pattern = "*",
-	group = group,
-	command = "setlocal fo-=c fo-=r fo-=o",
-})
-
--- treat go's templates as html files
-vim.api.nvim_create_autocmd("BufEnter", {
-	pattern = "*.tmpl",
-	group = group,
-	command = "setlocal ft=html",
-})
-
 -- resize splits if window got resized
 vim.api.nvim_create_autocmd("VimResized", {
-	group = group,
+	group = augroup "resizeSplits",
 	callback = function()
 		vim.cmd "tabdo wincmd ="
 	end,
 })
 
--- wrap and check for spell in text filetypes
+-- check for spell in text filetypes
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = { "gitcommit", "markdown" },
-	group = group,
+	group = augroup "autoSpell",
 	callback = function()
-		vim.opt_local.wrap = true
 		vim.opt_local.spell = true
 	end,
 })
 
 -- go to last loc when opening a buffer
 vim.api.nvim_create_autocmd("BufReadPost", {
-	group = group,
+	group = augroup "lastLoc",
 	callback = function()
 		local exclude = { "gitcommit" }
 		local buf = vim.api.nvim_get_current_buf()

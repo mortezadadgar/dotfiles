@@ -4,4 +4,4 @@
 # Dependencies: sxcs, xclip
 set -eu
 
-sxcs -q -o --hex | cut -f 2 | xclip -selection clipboard
+hyprpicker | wl-copy -n

@@ -52,12 +52,13 @@ local on_attach = function(client, bufnr)
 	}
 
 	vim.api.nvim_create_autocmd("BufWritePre", {
+		group = vim.api.nvim_create_augroup("LspFormat", { clear = true }),
 		pattern = "<buffer>",
 		callback = function()
-			local disabled_formatter = { "cssls", "html", "lua_ls", "clangd" }
+			local disabled_formatter = { "cssls", "html", "lua_ls" }
 			vim.lsp.buf.format {
-				filter = function(client_format)
-					return not vim.tbl_contains(disabled_formatter, client_format.name)
+				filter = function(c)
+					return not vim.tbl_contains(disabled_formatter, c.name)
 				end,
 			}
 		end,
@@ -65,6 +66,7 @@ local on_attach = function(client, bufnr)
 
 	if client.supports_method "textDocument/codeLens" then
 		vim.api.nvim_create_autocmd({ "CursorHold", "InsertLeave" }, {
+			group = vim.api.nvim_create_augroup("CodeAction", { clear = true }),
 			pattern = "<buffer>",
 			callback = function()
 				vim.lsp.codelens.refresh()
@@ -93,9 +95,6 @@ local servers = {
 	},
 	lua_ls = {
 		Lua = {
-			workspace = {
-				checkThirdParty = false,
-			},
 			telemetry = {
 				enable = false,
 			},
@@ -123,12 +122,6 @@ require("mason-lspconfig").setup_handlers {
 			cmd = {
 				"clangd",
 				"--all-scopes-completion",
-				"--background-index",
-				"--clang-tidy",
-				"--pch-storage=memory",
-				"--header-insertion-decorators",
-				"--enable-config",
-				"--function-arg-placeholders",
 				"--log=error",
 			},
 		}

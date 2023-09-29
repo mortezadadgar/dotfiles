@@ -6,10 +6,11 @@ set page-padding 5
 set window-title-basename true
 set statusbar-basename true
 set highlight-transparency  0.3
+set sandbox strict
 
 # maps
-map d scroll down
-map u scroll up
+map d scroll half-down
+map u scroll half-up
 
 # balck and white theme
 set completion-bg           "#FFFFFF"

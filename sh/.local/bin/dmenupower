@@ -1,10 +1,10 @@
 #!/bin/sh
-# Description: A simple powermenu with dmenu
-# Dependencies: dmenu, slock, elogind
+# Description: A simple powermenu with tofi
+# Dependencies: tofi, slock, elogind
 # Shell: POSIX compliant
 set -eu
 
-select=$(printf " Poweroff\n Restart\n󰍃 Logoff\n Lockscreen\n󰤄 Sleep"| dmenu -i)
+select=$(printf " Poweroff\n Restart\n󰍃 Logoff\n Lockscreen\n󰤄 Sleep"| tofi)
 
 case $select in
 	" Poweroff")
@@ -23,12 +23,12 @@ case $select in
 		notify-send -i system-reboot "Loggging off..."
 		sleep 0.75
 		clear > /dev/tty1
-		pkill "dwl$"
+		wtype -M logo -M ctrl -M shift Q
 		;;
 	" Lockscreen")
 		notify-send -i system-suspend "Lockscreen..."
 		sleep 0.75
-		waylock
+		xset s activate
 		;;
 	"󰤄 Sleep")
 		notify-send -i system-lock-screen "Going to Sleep..."

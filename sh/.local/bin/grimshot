@@ -1,6 +1,6 @@
 #!/bin/bash
-# Description: dmenu script to take screenshots
-# Dependencies: dmenu, grim
+# Description: tofi script to take screenshots
+# Dependencies: tofi, grim
 # Shell: Bash
 set -eu -o pipefail
 
@@ -9,7 +9,7 @@ DIR="$HOME/Pictures/screenshots"
 FORMAT="$DIR/$(date '+%y%m%d-%H%M-%S').png"
 
 select=$(printf "selected area (copy)\nfull screen (copy)\nselected area\nfull screen" |
-	dmenu -l 6 -p "Screenshot which area?")
+	tofi --prompt-text "Screenshot which area?")
 
 case $select in
 	"selected area")

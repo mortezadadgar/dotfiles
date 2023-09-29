@@ -13,22 +13,28 @@ vim.o.smartindent = true
 vim.o.signcolumn = "number"
 vim.o.termguicolors = true
 vim.o.cursorline = true
-vim.o.lazyredraw = true
-vim.o.scrolloff = 8
+vim.o.scrolloff = 5
 vim.o.pumheight = 10
 vim.o.breakindent = true
 vim.o.title = true
 vim.o.smartcase = true
 vim.o.spelllang = "en_us"
 vim.o.spelloptions = "camel"
-vim.o.updatetime = 250
+vim.o.updatetime = 500
 vim.o.completeopt = "menuone,noselect"
-vim.o.shortmess = vim.o.shortmess .. "c"
 vim.o.laststatus = 3
-vim.o.mouse = ""
-vim.o.wildignore = "**/node_modules/**,**/.git/**"
-vim.o.wildignore = true
-vim.o.wildoptions = vim.o.wildoptions .. ",fuzzy"
+vim.o.wildignorecase = true
 vim.wo.colorcolumn = "80"
+vim.opt.diffopt = {
+	vim.o.diffopt,
+	"linematch:60",
+	"indent-heuristic",
+	"algorithm:patience",
+	"foldcolumn:0",
+}
 vim.g.netrw_banner = 0
-vim.g.netrw_browse_split = 0
+vim.opt.listchars = {
+	tab = "▸ ",
+	trail = "·",
+	space = "_",
+}

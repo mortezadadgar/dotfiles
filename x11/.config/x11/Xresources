@@ -54,16 +54,3 @@ dmenu.selforeground: _color0
 Nsxiv.window.background: #ffffff
 Nsxiv.bar.background: _color4
 Nsxiv.bar.foreground: _color0
-
-/* herbe */
-herbe.background_color: _color0
-herbe.border_color: _color4
-herbe.font_color: _color7
-herbe.font_pattern: JetBrainsMono Nerd Font:size=11
-herbe.line_spacing: 5
-herbe.padding: 10
-herbe.width: 250
-herbe.border_size: 1
-herbe.pos_y: 30
-herbe.corner: 3
-herbe.duration: 5

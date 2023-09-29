@@ -5,6 +5,8 @@ set -eu
 
 [ "$#" = 1 ] || exit 1
 
+exec >/dev/null 2>&1
+
 list_images() {
 	find "$(dirname "$1")" -maxdepth 1 -type f -not -name "$1" |
 		grep -iE '\.(png|jpe?g|webp|gif|svg|bmp|ico)$'
@@ -20,7 +22,7 @@ case "$mime_type" in
 	video/*) q mpv "$1" &;;
 	audio/*) q mpv "$1" &;;
 	text/html) q firefox "$1" &;;
-	image/*) q nsxiv --anti-alias "$1" $(list_images "$1") &;;
+	image/*) q imv "$1" $(list_images "$1") &;;
 	*/pdf) q zathura "$1" &;;
 	*) echo "Unsupported or invalid file type"
 esac

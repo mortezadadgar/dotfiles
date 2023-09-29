@@ -11,6 +11,8 @@ cmp.setup {
 	mapping = {
 		["<C-e>"] = map.close(),
 		["<CR>"] = map.confirm { select = true },
+		["<C-n>"] = map.select_next_item(),
+		["<C-p>"] = map.select_prev_item(),
 
 		["<Tab>"] = map(function(fallback)
 			if cmp.visible() then
