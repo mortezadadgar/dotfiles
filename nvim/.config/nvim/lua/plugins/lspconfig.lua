@@ -130,15 +130,4 @@ require("mason-lspconfig").setup_handlers {
 			settings = servers[server_name],
 		}
 	end,
-	["clangd"] = function()
-		require("lspconfig").clangd.setup {
-			on_attach = on_attach,
-			capabilities = capabilities,
-			cmd = {
-				"clangd",
-				"--all-scopes-completion",
-				"--log=error",
-			},
-		}
-	end,
 }

@@ -11,7 +11,6 @@ require "paq" {
 	"hrsh7th/cmp-buffer",
 	"hrsh7th/cmp-path",
 	"saadparwaiz1/cmp_luasnip",
-	{ "j-hui/fidget.nvim", branch = "legacy" },
 	"L3MON4D3/LuaSnip",
 	"rafamadriz/friendly-snippets",
 	{ "j-hui/fidget.nvim", branch = "legacy" },

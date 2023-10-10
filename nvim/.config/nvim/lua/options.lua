@@ -16,7 +16,6 @@ vim.o.cursorline = true
 vim.o.scrolloff = 5
 vim.o.pumheight = 10
 vim.o.breakindent = true
-vim.o.title = true
 vim.o.smartcase = true
 vim.o.spelllang = "en_us"
 vim.o.spelloptions = "camel"

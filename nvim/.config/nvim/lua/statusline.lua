@@ -47,7 +47,7 @@ local function unsaved_buffers()
 end
 
 local function file_section()
-	local name, ext = vim.fn.expand "%:t", vim.fn.expand "%:e"
+	local name, ext = vim.fn.expand "%:f", vim.fn.expand "%:e"
 	local attr, icon = "", ""
 
 	local ok, nvim_devicons = pcall(require, "nvim-web-devicons")
