@@ -15,6 +15,7 @@ bind-key g home
 bind-key d pagedown
 bind-key u pageup
 bind-key l open
+bind-key o open-in-browser-and-mark-read
 bind-key h quit
 bind-key n next-unread
 bind-key N prev-unread

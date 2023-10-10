@@ -5,8 +5,9 @@ local configs = {
 	"conform",
 	"nvim-cmp",
 	"luasnip",
-	"gitsigns",
 	"treesitter-context",
+	"oil",
+	"nvim-colorizer",
 }
 
 for _, config in pairs(configs) do
@@ -14,7 +15,6 @@ for _, config in pairs(configs) do
 end
 
 -- plugins which don't warrant their own file
-require("mini.splitjoin").setup()
 require("fidget").setup()
-require("neoscroll").setup()
 require("ts_context_commentstring").setup()
+vim.keymap.set("n", "<Space>u", vim.cmd.UndotreeToggle)

@@ -30,6 +30,9 @@ state
 # newsboat
 **/newsboat/urls
 
+# systemd
+**/systemd/user/*/
+
 # common
 *.log
 *.cache

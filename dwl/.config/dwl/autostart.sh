@@ -1,7 +1,7 @@
 #!/bin/sh
 
 start() {
-	pgrep "$1" || "$@" &
+	pgrep "$1" || "$@" >/dev/null 2>&1 &
 }
 
 start batterynotif

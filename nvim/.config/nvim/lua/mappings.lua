@@ -1,7 +1,3 @@
--- Don't lose selection when shifting sidewards
-vim.keymap.set("x", "<", "<gv")
-vim.keymap.set("x", ">", ">gv")
-
 -- Map C-c to Esc
 vim.keymap.set("i", "<C-c>", "<Esc>")
 
@@ -11,6 +7,10 @@ vim.keymap.set("n", "j", [[(v:count > 3 ? "m'" . v:count : '') . 'j']], { expr =
 
 -- Spell checker
 vim.keymap.set("n", "<leader>o", "<cmd>setlocal spell!<CR>", { desc = "Spell Checker" })
+
+-- don't override register
+vim.keymap.set("n", "c", '"_c')
+vim.keymap.set("n", "x", '"_x')
 
 -- cd to current buffer directory
 vim.keymap.set(

@@ -5,6 +5,7 @@ require("nvim-treesitter.configs").setup {
 		"comment",
 		"html",
 		"css",
+		"scss",
 		"typescript",
 	},
 

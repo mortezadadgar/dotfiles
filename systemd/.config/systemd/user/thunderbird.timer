@@ -1,0 +1,9 @@
+[Unit]
+Description=Periodically update thunderbird for new emails
+
+[Timer]
+OnBootSec=10s
+OnUnitActiveSec=30m
+
+[Install]
+WantedBy=timers.target

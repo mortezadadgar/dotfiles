@@ -1,8 +1,20 @@
 local lsp = vim.lsp
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
+local diagnostics_disabled = false
+local function diagnostics_toggle()
+	if diagnostics_disabled then
+		diagnostics_disabled = false
+		vim.diagnostic.enable()
+	else
+		diagnostics_disabled = true
+		vim.diagnostic.disable()
+	end
+end
+
 -- custom attach
 local on_attach = function(client, bufnr)
+	local border = "single"
 	local map = function(mode, keys, func, desc)
 		if desc then
 			desc = "LSP: " .. desc
@@ -35,10 +47,10 @@ local on_attach = function(client, bufnr)
 
 	-- floating window border
 	lsp.handlers["textDocument/hover"] = lsp.with(lsp.handlers.hover, {
-		border = "single",
+		border = border,
 	})
 	lsp.handlers["textDocument/signatureHelp"] = lsp.with(lsp.handlers.signature_help, {
-		border = "single",
+		border = border,
 	})
 
 	vim.diagnostic.config {
@@ -46,10 +58,13 @@ local on_attach = function(client, bufnr)
 			source = "if_many",
 		},
 		float = {
-			border = "single",
+			border = border,
 		},
 		severity_sort = true,
 	}
+
+	-- named LspToggle for simplicity sake.
+	vim.api.nvim_create_user_command("LspToggle", diagnostics_toggle, {})
 
 	vim.api.nvim_create_autocmd("BufWritePre", {
 		group = vim.api.nvim_create_augroup("LspFormat", { clear = true }),

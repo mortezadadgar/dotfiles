@@ -4,15 +4,15 @@
 set -eu
 
 dictionary="$XDG_DATA_HOME/dictionary.txt"
-select=$(printf "show dictionary entries\nwrite to dictionary" | tofi)
+select=$(printf "show dictionary entries\nwrite to dictionary" | dmenu)
 
 case $select in
 		show*)
-			tofi < "$dictionary" 
+			dmenu < "$dictionary" 
 			;;
 		write*)
-			word=$(echo "" | tofi --prompt-text "Add word: ")
-			meaning=$(echo "" | tofi --prompt-text "Add meaning: ")
+			word=$(echo "" | dmenu -p "Add word: ")
+			meaning=$(echo "" | dmenu -p "Add meaning: ")
 
 			line_number=$(($(wc -l "$dictionary" | cut -d " " -f 1) + 1))
 

@@ -32,9 +32,9 @@ vim.opt.diffopt = {
 	"algorithm:patience",
 	"foldcolumn:0",
 }
-vim.g.netrw_banner = 0
 vim.opt.listchars = {
 	tab = "▸ ",
 	trail = "·",
 	space = "_",
 }
+vim.g.netrw_banner = 0

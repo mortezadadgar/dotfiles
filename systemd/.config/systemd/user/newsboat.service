@@ -1,0 +1,6 @@
+[Unit]
+Description=Update newsboat feed
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/newsboat -x reload

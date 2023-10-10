@@ -12,7 +12,7 @@ set -eu
 
 # create temp file
 base_name=$(basename "$1")
-temp_file=$(mktemp --prompt-text "/tmp" --suffix="$base_name" "XXXXXX")
+temp_file=$(mktemp -p "/tmp" --suffix="$base_name" "XXXXXX")
 
 # remove temp file
 trap 'rm "$temp_file"' TERM INT HUP EXIT

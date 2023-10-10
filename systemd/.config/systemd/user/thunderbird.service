@@ -1,0 +1,7 @@
+[Unit]
+Description=Thunderbird headles service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/timeout 15 /usr/bin/thunderbird --headless
+SuccessExitStatus=124

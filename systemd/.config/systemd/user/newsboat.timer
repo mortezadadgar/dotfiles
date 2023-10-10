@@ -1,0 +1,9 @@
+[Unit]
+Description=Update newsboat feed every 30m
+
+[Timer]
+OnBootSec=10s
+OnUnitActiveSec=30m
+
+[Install]
+WantedBy=timers.target
