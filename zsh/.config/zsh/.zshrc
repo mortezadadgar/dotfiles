@@ -5,7 +5,7 @@ precmd() { precmd() { print "" } }
 
 # Options
 setopt share_history hist_ignore_space hist_ignore_dups
-setopt globstarshort globdots complete_in_word extendedglob
+setopt glob_complete globstarshort globdots complete_in_word extendedglob
 setopt interactive_comments
 setopt noflowcontrol
 setopt prompt_subst
@@ -15,12 +15,6 @@ setopt auto_pushd pushd_ignore_dups cd_silent
 HISTFILE="$HOME/.zhistory"
 HISTSIZE=100000
 SAVEHIST=100000
-
-# report time
-REPORTTIME="180"
-
-# Z completion
-fpath+=($ZDOTDIR/plugins/zsh-z)
 
 # Completion
 zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
@@ -32,11 +26,6 @@ zmodload zsh/complist
 
 # only list files for open command
 compdef _files open
-
-# Rebind TAB to make it work with globbing expansion
-bindkey $'\t' complete-word
-zstyle ':completion:*' completer _expand _complete _ignored
-zstyle :completion::expand::: tag-order expansions original
 
 # Fuzzy find history
 autoload up-line-or-beginning-search
@@ -99,11 +88,4 @@ bindkey '^E' edit-command-line
 . $ZDOTDIR/aliasrc
 . $ZDOTDIR/functions
 
-# zsh-autosuggestions
-ZSH_AUTOSUGGEST_MANUAL_REBIND=1
-ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
-
-# Plugins
-for file in $ZDOTDIR/plugins/*/*.plugin.zsh(N@,.); do
-	. "$file"
-done
+. /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh(N)
