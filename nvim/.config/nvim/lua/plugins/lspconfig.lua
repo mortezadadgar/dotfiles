@@ -1,8 +1,8 @@
 local lsp = vim.lsp
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
+local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 -- custom attach
-local on_attach = function(client, bufnr)
+local on_attach = function(_, bufnr)
 	local border = "single"
 	local map = function(mode, keys, func, desc)
 		if desc then
@@ -11,15 +11,13 @@ local on_attach = function(client, bufnr)
 		vim.keymap.set(mode, keys, func, { buffer = bufnr, desc = desc })
 	end
 
-	local t = require "telescope.builtin"
-
 	-- mappings
-	map("n", "gr", t.lsp_references, "List References")
-	map("n", "gd", t.lsp_definitions, "Goto definition")
-	map("n", "gI", t.lsp_implementations, "Goto definition")
+	map("n", "gr", vim.lsp.buf.references, "List References")
+	map("n", "gd", vim.lsp.buf.definition, "Goto definition")
+	map("n", "gI", vim.lsp.buf.implementation, "Goto definition")
 	map("n", "K", vim.lsp.buf.hover, "Hover Documentation")
 	map("n", "<Space>rn", vim.lsp.buf.rename, "Rename")
-	map("n", "<Space>d", t.diagnostics, "List Diagnostics")
+	map("n", "<Space>d", vim.diagnostic.setqflist, "List Diagnostics")
 	map({ "v", "n" }, "<Space>ca", vim.lsp.buf.code_action, "Code action")
 	map("n", "<Space>cl", vim.lsp.codelens.run, "Code lens")
 	map("i", "<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
@@ -38,9 +36,10 @@ local on_attach = function(client, bufnr)
 	lsp.handlers["textDocument/hover"] = lsp.with(lsp.handlers.hover, {
 		border = border,
 	})
-	lsp.handlers["textDocument/signatureHelp"] = lsp.with(lsp.handlers.signature_help, {
-		border = border,
-	})
+	lsp.handlers["textDocument/signatureHelp"] =
+		lsp.with(lsp.handlers.signature_help, {
+			border = border,
+		})
 
 	vim.diagnostic.config {
 		virtual_text = {
@@ -87,6 +86,9 @@ local servers = {
 		Lua = {
 			telemetry = {
 				enable = false,
+			},
+			diagnostics = {
+				globals = { "vim" },
 			},
 		},
 	},

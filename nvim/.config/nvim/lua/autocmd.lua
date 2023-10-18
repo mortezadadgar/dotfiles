@@ -45,3 +45,10 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 		end
 	end,
 })
+
+-- show quickfix window automatically
+vim.api.nvim_create_autocmd("QuickFixCmdPost", {
+	pattern = "[^l]*",
+	command = "cwindow",
+	nested = true,
+})

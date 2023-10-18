@@ -24,5 +24,15 @@ vim.o.updatetime = 500
 vim.o.completeopt = "menuone,noselect"
 vim.o.laststatus = 3
 vim.o.wildignorecase = true
+vim.o.grepformat = "%f:%l:%c:%m"
+vim.o.grepprg = "rg --vimgrep --smart-case -g '!{**/node_modules/*}'"
 vim.wo.colorcolumn = "80"
 vim.g.netrw_banner = 0
+vim.opt.wildignore:append {
+	"*node_modules/**",
+	".git/",
+	"*.svg",
+	"*.png",
+	"*.ttf",
+	"*.jpg",
+}
