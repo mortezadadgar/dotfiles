@@ -8,6 +8,10 @@ vim.keymap.set("n", "j", [[(v:count > 3 ? "m'" . v:count : '') . 'j']], { expr =
 -- Spell checker
 vim.keymap.set("n", "<leader>o", "<cmd>setlocal spell!<CR>", { desc = "Spell Checker" })
 
+-- don't override register
+vim.keymap.set("n", "c", '"_c')
+vim.keymap.set("n", "x", '"_x')
+
 -- cd to current buffer directory
 vim.keymap.set(
 	"n",
@@ -15,9 +19,3 @@ vim.keymap.set(
 	"':cd ' . expand('%:p:h')",
 	{ expr = true, desc = "Prompt to change directory to current buffer" }
 )
-
-vim.keymap.set("i", "<Tab>", [[pumvisible() ? "<C-n>" : "<Tab>"]], { expr = true })
-vim.keymap.set("i", "<S-Tab>", [[pumvisible() ? "<C-p>" : "<S-Tab>"]], { expr = true })
-vim.keymap.set("i", "<CR>", [[pumvisible() ? "<C-y>" : "<CR>"]], { expr = true })
-
-vim.keymap.set("n", "-", "<cmd>:Ex<CR>")
