@@ -1,4 +1,4 @@
-# Change prompt
+# Prompt
 [[ $SSH_CONNECTION ]] && local uath='%F{green}%M%f '
 PROMPT=$'${uath}%F{blue}%B%(7~|...%5~|%~)%f%b $(gitstatus)\n%F{green}%B➜%b%f '
 precmd() { precmd() { print "" } }
@@ -20,14 +20,16 @@ SAVEHIST=100000
 zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
 zstyle ":completion:*:default" list-colors ${(s.:.)LS_COLORS} "ma=48;5;12;38;5;0"
 zstyle ':completion:*:default' menu yes select
-zstyle ':completion:*' rehash true
 autoload -U compinit; compinit
 zmodload zsh/complist
+
+# handle signals from pacman
+TRAPUSR1() { rehash }
 
 # only list files for open command
 compdef _files open
 
-# Fuzzy find history
+# up and down keys to search history
 autoload up-line-or-beginning-search
 autoload down-line-or-beginning-search
 zle -N up-line-or-beginning-search
@@ -50,8 +52,7 @@ KEYTIMEOUT=1
 
 # Git branch name
 function gitstatus() {
-	exec 2>/dev/null
-	ref=$(git rev-parse --abbrev-ref HEAD)
+	ref=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
 	print "%F{green}${ref}%f"
 }
 
@@ -88,4 +89,4 @@ bindkey '^E' edit-command-line
 . $ZDOTDIR/aliasrc
 . $ZDOTDIR/functions
 
-. /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh(N)
+. /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

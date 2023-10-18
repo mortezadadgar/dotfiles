@@ -1,5 +1,5 @@
 local function augroup(name)
-	return vim.api.nvim_create_augroup(name, { clear = true })
+	return vim.api.nvim_create_augroup(name, {})
 end
 
 -- highlight on yank
@@ -19,12 +19,13 @@ vim.api.nvim_create_autocmd("VimResized", {
 	end,
 })
 
--- check for spell in text filetypes
+-- enable spell check and preferable textwidth in text filetypes
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = { "gitcommit", "markdown" },
-	group = augroup "autoSpell",
+	group = augroup "textFt",
 	callback = function()
 		vim.opt_local.spell = true
+		vim.opt_local.textwidth = 80
 	end,
 })
 

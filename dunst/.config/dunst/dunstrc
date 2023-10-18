@@ -22,8 +22,6 @@
     max_icon_size = 64
 	close = ctrl+space
 	history = ctrl+shift+space
-    gaps = true
-    gap_size = 10
 
 [urgency_normal]
     foreground = "#c0c0c0"

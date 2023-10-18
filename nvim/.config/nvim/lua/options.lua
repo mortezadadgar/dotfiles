@@ -16,6 +16,7 @@ vim.o.cursorline = true
 vim.o.scrolloff = 5
 vim.o.pumheight = 10
 vim.o.breakindent = true
+vim.o.title = true
 vim.o.smartcase = true
 vim.o.spelllang = "en_us"
 vim.o.spelloptions = "camel"
@@ -24,16 +25,4 @@ vim.o.completeopt = "menuone,noselect"
 vim.o.laststatus = 3
 vim.o.wildignorecase = true
 vim.wo.colorcolumn = "80"
-vim.opt.diffopt = {
-	vim.o.diffopt,
-	"linematch:60",
-	"indent-heuristic",
-	"algorithm:patience",
-	"foldcolumn:0",
-}
-vim.opt.listchars = {
-	tab = "▸ ",
-	trail = "·",
-	space = "_",
-}
 vim.g.netrw_banner = 0

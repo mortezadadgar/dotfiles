@@ -3,7 +3,7 @@
 
 -- defaults
 local cfg = {
-	interval = '45m',
+	-- interval = '45m',
 	format   = "%H:%M",
 	duration = 2.5,
 	key      = 'h',
@@ -56,9 +56,9 @@ if cfg.interval then
 			osd_clock()
 		end
 	)
+end
 
-	-- optional bind to the key
-	if cfg.key then
-		mp.add_key_binding(cfg.key, cfg.name, osd_clock)
-	end
+-- optional bind to the key
+if cfg.key then
+	mp.add_key_binding(cfg.key, cfg.name, osd_clock)
 end

@@ -8,7 +8,6 @@ local icons = {
 	buffers = {
 		readonly = "󰌾",
 		modified = "●",
-		unsaved_others = "○",
 	},
 }
 
@@ -32,22 +31,8 @@ local function diagnostics_section()
 	return table.concat(results)
 end
 
-local function unsaved_buffers()
-	for _, buf in pairs(vim.api.nvim_list_bufs()) do
-		if vim.api.nvim_get_current_buf() == buf then
-			goto continue
-		end
-		if vim.api.nvim_buf_get_option(buf, "modified") then
-			return string.format(" %s ", icons.buffers.unsaved_others)
-		end
-		::continue::
-	end
-
-	return ""
-end
-
 local function file_section()
-	local name, ext = vim.fn.expand "%:f", vim.fn.expand "%:e"
+	local name, ext = vim.fn.expand "%:~:.", vim.fn.expand "%:e"
 	local attr, icon = "", ""
 
 	local ok, nvim_devicons = pcall(require, "nvim-web-devicons")
@@ -75,7 +60,7 @@ local function file_section()
 end
 
 local function left_section()
-	return file_section() .. unsaved_buffers() .. diagnostics_section()
+	return file_section() .. diagnostics_section()
 end
 
 local function right_section()

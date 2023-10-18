@@ -1,17 +1,6 @@
 local lsp = vim.lsp
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-local diagnostics_disabled = false
-local function diagnostics_toggle()
-	if diagnostics_disabled then
-		diagnostics_disabled = false
-		vim.diagnostic.enable()
-	else
-		diagnostics_disabled = true
-		vim.diagnostic.disable()
-	end
-end
-
 -- custom attach
 local on_attach = function(client, bufnr)
 	local border = "single"
@@ -63,14 +52,10 @@ local on_attach = function(client, bufnr)
 		severity_sort = true,
 	}
 
-	-- named LspToggle for simplicity sake.
-	vim.api.nvim_create_user_command("LspToggle", diagnostics_toggle, {})
-
 	vim.api.nvim_create_autocmd("BufWritePre", {
-		group = vim.api.nvim_create_augroup("LspFormat", { clear = true }),
-		pattern = "<buffer>",
+		group = vim.api.nvim_create_augroup("LspFormat", {}),
 		callback = function()
-			local disabled_formatter = { "cssls", "html", "lua_ls" }
+			local disabled_formatter = { "cssls", "html", "lua_ls", "clangd" }
 			vim.lsp.buf.format {
 				filter = function(c)
 					return not vim.tbl_contains(disabled_formatter, c.name)
@@ -78,16 +63,6 @@ local on_attach = function(client, bufnr)
 			}
 		end,
 	})
-
-	if client.supports_method "textDocument/codeLens" then
-		vim.api.nvim_create_autocmd({ "CursorHold", "InsertLeave" }, {
-			group = vim.api.nvim_create_augroup("CodeAction", { clear = true }),
-			pattern = "<buffer>",
-			callback = function()
-				vim.lsp.codelens.refresh()
-			end,
-		})
-	end
 end
 
 local servers = {
@@ -112,6 +87,14 @@ local servers = {
 		Lua = {
 			telemetry = {
 				enable = false,
+			},
+		},
+	},
+	svelte = {
+		svelte = {
+			plugin = {
+				html = { completions = { emmet = false } },
+				css = { completions = { emmet = false } },
 			},
 		},
 	},

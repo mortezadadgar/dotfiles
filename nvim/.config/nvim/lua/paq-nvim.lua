@@ -2,7 +2,8 @@
 vim.loader.enable()
 
 require "paq" {
-	{ "mortezadadgar/onedark-nvim", run = vim.cmd.colorscheme "onedark.nvim" },
+	"savq/paq-nvim",
+	"mortezadadgar/onedark-nvim",
 	"neovim/nvim-lspconfig",
 	"williamboman/mason-lspconfig.nvim",
 	"williamboman/mason.nvim",
@@ -24,11 +25,15 @@ require "paq" {
 	"tpope/vim-commentary",
 	"JoosepAlviste/nvim-ts-context-commentstring",
 	"tpope/vim-surround",
+	"tpope/vim-repeat",
 	"stevearc/oil.nvim",
 	"NvChad/nvim-colorizer.lua",
 	"mbbill/undotree",
 	"stevearc/conform.nvim",
 }
+
+-- colorscheme
+vim.cmd.colorscheme "onedark.nvim"
 
 -- load configs
 require "plugins"

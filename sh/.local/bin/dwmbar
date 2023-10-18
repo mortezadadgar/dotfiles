@@ -78,7 +78,7 @@ update_mpd() {
 	# get currently playing music's name and remove ()
 	mpc="$(mpc current -f "[%artist% - %title%]" | sed "s/\s(.*)$//g")"
 	[ -z "$mpc" ] && mediainfo="" && return
-	mediainfo="$(printf " 󰋄 %s " "$mpc")"
+	mediainfo="$(printf "󰋄 %s  " "$mpc")"
 }
 
 # We have to run this only once.
@@ -86,9 +86,9 @@ update_vol
 
 display() {
 	if [ "$is_laptop" = 1 ]; then
-		xsetroot -name "${mediainfo:-} $vol  $wifi  $temp  $bat  $time"
+		xsetroot -name "${mediainfo:-}$vol  $wifi  $temp  $bat  $time"
 	else
-		xsetroot -name "${mediainfo:-} $vol  $temp  $time"
+		xsetroot -name "${mediainfo:-}$vol  $temp  $time"
 	fi
 }
 

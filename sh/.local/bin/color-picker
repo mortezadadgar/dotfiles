@@ -4,4 +4,7 @@
 # Dependencies: sxcs, xclip
 set -eu
 
-sxcs -q -o --hex | cut -f 2 | xclip -r -sel clip
+color="$(sxcs -q -o --hex | cut -f 2)"
+[ -z "$color" ] && exit
+echo "$color" | xclip -r -sel clip
+notify-send -i colorpicker "color picker" "Copied $color color to clipboard"

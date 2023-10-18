@@ -6,7 +6,7 @@ set page-padding 5
 set window-title-basename true
 set statusbar-basename true
 set highlight-transparency  0.3
-set sandbox strict
+# set sandbox strict
 
 # maps
 map d scroll half-down

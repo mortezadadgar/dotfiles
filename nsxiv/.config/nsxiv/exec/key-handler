@@ -10,6 +10,9 @@ case "$1" in
 		convert -rotate 90 "$file" "$file"
 		;;
 	"d")
+		dragon-drop "$file" &
+		;;
+	"x")
 		prompt "Remove this image?" && rm "$file" && notify-send "$file deleted"
 		;;
 esac
