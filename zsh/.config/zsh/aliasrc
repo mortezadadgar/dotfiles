@@ -21,6 +21,11 @@ alias -g LB="~/Books/*(.oc[1])"
 alias -g LS="~/Pictures/screenshots/*(.oc[1])"
 alias yay="yay --removemake"
 alias apply="patch --merge -p1 -i"
+alias st="st & disown"
+
+# syslog
+alias log="less +G /var/log/syslog"
+alias logtail="tail -fn 5 /var/log/syslog"
 
 # git
 alias gst="git status"

@@ -2,7 +2,7 @@ local lsp = vim.lsp
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 -- custom attach
-local on_attach = function(client, bufnr)
+local on_attach = function(_, bufnr)
 	local border = "single"
 	local map = function(mode, keys, func, desc)
 		if desc then
@@ -87,6 +87,9 @@ local servers = {
 		Lua = {
 			telemetry = {
 				enable = false,
+			},
+			diagnostics = {
+				globals = { "vim" },
 			},
 		},
 	},

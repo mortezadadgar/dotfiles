@@ -4,7 +4,7 @@
 set -eu
 
 exclude_pkg="
-	dev--prompt-textython/*
+	dev-python/*
 	app-alternatives/*
 	sys-kernel/*
 	sys-firmware/*

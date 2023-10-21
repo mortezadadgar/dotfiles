@@ -32,7 +32,7 @@ cmp.setup {
 	},
 
 	sources = {
-		{ name = "nvim_lsp", max_item_count = 200 },
+		{ name = "nvim_lsp" },
 		{ name = "path" },
 		{ name = "luasnip" },
 		{
@@ -50,11 +50,5 @@ cmp.setup {
 			vim_item.abbr = string.sub(vim_item.abbr, 1, 45)
 			return vim_item
 		end,
-	},
-
-	window = {
-		completion = {
-			scrollbar = false,
-		},
 	},
 }

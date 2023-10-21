@@ -21,7 +21,6 @@ vim.o.smartcase = true
 vim.o.spelllang = "en_us"
 vim.o.spelloptions = "camel"
 vim.o.updatetime = 500
-vim.o.completeopt = "menuone,noselect"
 vim.o.laststatus = 3
 vim.o.wildignorecase = true
 vim.wo.colorcolumn = "80"

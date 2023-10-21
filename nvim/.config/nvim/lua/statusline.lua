@@ -33,6 +33,7 @@ end
 
 local function file_section()
 	local name, ext = vim.fn.expand "%:~:.", vim.fn.expand "%:e"
+	local curbuf = string.format("[%s]", vim.api.nvim_get_current_buf())
 	local attr, icon = "", ""
 
 	local ok, nvim_devicons = pcall(require, "nvim-web-devicons")
@@ -54,9 +55,10 @@ local function file_section()
 
 	if name == "" then
 		name = "No Name"
+		curbuf = ""
 	end
 
-	return string.format("%s %s%s", icon, name, attr)
+	return string.format("%s %s%s%s", icon, name, curbuf, attr)
 end
 
 local function left_section()
