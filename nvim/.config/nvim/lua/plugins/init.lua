@@ -1,14 +1,12 @@
 local configs = {
 	"lspconfig",
-	"treesitter",
 	"telescope",
 	"conform",
 	"nvim-cmp",
 	"luasnip",
+	"treesitter",
 	"treesitter-context",
 	"oil",
-	"mini-surround",
-	"mini-comment",
 	"mini-hipatterns",
 	"undotree",
 }
@@ -16,3 +14,6 @@ local configs = {
 for _, config in pairs(configs) do
 	require("plugins." .. config)
 end
+
+require("ts_context_commentstring").setup()
+require("mini.splitjoin").setup()

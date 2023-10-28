@@ -14,18 +14,18 @@ select=$(printf "selected area (copy)\nfull screen (copy)\nselected area\nfull s
 case $select in
 	"selected area")
 		maim -us "$FORMAT"
-		notify-send "maimpick" "Screenshot taken"
+		notify-send "Maim" "Screenshot taken"
 		;;
 	"full screen")
 		maim "$FORMAT"
-		notify-send "maimpick" "Screenshot taken"
+		notify-send "Maim" "Screenshot taken"
 		;;
 	"selected area (copy)")
 		maim -us | xclip -selection clipboard -t image/png
-		notify-send "maimpick" "Screenshot copied to clipboard"
+		notify-send "Maim" "Screenshot copied to clipboard"
 		;;
 	"full screen (copy)")
 		maim -u | xclip -selection clipboard -t image/png
-		notify-send "maimpick" "Screenshot copied to clibboard"
+		notify-send "Maim" "Screenshot copied to clibboard"
 		;;
 esac

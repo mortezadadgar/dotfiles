@@ -4,10 +4,18 @@ end
 
 -- highlight on yank
 vim.api.nvim_create_autocmd("TextYankPost", {
-	pattern = "*",
 	group = augroup "highlightYank",
+	pattern = "*",
 	callback = function()
 		vim.highlight.on_yank()
+	end,
+})
+
+-- disable auto formatting on newline
+vim.api.nvim_create_autocmd("BufEnter", {
+	group = augroup "autoCommentOff",
+	callback = function()
+		vim.opt.formatoptions:remove { "r", "o" }
 	end,
 })
 
@@ -21,8 +29,8 @@ vim.api.nvim_create_autocmd("VimResized", {
 
 -- enable spell check and preferable textwidth in text filetypes
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = { "gitcommit", "markdown" },
 	group = augroup "textFt",
+	pattern = { "gitcommit", "markdown" },
 	callback = function()
 		vim.opt_local.spell = true
 		vim.opt_local.textwidth = 80
@@ -33,13 +41,8 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("BufReadPost", {
 	group = augroup "lastLoc",
 	callback = function()
-		local exclude = { "gitcommit" }
-		local buf = vim.api.nvim_get_current_buf()
-		if vim.tbl_contains(exclude, vim.bo[buf].filetype) then
-			return
-		end
-		local mark = vim.api.nvim_buf_get_mark(buf, '"')
-		local lcount = vim.api.nvim_buf_line_count(buf)
+		local mark = vim.api.nvim_buf_get_mark(0, '"')
+		local lcount = vim.api.nvim_buf_line_count(0)
 		if mark[1] > 0 and mark[1] <= lcount then
 			pcall(vim.api.nvim_win_set_cursor, 0, mark)
 		end

@@ -24,4 +24,9 @@ vim.o.updatetime = 500
 vim.o.laststatus = 3
 vim.o.wildignorecase = true
 vim.wo.colorcolumn = "80"
-vim.g.netrw_banner = 0
+vim.opt.diffopt:append {
+	"linematch:60",
+	"indent-heuristic",
+	"algorithm:patience",
+	"foldcolumn:0",
+}

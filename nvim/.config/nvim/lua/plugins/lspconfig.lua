@@ -83,16 +83,6 @@ local servers = {
 			staticcheck = true,
 		},
 	},
-	lua_ls = {
-		Lua = {
-			telemetry = {
-				enable = false,
-			},
-			diagnostics = {
-				globals = { "vim" },
-			},
-		},
-	},
 	svelte = {
 		svelte = {
 			plugin = {
@@ -102,6 +92,8 @@ local servers = {
 		},
 	},
 }
+
+require("neodev").setup()
 
 -- setup mason so it can manage external tooling
 require("mason").setup()

@@ -9,13 +9,13 @@ xinput set-prop "ELAN0501:00 04F3:3019 Touchpad" "libinput Tapping Enabled" 1
 xinput set-prop "ELAN0501:00 04F3:3019 Touchpad" "libinput Natural Scrolling Enabled" 1
 
 # Autostart
+dunst &
 redshift -O 5000 &
 xwallpaper --stretch $XDG_DATA_HOME/bg.jpg &
 xss-lock -n dim-screen -l -- slock &
 batterynotif &
 pidof mpd-notify || mpd-notify &
 pidof dwmbar || dwmbar &
-dunst &
 dbus-update-activation-environment DISPLAY XAUTHORITY &
 
 # WM

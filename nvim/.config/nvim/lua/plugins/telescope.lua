@@ -34,9 +34,10 @@ vim.keymap.set("n", "<leader><leader>", builtin.resume, { desc = "Telescope: Res
 vim.keymap.set("n", "<Space>lg", builtin.live_grep, { desc = "Telescope: Live grep" })
 vim.keymap.set({ "n", "v" }, "<Space>gs", builtin.grep_string, { desc = "Telescope: Grep string" })
 vim.keymap.set("n", "<Space><Space>", builtin.find_files, { desc = "Telescope: Config files" })
+vim.keymap.set("n", "<Space>gf", builtin.git_files, { desc = "Telescope: Git files" })
 
 local list_buffers = function()
-	builtin.buffers { sort_lastused = true, ignore_current_buffer = true }
+	builtin.buffers { sort_lastused = true }
 end
 vim.keymap.set("n", "<Space>b", list_buffers, { desc = "Telescope: Buffers" })
 

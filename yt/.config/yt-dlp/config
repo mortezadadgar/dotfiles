@@ -1,5 +1,4 @@
 -f b
 --no-mtime
 --sponsorblock-remove all
---proxy socks5://127.0.0.1:10808
 -o ~/Youtube/%(playlist_index)s-%(title)s.%(ext)s

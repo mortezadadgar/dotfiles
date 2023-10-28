@@ -8,4 +8,4 @@ if [ -d "$install_path" ]; then
 fi
 
 git clone --depth=1 https://github.com/savq/paq-nvim.git "$install_path"
-echo "open nvim and run :PaqInstall"
+nvim "+PaqInstall"

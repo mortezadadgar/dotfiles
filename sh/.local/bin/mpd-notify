@@ -4,13 +4,14 @@
 # Shell: POSIX compliant
 set -eu
 
-exec 2>/dev/null
-
 cover="/tmp/mpd_cover.png"
 music_library="$HOME/Music"
 cached_song=""
 
 trap 'rm "$cover"' TERM INT HUP EXIT
+
+# wait for mpd to fire up
+sleep 2
 
 while true;
 do
@@ -28,7 +29,7 @@ do
 		continue
 	fi
 
-	if ! ffmpeg -y -i "$(mpc --format "$music_library"/%file% | head -n 1)" "$cover"; then
+	if ! ffmpeg -loglevel -8 -y -i "$(mpc --format "$music_library"/%file% | head -n 1)" "$cover"; then
 		notify-send -i apple-music "Now Playing" "$(mpc current)"
 		continue
 	fi

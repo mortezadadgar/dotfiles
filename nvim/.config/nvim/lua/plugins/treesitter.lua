@@ -1,4 +1,5 @@
 -- Treesitter setup
+---@diagnostic disable-next-line: missing-fields
 require("nvim-treesitter.configs").setup {
 	ensure_installed = {
 		"markdown_inline",
@@ -33,14 +34,16 @@ require("nvim-treesitter.configs").setup {
 		},
 	},
 
+	autotag = {
+		enable = true,
+	},
+
 	textobjects = {
 		select = {
 			enable = true,
 			lookahead = false,
 			include_surrounding_whitespace = true,
 			keymaps = {
-				["aa"] = "@parameter.outer",
-				["ia"] = "@parameter.inner",
 				["al"] = "@loop.outer",
 				["il"] = "@loop.inner",
 				["aC"] = "@class.outer",

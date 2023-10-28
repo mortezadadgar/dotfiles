@@ -7,4 +7,4 @@ set -eu
 color="$(sxcs -q -o --hex | cut -f 2)"
 [ -z "$color" ] && exit
 echo "$color" | xclip -r -sel clip
-notify-send -i colorpicker "color picker" "Copied $color color to clipboard"
+notify-send -i colorpicker "Color Picker" "Copied $color color to clipboard"

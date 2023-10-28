@@ -85,8 +85,14 @@ bindkey -M vicmd 'd' vi-clip
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^E' edit-command-line
 
+# push line
+bindkey '^Q' push-line
+
+# fzf
+. /usr/share/fzf/key-bindings.zsh 2>/dev/null
+
 # Other config files
 . $ZDOTDIR/aliasrc
 . $ZDOTDIR/functions
 
-. /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+. /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null

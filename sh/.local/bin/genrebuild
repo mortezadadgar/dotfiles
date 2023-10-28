@@ -8,6 +8,10 @@ exclude_pkg="
 	app-alternatives/*
 	sys-kernel/*
 	sys-firmware/*
+	sys-devel/clang
+	sys-devel/llvm
+	sys-devel/gcc
+	net-libs/nodejs
 	x11-themes/*
 	acct-user/*
 	acct-group/*
