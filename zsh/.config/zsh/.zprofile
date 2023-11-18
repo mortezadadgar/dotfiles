@@ -7,6 +7,7 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$XDG_DATA_HOME/go/bin:$PATH"
 export PATH="$XDG_DATA_HOME/cargo/bin:$PATH"
+export PATH="$HOME/.ghcup/bin:$PATH"
 
 # Default programs
 export EDITOR="nvim"
@@ -18,13 +19,18 @@ export ANDROID_HOME="$XDG_DATA_HOME/android"
 export GOPATH="$XDG_DATA_HOME/go"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export NPM_CONFIG_PREFIX="$XDG_DATA_HOME/npm"
-export ZSHZ_DATA="$XDG_DATA_HOME/z"
+
+# nnn
+export NNN_OPENER="$HOME/.local/bin/open"
+export NNN_OPTS="CGQc"
 
 # Other programs
 export LESS="-x4Rg"
-export SYSTEMD_LESS=$LESS
-export LS_COLORS="$(<$XDG_CONFIG_HOME/zsh/lscolors)"
-export MANPAGER='nvim +Man! +"set nocul" +"set ls=0" +"set nonu"'
+export FZF_DEFAULT_OPTS="--layout=reverse --height=10% --no-info"
+export CHROMIUM_FLAGS="$(<$XDG_CONFIG_HOME/chromium-flags.conf)"
+
+# LS_COLORS
+(( $+commands[dircolors] )) && eval `dircolors`
 
 if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
 	exec startx

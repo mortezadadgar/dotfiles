@@ -17,13 +17,14 @@ local on_attach = function(_, bufnr)
 	map("n", "gr", t.lsp_references, "List References")
 	map("n", "gd", t.lsp_definitions, "Goto definition")
 	map("n", "gI", t.lsp_implementations, "Goto definition")
+	map("n", "<space>sy", t.lsp_document_symbols, "Documents symbols")
 	map("n", "K", vim.lsp.buf.hover, "Hover Documentation")
-	map("n", "<Space>rn", vim.lsp.buf.rename, "Rename")
-	map("n", "<Space>d", t.diagnostics, "List Diagnostics")
-	map({ "v", "n" }, "<Space>ca", vim.lsp.buf.code_action, "Code action")
-	map("n", "<Space>cl", vim.lsp.codelens.run, "Code lens")
+	map("n", "<space>rn", vim.lsp.buf.rename, "Rename")
+	map("n", "<space>d", t.diagnostics, "List Diagnostics")
+	map({ "v", "n" }, "<space>ca", vim.lsp.buf.code_action, "Code action")
+	map("n", "<space>cl", vim.lsp.codelens.run, "Code lens")
 	map("i", "<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
-	map("n", "<Space>e", vim.diagnostic.open_float, "Diagnostic float")
+	map("n", "<space>e", vim.diagnostic.open_float, "Diagnostic float")
 	map("n", "[d", vim.diagnostic.goto_prev, "Next diagnostic")
 	map("n", "]d", vim.diagnostic.goto_next, "Next diagnostic")
 
@@ -83,6 +84,13 @@ local servers = {
 			staticcheck = true,
 		},
 	},
+	lua_ls = {
+		Lua = {
+			telemetry = {
+				enable = false,
+			},
+		},
+	},
 	svelte = {
 		svelte = {
 			plugin = {
@@ -92,8 +100,6 @@ local servers = {
 		},
 	},
 }
-
-require("neodev").setup()
 
 -- setup mason so it can manage external tooling
 require("mason").setup()

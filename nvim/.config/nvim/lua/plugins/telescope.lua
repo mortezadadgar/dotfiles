@@ -1,6 +1,7 @@
 local actions = require "telescope.actions"
 local builtin = require "telescope.builtin"
 local themes = require "telescope.themes"
+local utils = require "telescope.utils"
 
 require("telescope").setup {
 	defaults = {
@@ -11,6 +12,7 @@ require("telescope").setup {
 			"%.ttf",
 			"%.jpg",
 			"%.png",
+			"^.git/",
 			"^node_modules/",
 		},
 		layout_strategy = "flex",
@@ -22,7 +24,6 @@ require("telescope").setup {
 		mappings = {
 			i = {
 				["<Esc>"] = actions.close,
-				["<C-q>"] = actions.smart_add_to_qflist,
 			},
 		},
 	},
@@ -31,33 +32,39 @@ require("telescope").setup {
 require("telescope").load_extension "fzf"
 
 vim.keymap.set("n", "<leader><leader>", builtin.resume, { desc = "Telescope: Resume" })
-vim.keymap.set("n", "<Space>lg", builtin.live_grep, { desc = "Telescope: Live grep" })
-vim.keymap.set({ "n", "v" }, "<Space>gs", builtin.grep_string, { desc = "Telescope: Grep string" })
-vim.keymap.set("n", "<Space><Space>", builtin.find_files, { desc = "Telescope: Config files" })
-vim.keymap.set("n", "<Space>gf", builtin.git_files, { desc = "Telescope: Git files" })
+vim.keymap.set("n", "<space>gg", builtin.live_grep, { desc = "Telescope: Live grep" })
+vim.keymap.set({ "n", "v" }, "<space>gs", builtin.grep_string, { desc = "Telescope: Grep string" })
+vim.keymap.set("n", "<space>gf", builtin.git_files, { desc = "Telescope: Git files" })
+vim.keymap.set("n", "<space>b", builtin.buffers, { desc = "Telescope: Buffers" })
 
-local list_buffers = function()
-	builtin.buffers { sort_lastused = true }
+local find_files = function()
+	builtin.find_files { hidden = true }
 end
-vim.keymap.set("n", "<Space>b", list_buffers, { desc = "Telescope: Buffers" })
+vim.keymap.set("n", "<space><space>", find_files, { desc = "Telescope: Find files" })
+
+local find_curfiles = function()
+	builtin.find_files {
+		prompt_title = "Current Buffer Files",
+		cwd = utils.buffer_dir(),
+		hidden = true,
+	}
+end
+vim.keymap.set("n", "<space>cc", find_curfiles, { desc = "Telescope: Find current buffer files" })
 
 local find_config_files = function()
 	builtin.find_files {
-		prompt_title = "~ config files ~",
+		prompt_title = "Config Files",
 		shorten_path = false,
 		cwd = "~/.config/",
 		hidden = true,
 		follow = true,
-
-		layout_strategy = "horizontal",
-		previewer = false,
 	}
 end
-vim.keymap.set("n", "<Space>cf", find_config_files, { desc = "Telescope: Config files" })
+vim.keymap.set("n", "<space>cf", find_config_files, { desc = "Telescope: Config files" })
 
 local fuzzy_find_curbuf = function()
 	builtin.current_buffer_fuzzy_find(themes.get_dropdown {
-		layout_config = { width = 90 },
+		layout_config = { width = 90, height = 20 },
 		borderchars = {
 			prompt = { "─", "│", " ", "│", "┌", "┐", "│", "│" },
 			results = { "─", "│", "─", "│", "├", "┤", "┘", "└" },

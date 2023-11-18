@@ -1,10 +1,8 @@
-local function augroup(name)
-	return vim.api.nvim_create_augroup(name, {})
-end
+local group = vim.api.nvim_create_augroup("UserGroup", {})
 
 -- highlight on yank
 vim.api.nvim_create_autocmd("TextYankPost", {
-	group = augroup "highlightYank",
+	group = group,
 	pattern = "*",
 	callback = function()
 		vim.highlight.on_yank()
@@ -13,7 +11,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 -- disable auto formatting on newline
 vim.api.nvim_create_autocmd("BufEnter", {
-	group = augroup "autoCommentOff",
+	group = group,
 	callback = function()
 		vim.opt.formatoptions:remove { "r", "o" }
 	end,
@@ -21,7 +19,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
 
 -- resize splits if window got resized
 vim.api.nvim_create_autocmd("VimResized", {
-	group = augroup "resizeSplits",
+	group = group,
 	callback = function()
 		vim.cmd "tabdo wincmd ="
 	end,
@@ -29,7 +27,7 @@ vim.api.nvim_create_autocmd("VimResized", {
 
 -- enable spell check and preferable textwidth in text filetypes
 vim.api.nvim_create_autocmd("FileType", {
-	group = augroup "textFt",
+	group = group,
 	pattern = { "gitcommit", "markdown" },
 	callback = function()
 		vim.opt_local.spell = true
@@ -37,9 +35,17 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
+-- show quickfix window automatically
+vim.api.nvim_create_autocmd("QuickFixCmdPost", {
+	group = group,
+	pattern = "[^l]*",
+	command = "cwindow",
+	nested = true,
+})
+
 -- go to last loc when opening a buffer
 vim.api.nvim_create_autocmd("BufReadPost", {
-	group = augroup "lastLoc",
+	group = group,
 	callback = function()
 		local mark = vim.api.nvim_buf_get_mark(0, '"')
 		local lcount = vim.api.nvim_buf_line_count(0)

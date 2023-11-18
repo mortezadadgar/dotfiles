@@ -1,5 +1,4 @@
 -- Treesitter setup
----@diagnostic disable-next-line: missing-fields
 require("nvim-treesitter.configs").setup {
 	ensure_installed = {
 		"markdown_inline",
@@ -13,6 +12,7 @@ require("nvim-treesitter.configs").setup {
 	ignore_install = {
 		"ini",
 		"vim",
+		"sql",
 	},
 
 	auto_install = true,
@@ -22,7 +22,7 @@ require("nvim-treesitter.configs").setup {
 	},
 
 	indent = {
-		enable = true,
+		enable = false, -- C switch/case
 	},
 
 	incremental_selection = {
@@ -34,15 +34,19 @@ require("nvim-treesitter.configs").setup {
 		},
 	},
 
-	autotag = {
+	context_commentstring = {
 		enable = true,
+		enable_autocmd = false,
+		config = {
+			c = "/*%s*/",
+		},
 	},
 
 	textobjects = {
 		select = {
 			enable = true,
 			lookahead = false,
-			include_surrounding_whitespace = true,
+			include_surrounding_whitespace = false,
 			keymaps = {
 				["al"] = "@loop.outer",
 				["il"] = "@loop.inner",
@@ -52,25 +56,27 @@ require("nvim-treesitter.configs").setup {
 				["if"] = "@function.inner",
 				["ac"] = "@conditional.outer",
 				["ic"] = "@conditional.inner",
+				["ai"] = "@parameters.outer",
+				["ii"] = "@parameters.inner",
 			},
 		},
 		move = {
 			enable = true,
 			set_jumps = true,
 			goto_next_end = {
-				["]]"] = "@function.outer",
+				["]f"] = "@function.outer",
 			},
 			goto_previous_start = {
-				["[["] = "@function.outer",
+				["[f"] = "@function.outer",
 			},
 		},
 		swap = {
 			enable = true,
 			swap_next = {
-				["<leader>a"] = "@parameter.inner",
+				["]a"] = "@parameter.inner",
 			},
 			swap_previous = {
-				["<leader>A"] = "@parameter.inner",
+				["[a"] = "@parameter.inner",
 			},
 		},
 	},

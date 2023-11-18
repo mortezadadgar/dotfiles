@@ -22,7 +22,6 @@ state
 
 # local/share
 **/share/*
-!**/share/fonts
 
 # syncthing
 .stignore

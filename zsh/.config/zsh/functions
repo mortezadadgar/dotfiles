@@ -1,6 +1,0 @@
-#!/bin/zsh
-
-# Quickly find files with giving name
-ffile() {
-	find . -type f -iname "*$1*" 2>/dev/null
-}

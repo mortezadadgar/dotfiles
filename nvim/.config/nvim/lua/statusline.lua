@@ -76,7 +76,7 @@ local function right_section()
 end
 
 _G.set_statusline = function()
-	return " " .. left_section() .. "%=" .. right_section() .. " "
+	return string.format(" %s%%=%s ", left_section(), right_section())
 end
 
 vim.o.statusline = "%!v:lua.set_statusline()"

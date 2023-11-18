@@ -6,8 +6,8 @@ set -eu
 [ "$#" = 1 ] || (echo "open: missing filename"; exit 1)
 
 list_images() {
-	find "$(dirname "$1")" -maxdepth 1 -type f -not -name "$(basename "$1")" |
-		grep -iE '\.(png|jpe?g|webp|gif|svg|bmp|ico)$'
+	find "$(dirname "$1")" -maxdepth 1 -type f |
+		sort -u | grep -iE '\.(png|jpe?g|webp|gif|svg|bmp|ico)$'
 }
 
 q() {
@@ -20,7 +20,8 @@ case "$mime_type" in
 	video/*) q mpv "$1" &;;
 	audio/*) q mpv "$1" &;;
 	text/html) q firefox "$1" &;;
-	image/*) q nsxiv -g 1300x900+0+0 "$1" $(list_images "$1") &;;
+	image/*) q nsxiv -g 1300x900+0+0 $(list_images "$1") &;;
+	text/*) $EDITOR "$1";;
 	*/pdf) q zathura "$1" &;;
 	*) echo "open: unsupported or invalid file type"
 esac

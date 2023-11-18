@@ -20,11 +20,9 @@ SAVEHIST=100000
 zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
 zstyle ":completion:*:default" list-colors ${(s.:.)LS_COLORS} "ma=48;5;12;38;5;0"
 zstyle ':completion:*:default' menu yes select
+zstyle ':completion:*' rehash true
 autoload -U compinit; compinit
 zmodload zsh/complist
-
-# handle signals from pacman
-TRAPUSR1() { rehash }
 
 # only list files for open command
 compdef _files open
@@ -36,6 +34,9 @@ zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
 bindkey "^[[A" up-line-or-beginning-search
 bindkey "^[[B" down-line-or-beginning-search
+
+# push line for vi mode
+bindkey '^Q' push-line
 
 # Allow backspace to remove newlines
 bindkey '^?' backward-delete-char
@@ -85,14 +86,5 @@ bindkey -M vicmd 'd' vi-clip
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^E' edit-command-line
 
-# push line
-bindkey '^Q' push-line
-
-# fzf
-. /usr/share/fzf/key-bindings.zsh 2>/dev/null
-
-# Other config files
-. $ZDOTDIR/aliasrc
-. $ZDOTDIR/functions
-
-. /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+. $ZDOTDIR/aliasrc 2>/dev/null
+. /usr/share/zsh/site-functions/zsh-syntax-highlighting.zsh 2>/dev/null

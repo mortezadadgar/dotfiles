@@ -1,14 +1,13 @@
 local configs = {
 	"lspconfig",
-	"telescope",
 	"conform",
+	"treesitter",
+	"telescope",
 	"nvim-cmp",
 	"luasnip",
-	"treesitter",
-	"treesitter-context",
-	"oil",
-	"mini-hipatterns",
-	"undotree",
+	"gitsigns",
+	"fidget",
+	"nnn",
 }
 
 for _, config in pairs(configs) do
@@ -16,4 +15,4 @@ for _, config in pairs(configs) do
 end
 
 require("ts_context_commentstring").setup()
-require("mini.splitjoin").setup()
+require("neogit").setup {}

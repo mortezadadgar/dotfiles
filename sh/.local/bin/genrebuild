@@ -15,6 +15,7 @@ exclude_pkg="
 	x11-themes/*
 	acct-user/*
 	acct-group/*
+	media-fonts/*
 	virtual/*
 	*-bin
 "

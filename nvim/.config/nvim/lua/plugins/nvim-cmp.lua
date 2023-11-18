@@ -10,7 +10,7 @@ cmp.setup {
 
 	mapping = {
 		["<C-e>"] = map.close(),
-		["<CR>"] = map.confirm { select = true },
+		["<CR>"] = map.confirm { select = false },
 		["<C-n>"] = map.select_next_item(),
 		["<C-p>"] = map.select_prev_item(),
 
@@ -37,6 +37,7 @@ cmp.setup {
 		{ name = "luasnip" },
 		{
 			name = "buffer",
+			keyword_length = 2,
 			option = {
 				get_bufnrs = function()
 					return vim.api.nvim_list_bufs()
@@ -49,6 +50,19 @@ cmp.setup {
 		format = function(_, vim_item)
 			vim_item.abbr = string.sub(vim_item.abbr, 1, 45)
 			return vim_item
+		end,
+	},
+
+	-- do not trigger completion on space
+	completion = {
+		get_trigger_characters = function(chars)
+			local new_chars = {}
+			for _, char in ipairs(chars) do
+				if char ~= " " then
+					table.insert(new_chars, char)
+				end
+			end
+			return new_chars
 		end,
 	},
 }

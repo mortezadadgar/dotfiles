@@ -27,6 +27,6 @@ case $select in
 		pass generate -c "$pass_dir/$pass_name" && notify_pass
 		;;
 	"show password list")
-		passmenu && notify_pass
+		passmenu -i && notify_pass
 		;;
 esac
