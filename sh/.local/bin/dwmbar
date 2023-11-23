@@ -75,8 +75,7 @@ update_mpd() {
 		return
 	fi
 
-	# get currently playing music's name and remove ()
-	mpc="$(mpc current -f "[%artist% - %title%]" | sed "s/\s(.*)$//g")"
+	mpc="$(mpc current -f "[%artist% - %title%]")"
 	[ -z "$mpc" ] && mediainfo="" && return
 	mediainfo="$(printf " 󰋄 %s " "$mpc")"
 }

@@ -12,7 +12,6 @@ require("nvim-treesitter.configs").setup {
 	ignore_install = {
 		"ini",
 		"vim",
-		"sql",
 	},
 
 	auto_install = true,
@@ -22,7 +21,7 @@ require("nvim-treesitter.configs").setup {
 	},
 
 	indent = {
-		enable = false, -- C switch/case
+		enable = true,
 	},
 
 	incremental_selection = {
@@ -31,14 +30,6 @@ require("nvim-treesitter.configs").setup {
 			init_selection = "<c-space>",
 			node_incremental = "<c-space>",
 			node_decremental = "<M-space>",
-		},
-	},
-
-	context_commentstring = {
-		enable = true,
-		enable_autocmd = false,
-		config = {
-			c = "/*%s*/",
 		},
 	},
 
@@ -56,8 +47,8 @@ require("nvim-treesitter.configs").setup {
 				["if"] = "@function.inner",
 				["ac"] = "@conditional.outer",
 				["ic"] = "@conditional.inner",
-				["ai"] = "@parameters.outer",
-				["ii"] = "@parameters.inner",
+				["aa"] = "@parameter.outer",
+				["ia"] = "@parameter.inner",
 			},
 		},
 		move = {

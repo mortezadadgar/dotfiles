@@ -15,16 +15,17 @@ vim.opt.cursorline = true
 vim.opt.pumheight = 10
 vim.opt.breakindent = true
 vim.opt.title = true
-vim.opt.ignorecase = true
+vim.opt.swapfile = false
+vim.opt.jumpoptions = "view"
 vim.opt.wildignorecase = true
+vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.spelllang = "en_us"
 vim.opt.spelloptions = "camel"
 vim.opt.laststatus = 3
-vim.opt.colorcolumn = "80"
-vim.opt.completeopt = "menuone,noinsert,noselect"
+vim.opt.grepformat = "%f:%l:%c:%m"
+vim.opt.grepprg = "rg --vimgrep --smart-case"
 vim.opt.diffopt:append {
-	"linematch:60",
 	"indent-heuristic",
 	"algorithm:patience",
 	"foldcolumn:0",

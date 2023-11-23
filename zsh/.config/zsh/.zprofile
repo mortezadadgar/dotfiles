@@ -20,10 +20,6 @@ export GOPATH="$XDG_DATA_HOME/go"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export NPM_CONFIG_PREFIX="$XDG_DATA_HOME/npm"
 
-# nnn
-export NNN_OPENER="$HOME/.local/bin/open"
-export NNN_OPTS="CGQc"
-
 # Other programs
 export LESS="-x4Rg"
 export FZF_DEFAULT_OPTS="--layout=reverse --height=10% --no-info"

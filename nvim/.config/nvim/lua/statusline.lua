@@ -9,6 +9,7 @@ local icons = {
 		readonly = "󰌾",
 		modified = "●",
 		spell = "󰓆",
+		git = "",
 	},
 }
 
@@ -50,33 +51,43 @@ local function file_section()
 	end
 
 	if attr ~= "" then
-		attr = " " .. attr
+		attr = attr .. " "
 	end
 
 	if name == "" then
 		name = "No Name"
 	end
 
-	return string.format("%s %s%s", icon, name, attr)
+	return string.format("%%#Visual# %s %s %s%%*", icon, name, attr)
+end
+
+local function git_section()
+	local head = vim.b.gitsigns_head
+	if not head then
+		return ""
+	end
+
+	return string.format("%s %s ", icons.buffers.git, head)
 end
 
 local function spell_section()
-	if vim.wo.spell then
-		return string.format(" %s", icons.buffers.spell)
+	if not vim.wo.spell then
+		return ""
 	end
-	return ""
+
+	return string.format(" %s %s", icons.buffers.spell, vim.o.spelllang)
 end
 
 local function left_section()
-	return file_section() .. spell_section() .. diagnostics_section()
+	return file_section()
 end
 
 local function right_section()
-	return "%l:%L"
+	return string.format("%s %s%%#Visual# %%l:%%L %%*", spell_section(), git_section())
 end
 
 _G.set_statusline = function()
-	return string.format(" %s%%=%s ", left_section(), right_section())
+	return string.format("%s%%=%s", left_section(), right_section())
 end
 
 vim.o.statusline = "%!v:lua.set_statusline()"

@@ -8,3 +8,5 @@ if exists("loaded_matchit")
 				\	      '<\@<=dl\>[^>]*\%(>\|$\):<\@<=d[td]\>:<\@<=/dl>,' ..
 				\	      '<\@<=\([^/!][^ \t>]*\)[^>]*\%(>\|$\):<\@<=/\1>'
 endif
+
+setlocal commentstring=<!--%s-->

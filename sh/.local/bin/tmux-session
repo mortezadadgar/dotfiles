@@ -1,0 +1,39 @@
+#!/bin/bash
+# Description: fuzzy search in tmux sessions
+# Dependencies: tmux, fzf
+# Shell: Bash
+set -u -o pipefail
+
+k=0
+prompt=""
+
+while getopts "ak" o; do
+	case "$o" in
+		k)
+			k=1
+			prompt="Kill which session? > "
+			 ;;
+		a)
+			prompt="Attach to which session? > "
+			 ;;
+		*)
+			echo "Invalid option"; exit 0
+			;;
+esac done
+
+selected=$(tmux list-sessions -F '#{session_name}' |
+	fzf-tmux -p 50%,50% -- -m --prompt="$prompt")
+[ -z "$selected" ] && exit 0
+
+if [[ $k == 0 ]]; then
+	if [[ "$(echo "$selected" | wc -l)" == 1 ]]; then
+		tmux switch-client -t "$selected"
+	else
+		echo "multiple selection is not supported"
+		exit 0
+	fi
+else
+	for s in $selected; do
+		tmux kill-session -t "$s"
+	done
+fi

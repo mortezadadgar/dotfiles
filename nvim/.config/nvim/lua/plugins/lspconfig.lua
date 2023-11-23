@@ -101,6 +101,8 @@ local servers = {
 	},
 }
 
+require("neodev").setup {}
+
 -- setup mason so it can manage external tooling
 require("mason").setup()
 require("mason-lspconfig").setup()

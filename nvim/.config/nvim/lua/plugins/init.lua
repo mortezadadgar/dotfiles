@@ -3,16 +3,19 @@ local configs = {
 	"conform",
 	"treesitter",
 	"telescope",
+	"treesitter-context",
 	"nvim-cmp",
 	"luasnip",
 	"gitsigns",
 	"fidget",
-	"nnn",
+	"oil",
+	"mini-pairs",
+	"mini-comment",
+	"mini-splitjoin",
+	"mini-hipatterns",
+	"nvim-surround",
 }
 
 for _, config in pairs(configs) do
 	require("plugins." .. config)
 end
-
-require("ts_context_commentstring").setup()
-require("neogit").setup {}

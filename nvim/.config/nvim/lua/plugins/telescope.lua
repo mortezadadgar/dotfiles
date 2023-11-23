@@ -15,6 +15,7 @@ require("telescope").setup {
 			"^.git/",
 			"^node_modules/",
 		},
+		dynamic_preview_title = true,
 		layout_strategy = "flex",
 		layout_config = {
 			flex = {
@@ -24,6 +25,8 @@ require("telescope").setup {
 		mappings = {
 			i = {
 				["<Esc>"] = actions.close,
+				["<C-j>"] = actions.cycle_history_next,
+				["<C-k>"] = actions.cycle_history_prev,
 			},
 		},
 	},
