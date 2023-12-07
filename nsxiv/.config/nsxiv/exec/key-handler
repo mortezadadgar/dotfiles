@@ -15,5 +15,8 @@ case "$1" in
 	"x")
 		prompt "Remove this image?" && rm "$file" && notify-send "$file deleted"
 		;;
+	"X")
+		rm "$file" && notify-send "Marked files deleted!"
+		;;
 esac
 done

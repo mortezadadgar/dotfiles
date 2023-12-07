@@ -1,1 +1,4 @@
-require("mini.comment").setup {}
+return {
+	"echasnovski/mini.comment",
+	config = true,
+}

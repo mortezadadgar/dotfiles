@@ -1,3 +1,5 @@
-require("fidget").setup {
-	progress = { ignore = { "hls" } },
+return {
+	"j-hui/fidget.nvim",
+	enabled = false,
+	config = true,
 }

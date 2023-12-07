@@ -1,15 +1,13 @@
 local icons = {
 	diagnostics = {
-		error = "",
-		warning = "",
-		hint = "",
-		info = "",
+		error = "E",
+		warning = "W",
+		hint = "H",
+		info = "I",
 	},
 	buffers = {
-		readonly = "󰌾",
-		modified = "●",
-		spell = "󰓆",
-		git = "",
+		readonly = "[RO]",
+		modified = "[+]",
 	},
 }
 
@@ -34,40 +32,23 @@ local function diagnostics_section()
 end
 
 local function file_section()
-	local name, ext = vim.fn.expand "%:~:.", vim.fn.expand "%:e"
-	local attr, icon = "", ""
-
-	local ok, nvim_devicons = pcall(require, "nvim-web-devicons")
-	if ok then
-		icon = nvim_devicons.get_icon("", ext, { default = true })
-	end
-
-	if vim.bo.modified and vim.bo.readonly then
-		attr = icons.buffers.modified .. " " .. icons.buffers.readonly
-	elseif vim.bo.readonly then
-		attr = icons.buffers.readonly
-	elseif vim.bo.modified then
-		attr = icons.buffers.modified
-	end
-
-	if attr ~= "" then
-		attr = attr .. " "
-	end
+	local name = vim.fn.expand "%:~:."
 
 	if name == "" then
-		name = "No Name"
+		name = "[No Name]"
 	end
 
-	return string.format("%%#Visual# %s %s %s%%*", icon, name, attr)
+	return string.format("%s %%h%%q%%r%%m", name)
 end
 
 local function git_section()
+	---@diagnostic disable-next-line: undefined-field
 	local head = vim.b.gitsigns_head
 	if not head then
 		return ""
 	end
 
-	return string.format("%s %s ", icons.buffers.git, head)
+	return string.format("%s", head)
 end
 
 local function spell_section()
@@ -79,15 +60,15 @@ local function spell_section()
 end
 
 local function left_section()
-	return file_section()
+	return file_section() .. diagnostics_section()
 end
 
 local function right_section()
-	return string.format("%s %s%%#Visual# %%l:%%L %%*", spell_section(), git_section())
+	return "%l:%L"
 end
 
 _G.set_statusline = function()
-	return string.format("%s%%=%s", left_section(), right_section())
+	return string.format(" %s%%=%s ", left_section(), right_section())
 end
 
 vim.o.statusline = "%!v:lua.set_statusline()"

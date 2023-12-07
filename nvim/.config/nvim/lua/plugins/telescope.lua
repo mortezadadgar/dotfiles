@@ -1,78 +1,88 @@
-local actions = require "telescope.actions"
-local builtin = require "telescope.builtin"
-local themes = require "telescope.themes"
-local utils = require "telescope.utils"
-
-require("telescope").setup {
-	defaults = {
-		prompt_prefix = "  ",
-		borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
-		file_ignore_patterns = {
-			"%.svg",
-			"%.ttf",
-			"%.jpg",
-			"%.png",
-			"^.git/",
-			"^node_modules/",
-		},
-		dynamic_preview_title = true,
-		layout_strategy = "flex",
-		layout_config = {
-			flex = {
-				flip_columns = 120,
-			},
-		},
-		mappings = {
-			i = {
-				["<Esc>"] = actions.close,
-				["<C-j>"] = actions.cycle_history_next,
-				["<C-k>"] = actions.cycle_history_prev,
-			},
-		},
+return {
+	"nvim-telescope/telescope.nvim",
+	dependencies = {
+		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+		"nvim-lua/plenary.nvim",
+		"nvim-tree/nvim-web-devicons",
 	},
+	keys = function()
+		local buitlin = require "telescope.builtin"
+		return {
+			{ "<leader><leader>", buitlin.resume, desc = "Telescope: Resume" },
+			{ "<space>gg", buitlin.live_grep, desc = "Telescope: Live grep" },
+			{ "<space>gs", mode = { "n", "x" }, buitlin.grep_string, desc = "Telescope: Grep string" },
+			{ "<space>gf", buitlin.git_files, desc = "Telescope: Git files" },
+			{ "<space>re", buitlin.registers, desc = "Telescope: Registers" },
+			{ "<space>ht", buitlin.help_tags, desc = "Telescope: Help tags" },
+			{ "<space>km", buitlin.keymaps, desc = "Telescope: Keymaps" },
+			{ "<space>oo", buitlin.oldfiles, desc = "Telescope: OldFiles" },
+			{ "<space>mm", buitlin.marks, desc = "Telescope: Marks" },
+			{ "<space><space>", buitlin.find_files, desc = "Telescope: Find files" },
+			{
+				"<space>b",
+				function()
+					buitlin.buffers { sort_mru = true, ignore_current_buffer = true }
+				end,
+				desc = "Telescope: Buffers",
+			},
+			{
+				"<leader>/",
+				buitlin.current_buffer_fuzzy_find,
+				desc = "Telescope: Fuzzily search in current buffer",
+			},
+			{
+				"<space>cc",
+				function()
+					builtin.find_files {
+						prompt_title = "Current Buffer Files",
+						cwd = utils.buffer_dir(),
+						hidden = true,
+					}
+				end,
+				{ desc = "Telescope: Find current buffer files" },
+			},
+
+			-- LSP pickers
+			{ "gr", buitlin.lsp_references, desc = "Telescope: List References" },
+			{ "gd", buitlin.lsp_definitions, desc = "Telescope: Goto definition" },
+			{ "gI", buitlin.lsp_implementations, desc = "Telescope: List Implementations" },
+			{ "<space>sy", buitlin.lsp_document_symbols, desc = "Telescope: Documents symbols" },
+			{ "<space>d", buitlin.diagnostics, desc = "Telescope: List Diagnostics" },
+		}
+	end,
+	cmd = "Telescope",
+	config = function()
+		local actions = require "telescope.actions"
+		require("telescope").setup {
+			defaults = {
+				prompt_prefix = "  ",
+				borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+				file_ignore_patterns = {
+					"^.git/",
+					"^node_modules/",
+				},
+				dynamic_preview_title = true,
+				layout_strategy = "flex",
+				layout_config = {
+					flex = {
+						flip_columns = 120,
+					},
+				},
+				mappings = {
+					i = {
+						["<CR>"] = actions.select_default + actions.center,
+						["<Esc>"] = actions.close,
+						["<C-o>"] = function()
+							---@diagnostic disable-next-line: redundant-return
+							return
+						end,
+						["<C-j>"] = actions.cycle_history_next,
+						["<C-k>"] = actions.cycle_history_prev,
+					},
+				},
+			},
+		}
+
+		require("telescope").load_extension "fzf"
+	end,
 }
-
-require("telescope").load_extension "fzf"
-
-vim.keymap.set("n", "<leader><leader>", builtin.resume, { desc = "Telescope: Resume" })
-vim.keymap.set("n", "<space>gg", builtin.live_grep, { desc = "Telescope: Live grep" })
-vim.keymap.set({ "n", "v" }, "<space>gs", builtin.grep_string, { desc = "Telescope: Grep string" })
-vim.keymap.set("n", "<space>gf", builtin.git_files, { desc = "Telescope: Git files" })
-vim.keymap.set("n", "<space>b", builtin.buffers, { desc = "Telescope: Buffers" })
-
-local find_files = function()
-	builtin.find_files { hidden = true }
-end
-vim.keymap.set("n", "<space><space>", find_files, { desc = "Telescope: Find files" })
-
-local find_curfiles = function()
-	builtin.find_files {
-		prompt_title = "Current Buffer Files",
-		cwd = utils.buffer_dir(),
-		hidden = true,
-	}
-end
-vim.keymap.set("n", "<space>cc", find_curfiles, { desc = "Telescope: Find current buffer files" })
-
-local find_config_files = function()
-	builtin.find_files {
-		prompt_title = "Config Files",
-		shorten_path = false,
-		cwd = "~/.config/",
-		hidden = true,
-		follow = true,
-	}
-end
-vim.keymap.set("n", "<space>cf", find_config_files, { desc = "Telescope: Config files" })
-
-local fuzzy_find_curbuf = function()
-	builtin.current_buffer_fuzzy_find(themes.get_dropdown {
-		layout_config = { width = 90, height = 20 },
-		borderchars = {
-			prompt = { "─", "│", " ", "│", "┌", "┐", "│", "│" },
-			results = { "─", "│", "─", "│", "├", "┤", "┘", "└" },
-		},
-		previewer = false,
-	})
-end
-vim.keymap.set("n", "<leader>/", fuzzy_find_curbuf, { desc = "Fuzzily search in current buffer" })

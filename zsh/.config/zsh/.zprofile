@@ -7,7 +7,7 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$XDG_DATA_HOME/go/bin:$PATH"
 export PATH="$XDG_DATA_HOME/cargo/bin:$PATH"
-export PATH="$HOME/.ghcup/bin:$PATH"
+export PATH="$XDG_DATA_HOME/nvim/mason/bin/:$PATH"
 
 # Default programs
 export EDITOR="nvim"
@@ -24,6 +24,7 @@ export NPM_CONFIG_PREFIX="$XDG_DATA_HOME/npm"
 export LESS="-x4Rg"
 export FZF_DEFAULT_OPTS="--layout=reverse --height=10% --no-info"
 export CHROMIUM_FLAGS="$(<$XDG_CONFIG_HOME/chromium-flags.conf)"
+export GOPROXY="https://goproxy.cn"
 
 # LS_COLORS
 (( $+commands[dircolors] )) && eval `dircolors`

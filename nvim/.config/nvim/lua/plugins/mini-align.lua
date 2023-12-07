@@ -1,4 +1,4 @@
 return {
-	"kylechui/nvim-surround",
+	"echasnovski/mini.align",
 	config = true,
 }

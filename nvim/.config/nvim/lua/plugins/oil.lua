@@ -1,9 +1,16 @@
-require("oil").setup {
-	keymaps = {
-		["<C-v>"] = "actions.select_vsplit",
-		["<C-x>"] = "actions.select_split",
-		["l"] = "actions.select",
-		["h"] = "actions.parent",
+return {
+	"stevearc/oil.nvim",
+	cmd = "Oil",
+	enabled = false,
+	keys = {
+		{ "<Space>fe", "<cmd>Oil<CR>", desc = "Oil file explorer" },
+	},
+	opts = {
+		keymaps = {
+			["l"] = "actions.select",
+			["h"] = "actions.parent",
+			["q"] = "actions.close",
+		},
+		skip_confirm_for_simple_edits = true,
 	},
 }
-vim.keymap.set("n", "<Space>fe", "<cmd>Oil<CR>")

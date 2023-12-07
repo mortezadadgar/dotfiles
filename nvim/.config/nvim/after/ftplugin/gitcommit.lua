@@ -1,2 +1,3 @@
-vim.wo.spell = true
-vim.bo.textwidth = 80
+-- sensible default options
+vim.opt_local.spell = true
+vim.opt_local.textwidth = 80

@@ -13,7 +13,7 @@ set selection-notification false
 map d scroll half-down
 map u scroll half-up
 
-# balck and white theme
+# colors
 set completion-bg           "#FFFFFF"
 set completion-fg           "#000000"
 set completion-group-bg     "#FFFFFF"
@@ -32,4 +32,5 @@ set index-active-fg         "#FFFFFF"
 set index-active-bg         "#000000"
 set highlight-color         "#000000"
 set highlight-fg            "#FFFFFF"
-set highlight-active-color  "#0000FF"
+set highlight-active-color  "#61afef"
+set highlight-color         "#707070"
