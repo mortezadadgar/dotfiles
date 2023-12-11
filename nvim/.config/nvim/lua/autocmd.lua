@@ -32,3 +32,21 @@ vim.api.nvim_create_autocmd("QuickFixCmdPost", {
 	command = "cwindow",
 	nested = true,
 })
+
+-- restore last cursor position
+vim.api.nvim_create_autocmd("BufReadPost", {
+	group = group,
+	callback = function()
+		-- make sure the last cursor position is valid
+		local line = vim.fn.line "'\""
+		if line <= 1 and line >= vim.fn.line "$" then
+			return
+		end
+
+		if vim.bo.ft == "gitcommit" then
+			return
+		end
+
+		vim.cmd 'normal! g`"zz'
+	end,
+})

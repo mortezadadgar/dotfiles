@@ -13,6 +13,3 @@ vim.keymap.set("n", "N", "Nzz", { desc = "Previous search result" })
 
 -- spell check
 vim.keymap.set("n", "<leader>o", "<cmd>setlocal spell!<CR>", { desc = "Toggle spell checking" })
-
--- netrw
-vim.keymap.set("n", "<leader>fe", "<cmd>Explorer<CR>", { desc = "Netrw file explorer" })

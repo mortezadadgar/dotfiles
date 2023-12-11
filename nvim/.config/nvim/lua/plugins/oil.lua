@@ -1,16 +1,14 @@
 return {
 	"stevearc/oil.nvim",
-	cmd = "Oil",
-	enabled = false,
-	keys = {
-		{ "<Space>fe", "<cmd>Oil<CR>", desc = "Oil file explorer" },
-	},
-	opts = {
-		keymaps = {
-			["l"] = "actions.select",
-			["h"] = "actions.parent",
-			["q"] = "actions.close",
-		},
-		skip_confirm_for_simple_edits = true,
-	},
+	opts = function()
+		vim.keymap.set("n", "<Space>fe", "<cmd>Oil<CR>", { desc = "Oil file explorer" })
+		return {
+			keymaps = {
+				["l"] = "actions.select",
+				["h"] = "actions.parent",
+				["q"] = "actions.close",
+			},
+			skip_confirm_for_simple_edits = true,
+		}
+	end,
 }

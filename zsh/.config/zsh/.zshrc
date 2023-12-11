@@ -87,4 +87,4 @@ autoload edit-command-line; zle -N edit-command-line
 bindkey '^E' edit-command-line
 
 . $ZDOTDIR/aliasrc 2>/dev/null
-. /usr/share/zsh/site-functions/zsh-syntax-highlighting.zsh 2>/dev/null
+. /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh 2>/dev/null

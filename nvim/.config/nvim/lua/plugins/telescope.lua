@@ -4,30 +4,31 @@ return {
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 		"nvim-lua/plenary.nvim",
 		"nvim-tree/nvim-web-devicons",
+		"fdschmidt93/telescope-egrepify.nvim",
 	},
 	keys = function()
-		local buitlin = require "telescope.builtin"
+		local builtin = require "telescope.builtin"
 		return {
-			{ "<leader><leader>", buitlin.resume, desc = "Telescope: Resume" },
-			{ "<space>gg", buitlin.live_grep, desc = "Telescope: Live grep" },
-			{ "<space>gs", mode = { "n", "x" }, buitlin.grep_string, desc = "Telescope: Grep string" },
-			{ "<space>gf", buitlin.git_files, desc = "Telescope: Git files" },
-			{ "<space>re", buitlin.registers, desc = "Telescope: Registers" },
-			{ "<space>ht", buitlin.help_tags, desc = "Telescope: Help tags" },
-			{ "<space>km", buitlin.keymaps, desc = "Telescope: Keymaps" },
-			{ "<space>oo", buitlin.oldfiles, desc = "Telescope: OldFiles" },
-			{ "<space>mm", buitlin.marks, desc = "Telescope: Marks" },
-			{ "<space><space>", buitlin.find_files, desc = "Telescope: Find files" },
+			{ "<leader><leader>", builtin.resume, desc = "Telescope: Resume" },
+			{ "<space>gg", require("telescope").extensions.egrepify.egrepify, desc = "Telescope: Live grep" },
+			{ "<space>gs", mode = { "n", "x" }, builtin.grep_string, desc = "Telescope: Grep string" },
+			{ "<space>gf", builtin.git_files, desc = "Telescope: Git files" },
+			{ "<space>re", builtin.registers, desc = "Telescope: Registers" },
+			{ "<space>ht", builtin.help_tags, desc = "Telescope: Help tags" },
+			{ "<space>km", builtin.keymaps, desc = "Telescope: Keymaps" },
+			{ "<space>oo", builtin.oldfiles, desc = "Telescope: OldFiles" },
+			{ "<space>mm", builtin.marks, desc = "Telescope: Marks" },
+			{ "<space><space>", builtin.find_files, desc = "Telescope: Find files" },
 			{
 				"<space>b",
 				function()
-					buitlin.buffers { sort_mru = true, ignore_current_buffer = true }
+					builtin.buffers { sort_mru = true, ignore_current_buffer = true }
 				end,
 				desc = "Telescope: Buffers",
 			},
 			{
 				"<leader>/",
-				buitlin.current_buffer_fuzzy_find,
+				builtin.current_buffer_fuzzy_find,
 				desc = "Telescope: Fuzzily search in current buffer",
 			},
 			{
@@ -35,7 +36,7 @@ return {
 				function()
 					builtin.find_files {
 						prompt_title = "Current Buffer Files",
-						cwd = utils.buffer_dir(),
+						cwd = require("telescope.utils").buffer_dir(),
 						hidden = true,
 					}
 				end,
@@ -43,11 +44,11 @@ return {
 			},
 
 			-- LSP pickers
-			{ "gr", buitlin.lsp_references, desc = "Telescope: List References" },
-			{ "gd", buitlin.lsp_definitions, desc = "Telescope: Goto definition" },
-			{ "gI", buitlin.lsp_implementations, desc = "Telescope: List Implementations" },
-			{ "<space>sy", buitlin.lsp_document_symbols, desc = "Telescope: Documents symbols" },
-			{ "<space>d", buitlin.diagnostics, desc = "Telescope: List Diagnostics" },
+			{ "gr", builtin.lsp_references, desc = "Telescope: List References" },
+			{ "gd", builtin.lsp_definitions, desc = "Telescope: Goto definition" },
+			{ "gI", builtin.lsp_implementations, desc = "Telescope: List Implementations" },
+			{ "<space>sy", builtin.lsp_document_symbols, desc = "Telescope: Documents symbols" },
+			{ "<space>d", builtin.diagnostics, desc = "Telescope: List Diagnostics" },
 		}
 	end,
 	cmd = "Telescope",
@@ -84,5 +85,6 @@ return {
 		}
 
 		require("telescope").load_extension "fzf"
+		require("telescope").load_extension "egrepify"
 	end,
 }

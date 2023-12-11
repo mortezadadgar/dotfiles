@@ -10,8 +10,6 @@ xinput set-prop "ELAN0501:00 04F3:3019 Touchpad" "libinput Natural Scrolling Ena
 
 # Autostart
 dunst &
-mpd &
-syncthing --no-browser >/dev/null 2>&1 &
 redshift -O 5000 &
 xwallpaper --stretch $XDG_DATA_HOME/bg.jpg &
 xss-lock -n dim-screen -l -- slock &

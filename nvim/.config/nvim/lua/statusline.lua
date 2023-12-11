@@ -5,10 +5,6 @@ local icons = {
 		hint = "H",
 		info = "I",
 	},
-	buffers = {
-		readonly = "[RO]",
-		modified = "[+]",
-	},
 }
 
 local diagnostics_attrs = {

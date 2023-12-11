@@ -7,7 +7,6 @@ return {
 		"williamboman/mason.nvim",
 		"hrsh7th/cmp-nvim-lsp",
 	},
-	event = { "BufReadPre", "BufNewFile" },
 	config = function()
 		local lsp = vim.lsp
 		local capabilities = require("cmp_nvim_lsp").default_capabilities()

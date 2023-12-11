@@ -6,6 +6,7 @@ return {
 		"hrsh7th/cmp-path",
 		"hrsh7th/cmp-emoji",
 		"saadparwaiz1/cmp_luasnip",
+		"onsails/lspkind.nvim",
 		{
 			"L3MON4D3/LuaSnip",
 			dependencies = {
@@ -33,7 +34,6 @@ return {
 			end,
 		},
 	},
-	event = "InsertEnter",
 	opts = function()
 		local cmp = require "cmp"
 		local map = cmp.mapping
@@ -80,6 +80,12 @@ return {
 							return vim.api.nvim_list_bufs()
 						end,
 					},
+				},
+			},
+
+			formatting = {
+				format = require("lspkind").cmp_format {
+					maxwidth = 50,
 				},
 			},
 
