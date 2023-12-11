@@ -43,7 +43,10 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 			return
 		end
 
-		if vim.bo.ft == "gitcommit" then
+		-- do nothing on these filetypes
+		local exclude = { "gitcommit", "gitrebase", "" }
+		if vim.tbl_contains(exclude, vim.bo.ft) then
+			vim.notify("Hi", vim.log.levels.ERROR)
 			return
 		end
 
