@@ -5,49 +5,56 @@ return {
 		"folke/neodev.nvim",
 		"williamboman/mason-lspconfig.nvim",
 		"williamboman/mason.nvim",
-		"hrsh7th/cmp-nvim-lsp",
 	},
 	config = function()
 		local lsp = vim.lsp
-		local capabilities = require("cmp_nvim_lsp").default_capabilities()
+		local capabilities = vim.lsp.protocol.make_client_capabilities()
+		capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-		local on_attach = function(_, bufnr)
-			local border = "single"
-			local map = function(mode, keys, func, desc)
-				if desc then
-					desc = "LSP: " .. desc
-				end
-				vim.keymap.set(mode, keys, func, { buffer = bufnr, desc = desc })
-			end
+		lsp.handlers["textDocument/hover"] = lsp.with(lsp.handlers.hover, {
+			border = "single",
+		})
+		lsp.handlers["textDocument/signatureHelp"] = lsp.with(lsp.handlers.signature_help, {
+			border = "single",
+		})
 
-			-- mappings
-			map("n", "K", vim.lsp.buf.hover, "Hover Documentation")
-			map("n", "<space>rn", vim.lsp.buf.rename, "Rename")
-			map({ "x", "n" }, "<space>ca", vim.lsp.buf.code_action, "Code action")
-			map("n", "<space>cl", vim.lsp.codelens.run, "Code lens")
-			map("i", "<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
-			map("n", "<space>e", vim.diagnostic.open_float, "Diagnostic float")
-			map("n", "[d", vim.diagnostic.goto_prev, "Next diagnostic")
-			map("n", "]d", vim.diagnostic.goto_next, "Next diagnostic")
+		vim.diagnostic.config {
+			virtual_text = {
+				source = "if_many",
+			},
+			float = {
+				border = "single",
+			},
+			severity_sort = true,
+		}
 
-			-- floating window border
-			lsp.handlers["textDocument/hover"] = lsp.with(lsp.handlers.hover, {
-				border = border,
-			})
-			lsp.handlers["textDocument/signatureHelp"] = lsp.with(lsp.handlers.signature_help, {
-				border = border,
-			})
-
-			vim.diagnostic.config {
-				virtual_text = {
-					source = "if_many",
-				},
-				float = {
-					border = border,
-				},
-				severity_sort = true,
-			}
+		local signs = { Error = "", Warn = "", Hint = "", Info = "" }
+		for type, icon in pairs(signs) do
+			local hl = "DiagnosticSign" .. type
+			vim.fn.sign_define(hl, { text = icon, texthl = hl })
 		end
+
+		vim.api.nvim_create_autocmd("LspAttach", {
+			group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+			callback = function(ev)
+				local t = require "telescope.builtin"
+
+				local opts = { buffer = ev.buf }
+				vim.keymap.set("n", "gr", t.lsp_references, opts)
+				vim.keymap.set("n", "gd", t.lsp_definitions, opts)
+				vim.keymap.set("n", "gI", t.lsp_implementations, opts)
+				vim.keymap.set("n", "<space>sy", t.lsp_document_symbols, opts)
+				vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+				vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, opts)
+				vim.keymap.set("n", "<space>d", t.diagnostics, opts)
+				vim.keymap.set({ "x", "n" }, "<space>ca", vim.lsp.buf.code_action, opts)
+				vim.keymap.set("n", "<space>cl", vim.lsp.codelens.run, opts)
+				vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, opts)
+				vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, opts)
+				vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
+				vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+			end,
+		})
 
 		local servers = {
 			gopls = {
@@ -84,17 +91,13 @@ return {
 			},
 		}
 
-		require("neodev").setup {}
-
-		-- setup mason so it can manage external tooling
+		require("neodev").setup()
 		require("mason").setup()
 		require("mason-lspconfig").setup()
 
-		-- config installed lsp servers
 		require("mason-lspconfig").setup_handlers {
 			function(server_name)
 				require("lspconfig")[server_name].setup {
-					on_attach = on_attach,
 					capabilities = capabilities,
 					settings = servers[server_name],
 				}

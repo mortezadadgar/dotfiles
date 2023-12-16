@@ -1,9 +1,15 @@
 local icons = {
 	diagnostics = {
-		error = "E",
-		warning = "W",
-		hint = "H",
-		info = "I",
+		error = "",
+		warning = "",
+		hint = "",
+		info = "",
+	},
+	buffers = {
+		readonly = "󰌾",
+		modiefied = "●",
+		spell = "󰓆",
+		git = "",
 	},
 }
 
@@ -28,13 +34,34 @@ local function diagnostics_section()
 end
 
 local function file_section()
-	local name = vim.fn.expand "%:~:."
+	local name, ext = vim.fn.expand "%:~:.", vim.fn.expand "%:e"
+	local attr, icon = "", ""
+
+	local ok, nvim_devicons = pcall(require, "nvim-web-devicons")
+	if ok then
+		icon = nvim_devicons.get_icon("", ext)
+		if not icon then
+			icon = ""
+		end
+	end
+
+	if vim.bo.modified and vim.bo.readonly then
+		attr = icons.buffers.modiefied .. " " .. icons.buffers.readonly
+	elseif vim.bo.readonly then
+		attr = icons.buffers.readonly
+	elseif vim.bo.modified then
+		attr = icons.buffers.modiefied
+	end
+
+	if attr ~= "" then
+		attr = string.format(" %s", attr)
+	end
 
 	if name == "" then
 		name = "[No Name]"
 	end
 
-	return string.format("%s %%h%%q%%r%%m", name)
+	return string.format("%s %s%s", icon, name, attr)
 end
 
 local function git_section()
@@ -44,7 +71,7 @@ local function git_section()
 		return ""
 	end
 
-	return string.format("%s", head)
+	return string.format("%s %s ", icons.buffers.git, head)
 end
 
 local function spell_section()

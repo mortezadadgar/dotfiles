@@ -9,11 +9,11 @@ select=$(printf " Poweroff\n Restart\n󰍃 Logoff\n Lockscreen\n󰤄 Sl
 case $select in
 	" Poweroff")
 		notify-send "A job running"
-		loginctl poweroff -i
+		systemctl poweroff -i
 		;;
 	" Restart")
 		notify-send "A job running"
-		loginctl reboot -i
+		systemctl reboot -i
 		;;
 	"󰍃 Logoff")
 		clear > /dev/tty1
@@ -26,6 +26,6 @@ case $select in
 		if pgrep irssi >/dev/null; then
 			return
 		fi
-		loginctl suspend -i
+		systemctl suspend -i
 		;;
 esac

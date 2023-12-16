@@ -22,9 +22,19 @@ export NPM_CONFIG_PREFIX="$XDG_DATA_HOME/npm"
 
 # Other programs
 export LESS="-x4Rg"
+export SYSTEMD_LESS=$LESS
 export FZF_DEFAULT_OPTS="--layout=reverse --height=10% --no-info"
 export CHROMIUM_FLAGS="$(<$XDG_CONFIG_HOME/chromium-flags.conf)"
 export GOPROXY="https://goproxy.cn"
+
+# man page highlighting
+export MANROFFOPT="-c"
+export LESS_TERMCAP_md="$(tput bold; tput setaf 4)"
+export LESS_TERMCAP_me="$(tput sgr0)"
+export LESS_TERMCAP_so="$(tput setab 4; tput setaf 0)"
+export LESS_TERMCAP_se="$(tput sgr0)"
+export LESS_TERMCAP_us="$(tput bold; tput setaf 2)"
+export LESS_TERMCAP_ue="$(tput sgr0)"
 
 # LS_COLORS
 (( $+commands[dircolors] )) && eval `dircolors`

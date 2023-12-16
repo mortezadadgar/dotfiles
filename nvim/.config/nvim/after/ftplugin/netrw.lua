@@ -1,8 +1,5 @@
--- keeping this just for the record
-
 -- make netrw behave sane
 vim.g.netrw_banner = 0
-vim.g.netrw_fastbrowse = 0
 vim.g.netrw_preview = 1
 vim.g.netrw_alto = 0
 vim.g.netrw_use_errorwindow = 0

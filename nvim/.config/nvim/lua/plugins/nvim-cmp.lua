@@ -88,19 +88,6 @@ return {
 					maxwidth = 50,
 				},
 			},
-
-			-- do not trigger completion on space
-			completion = {
-				get_trigger_characters = function(chars)
-					local new_chars = {}
-					for _, char in ipairs(chars) do
-						if char ~= " " then
-							table.insert(new_chars, char)
-						end
-					end
-					return new_chars
-				end,
-			},
 		}
 	end,
 }

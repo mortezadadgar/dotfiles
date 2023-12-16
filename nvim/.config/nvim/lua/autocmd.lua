@@ -39,14 +39,13 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 	callback = function()
 		-- make sure the last cursor position is valid
 		local line = vim.fn.line "'\""
-		if line <= 1 and line >= vim.fn.line "$" then
+		if line < 1 and line > vim.fn.line "$" then
 			return
 		end
 
-		-- do nothing on these filetypes
-		local exclude = { "gitcommit", "gitrebase", "" }
+		-- exclude for selected filetypes
+		local exclude = { "gitcommit", "gitrebase" }
 		if vim.tbl_contains(exclude, vim.bo.ft) then
-			vim.notify("Hi", vim.log.levels.ERROR)
 			return
 		end
 

@@ -13,10 +13,6 @@ state
 **/zsh/.zcalc_history
 **/zsh/hashed
 
-# nvim
-**/nvim/lazy-lock.json
-**/nvim/.luarc.json
-
 # wallpaper
 *.jpg
 
