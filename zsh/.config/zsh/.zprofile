@@ -31,8 +31,6 @@ export GOPROXY="https://goproxy.cn"
 export MANROFFOPT="-c"
 export LESS_TERMCAP_md="$(tput bold; tput setaf 4)"
 export LESS_TERMCAP_me="$(tput sgr0)"
-export LESS_TERMCAP_so="$(tput setab 4; tput setaf 0)"
-export LESS_TERMCAP_se="$(tput sgr0)"
 export LESS_TERMCAP_us="$(tput bold; tput setaf 2)"
 export LESS_TERMCAP_ue="$(tput sgr0)"
 

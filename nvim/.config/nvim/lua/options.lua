@@ -14,8 +14,8 @@ vim.opt.completeopt = "menuone,noselect"
 vim.opt.title = true
 vim.opt.swapfile = false
 vim.opt.hlsearch = false
-vim.opt.spelllang = "en_us"
 vim.opt.spelloptions = "camel"
+vim.opt.spellcapcheck = ""
 vim.opt.scrolloff = 4
 vim.opt.laststatus = 3
 vim.opt.cursorline = true
@@ -32,8 +32,4 @@ vim.opt.fillchars = {
 	diff = "╱",
 	eob = " ",
 	msgsep = "─",
-}
-vim.opt.diffopt:append {
-	"indent-heuristic",
-	"algorithm:patience",
 }

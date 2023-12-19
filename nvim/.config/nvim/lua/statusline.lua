@@ -39,8 +39,10 @@ local function file_section()
 
 	local ok, nvim_devicons = pcall(require, "nvim-web-devicons")
 	if ok then
-		icon = nvim_devicons.get_icon("", ext)
-		if not icon then
+		local file_icon = nvim_devicons.get_icon("", ext)
+		if file_icon then
+			icon = string.format("%s ", file_icon)
+		else
 			icon = ""
 		end
 	end
@@ -61,7 +63,7 @@ local function file_section()
 		name = "[No Name]"
 	end
 
-	return string.format("%s %s%s", icon, name, attr)
+	return string.format("%s%s%s", icon, name, attr)
 end
 
 local function git_section()

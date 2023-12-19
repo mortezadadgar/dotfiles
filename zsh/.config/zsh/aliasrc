@@ -1,3 +1,5 @@
+#!/bin/zsh
+
 # utilities
 alias grep="grep --color"
 alias diff="diff --color"
@@ -18,24 +20,71 @@ alias -g LD="~/Downloads/*(.oc[1])"
 alias -g LS="~/Pictures/screenshots/*(.oc[1])"
 alias yay="yay --removemake"
 alias apply="patch --merge -p1 -i"
+alias xcopy="xclip -sel clip -r"
 
 # git
 alias gst="git status"
 alias gaa="git add ."
-alias ga="git add"
+alias ga="git_add"
 alias glg="git log --stat"
 alias gco="git checkout"
+alias gfco="git_file_checkout"
 alias gcp="git cherry-pick"
 alias gcpc="git cherry-pick --continue"
 alias gcpa="git cherry-pick --abort"
 alias grv="git revert"
 alias grvc="git revert --continue"
 alias grvb="git revert --abort"
-alias grbi="git rebase --interactive"
+alias grbi="git_rebase"
 alias grbc="git rebase --continue"
 alias grba="git rebase --abort"
 alias gca="git commit --amend"
 alias grhh="git reset --hard"
-alias grh="git reset"
+alias grh="git_reset"
 alias gcm="git commit -m"
+alias gcl="git_take"
+alias gup="git add . && git commit -e && git push -u origin"
 alias gdis="git reset --hard HEAD && git clean -fd"
+alias gb="git_branches"
+alias gd="git diff"
+alias gdca="git diff --cached"
+
+function git_take() {
+	addr=$(xclip -o -sel clip -r)
+	if [[ ! $addr =~ ^https?.* ]]; then
+		echo "invalid clipboard content: " "$addr" 
+		return
+	fi
+	git clone "$addr"
+	cd "$(basename ${addr%%.git})"
+}
+
+function git_rebase() {
+	hash=$(git log --format="%h -- %s" --color=always | fzf --ansi | cut -d ' ' -f1)
+	[ -z "$hash" ] && return
+	git rebase -i "$hash"
+}
+
+function git_branches() {
+	hash=$(git branch -a | sed 's/^[* ] //'| fzf --ansi | cut -d ' ' -f1)
+	[ -z "$hash" ] && return
+	git checkout "$@" "$hash"
+}
+
+function git_add() {
+	files=$(git ls-files --exclude-standard --deleted --modified --others --deduplicate | fzf)
+	[ -z "$files" ] && return
+	git add "$@" "$files"
+}
+
+function git_reset() {
+	files=$(git diff --name-only --staged | fzf)
+	[ -z "$files" ] && return
+	git reset "$@" "$files"
+}
+
+function git_file_checkout() {
+	files=$(git ls-files --exclude-standard --modified | fzf)
+	[ -z "$files" ] && return
+	git checkout "$@" "$files"
+}

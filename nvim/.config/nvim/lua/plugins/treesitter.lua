@@ -30,7 +30,7 @@ return {
 			},
 
 			indent = {
-				enable = true,
+				enable = false, -- still buggy
 			},
 
 			textobjects = {

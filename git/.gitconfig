@@ -1,3 +1,17 @@
+[core]
+    pager = delta --diff-so-fancy --syntax-theme=base16
+[interactive]
+    diffFilter = delta --color-only
+[delta]
+    navigate = true
+    file-style = omit
+	hunk-header-decoration-style = ul
+	width = 1
+    light = false
+[merge]
+    conflictstyle = diff3
+[diff]
+    colorMoved = default
 [user]
 	email = mortezadadgar97@gmail.com
 	name = mortezadadgar
@@ -8,9 +22,3 @@
 	smtpServer = smtp.gmail.com
 	smtpUser = mortezadadgar97@gmail.com
 	smtpServerPort = 587
-[merge]
-	tool = vimdiff
-[mergetool]
-	keepBackup = false
-[mergetool "vimdiff"]
-	cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'

@@ -1,11 +1,11 @@
 # Prompt
-[[ $SSH_CONNECTION ]] && local uath='%F{green}%M%f '
-PROMPT=$'${uath}%F{blue}%B%(7~|...%5~|%~)%f%b $(gitstatus)\n%F{green}%B➜%b%f '
+PROMPT=$'%F{blue}%B%(7~|...%5~|%~)%f%b $(gitstatus)\n%F{green}%B➜%b%f '
 precmd() { precmd() { print "" } }
 
 # Options
 setopt share_history hist_ignore_space hist_ignore_dups
-setopt glob_complete globstarshort globdots complete_in_word extendedglob
+setopt glob_complete globdots globstarshort extendedglob
+setopt nocomplete_aliases complete_in_word
 setopt interactive_comments
 setopt noflowcontrol
 setopt prompt_subst
@@ -46,6 +46,7 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect '/' history-incremental-search-forward
 
 # vi mode
 bindkey -v
@@ -85,6 +86,10 @@ bindkey -M vicmd 'd' vi-clip
 # Edit line in editor
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^E' edit-command-line
+
+# fzf
+. /usr/share/fzf/key-bindings.zsh 2>/dev/null
+. /usr/share/fzf/completion.zsh 2>/dev/null
 
 . $ZDOTDIR/aliasrc 2>/dev/null
 . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh 2>/dev/null
