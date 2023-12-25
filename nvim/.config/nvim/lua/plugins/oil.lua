@@ -10,6 +10,7 @@ return {
 			},
 			cleanup_delay_ms = 1000,
 			skip_confirm_for_simple_edits = true,
+			lsp_rename_autosave = true,
 		}
 	end,
 }

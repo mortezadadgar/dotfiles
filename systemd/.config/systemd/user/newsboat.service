@@ -5,5 +5,5 @@ Wants=network-online.target
 
 [Service]
 Type=simple
-ExecPreStart=sh -c 'while ! ping -c 1 1.1.1.1; do sleep 1; done'
+ExecStartPre=sh -c 'while ! ping -c 1 1.1.1.1 >/dev/null; do sleep 1; done'
 ExecStart=/usr/bin/newsboat -x reload

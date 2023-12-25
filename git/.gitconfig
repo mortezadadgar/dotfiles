@@ -1,22 +1,23 @@
 [core]
-    pager = delta --diff-so-fancy --syntax-theme=base16
+	pager = delta --diff-so-fancy | less
 [interactive]
-    diffFilter = delta --color-only
+	diffFilter = delta --color-only --diff-so-fancy | less
 [delta]
-    navigate = true
-    file-style = omit
+	navigate = true
+	file-style = omit
 	hunk-header-decoration-style = ul
+	hunk-header-style = file line-number
 	width = 1
-    light = false
+	light = false
 [merge]
-    conflictstyle = diff3
+	conflictstyle = diff3
 [diff]
-    colorMoved = default
+	colorMoved = default
 [user]
 	email = mortezadadgar97@gmail.com
 	name = mortezadadgar
 [credential]
-	helper = cache --timeout=3600
+	helper = cache --timeout=7200
 [sendemail]
 	smtpEncryption = tls
 	smtpServer = smtp.gmail.com

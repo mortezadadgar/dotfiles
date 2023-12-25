@@ -23,7 +23,7 @@ export NPM_CONFIG_PREFIX="$XDG_DATA_HOME/npm"
 # Other programs
 export LESS="-x4Rg"
 export SYSTEMD_LESS=$LESS
-export FZF_DEFAULT_OPTS="--layout=reverse --height=10% --no-info"
+export FZF_DEFAULT_OPTS="--layout=reverse --height=10% --info=inline-right --color=hl+:blue,hl:blue,fg+:-1,bg+:#3e4451,pointer:white,spinner:blue,info:green,prompt:cyan"
 export CHROMIUM_FLAGS="$(<$XDG_CONFIG_HOME/chromium-flags.conf)"
 export GOPROXY="https://goproxy.cn"
 

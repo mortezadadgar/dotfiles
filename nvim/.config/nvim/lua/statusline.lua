@@ -34,16 +34,14 @@ local function diagnostics_section()
 end
 
 local function file_section()
-	local name, ext = vim.fn.expand "%:~:.", vim.fn.expand "%:e"
+	local name = vim.fn.expand "%:~:."
 	local attr, icon = "", ""
 
 	local ok, nvim_devicons = pcall(require, "nvim-web-devicons")
 	if ok then
-		local file_icon = nvim_devicons.get_icon("", ext)
+		local file_icon = nvim_devicons.get_icon_by_filetype(vim.o.filetype)
 		if file_icon then
 			icon = string.format("%s ", file_icon)
-		else
-			icon = ""
 		end
 	end
 
@@ -61,6 +59,10 @@ local function file_section()
 
 	if name == "" then
 		name = "[No Name]"
+	end
+
+	if vim.startswith(name, "term://") then
+		name = "[TERMINAL]"
 	end
 
 	return string.format("%s%s%s", icon, name, attr)

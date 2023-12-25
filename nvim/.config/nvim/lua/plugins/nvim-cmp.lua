@@ -34,9 +34,11 @@ return {
 			end,
 		},
 	},
+	event = "InsertEnter",
 	opts = function()
 		local cmp = require "cmp"
 		local map = cmp.mapping
+
 		return {
 			snippet = {
 				expand = function(args)
@@ -46,7 +48,7 @@ return {
 
 			mapping = {
 				["<C-e>"] = map.close(),
-				["<CR>"] = map.confirm { select = false },
+				["<CR>"] = map.confirm(),
 				["<C-n>"] = map.select_next_item(),
 				["<C-p>"] = map.select_prev_item(),
 

@@ -33,3 +33,10 @@ vim.opt.fillchars = {
 	eob = " ",
 	msgsep = "─",
 }
+vim.opt.list = true
+vim.opt.listchars = {
+	tab = "│  ",
+	leadmultispace = "│  ",
+	nbsp = "␣",
+	trail = "·",
+}

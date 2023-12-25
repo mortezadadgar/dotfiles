@@ -8,14 +8,14 @@
 #define _color6 #56b6c2  /*  cyan     */
 #define _color7 #c0c0c0  /*  white    */
 /* bright */
-#define _color8 #5c6370  /*  black    */                 
-#define _color9 #e06c75  /*  red      */ 
-#define _color10 #98c379 /*  green    */ 
-#define _color11 #e5c07b /*  yellow   */ 
-#define _color12 #61afef /*  blue     */ 
-#define _color13 #c678dd /*  magenta  */ 
-#define _color14 #56b6c2 /*  cyan     */ 
-#define _color15 #c0c0c0 /*  white    */ 
+#define _color8  #5c6370 /*  black    */
+#define _color9  #e06c75 /*  red      */
+#define _color10 #98c379 /*  green    */
+#define _color11 #e5c07b /*  yellow   */
+#define _color12 #61afef /*  blue     */
+#define _color13 #c678dd /*  magenta  */
+#define _color14 #56b6c2 /*  cyan     */
+#define _color15 #c0c0c0 /*  white    */
 
 /* st */
 st.color0:   _color0

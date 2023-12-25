@@ -12,5 +12,5 @@ dir="${@: -1}"
 
 for file in "${@:1: $#-1}"; do
 	[ -f "$file" ] || continue
-	ffmpeg -i "$file" -vf format=yuv420p -c:a copy -c:s copy "./$dir/$file"
+	ffmpeg -i "$file" -vf format=yuv420p -map 0 -c:a copy -c:s copy "./$dir/$file"
 done

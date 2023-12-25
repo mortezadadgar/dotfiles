@@ -6,7 +6,7 @@ set -u -o pipefail
 
 dirs=("$HOME"/git/ "$HOME"/workspace)
 
-selected=$(find "${dirs[@]}" -type d -maxdepth 3 2>/dev/null | fzf-tmux -p 50%,50%)
+selected=$(find "${dirs[@]}" -type d -maxdepth 3 2>/dev/null | fzf-tmux -p 50%,50% -- --prompt="Projects> ")
 [ -z "$selected" ] && exit 0
 session="$(basename "$selected" | tr . _)"
 tmux new-session -Adc "$selected" -s "$session"
