@@ -10,7 +10,7 @@
   "fzf-lua": { "branch": "main", "commit": "6991c1f86eb9fa449a186ab047e88063d3a14484" },
   "gitsigns.nvim": { "branch": "main", "commit": "d195f0c35ced5174d3ecce1c4c8ebb3b5bc23fa9" },
   "lazy.nvim": { "branch": "main", "commit": "96584866b9c5e998cbae300594d0ccfd0c464627" },
-  "lspkind.nvim": { "branch": "master", "commit": "d11d58c3fc3edbd8c0112b5850ef4ed553d98752" },
+  "lspkind.nvim": { "branch": "master", "commit": "7f26cf5e27e2bd910ce0ea00c514da2bf97423b8" },
   "mini.comment": { "branch": "main", "commit": "67f00d3ebbeae15e84584d971d0c32aad4f4f3a4" },
   "mini.hipatterns": { "branch": "main", "commit": "82d348b05328705a7048f852f15f66a482562f03" },
   "neodev.nvim": { "branch": "main", "commit": "269051a7093fa481128904a33a6c4e1ca8de4340" },

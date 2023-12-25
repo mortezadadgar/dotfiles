@@ -28,13 +28,16 @@ return {
 					end,
 				},
 			},
-			config = function()
+			lazy = false,
+			opts = function()
 				require("luasnip.loaders.from_vscode").lazy_load()
 				require("luasnip").filetype_extend("svelte", { "html", "css" })
+				return {
+					history = true,
+				}
 			end,
 		},
 	},
-	event = "InsertEnter",
 	opts = function()
 		local cmp = require "cmp"
 		local map = cmp.mapping
@@ -73,7 +76,6 @@ return {
 				{ name = "nvim_lsp" },
 				{ name = "path" },
 				{ name = "luasnip" },
-				{ name = "emoji" },
 				{
 					name = "buffer",
 					keyword_length = 2,
@@ -83,6 +85,7 @@ return {
 						end,
 					},
 				},
+				{ name = "emoji" },
 			},
 
 			formatting = {
