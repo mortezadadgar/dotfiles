@@ -1,8 +1,8 @@
-#!/bin/sh
+#!/bin/bash
 # Description: set default desktop wallpaper
 # Dependencies: xwallpaper
-# Shell: POSIX compliant
-set -eu
+# Shell: Bash
+set -eu -o pipefail
 
 xwallpaper --stretch "$1"
 cp -v "$1" ~/.local/share/bg.jpg

@@ -1,7 +1,7 @@
-#!/bin/sh
+#!/bin/bash
 # Description: identify current device
-# Shell: POSIX compliant
-set -eu
+# Shell: Bash
+set -eu -o pipefail
 
 file="$XDG_DATA_HOME/device"
 [ -f "$file" ] && cat "$file"

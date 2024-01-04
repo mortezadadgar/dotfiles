@@ -1,8 +1,8 @@
-#!/bin/sh
+#!/bin/bash
 # Description: simple color picker
-# Shell: POSIX compliant
+# Shell: Bash
 # Dependencies: sxcs, xclip
-set -eu
+set -eu -o pipefail
 
 color="$(sxcs -q -o --hex | cut -f 2)"
 [ -z "$color" ] && exit

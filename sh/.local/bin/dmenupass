@@ -1,8 +1,8 @@
-#!/bin/sh
+#!/bin/bash
 # Description: dmenu "pass" manager
 # Dependencies: pass
-# Shell: POSIX compliant
-set -eu
+# Shell: Bash
+set -eu -o pipefail
 
 # Variables
 pass_store="$HOME/.password-store"

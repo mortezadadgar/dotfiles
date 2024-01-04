@@ -1,8 +1,8 @@
-#!/bin/sh
+#!/bin/bash
 # Description: display notificatinos on mpd event with album cover
 # Dependencies: ffmpeg, mpd, mpc
-# Shell: POSIX compliant
-set -eu
+# Shell: Bash
+set -eu -o pipefail
 
 cover="/tmp/mpd_cover.png"
 music_library="$HOME/Music"

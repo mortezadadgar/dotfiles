@@ -1,8 +1,8 @@
-#!/bin/sh
+#!/bin/bash
 # Description: Manage wirless connections with iwctl
 # Dependencies: dmenu, iwd
-# Shell: POSIX compliant
-set -eu
+# Shell: Bash
+set -eu -o pipefail
 
 interface="wlan0"
 

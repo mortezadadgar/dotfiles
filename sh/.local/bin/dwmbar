@@ -1,8 +1,8 @@
-#!/bin/sh
+#!/bin/bash
 # Description: display system information on dwm bar
 # Dependencies: iw, alsa-utils, mpc, xsetroot
-# Shell: POSIX compliant
-# set -eu
+# Shell: Bash
+# set -eu -o pipefail
 
 # INIT
 echo "$$" > ~/.cache/pidofbar

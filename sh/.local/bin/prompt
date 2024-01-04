@@ -1,2 +1,2 @@
-#!/bin/sh
+#!/bin/bash
 [ "$(printf "No\\nYes" | dmenu -p "$1")" = "Yes" ] && $2

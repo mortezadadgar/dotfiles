@@ -1,8 +1,8 @@
-#!/bin/sh
+#!/bin/bash
 # Description: An rsync alias to sync same folder on src and dest
-# Shell: POSIX compliant
+# Shell: Bash
 # Dependencies: rsync
-set -eu
+set -eu -o pipefail
 
 usage() {
 	echo "Usage: sync-files [folder] [destination]"

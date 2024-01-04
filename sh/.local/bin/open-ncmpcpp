@@ -1,8 +1,8 @@
-#!/bin/sh
+#!/bin/bash
 # Description: open ncmpcpp window
-# Shell: POSIX compliant
+# Shell: Bash
 # Dependencies: st, ncmpcpp
-set -eu
+set -eu -o pipefail
 
 if pidof ncmpcpp 2>/dev/null; then
 	exit 1
