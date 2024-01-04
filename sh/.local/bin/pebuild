@@ -1,7 +1,0 @@
-#!/bin/bash
-# Description: open package ebuild in editor
-# Dependencies: xwallpaper
-# Shell: Bash
-set -eu -o pipefail
-
-[ -n "$1" ] && equery -q which --ebuild "$1" | "$EDITOR"
