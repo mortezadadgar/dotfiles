@@ -10,6 +10,7 @@ return {
 			ignore_install = {
 				"ini",
 				"vim",
+				"sql",
 			},
 
 			auto_install = true,

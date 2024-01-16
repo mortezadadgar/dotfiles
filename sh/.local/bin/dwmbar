@@ -58,8 +58,8 @@ update_bat() {
 }
 
 update_vol() {
-	avol="$(amixer sget Master |grep -m1 -o "[0-9]*%")"
-	vol_status="$(amixer sget Master |grep -cm1 "\[on\]")"
+	avol="$(amixer get Master |grep -m1 -o "[0-9]*%")"
+	vol_status="$(amixer get Master |grep -cm1 "\[on\]")"
 	if [ "$vol_status" = "1" ]; then
 		vol_icon="󰕾"
 	else
@@ -80,20 +80,31 @@ update_mpd() {
 	mediainfo="$(printf " 󰋄 %s " "$mpc")"
 }
 
+update_mic() {
+	mic_status="$(amixer get Capture |grep -cm1 "\[on\]")"
+	if [ "$mic_status" = "1" ]; then
+		mic=""
+		return
+	fi
+
+	mic="  "
+}
+
 # We have to run this only once.
 update_vol
 
 display() {
 	if [ "$is_laptop" = 1 ]; then
-		xsetroot -name "${mediainfo:-} $vol  $wifi  $temp  $bat  $time"
+		xsetroot -name "${mediainfo:-} $mic$vol  $wifi  $temp  $bat  $time"
 	else
-		xsetroot -name "${mediainfo:-} $vol  $temp  $time"
+		xsetroot -name "${mediainfo:-} $mic$vol  $temp  $time"
 	fi
 }
 
 # Handles receiving signal
 trap   "update_vol; display"    "RTMIN"
 trap   "update_mpd; display"    "RTMIN+1"
+trap   "update_mic; display"    "RTMIN+2"
 
 while true
 do

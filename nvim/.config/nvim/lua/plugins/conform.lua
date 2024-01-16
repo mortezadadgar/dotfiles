@@ -1,6 +1,5 @@
 return {
 	"stevearc/conform.nvim",
-	event = { "LspAttach", "BufWritePre" },
 	opts = {
 		formatters_by_ft = {
 			lua = { "stylua" },
@@ -16,6 +15,7 @@ return {
 				prepend_args = { "--use-tabs" },
 			},
 		},
+		notify_on_error = false,
 		format_on_save = function(bufnr)
 			local ignore_filetypes = { "c", "cpp" }
 			if vim.tbl_contains(ignore_filetypes, vim.bo[bufnr].filetype) then

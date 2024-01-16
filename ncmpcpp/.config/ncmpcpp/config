@@ -22,6 +22,13 @@ selected_item_suffix = $(end)$/b
 player_state_color = blue
 statusbar_time_color = green:b
 
+# Visualizer
+visualizer_data_source = "/tmp/mpd.fifo"
+visualizer_output_name = "my_fifo"
+visualizer_in_stereo = "yes"
+visualizer_type = "spectrum"
+visualizer_look = "+|"
+
 # Misc
 message_delay_time = "2"
 enable_window_title = yes

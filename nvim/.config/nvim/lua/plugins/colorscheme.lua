@@ -1,7 +1,9 @@
 return {
-	"mortezadadgar/onedark-nvim",
+	"rose-pine/neovim",
+	name = "rose-pine",
 	priority = 1000,
 	config = function()
-		vim.cmd.colorscheme "onedark.nvim"
+		vim.cmd.colorscheme "rose-pine"
+		vim.api.nvim_set_hl(0, "StatusLineTerm", { link = "StatusLine" })
 	end,
 }

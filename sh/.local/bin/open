@@ -6,8 +6,8 @@ set -eu -o pipefail
 [ "$#" = 1 ] || (echo "open: missing filename"; exit 1)
 
 list_images() {
-	find "$(dirname "$1")" -maxdepth 1 -type f |
-		sort -u | grep -iE '\.(png|jpe?g|webp|gif|svg|bmp|ico)$'
+	find "$(dirname "$1")" -maxdepth 1 -printf "%T@ %p\n" -type f |
+		sort -u | grep -iE '\.(png|jpe?g|webp|gif|svg|bmp|ico)$' | cut -f 2- -d ' '
 }
 
 q() {

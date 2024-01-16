@@ -61,10 +61,6 @@ local function file_section()
 		name = "[No Name]"
 	end
 
-	if vim.startswith(name, "term://") then
-		name = "[TERMINAL]"
-	end
-
 	return string.format("%s%s%s", icon, name, attr)
 end
 

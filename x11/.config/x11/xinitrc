@@ -3,21 +3,23 @@ xset -dpms
 xset s 900 10
 xset r rate 300 50
 xrdb -merge $XDG_CONFIG_HOME/x11/Xresources
-setxkbmap -option caps:none
+xrandr --output HDMI-1 --mode 1920x1080 --rate 74.97
+setxkbmap -option caps:escape -option escape:none
 setxkbmap -layout us,ir -option grp:alt_shift_toggle
 xinput set-prop "ELAN0501:00 04F3:3019 Touchpad" "libinput Tapping Enabled" 1
 xinput set-prop "ELAN0501:00 04F3:3019 Touchpad" "libinput Natural Scrolling Enabled" 1
 
 # Autostart
 dunst &
-redshift -O 5000 &
+redshift -O 4000 &
 xwallpaper --stretch $XDG_DATA_HOME/bg.jpg &
 xss-lock -n dim-screen -l -- slock &
 batterynotif &
 pidof mpd-notify || mpd-notify &
 pidof dwmbar || dwmbar &
+source /etc/X11/xinit/xinitrc.d/50-systemd-user.sh
 
 # WM
 while true; do
-	exec dbus-launch --sh-syntax --exit-with-session dwm
+	exec dwm
 done

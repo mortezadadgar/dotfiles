@@ -4,7 +4,6 @@ return {
 		"hrsh7th/cmp-nvim-lsp",
 		"hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-path",
-		"hrsh7th/cmp-emoji",
 		"saadparwaiz1/cmp_luasnip",
 		"onsails/lspkind.nvim",
 		{
@@ -31,7 +30,7 @@ return {
 			lazy = false,
 			opts = function()
 				require("luasnip.loaders.from_vscode").lazy_load()
-				require("luasnip").filetype_extend("svelte", { "html", "css" })
+				require("luasnip").filetype_extend("svelte", { "html", "css", "typescript" })
 				return {
 					history = true,
 				}
@@ -85,7 +84,7 @@ return {
 						end,
 					},
 				},
-				{ name = "emoji" },
+				{ name = "vim-dadbod-completion" },
 			},
 
 			formatting = {

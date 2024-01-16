@@ -22,9 +22,9 @@ bind-key N prev-unread
 bind-key a toggle-article-read
 
 color listnormal white default
-color listfocus green black standout
-color listnormal_unread blue black
-color listfocus_unread black green bold
+color listfocus blue black standout
+color listnormal_unread magenta black
+color listfocus_unread black blue bold
 color article white default bold
 color title blue black
 

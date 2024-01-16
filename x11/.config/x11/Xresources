@@ -1,21 +1,21 @@
 /* normal */
-#define _color0 #282c34  /*  black    */
-#define _color1 #ff7571  /*  red      */
-#define _color2 #98c379  /*  green    */
-#define _color3 #d19a66  /*  yellow   */
-#define _color4 #61afef  /*  blue     */
-#define _color5 #c678dd  /*  magenta  */
-#define _color6 #56b6c2  /*  cyan     */
-#define _color7 #c0c0c0  /*  white    */
+#define _color0 #191724  /*  black    */
+#define _color1 #EB6F92  /*  red      */
+#define _color2 #31748F  /*  green    */
+#define _color3 #F6C177  /*  yellow   */
+#define _color4 #9CCFD8  /*  blue     */
+#define _color5 #C4A7E7  /*  magenta  */
+#define _color6 #EBBCBA  /*  cyan     */
+#define _color7 #E0DEF4  /*  white    */
 /* bright */
-#define _color8  #5c6370 /*  black    */
-#define _color9  #e06c75 /*  red      */
-#define _color10 #98c379 /*  green    */
-#define _color11 #e5c07b /*  yellow   */
-#define _color12 #61afef /*  blue     */
-#define _color13 #c678dd /*  magenta  */
-#define _color14 #56b6c2 /*  cyan     */
-#define _color15 #c0c0c0 /*  white    */
+#define _color8  #6E6A86 /*  black    */
+#define _color9  #EB6F92 /*  red      */
+#define _color10 #31748F /*  green    */
+#define _color11 #F6C177 /*  yellow   */
+#define _color12 #9CCFD8 /*  blue     */
+#define _color13 #C4A7E7 /*  magenta  */
+#define _color14 #EBBCBA /*  cyan     */
+#define _color15 #E0DEF4 /*  white    */
 
 /* st */
 st.color0:   _color0
@@ -39,18 +39,18 @@ st.font:     JetBrainsMono Nerd Font:size=13
 /* dwm */
 dwm.normfgcolor:    _color7
 dwm.normbgcolor:    _color0
-dwm.selbordercolor: _color4
+dwm.selbordercolor: _color5
 dwm.selfgcolor:     _color0
-dwm.selbgcolor:     _color4
+dwm.selbgcolor:     _color5
 
 /* dmenu */
 dmenu.font:          JetBrainsMono Nerd Font:size=11
 dmenu.background:    _color0
 dmenu.foreground:    _color7
-dmenu.selbackground: _color4
+dmenu.selbackground: _color5
 dmenu.selforeground: _color0
 
 /* nsxiv */
-Nsxiv.window.background: #ffffff
-Nsxiv.bar.background: _color4
-Nsxiv.bar.foreground: _color0
+Nsxiv.window.background: _color0
+Nsxiv.bar.background: _color0
+Nsxiv.bar.foreground: _color7

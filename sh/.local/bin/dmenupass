@@ -6,10 +6,12 @@ set -eu -o pipefail
 
 # Variables
 pass_store="$HOME/.password-store"
+# shellcheck disable=SC2116
+pass_time="$(echo "${PASSWORD_STORE_CLIP_TIME:-45}")s"
 
 notify_pass() {
 	notify-send \
-		"Password Store" "password copied to clipboard (will clear in 45s)" -i password
+		"Password Store" "password copied to clipboard (will clear in $pass_time)" -i password
 }
 
 select=$(printf "generate a password\nshow password list" | dmenu)

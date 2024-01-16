@@ -3,6 +3,7 @@ setopt prompt_subst
 GIT_PS1_SHOWCOLORHINTS=true
 GIT_PS1_SHOWDIRTYSTATE=true
 GIT_PS1_SHOWUPSTREAM="git"
+GIT_PS1_SHOWCONFLICTSTATE="yes"
 PROMPT='%F{blue}%B%~%f%b '
 PROMPT+='%F{green}%(1j.(*) .)%f'
 PROMPT+='$(__git_ps1 "%s ")'
@@ -26,6 +27,7 @@ SAVEHIST=100000
 zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
 zstyle ":completion:*:default" list-colors ${(s.:.)LS_COLORS} "ma=48;5;12;38;5;0"
 zstyle ':completion:*:default' menu yes select
+zstyle ':completion:*' completer _complete _match _approximate
 zstyle ':completion:*' rehash true
 autoload -U compinit; compinit
 zmodload zsh/complist
@@ -50,7 +52,6 @@ bindkey -M menuselect '^[[Z' reverse-menu-complete
 # vi mode
 KEYTIMEOUT=1
 bindkey -v
-bindkey '^Q' push-line
 bindkey '^?' backward-delete-char
 
 # Change cursor shape for different vi modes
@@ -69,10 +70,10 @@ zle -N zle-line-init
 # Support system clipboard
 function vi-clip {
 	case $KEYS in
-		y) zle vi-yank;|
-		d) zle vi-delete;|
-		*) echo "$CUTBUFFER" | xclip -r -sel clip;;
+		y) zle vi-yank;;
+		d) zle vi-delete;;
 	esac
+	echo "$CUTBUFFER" | xclip -r -sel clip
 }
 zle -N vi-clip
 bindkey -M vicmd 'y' vi-clip

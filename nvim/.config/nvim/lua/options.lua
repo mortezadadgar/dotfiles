@@ -20,23 +20,6 @@ vim.opt.scrolloff = 4
 vim.opt.laststatus = 3
 vim.opt.cursorline = true
 vim.opt.termguicolors = true
-vim.opt.showmode = false
 vim.opt.signcolumn = "number"
 vim.opt.splitbelow = true
 vim.opt.splitright = true
-vim.opt.fillchars = {
-	fold = " ",
-	foldsep = " ",
-	foldopen = "",
-	foldclose = "",
-	diff = "╱",
-	eob = " ",
-	msgsep = "─",
-}
-vim.opt.list = true
-vim.opt.listchars = {
-	tab = "│  ",
-	leadmultispace = "│  ",
-	nbsp = "␣",
-	trail = "·",
-}

@@ -1,11 +1,12 @@
 return {
 	"neovim/nvim-lspconfig",
-	dependencies = {
-		"folke/neodev.nvim",
-	},
 	config = function()
 		local lsp = vim.lsp
-		local capabilities = require("cmp_nvim_lsp").default_capabilities()
+		local capabilities = vim.tbl_deep_extend("force", require("cmp_nvim_lsp").default_capabilities(), {
+			workspace = {
+				didChangeWatchedFiles = { dynamicRegistration = true },
+			},
+		})
 
 		lsp.handlers["textDocument/hover"] = lsp.with(lsp.handlers.hover, {
 			border = "single",
@@ -36,6 +37,7 @@ return {
 				local opts = { buffer = ev.buf }
 				vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
 				vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, opts)
+				vim.keymap.set({ "x", "n" }, "<space>ca", vim.lsp.buf.code_action, opts)
 				vim.keymap.set("n", "<space>cl", vim.lsp.codelens.run, opts)
 				vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, opts)
 				vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, opts)
@@ -51,6 +53,7 @@ return {
 						gc_details = true,
 						test = true,
 					},
+					usePlaceholders = true,
 					analyses = {
 						unusedparams = true,
 						nilness = true,
@@ -67,6 +70,10 @@ return {
 					telemetry = {
 						enable = false,
 					},
+					workspace = {
+						checkThirdParty = false,
+						library = vim.api.nvim_get_runtime_file("", true),
+					},
 				},
 			},
 			svelte = {
@@ -79,7 +86,11 @@ return {
 			},
 		}
 
-		require("neodev").setup()
+		local init_options = {
+			typos_lsp = {
+				diagnosticSeverity = "Hint",
+			},
+		}
 
 		local servers = {
 			"lua_ls",
@@ -88,16 +99,20 @@ return {
 			"bashls",
 			"jsonls",
 			"svelte",
-			"emmet_language_server",
 			"html",
 			"cssls",
 			"eslint",
+			"pyright",
+			"tailwindcss",
+			"typos_lsp",
+			-- "tsserver",
 		}
 
 		for _, server in pairs(servers) do
 			require("lspconfig")[server].setup {
 				capabilities = capabilities,
 				settings = settings[server],
+				init_options = init_options[server],
 			}
 		end
 	end,
