@@ -6,7 +6,6 @@ set -eu -o pipefail
 
 cover="/tmp/mpd_cover.png"
 music_library="$HOME/Music"
-cached_song=""
 
 trap 'rm "$cover"' TERM INT HUP EXIT
 
@@ -15,12 +14,7 @@ sleep 2
 
 while true;
 do
-	cached_song="$(mpc current)"
-
 	mpc idle player > /dev/null
-
-	# skip updating if the song is same
-	[ "$(mpc current)" = "$cached_song" ] && continue
 
 	# update statusbar
 	kill -RTMIN+1 "$(cat ~/.cache/pidofbar)"
