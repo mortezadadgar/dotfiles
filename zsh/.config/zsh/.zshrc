@@ -27,7 +27,6 @@ SAVEHIST=100000
 zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
 zstyle ":completion:*:default" list-colors ${(s.:.)LS_COLORS} "ma=48;5;12;38;5;0"
 zstyle ':completion:*:default' menu yes select
-zstyle ':completion:*' completer _complete _match _approximate
 zstyle ':completion:*' rehash true
 autoload -U compinit; compinit
 zmodload zsh/complist

@@ -33,6 +33,6 @@ visualizer_look = "+|"
 message_delay_time = "2"
 enable_window_title = yes
 song_window_title_format = "ncmpcpp: {{%a %t}|{%f}}"
-allow_for_physical_item_deletion = yes
+allow_for_physical_item_deletion = no
 seek_time = 15
 startup_screen = browser

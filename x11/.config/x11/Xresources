@@ -34,7 +34,7 @@ st.color12:  _color12
 st.color13:  _color13
 st.color14:  _color14
 st.color15:  _color15
-st.font:     JetBrainsMono Nerd Font:size=13
+st.font:     JetBrainsMono Nerd Font:size=14
 
 /* dwm */
 dwm.normfgcolor:    _color7
@@ -52,5 +52,7 @@ dmenu.selforeground: _color0
 
 /* nsxiv */
 Nsxiv.window.background: _color0
+Nsxiv.window.foreground: _color7
 Nsxiv.bar.background: _color0
 Nsxiv.bar.foreground: _color7
+Nsxiv.mark.foreground: _color7

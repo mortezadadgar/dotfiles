@@ -1,7 +1,7 @@
 local group = vim.api.nvim_create_augroup("UserGroup", {})
 
--- highlight on yank
 vim.api.nvim_create_autocmd("TextYankPost", {
+	desc = "Highlight on yank",
 	group = group,
 	pattern = "*",
 	callback = function()
@@ -9,46 +9,41 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
--- disable auto formatting on newline
 vim.api.nvim_create_autocmd("BufEnter", {
+	desc = "Disable auto formatting on newline",
 	group = group,
 	callback = function()
 		vim.opt.formatoptions:remove { "r", "o" }
 	end,
 })
 
--- resize splits if window got resized
 vim.api.nvim_create_autocmd("VimResized", {
+	desc = "Resize splits if window got resized",
 	group = group,
-	callback = function()
-		vim.cmd "tabdo wincmd ="
-	end,
+	command = "tabdo wincmd =",
 })
 
--- show quickfix window automatically
 vim.api.nvim_create_autocmd("QuickFixCmdPost", {
+	desc = "Show quickfix window automatically",
 	group = group,
 	pattern = "[^l]*",
 	command = "cwindow",
 	nested = true,
 })
 
--- restore last cursor position
 vim.api.nvim_create_autocmd("BufReadPost", {
+	desc = "Go to last loc when opening a buffer",
 	group = group,
-	callback = function()
-		-- make sure the last cursor position is valid
-		local line = vim.fn.line "'\""
-		if line < 1 and line > vim.fn.line "$" then
-			return
-		end
-
-		-- exclude for selected filetypes
+	callback = function(event)
+		local buf = event.buf
 		local exclude = { "gitcommit", "gitrebase" }
-		if vim.tbl_contains(exclude, vim.bo.ft) then
+		if vim.tbl_contains(exclude, vim.bo[buf].filetype) then
 			return
 		end
-
-		vim.cmd 'normal! g`"zz'
+		local mark = vim.api.nvim_buf_get_mark(buf, '"')
+		local lcount = vim.api.nvim_buf_line_count(buf)
+		if mark[1] > 0 and mark[1] <= lcount then
+			pcall(vim.api.nvim_win_set_cursor, 0, mark)
+		end
 	end,
 })

@@ -6,12 +6,10 @@ set -eu -o pipefail
 
 # Variables
 pass_store="$HOME/.password-store"
-# shellcheck disable=SC2116
-pass_time="$(echo "${PASSWORD_STORE_CLIP_TIME:-45}")s"
 
 notify_pass() {
-	notify-send \
-		"Password Store" "password copied to clipboard (will clear in $pass_time)" -i password
+	# TODO: This leave pass running in background
+	xargs -n1 -I {} notify-send -i password "Password Store" {}
 }
 
 select=$(printf "generate a password\nshow password list" | dmenu)
@@ -26,9 +24,10 @@ case $select in
 		pass_name=$(printf "" | dmenu -p "password name:")
 		[ -z "$pass_name" ] && exit 1
 
-		pass generate -c "$pass_dir/$pass_name" && notify_pass
+		# TODO: Duplicated entries
+		pass generate -c "$pass_dir/$pass_name" | notify_pass
 		;;
 	"show password list")
-		passmenu -i && notify_pass
+		passmenu -i | notify_pass
 		;;
 esac

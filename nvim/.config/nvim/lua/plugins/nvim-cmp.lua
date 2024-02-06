@@ -11,27 +11,20 @@ return {
 			dependencies = {
 				"rafamadriz/friendly-snippets",
 			},
-			keys = {
-				{
-					"<C-l>",
-					mode = { "i", "s" },
-					function()
-						require("luasnip").jump(1)
-					end,
-				},
-				{
-					"<C-j>",
-					mode = { "i", "s" },
-					function()
-						require("luasnip").jump(-1)
-					end,
-				},
-			},
-			lazy = false,
-			opts = function()
+			config = function()
+				local ls = require "luasnip"
+
+				vim.keymap.set({ "i", "s" }, "<C-l>", function()
+					ls.jump(1)
+				end)
+				vim.keymap.set({ "i", "s" }, "<C-h>", function()
+					ls.jump(-1)
+				end)
+
 				require("luasnip.loaders.from_vscode").lazy_load()
-				require("luasnip").filetype_extend("svelte", { "html", "css", "typescript" })
-				return {
+				ls.filetype_extend("svelte", { "html", "css" })
+
+				ls.setup {
 					history = true,
 				}
 			end,
@@ -84,7 +77,6 @@ return {
 						end,
 					},
 				},
-				{ name = "vim-dadbod-completion" },
 			},
 
 			formatting = {

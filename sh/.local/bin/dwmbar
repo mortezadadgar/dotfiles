@@ -76,7 +76,7 @@ update_mpd() {
 	fi
 
 	mpc="$(mpc current -f "[%artist% - %title%]")"
-	[ -z "$mpc" ] && mediainfo="" && return
+	[ -z "$mpc" ] && mediainfo=" 󰋄 Playing " && return
 	mediainfo="$(printf " 󰋄 %s " "$mpc")"
 }
 

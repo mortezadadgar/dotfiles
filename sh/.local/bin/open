@@ -6,8 +6,8 @@ set -eu -o pipefail
 [ "$#" = 1 ] || (echo "open: missing filename"; exit 1)
 
 list_images() {
-	find "$(dirname "$1")" -maxdepth 1 -printf "%T@ %p\n" -type f |
-		sort -u | grep -iE '\.(png|jpe?g|webp|gif|svg|bmp|ico)$' | cut -f 2- -d ' '
+	find "$(dirname "$1")" -maxdepth 1 |
+		sort -u | grep -iE '\.(png|jpe?g|webp|gif|svg|bmp|ico)$'
 }
 
 q() {
@@ -19,9 +19,9 @@ mime_type="$(file -bL --mime-type "$1")"
 case "$mime_type" in
 	video/*) q mpv "$1" &;;
 	audio/*) q mpv "$1" &;;
-	text/html) q firefox "$1" &;;
+	text/html) q "${BROWSER:-firefox}" "$1" &;;
 	image/*) q nsxiv -g 1300x900+0+0 $(list_images "$1") &;;
 	text/*) $EDITOR "$1";;
-	*/pdf) q zathura "$1" &;;
+	*/pdf|*/epub+zip) q zathura "$1" &;;
 	*) echo "open: unsupported or invalid file type"
 esac

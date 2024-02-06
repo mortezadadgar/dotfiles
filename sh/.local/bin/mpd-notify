@@ -1,29 +1,35 @@
 #!/bin/bash
 # Description: display notificatinos on mpd event with album cover
-# Dependencies: ffmpeg, mpd, mpc
+# this script presume mpd address is set to `@mpd` like this:
+#
+# ```config
+# bind_to_address		 "@mpd"
+# ```
+#
+# Dependencies: mpd, mpc
 # Shell: Bash
 set -eu -o pipefail
 
-cover="/tmp/mpd_cover.png"
+cover="$(mktemp)"
 music_library="$HOME/Music"
 
 trap 'rm "$cover"' TERM INT HUP EXIT
-
-# wait for mpd to fire up
-sleep 2
 
 while true;
 do
 	mpc idle player > /dev/null
 
 	# update statusbar
-	kill -RTMIN+1 "$(cat ~/.cache/pidofbar)"
+	kill -RTMIN+1 "$(<"$HOME"/.cache/pidofbar)"
 
 	if ! mpc | grep "playing" > /dev/null; then
 		continue
 	fi
 
-	if ! ffmpeg -loglevel -8 -y -i "$(mpc --format "$music_library"/%file% | head -n 1)" "$cover"; then
+	file="$(mpc --format "$music_library"/%file% | head -n 1)" 
+
+	# FIXME: this write out the error message to file despite errors
+	if ! mpc readpicture --host=@mpd "$file" > "$cover"; then
 		notify-send -i apple-music "Now Playing" "$(mpc current)"
 		continue
 	fi

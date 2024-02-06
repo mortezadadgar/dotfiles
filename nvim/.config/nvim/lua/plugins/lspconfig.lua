@@ -43,6 +43,10 @@ return {
 				vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, opts)
 				vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
 				vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+				vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+				vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+				vim.keymap.set("n", "gI", vim.lsp.buf.implementation, opts)
+				vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
 			end,
 		})
 
@@ -76,12 +80,25 @@ return {
 					},
 				},
 			},
+			rust_analyzer = {
+				["rust-analyzer"] = {
+					check = {
+						command = "clippy",
+						extraArgs = { "--", "-Wclippy::pedantic" },
+					},
+				},
+			},
 			svelte = {
 				svelte = {
 					plugin = {
 						html = { completions = { emmet = false } },
 						css = { completions = { emmet = false } },
 					},
+				},
+			},
+			tsserver = {
+				implicitProjectConfiguration = {
+					checkJs = true,
 				},
 			},
 		}
@@ -95,7 +112,7 @@ return {
 		local servers = {
 			"lua_ls",
 			"gopls",
-			"clangd",
+			"templ",
 			"bashls",
 			"jsonls",
 			"svelte",
@@ -104,8 +121,14 @@ return {
 			"eslint",
 			"pyright",
 			"tailwindcss",
+			"tsserver",
 			"typos_lsp",
-			-- "tsserver",
+			"rust_analyzer",
+		}
+
+		require("lspconfig")["clangd"].setup {
+			capabilities = capabilities,
+			cmd = { "clangd", "--offset-encoding=utf-16" },
 		}
 
 		for _, server in pairs(servers) do

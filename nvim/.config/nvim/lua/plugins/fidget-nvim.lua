@@ -1,4 +1,4 @@
 return {
-	"kylechui/nvim-surround",
+	"j-hui/fidget.nvim",
 	config = true,
 }

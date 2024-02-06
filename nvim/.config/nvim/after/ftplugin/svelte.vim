@@ -1,4 +1,4 @@
-" Copied for vim-svelte and updated from ftplugn/html.vim
+" Copied from vim-svelte and updated from ftplugn/html.vim
 if exists("loaded_matchit")
 	let b:match_ignorecase = 1
 	let b:match_words = '<!--:-->,' ..

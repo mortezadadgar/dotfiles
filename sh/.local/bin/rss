@@ -1,0 +1,6 @@
+#!/bin/bash
+
+sizes=$(ps --pid $(pgrep -d ',' "$1") -o comm,rss --no-headers \
+	| awk '{print $2}')
+
+echo "$sizes" | awk '{s += $1} END {printf "%sM\n", s / 1024}'

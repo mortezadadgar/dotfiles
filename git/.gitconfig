@@ -1,12 +1,7 @@
 [core]
-	pager = delta --diff-highlight
+	pager = /usr/share/git/diff-highlight/diff-highlight | less
 [interactive]
-    diffFilter = delta --color-only --diff-highlight
-[delta]
-    navigate = true
-    light = false
-[merge]
-    conflictstyle = diff3
+	diffFilter = /usr/share/git/diff-highlight/diff-highlight | less
 [user]
 	email = mortezadadgar97@gmail.com
 	name = mortezadadgar
