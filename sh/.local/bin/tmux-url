@@ -7,7 +7,7 @@
 set -u
 
 regex="(http(s)?://|www\.)[^] \)<\"\']+"
-urls=$(tmux capture-pane -J -p | grep -oE "$regex" | sort -u)
+urls=$(tmux capture-pane -J -p -S '-' | grep -oE "$regex" | sort -u)
 [ -z "$urls" ] && exit
 url=$(echo "$urls" | dmenu -i -l 10 -w "$WINDOWID")
 [ -z "$url" ] && exit

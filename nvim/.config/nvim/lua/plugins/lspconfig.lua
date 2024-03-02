@@ -2,11 +2,7 @@ return {
 	"neovim/nvim-lspconfig",
 	config = function()
 		local lsp = vim.lsp
-		local capabilities = vim.tbl_deep_extend("force", require("cmp_nvim_lsp").default_capabilities(), {
-			workspace = {
-				didChangeWatchedFiles = { dynamicRegistration = true },
-			},
-		})
+		local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 		lsp.handlers["textDocument/hover"] = lsp.with(lsp.handlers.hover, {
 			border = "single",
@@ -43,10 +39,13 @@ return {
 				vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, opts)
 				vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
 				vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
-				vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-				vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-				vim.keymap.set("n", "gI", vim.lsp.buf.implementation, opts)
-				vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
+
+				local fzf = require "fzf-lua"
+				vim.keymap.set("n", "gd", fzf.lsp_definitions, opts)
+				vim.keymap.set("n", "gr", fzf.lsp_references, opts)
+				vim.keymap.set("n", "gI", fzf.lsp_implementations, opts)
+				vim.keymap.set("n", "<space>q", fzf.lsp_document_diagnostics, opts)
+				vim.keymap.set("n", "<space>sy", fzf.lsp_document_symbols, opts)
 			end,
 		})
 
@@ -76,7 +75,11 @@ return {
 					},
 					workspace = {
 						checkThirdParty = false,
-						library = vim.api.nvim_get_runtime_file("", true),
+						library = {
+							"${3rd}/luv/library",
+							---@diagnostic disable-next-line: deprecated
+							unpack(vim.api.nvim_get_runtime_file("", true)),
+						},
 					},
 				},
 			},
@@ -94,11 +97,6 @@ return {
 						html = { completions = { emmet = false } },
 						css = { completions = { emmet = false } },
 					},
-				},
-			},
-			tsserver = {
-				implicitProjectConfiguration = {
-					checkJs = true,
 				},
 			},
 		}

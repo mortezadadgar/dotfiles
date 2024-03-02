@@ -23,10 +23,6 @@ return {
 
 				require("luasnip.loaders.from_vscode").lazy_load()
 				ls.filetype_extend("svelte", { "html", "css" })
-
-				ls.setup {
-					history = true,
-				}
 			end,
 		},
 	},

@@ -8,6 +8,7 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="$XDG_DATA_HOME/go/bin:$PATH"
 export PATH="$XDG_DATA_HOME/cargo/bin:$PATH"
 export PATH="$XDG_DATA_HOME/nvim/mason/bin/:$PATH"
+export PATH="$XDG_DATA_HOME/npm/bin/:$PATH"
 
 # Default programs
 export EDITOR="nvim"

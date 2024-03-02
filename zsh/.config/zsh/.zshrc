@@ -17,6 +17,7 @@ setopt glob_complete glob_dots glob_star_short extended_glob
 setopt nocomplete_aliases complete_in_word
 setopt interactive_comments
 setopt auto_pushd pushd_ignore_dups cd_silent
+setopt noflowcontrol
 
 # History
 HISTFILE="$HOME/.zhistory"
@@ -52,6 +53,7 @@ bindkey -M menuselect '^[[Z' reverse-menu-complete
 KEYTIMEOUT=1
 bindkey -v
 bindkey '^?' backward-delete-char
+bindkey '^Q' push-line
 
 # Change cursor shape for different vi modes
 function zle-keymap-select() {
