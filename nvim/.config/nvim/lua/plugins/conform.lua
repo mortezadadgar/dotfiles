@@ -20,11 +20,11 @@ return {
 				},
 			},
 			notify_on_error = false,
-			format_on_save = function(_)
-				-- local ignore_filetypes = { "c", "cpp" }
-				-- if vim.tbl_contains(ignore_filetypes, vim.bo[bufnr].filetype) then
-				-- 	return
-				-- end
+			format_on_save = function(bufnr)
+				local ignore_filetypes = { "c", "cpp" }
+				if vim.tbl_contains(ignore_filetypes, vim.bo[bufnr].filetype) then
+					return
+				end
 				return { timeout_ms = 500, lsp_fallback = true }
 			end,
 		}

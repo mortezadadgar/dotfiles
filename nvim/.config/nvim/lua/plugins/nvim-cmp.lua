@@ -75,6 +75,8 @@ return {
 				},
 			},
 
+			preselect = cmp.PreselectMode.None,
+
 			formatting = {
 				format = require("lspkind").cmp_format {
 					maxwidth = 50,

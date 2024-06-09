@@ -84,6 +84,7 @@
   (evil-select-search-module 'evil-search-module 'evil-search)
   (define-key evil-insert-state-map (kbd "C-S-V") #'evil-paste-before)
   (define-key evil-motion-state-map "h" 'left-char)
+  (define-key evil-motion-state-map "w" 'forward-to-word)
   (define-key evil-motion-state-map "l" 'right-char)
   (define-key evil-motion-state-map [left] nil)
   (define-key evil-motion-state-map [right] nil))

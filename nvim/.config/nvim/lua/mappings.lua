@@ -19,10 +19,13 @@ vim.keymap.set("x", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("x", "K", ":m '<-2<CR>gv=gv")
 
 -- aliases :W to saving files
-vim.cmd [[cabbrev W w]]
+vim.keymap.set("ca", "W", "w")
 
 -- spell check
 vim.keymap.set("n", "<leader>o", "<cmd>setlocal spell!<CR>")
+
+-- netrw
+vim.keymap.set("n", "-", "<cmd>Explore<CR>")
 
 -- quickfix
 vim.keymap.set("n", "]q", "<cmd>cnext<CR>")

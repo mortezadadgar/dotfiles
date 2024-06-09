@@ -1,3 +1,5 @@
+local M = {}
+
 local icons = {
 	diagnostics = {
 		error = "",
@@ -14,13 +16,16 @@ local icons = {
 }
 
 local diagnostics_attrs = {
-	{ "Error", icons.diagnostics.error },
-	{ "Warn", icons.diagnostics.warning },
-	{ "Hint", icons.diagnostics.hint },
-	{ "Info", icons.diagnostics.info },
+	{ vim.diagnostic.severity.ERROR, icons.diagnostics.error },
+	{ vim.diagnostic.severity.WARN, icons.diagnostics.warning },
+	{ vim.diagnostic.severity.HINT, icons.diagnostics.hint },
+	{ vim.diagnostic.severity.INFO, icons.diagnostics.info },
 }
 
-local function diagnostics_section()
+--- Diagnostics count in current buffer.
+---@return string
+function M.diagnostics_component()
+	---@type table<string>
 	local results = {}
 
 	for _, attr in pairs(diagnostics_attrs) do
@@ -33,7 +38,9 @@ local function diagnostics_section()
 	return table.concat(results)
 end
 
-local function file_section()
+--- Current buffer's file info.
+---@return string
+function M.file_component()
 	local name = vim.fn.expand "%:~:."
 	local attr, icon = "", ""
 
@@ -64,8 +71,14 @@ local function file_section()
 	return string.format("%s%s%s", icon, name, attr)
 end
 
-local function git_section()
-	---@diagnostic disable-next-line: undefined-field
+--- Git status.
+---@return string
+function M.git_component()
+	if vim.b.gitsigns_head == nil then
+		vim.print "gitsigns in not installed"
+		return ""
+	end
+
 	local head = vim.b.gitsigns_head
 	if not head then
 		return ""
@@ -74,7 +87,9 @@ local function git_section()
 	return string.format("%s %s ", icons.buffers.git, head)
 end
 
-local function spell_section()
+--- Spell check status.
+---@return string
+function M.spell_component()
 	if not vim.wo.spell then
 		return ""
 	end
@@ -82,16 +97,28 @@ local function spell_section()
 	return string.format(" %s %s", icons.buffers.spell, vim.o.spelllang)
 end
 
-local function left_section()
-	return file_section() .. diagnostics_section()
-end
-
-local function right_section()
+--- Current buffer's line number info.
+---@return string
+function M.line_component()
 	return "%l:%L"
 end
 
-_G.set_statusline = function()
-	return string.format(" %s%%=%s ", left_section(), right_section())
+--- Renders statusline components.
+---@return string
+function M.render()
+	-- stylua: ignore
+	return
+		-- right section
+		" " ..
+		M.file_component() .. M.diagnostics_component() ..
+
+		"%=" ..
+
+		-- left section
+		M.line_component() ..
+		" "
 end
 
-vim.o.statusline = "%!v:lua.set_statusline()"
+vim.o.statusline = "%!v:lua.require'statusline'.render()"
+
+return M

@@ -2,7 +2,7 @@
 # Description: Open tmux scrollback URLs using dmenu
 # Dependencies: dmenu, tmux
 # Shell: Bash
-# Note: tmux likes to print exit status code in dmenu cancellation 
+# Note: tmux likes to print exit status code after dmenu cancellation 
 # so set -e should not be used here.
 set -u
 

@@ -1,3 +1,3 @@
 if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
-	exec startx
+	dwmbar | exec dwl -s "$HOME/.config/dwl/autostart.sh"
 fi

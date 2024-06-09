@@ -95,9 +95,9 @@ update_vol
 
 display() {
 	if [ "$is_laptop" = 1 ]; then
-		xsetroot -name "${mediainfo:-} $mic$vol  $wifi  $temp  $bat  $time"
+		echo "${mediainfo:-} $mic$vol  $wifi  $temp  $bat  $time"
 	else
-		xsetroot -name "${mediainfo:-} $mic$vol  $temp  $time"
+		echo "${mediainfo:-} $mic$vol  $temp  $time"
 	fi
 }
 

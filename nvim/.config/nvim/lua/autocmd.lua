@@ -9,14 +9,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
-vim.api.nvim_create_autocmd("BufEnter", {
-	desc = "Disable auto formatting on newline",
-	group = group,
-	callback = function()
-		vim.opt.formatoptions:remove { "r", "o" }
-	end,
-})
-
 vim.api.nvim_create_autocmd("VimResized", {
 	desc = "Resize splits if window got resized",
 	group = group,

@@ -5,7 +5,6 @@ start() {
 }
 
 start batterynotif
-start dwmbar
 start mpd-notify
 start swaybg --image "$XDG_DATA_HOME"/bg.jpg
 start swayidle -w \
@@ -13,9 +12,8 @@ start swayidle -w \
      before-sleep 'waylock -fork-on-lock'
 
 # should be started on every login
-gammastep -O 5500 &
+wlr-randr --output HDMI-A-1 --mode 1920x1080@74.973
+gammastep -O 4000 &
 
 # needed for systemd user services
 systemctl --user import-environment WAYLAND_DISPLAY &
-
-exec somebar

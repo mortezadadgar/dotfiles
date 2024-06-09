@@ -17,6 +17,7 @@ xss-lock -n dim-screen -l -- slock &
 batterynotif &
 pidof mpd-notify || mpd-notify &
 pidof dwmbar || dwmbar &
+# picom &
 source /etc/X11/xinit/xinitrc.d/50-systemd-user.sh
 
 # WM

@@ -16,7 +16,7 @@ select=$(printf "generate a password\nshow password list" | dmenu)
 
 case $select in
 	"generate a password")
-		pass_dirs=$(ls -1 -D "$pass_store")
+		pass_dirs=$(ls -1 "$pass_store")
 
 		pass_dir=$(printf "%s" "$pass_dirs"| dmenu -p "select a folder")
 		[ -z "$pass_dir" ] && exit 1
@@ -24,7 +24,13 @@ case $select in
 		pass_name=$(printf "" | dmenu -p "password name:")
 		[ -z "$pass_name" ] && exit 1
 
-		# TODO: Duplicated entries
+		pass="$pass_dir/$pass_name"
+		
+		if pass show "$pass" >/dev/null; then
+			notify-send -i password "Password Store" "Duplicate password entry, try a different name"
+			exit 1
+		fi
+
 		pass generate -c "$pass_dir/$pass_name" | notify_pass
 		;;
 	"show password list")

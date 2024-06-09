@@ -15,15 +15,12 @@ case $select in
 		;;
 	"󰍃 Logoff")
 		clear > /dev/tty1
-		xdotool key super+shift+ctrl+q
+		wtype -M logo -M ctrl -M shift Q
 		;;
 	" Lockscreen")
-		xset s activate
+		waylock
 		;;
 	"󰤄 Sleep")
-		if pgrep irssi >/dev/null; then
-			return
-		fi
 		systemctl suspend -i
 		;;
 esac

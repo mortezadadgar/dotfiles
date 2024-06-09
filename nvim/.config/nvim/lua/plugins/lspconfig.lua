@@ -19,19 +19,31 @@ return {
 				border = "single",
 			},
 			severity_sort = true,
+			signs = {
+				text = {
+					[vim.diagnostic.severity.ERROR] = "",
+					[vim.diagnostic.severity.WARN] = "",
+					[vim.diagnostic.severity.HINT] = "",
+					[vim.diagnostic.severity.INFO] = "",
+				},
+			},
 		}
-
-		local signs = { Error = "", Warn = "", Hint = "", Info = "" }
-		for type, icon in pairs(signs) do
-			local hl = "DiagnosticSign" .. type
-			vim.fn.sign_define(hl, { text = icon, texthl = hl })
-		end
 
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 			callback = function(ev)
 				local opts = { buffer = ev.buf }
-				vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+				local client = vim.lsp.get_client_by_id(ev.data.client_id)
+
+				if client == nil then
+					return
+				end
+
+				if client.name == "tailwindcss" then
+					client.server_capabilities.completionProvider.triggerCharacters =
+						{ '"', "'", "`", ".", "(", "[", "!", "/", ":" }
+				end
+
 				vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, opts)
 				vim.keymap.set({ "x", "n" }, "<space>ca", vim.lsp.buf.code_action, opts)
 				vim.keymap.set("n", "<space>cl", vim.lsp.codelens.run, opts)
@@ -56,7 +68,7 @@ return {
 						gc_details = true,
 						test = true,
 					},
-					usePlaceholders = true,
+					-- usePlaceholders = true,
 					analyses = {
 						unusedparams = true,
 						nilness = true,
@@ -122,11 +134,8 @@ return {
 			"tsserver",
 			"typos_lsp",
 			"rust_analyzer",
-		}
-
-		require("lspconfig")["clangd"].setup {
-			capabilities = capabilities,
-			cmd = { "clangd", "--offset-encoding=utf-16" },
+			"hls",
+			"clangd",
 		}
 
 		for _, server in pairs(servers) do
