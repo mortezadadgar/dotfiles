@@ -1,4 +1,7 @@
 #!/bin/bash
+# Description: List running proceeses based on their memory usage
+# Shell: Bash
+set -eu -o pipefail
 
 sizes=$(ps --pid $(pgrep -d ',' "$1") -o comm,rss --no-headers \
 	| awk '{print $2}')

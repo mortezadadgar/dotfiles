@@ -3,8 +3,8 @@
 # Shell: Bash
 set -eu -o pipefail
 
-[ "$#" = 1 ] || exit
-[ -d "$1" ] && exit
+[ "$#" = 0 ] && (echo "ext: missing filename" && exit)
+[ ! -f "$1" ] && (echo "ext: invalid file" && exit)
 
 file=$1
 ext_dir="$(basename "${file%.*}")"

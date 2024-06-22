@@ -15,7 +15,7 @@ case $select in
 		;;
 	"󰍃 Logoff")
 		clear > /dev/tty1
-		wtype -M logo -M ctrl -M shift Q
+		pkill -SIGTERM dwl$
 		;;
 	" Lockscreen")
 		waylock

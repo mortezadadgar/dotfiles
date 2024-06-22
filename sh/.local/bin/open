@@ -20,7 +20,8 @@ case "$mime_type" in
 	video/*) q mpv "$1" &;;
 	audio/*) q mpv "$1" &;;
 	text/html) q "${BROWSER:-firefox}" "$1" &;;
-	image/*) q nsxiv -g 1300x900+0+0 $(list_images "$1") &;;
+	# FIXME: unable to open files having spaces
+	image/*) q nsxiv $(list_images "$1") &;;
 	text/*) $EDITOR "$1";;
 	*/pdf|*/epub+zip) q zathura "$1" &;;
 	*officedocument*) q libreoffice "$1" &;;

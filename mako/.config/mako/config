@@ -1,12 +1,12 @@
-max-history=10
+max-history=15
 font=Open Sans 11
 background-color=#191724
 text-color=#E0DEF4
 border-color=#64656a
 padding=8
-margin=10
 icon-path=/usr/share/icons/Papirus-Dark
 max-icon-size=48
 default-timeout=10000
+layer=overlay
 anchor=bottom-right
 format=<b><span foreground='#C4A7E7'>%s</span></b>\n%b

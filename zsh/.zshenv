@@ -25,6 +25,15 @@ export NPM_CONFIG_PREFIX="$XDG_DATA_HOME/npm"
 export PASSWORD_STORE_CLIP_TIME="120"
 export PASSWORD_STORE_GENERATED_LENGTH="16"
 
+# nnn
+export NNN_FIFO="/tmp/nnn.fifo"
+export NNN_PLUG="f:preview-tui"
+export NNN_OPENER="open"
+export NNN_OPTS="Ce"
+
+# until thunderbird enable it
+export MOZ_ENABLE_WAYLAND=1
+
 # Other programs
 export LESS="-x4Rg"
 export SYSTEMD_LESS=$LESS

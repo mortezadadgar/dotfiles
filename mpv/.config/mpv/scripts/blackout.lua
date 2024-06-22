@@ -30,18 +30,11 @@ function toggle_blackout()
 	end
 end
 
--- function disable_blackout()
--- 	mp.set_property(property, 10)
--- 	print(mp.get_property(property))
--- 	print("Closing...")
--- end
-
 function on_pause_change(_, value)
 	if not value and saved_value then
 		toggle_blackout()
 	end
 end
 
-mp.add_key_binding("b", "blackout", toggle_blackout)
--- mp.register_event("shutdown", disable_blackout)
+mp.add_key_binding("MBTN_MID", "blackout", toggle_blackout)
 mp.observe_property("pause", "bool", on_pause_change)
