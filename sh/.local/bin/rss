@@ -1,5 +1,5 @@
 #!/bin/bash
-# Description: List running proceeses based on their memory usage
+# Description: Get individual process memory usage
 # Shell: Bash
 set -eu -o pipefail
 

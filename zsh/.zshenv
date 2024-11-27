@@ -29,10 +29,7 @@ export PASSWORD_STORE_GENERATED_LENGTH="16"
 export NNN_FIFO="/tmp/nnn.fifo"
 export NNN_PLUG="f:preview-tui"
 export NNN_OPENER="open"
-export NNN_OPTS="Ce"
-
-# until thunderbird enable it
-export MOZ_ENABLE_WAYLAND=1
+export NNN_OPTS="e"
 
 # Other programs
 export LESS="-x4Rg"

@@ -17,9 +17,9 @@ local icons = {
 
 local diagnostics_attrs = {
 	{ vim.diagnostic.severity.ERROR, icons.diagnostics.error },
-	{ vim.diagnostic.severity.WARN, icons.diagnostics.warning },
-	{ vim.diagnostic.severity.HINT, icons.diagnostics.hint },
-	{ vim.diagnostic.severity.INFO, icons.diagnostics.info },
+	{ vim.diagnostic.severity.WARN,  icons.diagnostics.warning },
+	{ vim.diagnostic.severity.HINT,  icons.diagnostics.hint },
+	{ vim.diagnostic.severity.INFO,  icons.diagnostics.info },
 }
 
 --- Diagnostics count in current buffer.
@@ -94,7 +94,7 @@ function M.spell_component()
 		return ""
 	end
 
-	return string.format(" %s %s", icons.buffers.spell, vim.o.spelllang)
+	return string.format(" %s %s ", icons.buffers.spell, vim.o.spelllang)
 end
 
 --- Current buffer's line number info.
@@ -108,14 +108,14 @@ end
 function M.render()
 	-- stylua: ignore
 	return
-		-- right section
+	-- right section
 		" " ..
 		M.file_component() .. M.diagnostics_component() ..
 
 		"%=" ..
 
 		-- left section
-		M.line_component() ..
+		M.spell_component() .. M.line_component() ..
 		" "
 end
 

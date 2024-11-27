@@ -1,4 +1,4 @@
--f b
+#-f b
 --no-mtime
 --sponsorblock-remove all
 --proxy socks5://127.0.0.1:9050

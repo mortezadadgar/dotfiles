@@ -1,0 +1,11 @@
+[Unit]
+Description=Display notificatinos on mpd events
+After=mpd.service
+Wants=mpd.service
+
+[Service]
+Type=simple
+ExecStart=/home/morteza/.local/bin/mpd-notify
+
+[Install]
+WantedBy=default.target

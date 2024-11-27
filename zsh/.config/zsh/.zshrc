@@ -1,7 +1,7 @@
 # Prompt
 setopt prompt_subst
 GIT_PS1_SHOWCOLORHINTS=true
-GIT_PS1_SHOWDIRTYSTATE=true
+# GIT_PS1_SHOWDIRTYSTATE=true # so slow
 GIT_PS1_SHOWUPSTREAM="git"
 GIT_PS1_SHOWCONFLICTSTATE="yes"
 PROMPT='%F{blue}%B%~%f%b '

@@ -11,7 +11,7 @@
     line_height = 3
     frame_width = 2
     separator_height = 1
-    padding = 10
+    padding = 8
     horizontal_padding = 10
     separator_color = "#191724"
     show_indicators = no

@@ -10,7 +10,6 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.wildignorecase = true
 vim.opt.pumheight = 10
-vim.opt.completeopt = "menuone,noselect"
 vim.opt.title = true
 vim.opt.hlsearch = false
 vim.opt.spelloptions = "camel"

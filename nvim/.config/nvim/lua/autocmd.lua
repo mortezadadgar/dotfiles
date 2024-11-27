@@ -15,14 +15,6 @@ vim.api.nvim_create_autocmd("VimResized", {
 	command = "tabdo wincmd =",
 })
 
-vim.api.nvim_create_autocmd("QuickFixCmdPost", {
-	desc = "Show quickfix window automatically",
-	group = group,
-	pattern = "[^l]*",
-	command = "cwindow",
-	nested = true,
-})
-
 vim.api.nvim_create_autocmd("BufReadPost", {
 	desc = "Go to last loc when opening a buffer",
 	group = group,

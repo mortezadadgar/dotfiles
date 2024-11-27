@@ -1,5 +1,5 @@
 #!/bin/bash
-# Description: display notificatinos on mpd event with album cover
+# Description: display notificatinos on mpd events with album cover
 # this script presume mpd address is set to `@mpd` like this:
 #
 # ```config
@@ -13,7 +13,7 @@ set -eu -o pipefail
 cover="$(mktemp)"
 music_library="$HOME/Music"
 
-trap 'rm "$cover"' TERM INT HUP EXIT
+trap 'rm "$cover"' TERM
 
 while true;
 do
