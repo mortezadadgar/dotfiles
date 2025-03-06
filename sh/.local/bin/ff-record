@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# WIP
+slop=$(slop -f "%x %y %w %h") || exit 1
+read -r X Y W H <<< "$slop"
+ffmpeg -f x11grab -framerate 25 -s "$W"x"$H" -i :0.0+"$X","$Y" -f pulse -i default myfile.mp4

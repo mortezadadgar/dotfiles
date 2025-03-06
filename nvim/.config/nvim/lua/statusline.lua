@@ -44,9 +44,8 @@ function M.file_component()
 	local name = vim.fn.expand "%:~:."
 	local attr, icon = "", ""
 
-	local ok, nvim_devicons = pcall(require, "nvim-web-devicons")
-	if ok then
-		local file_icon = nvim_devicons.get_icon_by_filetype(vim.o.filetype)
+	if _G.MiniIcons ~= nil then
+		local file_icon = MiniIcons.get('extension', vim.o.filetype)
 		if file_icon then
 			icon = string.format("%s ", file_icon)
 		end

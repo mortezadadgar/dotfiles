@@ -10,5 +10,3 @@ if exists("loaded_matchit")
 endif
 
 setlocal commentstring=<!--%s-->
-
-compiler svelte-check

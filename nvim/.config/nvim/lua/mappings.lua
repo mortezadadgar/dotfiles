@@ -24,3 +24,6 @@ vim.keymap.set("n", "<leader>o", "<cmd>setlocal spell!<CR>")
 -- quickfix
 vim.keymap.set("n", "]q", "<cmd>cnext<CR>")
 vim.keymap.set("n", "[q", "<cmd>cprevious<CR>")
+
+-- gF is a better version of gf
+vim.keymap.set("n", "gf", "gF")

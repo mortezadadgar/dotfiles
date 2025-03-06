@@ -74,7 +74,7 @@ function vi-clip {
 		y) zle vi-yank;;
 		d) zle vi-delete;;
 	esac
-	echo "$CUTBUFFER" | wl-copy -n
+	echo "$CUTBUFFER" | xclip -r -sel clip
 }
 zle -N vi-clip
 bindkey -M vicmd 'y' vi-clip
@@ -92,6 +92,9 @@ if (( $+commands[fzf] )); then
 	. /usr/share/fzf/key-bindings.zsh
 	. /usr/share/fzf/completion.zsh
 fi
+
+# nvm
+source /usr/share/nvm/init-nvm.sh
 
 # plugins
 . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh 2>/dev/null

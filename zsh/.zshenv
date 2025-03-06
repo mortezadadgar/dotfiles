@@ -19,7 +19,6 @@ export XINITRC="$XDG_CONFIG_HOME/x11/xinitrc"
 export ANDROID_HOME="$XDG_DATA_HOME/android"
 export GOPATH="$XDG_DATA_HOME/go"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
-export NPM_CONFIG_PREFIX="$XDG_DATA_HOME/npm"
 
 # password store
 export PASSWORD_STORE_CLIP_TIME="120"
@@ -34,7 +33,7 @@ export NNN_OPTS="e"
 # Other programs
 export LESS="-x4Rg"
 export SYSTEMD_LESS=$LESS
-export FZF_DEFAULT_OPTS="--layout=reverse --height=10% --color=hl+:blue,hl:blue,fg+:#E0DEF4,bg+:#26233A,pointer:white,spinner:blue,info:green,prompt:cyan"
+export FZF_DEFAULT_OPTS="--layout=reverse --height=10% --no-separator --color=hl+:blue,hl:blue,fg+:#E0DEF4,bg+:#26233A,pointer:white,spinner:blue,info:green,prompt:cyan"
 export GOPROXY="https://goproxy.cn"
 
 # man page highlighting
@@ -46,5 +45,8 @@ export LESS_TERMCAP_ue="$(tput sgr0)"
 
 # LS_COLORS
 (( $+commands[dircolors] )) && eval `dircolors`
+
+# private variables
+[ -f "$HOME/.zshenv_pri" ] && source "$HOME/.zshenv_pri"
 
 export ZDOTDIR="$HOME/.config/zsh"

@@ -1,4 +1,4 @@
-require "paq-nvim"
+require "lazy-nvim"
 require "options"
 require "mappings"
 require "statusline"

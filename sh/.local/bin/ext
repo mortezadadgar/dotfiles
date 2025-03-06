@@ -1,5 +1,5 @@
 #!/bin/bash
-# Description: Extract files
+# Description: Extract archives
 # Shell: Bash
 set -eu -o pipefail
 
@@ -11,8 +11,8 @@ out_dir="$(basename "${file%.*}")"
 mime_type="$(file -bL --mime-type "$file")"
 
 case "$mime_type" in
-	*/x-bzip2|*/gzip|*/xz) tar -xvaf "$file" --one-top-level;;
+	*/x-bzip2|*/gzip|*/xz|*/x-xz) tar -xvaf "$file" --one-top-level;;
 	*/zip) 7z x "$file" -o"$out_dir";;
-	*/x-rar) unrar x "$file";;
+	*/x-rar|*/vnd.rar) unrar x -op"$out_dir" "$file";;
 	*) echo "Unsupported or invalid file type"
 esac

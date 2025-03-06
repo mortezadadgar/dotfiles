@@ -20,10 +20,10 @@ case "$mime_type" in
 	video/*) q mpv "$1" &;;
 	audio/*) q mpv "$1" &;;
 	text/html) q "${BROWSER:-firefox}" "$1" &;;
+	*/pdf|*/epub+zip|*/vnd.djvu) q zathura "$1" &;;
 	# FIXME: unable to open files having spaces
 	image/*) q nsxiv $(list_images "$1") &;;
 	text/*) $EDITOR "$1";;
-	*/pdf|*/epub+zip) q zathura "$1" &;;
 	*officedocument*) q libreoffice "$1" &;;
 	*) echo "open: unsupported or invalid file type"
 esac

@@ -1,4 +1,4 @@
-use-proxy yes
+use-proxy no
 browser "setsid $BROWSER %u >/dev/null 2>&1 &"
 proxy localhost:8118
 reload-threads 8
