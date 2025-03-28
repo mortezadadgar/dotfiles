@@ -43,10 +43,13 @@ export LESS_TERMCAP_me="$(tput sgr0)"
 export LESS_TERMCAP_us="$(tput bold; tput setaf 2)"
 export LESS_TERMCAP_ue="$(tput sgr0)"
 
+export ZDOTDIR="$HOME/.config/zsh"
+
 # LS_COLORS
 (( $+commands[dircolors] )) && eval `dircolors`
 
 # private variables
 [ -f "$HOME/.zshenv_pri" ] && source "$HOME/.zshenv_pri"
 
-export ZDOTDIR="$HOME/.config/zsh"
+# nvm
+source /usr/share/nvm/init-nvm.sh

@@ -22,8 +22,8 @@ alias yay="yay --removemake --sudoloop"
 alias apply="patch --merge -p1 -i"
 alias log="journalctl -eb --follow -n"
 alias myip="curl -s api.ipify.org"
-alias rsyncu="rsync -ah --no-i-r --info=progress2 && (echo 'Syncing...'; sync)"
 alias wgetpaste="wgetpaste -s 0x0"
+alias cat="bat --theme base16 --style plain"
 
 # git
 alias gst="git status"
@@ -54,5 +54,10 @@ alias gb="git branch --all"
 alias gd="git diff --ours"
 alias gds="git diff --stat --ours"
 alias gdc="git diff --cached"
-alias gs="git stash"
-alias gsa="git stash apply"
+# alias gs="git stash"
+# alias gsa="git stash apply"
+
+function rsyncu ()
+{
+	rsync -ah --no-i-r --info=progress2 "$1" "$2" && (echo 'Syncing...'; sync)
+}

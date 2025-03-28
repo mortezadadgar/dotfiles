@@ -1,12 +1,12 @@
 # mpv
-watch_later/
+**/mpv/watch_later/
 
 # mpd
-playlists/
-database
-log
-pid
-state
+**/mpd/playlists
+**/mpd/database
+**/mpd/log
+**/mpd/pid
+**/mpd/state
 
 # zsh
 **/zsh/.zcompdump
@@ -17,7 +17,7 @@ state
 *.jpg
 
 # local/share
-**/share/*
+**/.local/share/*
 
 # syncthing
 .stignore

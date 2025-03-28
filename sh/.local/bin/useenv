@@ -1,0 +1,11 @@
+#!/bin/bash
+
+declare -A env
+
+while IFS='=' read -r k v; do
+	env["$k"]="$v"	
+done < "$1"
+
+for key in "${!env[@]}"; do
+	echo "$key : ${env[$key]}"
+done

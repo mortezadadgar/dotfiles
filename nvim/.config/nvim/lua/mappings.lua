@@ -5,25 +5,21 @@ vim.keymap.set("i", "<C-c>", "<Esc>")
 vim.keymap.set("x", "<", "<gv")
 vim.keymap.set("x", ">", ">gv")
 
--- Keeping the cursor centered
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
-vim.keymap.set("n", "n", "nzz")
-vim.keymap.set("n", "N", "Nzz")
-
 -- Shift visual selections
 vim.keymap.set("x", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("x", "K", ":m '<-2<CR>gv=gv")
 
--- aliases :W to saving files
+-- Alias :W to saving files
 vim.keymap.set("ca", "W", "w")
 
 -- spell check
-vim.keymap.set("n", "<leader>o", "<cmd>setlocal spell!<CR>")
+vim.keymap.set("n", "<leader>o", "<cmd>setlocal spell!<cr>")
 
--- quickfix
-vim.keymap.set("n", "]q", "<cmd>cnext<CR>")
-vim.keymap.set("n", "[q", "<cmd>cprevious<CR>")
-
--- gF is a better version of gf
+-- gF is just better
 vim.keymap.set("n", "gf", "gF")
+
+-- Select last inserted text
+vim.keymap.set("n", "gV", "`[v`]")
+
+-- Repeat last command for each line of a visual selection
+vim.keymap.set("x", ".", ":normal .<cr>", { silent = true })

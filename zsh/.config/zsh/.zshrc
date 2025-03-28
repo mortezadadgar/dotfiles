@@ -93,8 +93,11 @@ if (( $+commands[fzf] )); then
 	. /usr/share/fzf/completion.zsh
 fi
 
-# nvm
-source /usr/share/nvm/init-nvm.sh
+# lazy load nvm
+nvm() {
+  source "/usr/share/nvm/init-nvm.sh"
+  nvm "$@"
+}
 
 # plugins
 . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh 2>/dev/null

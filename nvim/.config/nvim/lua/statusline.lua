@@ -12,14 +12,15 @@ local icons = {
 		modiefied = "●",
 		spell = "󰓆",
 		git = "",
+		format = "󰉥",
 	},
 }
 
 local diagnostics_attrs = {
 	{ vim.diagnostic.severity.ERROR, icons.diagnostics.error },
-	{ vim.diagnostic.severity.WARN,  icons.diagnostics.warning },
-	{ vim.diagnostic.severity.HINT,  icons.diagnostics.hint },
-	{ vim.diagnostic.severity.INFO,  icons.diagnostics.info },
+	{ vim.diagnostic.severity.WARN, icons.diagnostics.warning },
+	{ vim.diagnostic.severity.HINT, icons.diagnostics.hint },
+	{ vim.diagnostic.severity.INFO, icons.diagnostics.info },
 }
 
 --- Diagnostics count in current buffer.
@@ -45,7 +46,7 @@ function M.file_component()
 	local attr, icon = "", ""
 
 	if _G.MiniIcons ~= nil then
-		local file_icon = MiniIcons.get('extension', vim.o.filetype)
+		local file_icon = MiniIcons.get("extension", vim.o.filetype)
 		if file_icon then
 			icon = string.format("%s ", file_icon)
 		end
@@ -73,17 +74,17 @@ end
 --- Git status.
 ---@return string
 function M.git_component()
-	if vim.b.gitsigns_head == nil then
-		vim.print "gitsigns in not installed"
+	if vim.g.loaded_fugitive == nil then
+		vim.print "fugitive in not installed"
 		return ""
 	end
 
-	local head = vim.b.gitsigns_head
-	if not head then
+	local head = vim.fn.FugitiveHead()
+	if head == "" then
 		return ""
 	end
 
-	return string.format("%s %s ", icons.buffers.git, head)
+	return string.format(" %s %s", icons.buffers.git, head)
 end
 
 --- Spell check status.
@@ -94,6 +95,14 @@ function M.spell_component()
 	end
 
 	return string.format(" %s %s ", icons.buffers.spell, vim.o.spelllang)
+end
+
+function M.format_component()
+	if vim.g.autoformat then
+		return ""
+	end
+
+	return string.format(" %s ", icons.buffers.format)
 end
 
 --- Current buffer's line number info.
@@ -109,12 +118,12 @@ function M.render()
 	return
 	-- right section
 		" " ..
-		M.file_component() .. M.diagnostics_component() ..
+		M.file_component() .. M.git_component() .. M.diagnostics_component() ..
 
 		"%=" ..
 
 		-- left section
-		M.spell_component() .. M.line_component() ..
+		M.format_component() .. M.spell_component() .. M.line_component() ..
 		" "
 end
 

@@ -5,68 +5,48 @@ return {
 		"hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-path",
 		"saadparwaiz1/cmp_luasnip",
+		"ray-x/cmp-treesitter",
 		"onsails/lspkind.nvim",
-		"onsails/lspkind.nvim",
-		{
-			"L3MON4D3/LuaSnip",
-			dependencies = {
-				"rafamadriz/friendly-snippets",
-			},
-			config = function()
-				local ls = require "luasnip"
-
-				vim.keymap.set({ "i", "s" }, "<C-l>", function()
-					ls.jump(1)
-				end)
-				vim.keymap.set({ "i", "s" }, "<C-h>", function()
-					ls.jump(-1)
-				end)
-
-				require("luasnip.loaders.from_vscode").lazy_load()
-				ls.filetype_extend("svelte", { "html", "css" })
-			end,
-		},
 	},
 	config = function()
 		local cmp = require "cmp"
 		local map = cmp.mapping
-		local ls = require("luasnip")
 
 		require("cmp").setup {
 			snippet = {
 				expand = function(args)
-					ls.lsp_expand(args.body)
+					require("luasnip").lsp_expand(args.body)
 				end,
 			},
 			mapping = {
 				["<C-e>"] = map.close(),
+				["<C-b>"] = map.scroll_docs(-4),
+				["<C-f>"] = map.scroll_docs(4),
 				["<C-n>"] = map.select_next_item(),
 				["<C-p>"] = map.select_prev_item(),
 				["<Tab>"] = map.select_next_item(),
 				["<S-Tab>"] = map.select_prev_item(),
 
-				["<CR>"] = cmp.mapping(function(fallback)
-					if cmp.visible() then
-						if ls.expandable() then
-							ls.expand()
+				["<CR>"] = cmp.mapping {
+					i = function(fallback)
+						if cmp.visible() and cmp.get_active_entry() then
+							cmp.confirm { behavior = cmp.ConfirmBehavior.Replace, select = false }
 						else
-							cmp.confirm({
-								select = true,
-							})
+							fallback()
 						end
-					else
-						fallback()
-					end
-				end),
-
+					end,
+					s = cmp.mapping.confirm { select = true },
+				},
 			},
 			sources = {
-				{ name = "nvim_lsp" },
+				{ name = "nvim_lsp", priority = 100 },
 				{ name = "luasnip" },
 				{ name = "path" },
+				{ name = "treesitter" },
 				{
 					name = "buffer",
 					keyword_length = 2,
+					priority = 1,
 					option = {
 						get_bufnrs = function()
 							return vim.api.nvim_list_bufs()
@@ -75,17 +55,15 @@ return {
 				},
 			},
 			formatting = {
-				format = require('lspkind').cmp_format({
+				format = require("lspkind").cmp_format {
+					mode = "symbol_text",
 					maxwidth = {
 						menu = 50,
 						abbr = 50,
 					},
-				})
+				},
 			},
-			completion = {
-				completeopt = 'menu,menuone,noinsert'
-			}
-			-- preselect = cmp.PreselectMode.None,
+			preselect = cmp.PreselectMode.None,
 		}
-	end
+	end,
 }

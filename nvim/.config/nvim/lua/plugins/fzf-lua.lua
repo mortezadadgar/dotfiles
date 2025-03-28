@@ -2,39 +2,62 @@ return {
 	"ibhagwan/fzf-lua",
 	dependencies = {
 		"echasnovski/mini.icons",
-		opts = true
 	},
 	config = function()
+		local delta_preview = "delta --width=$COLUMNS --syntax-theme base16 --diff-highlight"
 		require("fzf-lua").setup {
 			fzf_opts = {
 				["--layout"] = "default",
 				["--no-scrollbar"] = "",
+				["--history"] = vim.fn.stdpath "data" .. "/fzf-lua-history",
+			},
+			previewers = {
+				git_diff = {
+					pager = delta_preview,
+				},
 			},
 			winopts = {
 				border = "single",
 				preview = {
 					scrollbar = false,
+					-- wrap = true,
 				},
 			},
 			files = {
 				cwd_prompt = false,
 				prompt = "Files> ",
 			},
+			git = {
+				commits = {
+					preview_pager = delta_preview,
+				},
+				bcommits = {
+					preview_pager = delta_preview,
+				},
+				stash = {
+					preview_pager = delta_preview,
+				},
+				blame = {
+					preview_pager = delta_preview,
+				},
+			},
 			lsp = {
 				includeDeclaration = false,
 			},
+			oldfiles = {
+				cwd_only = true,
+			},
 			keymap = {
 				builtin = {
-					["<C-e>"] = "toggle-preview",
 					["<C-d>"] = "preview-page-down",
 					["<C-u>"] = "preview-page-up",
 				},
 				fzf = {
-					["ctrl-e"] = "toggle-preview",
-					["ctrl-d"] = "preview-page-down",
-					["ctrl-u"] = "preview-page-up",
 					["ctrl-q"] = "select-all+accept",
-					["ctrl-a"] = "toggle-all",
+					["ctrl-j"] = "next-history",
+					["ctrl-k"] = "previous-history",
+					["ctrl-n"] = "down",
+					["ctrl-p"] = "up",
 				},
 			},
 		}
@@ -59,6 +82,7 @@ return {
 				cwd = vim.fn.expand "%:h",
 			}
 		end)
+
 		vim.keymap.set("n", "<space>cf", function()
 			fzf.files {
 				cwd = "$HOME/.config",
@@ -66,5 +90,7 @@ return {
 				follow = true,
 			}
 		end)
-	end
+
+		fzf.register_ui_select()
+	end,
 }
