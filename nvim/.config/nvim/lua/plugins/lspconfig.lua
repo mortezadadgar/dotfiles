@@ -82,6 +82,18 @@ return {
 					},
 				},
 			},
+			-- vtsls = {
+			-- 	settings = {
+			-- 		vtsls = {
+			-- 			autoUseWorkspaceTsdk = true,
+			-- 			experimental = {
+			-- 				completion = {
+			-- 					enableServerSideFuzzyMatch = true,
+			-- 				},
+			-- 			},
+			-- 		},
+			-- 	},
+			-- },
 			bashls = {},
 			svelte = {},
 			html = {},
@@ -96,11 +108,11 @@ return {
 		}
 
 		-- enable file watching capabilities
-		local capabilities = vim.tbl_deep_extend("force", require("cmp_nvim_lsp").default_capabilities(), {
+		local capabilities = require("blink.cmp").get_lsp_capabilities {
 			workspace = {
 				didChangeWatchedFiles = { dynamicRegistration = true },
 			},
-		})
+		}
 
 		for server, config in pairs(servers) do
 			require("lspconfig")[server].setup {

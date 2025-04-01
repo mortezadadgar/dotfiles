@@ -6,8 +6,7 @@ set -eu -o pipefail
 [ "$#" = 1 ] || (echo "open: missing filename"; exit 1)
 
 list_images() {
-	find "$(dirname "$1")" -maxdepth 1 |
-		sort -u | grep -iE '\.(png|jpe?g|webp|gif|svg|bmp|ico)$'
+	find "$(dirname "$1")" -maxdepth 1 ! -name "$1" | grep -iE '\.(png|jpe?g|webp|gif|svg|bmp|ico)$'
 }
 
 q() {
@@ -22,7 +21,7 @@ case "$mime_type" in
 	text/html) q "${BROWSER:-firefox}" "$1" &;;
 	*/pdf|*/epub+zip|*/vnd.djvu) q zathura "$1" &;;
 	# FIXME: unable to open files having spaces
-	image/*) q nsxiv $(list_images "$1") &;;
+	image/*) q nsxiv "$1" $(list_images "$1") &;;
 	text/*) $EDITOR "$1";;
 	*officedocument*) q libreoffice "$1" &;;
 	*) echo "open: unsupported or invalid file type"

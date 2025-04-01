@@ -1,0 +1,23 @@
+#!/bin/bash
+# Description: Show progress for copying files and sync afterward
+# Deependencies: rsync
+set -eu -o pipefail
+
+print_message() {
+	[ "$#" = 1 ] && echo "usp: $1"
+	echo "Usage: [files...] [directory]"
+	exit 0
+}
+
+[ "$1" = "--help" ] && print_message
+
+[ ! -d "${*:$#}" ] && print_message "invalid directory"
+
+for f in "${@:1:$#-1}"; do
+	[ ! -f "$f" ] && print_message "invalid file: ""$f"""
+done
+
+if rsync -ah --no-i-r --info=progress2 "${@:1:$#-1}" "${@:$#}"; then
+	echo 'Syncing filesystem...'
+	sync
+fi

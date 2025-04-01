@@ -41,6 +41,19 @@ return {
 					preview_pager = delta_preview,
 				},
 			},
+			actions = {
+				files = {
+					true,
+					["ctrl-y"] = {
+						fn = function(selected)
+							local path = vim.split(selected[1], " ")[2]
+							vim.fn.setreg([[+]], path)
+						end,
+						header = ":: to Copy Path",
+						exec_silent = true,
+					},
+				},
+			},
 			lsp = {
 				includeDeclaration = false,
 			},
@@ -64,24 +77,21 @@ return {
 
 		local fzf = require "fzf-lua"
 
-		vim.keymap.set("n", "<space><space>", fzf.files)
-		vim.keymap.set("n", "<space>gg", fzf.live_grep_glob)
-		vim.keymap.set("n", "<space>gs", fzf.grep_cword)
-		vim.keymap.set("x", "<space>gs", fzf.grep_visual)
-		vim.keymap.set("n", "<space>b", fzf.buffers)
-		vim.keymap.set("n", "<space>oo", fzf.oldfiles)
-		vim.keymap.set("n", "<leader><leader>", fzf.resume)
-		vim.keymap.set("n", "<space>gt", fzf.git_status)
-		vim.keymap.set("n", "<space>gb", fzf.git_bcommits)
-		vim.keymap.set("n", "<space>gc", fzf.git_commits)
-		vim.keymap.set("n", "<leader>/", fzf.lgrep_curbuf)
-		vim.keymap.set("n", "z=", fzf.spell_suggest)
+		vim.keymap.set("n", "<space><space>", fzf.files, { desc = "FZF: Find Files" })
+		vim.keymap.set("n", "<space>gg", fzf.live_grep_glob, { desc = "FZF: Live grep" })
+		vim.keymap.set("n", "<space>gs", fzf.grep_cword, { desc = "FZF: Grep Word under cursor" })
+		vim.keymap.set("x", "<space>gs", fzf.grep_visual, { desc = "FZF: Grep Word under cursor" })
+		vim.keymap.set("n", "<space>b", fzf.buffers, { desc = "FZF: buffers" })
+		vim.keymap.set("n", "<space>oo", fzf.oldfiles, { desc = "FZF: Oldfiles" })
+		vim.keymap.set("n", "<leader><leader>", fzf.resume, { desc = "FZF: Resume" })
+		vim.keymap.set("n", "<leader>/", fzf.lgrep_curbuf, { desc = "FZF: grep current buffer" })
+		vim.keymap.set("n", "z=", fzf.spell_suggest, { desc = "FZF: Spell Suggest" })
 
 		vim.keymap.set("n", "<space>cc", function()
 			fzf.files {
 				cwd = vim.fn.expand "%:h",
 			}
-		end)
+		end, { desc = "FZF: Find Files current buffer directory" })
 
 		vim.keymap.set("n", "<space>cf", function()
 			fzf.files {
@@ -89,7 +99,7 @@ return {
 				prompt = "Config Files> ",
 				follow = true,
 			}
-		end)
+		end, { desc = "FZF: Find Config Files" })
 
 		fzf.register_ui_select()
 	end,

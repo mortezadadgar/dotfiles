@@ -14,5 +14,6 @@ case "$mime_type" in
 	*/x-bzip2|*/gzip|*/xz|*/x-xz) tar -xvaf "$file" --one-top-level;;
 	*/zip) 7z x "$file" -o"$out_dir";;
 	*/x-rar|*/vnd.rar) unrar x -op"$out_dir" "$file";;
+	*officedocument*) 7z x "$file" -o"$out_dir";;
 	*) echo "Unsupported or invalid file type"
 esac

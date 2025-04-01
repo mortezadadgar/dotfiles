@@ -1,3 +1,5 @@
+export ZDOTDIR="$HOME/.config/zsh"
+
 # XDG
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
@@ -34,7 +36,7 @@ export NNN_OPTS="e"
 export LESS="-x4Rg"
 export SYSTEMD_LESS=$LESS
 export FZF_DEFAULT_OPTS="--layout=reverse --height=10% --no-separator --color=hl+:blue,hl:blue,fg+:#E0DEF4,bg+:#26233A,pointer:white,spinner:blue,info:green,prompt:cyan"
-export GOPROXY="https://goproxy.cn"
+export QT_QPA_PLATFORMTHEME=gtk3
 
 # man page highlighting
 export MANROFFOPT="-c"
@@ -43,13 +45,8 @@ export LESS_TERMCAP_me="$(tput sgr0)"
 export LESS_TERMCAP_us="$(tput bold; tput setaf 2)"
 export LESS_TERMCAP_ue="$(tput sgr0)"
 
-export ZDOTDIR="$HOME/.config/zsh"
-
 # LS_COLORS
 (( $+commands[dircolors] )) && eval `dircolors`
 
 # private variables
 [ -f "$HOME/.zshenv_pri" ] && source "$HOME/.zshenv_pri"
-
-# nvm
-source /usr/share/nvm/init-nvm.sh

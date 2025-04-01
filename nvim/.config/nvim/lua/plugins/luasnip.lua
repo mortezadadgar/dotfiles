@@ -1,5 +1,8 @@
 return {
 	"L3MON4D3/LuaSnip",
+	dependencies = {
+		"rafamadriz/friendly-snippets",
+	},
 	config = function()
 		local ls = require "luasnip"
 		ls.setup {
@@ -14,12 +17,13 @@ return {
 			if ls.locally_jumpable(1) then
 				ls.jump(1)
 			end
-		end)
+		end, { desc = "Jump to next snippet placeholder" })
+
 		vim.keymap.set({ "i", "s" }, "<C-h>", function()
 			if ls.locally_jumpable(-1) then
 				ls.jump(-1)
 			end
-		end)
+		end, { desc = "Jump to previous snippet placeholder" })
 
 		require("luasnip.loaders.from_vscode").lazy_load()
 		ls.filetype_extend("svelte", { "html", "css" })

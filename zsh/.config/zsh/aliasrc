@@ -7,6 +7,7 @@ alias ip="ip -color"
 alias cp="cp -v"
 alias mv="mv -v"
 alias ls="eza --icons --no-quotes --group-directories-first"
+alias tree="ls --tree"
 alias ht="htop"
 alias src="print ''; exec zsh"
 alias svi="sudoedit"
@@ -56,8 +57,3 @@ alias gds="git diff --stat --ours"
 alias gdc="git diff --cached"
 # alias gs="git stash"
 # alias gsa="git stash apply"
-
-function rsyncu ()
-{
-	rsync -ah --no-i-r --info=progress2 "$1" "$2" && (echo 'Syncing...'; sync)
-}

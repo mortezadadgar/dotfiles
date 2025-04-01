@@ -19,8 +19,12 @@ vim.opt.smartindent = true
 
 -- Completion menu
 vim.opt.pumheight = 10
-vim.opt.completeopt = { "popup", "menuone", "noinsert", "fuzzy" }
+vim.opt.completeopt = "menuone,popup,noselect,fuzzy"
+vim.opt.shortmess:append "c"
+
+-- Wild menu
 vim.opt.wildignorecase = true
+vim.opt.wildoptions:append { "fuzzy" }
 
 -- Case-insensitive searching
 vim.opt.ignorecase = true
@@ -57,3 +61,6 @@ vim.opt.jumpoptions:append { "view" }
 
 -- Min number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 4
+
+-- annoying
+vim.opt.swapfile = false
