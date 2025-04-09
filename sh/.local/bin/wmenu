@@ -1,0 +1,2 @@
+#!/bin/sh
+exec /usr/bin/wmenu -f "JetBrainsMono Nerd Font 10" -N "#191724" -S "#C4A7E7" -s "#191724" -M "#C4A7E7" -m "#191724" "$@"

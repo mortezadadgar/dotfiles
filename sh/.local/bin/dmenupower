@@ -4,7 +4,7 @@
 # Shell: Bash
 set -eu -o pipefail
 
-select=$(printf " Poweroff\n Restart\n󰍃 Logoff\n Lockscreen\n󰤄 Sleep"| dmenu -i)
+select=$(printf " Poweroff\n Restart\n󰍃 Logoff\n Lockscreen\n󰤄 Sleep"| dmenu)
 
 case $select in
 	" Poweroff")
@@ -15,10 +15,10 @@ case $select in
 		;;
 	"󰍃 Logoff")
 		clear > /dev/tty1
-		xdotool key super+shift+ctrl+q
+		pkill -SIGTERM dwl$
 		;;
 	" Lockscreen")
-		slock
+		waylock
 		;;
 	"󰤄 Sleep")
 		systemctl suspend -i
