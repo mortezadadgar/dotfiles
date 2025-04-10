@@ -15,9 +15,16 @@ return {
 				git_diff = {
 					pager = delta_preview,
 				},
+				builtin = {
+					extensions = {
+						["png"] = { "chafa" },
+						["jpg"] = { "chafa" },
+						["jpeg"] = { "chafa" },
+						["webp"] = { "chafa" },
+					},
+				},
 			},
 			winopts = {
-				border = "single",
 				preview = {
 					scrollbar = false,
 					-- wrap = true,
@@ -26,6 +33,18 @@ return {
 			files = {
 				cwd_prompt = false,
 				prompt = "Files> ",
+				actions = {
+					["ctrl-y"] = {
+						fn = function(selected)
+							if #selected > 0 then
+								local path = vim.split(selected[1], " ")[2]
+								vim.fn.setreg([[+]], path)
+							end
+						end,
+						header = "Copy Path",
+						exec_silent = true,
+					},
+				},
 			},
 			git = {
 				commits = {
@@ -41,31 +60,32 @@ return {
 					preview_pager = delta_preview,
 				},
 			},
-			actions = {
-				files = {
-					true,
-					["ctrl-y"] = {
-						fn = function(selected)
-							local path = vim.split(selected[1], " ")[2]
-							vim.fn.setreg([[+]], path)
-						end,
-						header = ":: to Copy Path",
-						exec_silent = true,
-					},
-				},
-			},
 			lsp = {
 				includeDeclaration = false,
 			},
 			oldfiles = {
 				cwd_only = true,
 			},
+			buffers = {
+				cwd_only = true,
+				ignore_current_buffer = true,
+				winopts = {
+					width = 80,
+					height = 30,
+					col = 0.50,
+					layout = "vertical",
+				},
+			},
 			keymap = {
 				builtin = {
 					["<C-d>"] = "preview-page-down",
 					["<C-u>"] = "preview-page-up",
+					["<C-e>"] = "toggle-preview",
 				},
 				fzf = {
+					["ctrl-e"] = "toggle-preview",
+					["ctrl-d"] = "preview-page-down",
+					["ctrl-u"] = "preview-page-up",
 					["ctrl-q"] = "select-all+accept",
 					["ctrl-j"] = "next-history",
 					["ctrl-k"] = "previous-history",
@@ -82,9 +102,15 @@ return {
 		vim.keymap.set("n", "<space>gs", fzf.grep_cword, { desc = "FZF: Grep Word under cursor" })
 		vim.keymap.set("x", "<space>gs", fzf.grep_visual, { desc = "FZF: Grep Word under cursor" })
 		vim.keymap.set("n", "<space>b", fzf.buffers, { desc = "FZF: buffers" })
-		vim.keymap.set("n", "<space>oo", fzf.oldfiles, { desc = "FZF: Oldfiles" })
+		vim.keymap.set("n", "<space>o", fzf.oldfiles, { desc = "FZF: Oldfiles" })
+		vim.keymap.set("n", "<space>gt", fzf.git_status, { desc = "FZF: Git Status" })
+		vim.keymap.set("n", "<space>?", fzf.help_tags, { desc = "FZF: Help Tags" })
+		vim.keymap.set("n", "<space>m", function()
+			fzf.marks { marks = "%a" }
+		end, { desc = "FZF: Global Marks" })
+		vim.keymap.set("n", "<space>tb", fzf.tmux_buffers, { desc = "FZF: Tmux buffers" })
 		vim.keymap.set("n", "<leader><leader>", fzf.resume, { desc = "FZF: Resume" })
-		vim.keymap.set("n", "<leader>/", fzf.lgrep_curbuf, { desc = "FZF: grep current buffer" })
+		vim.keymap.set("n", "<space>/", fzf.grep_curbuf, { desc = "FZF: grep current buffer" })
 		vim.keymap.set("n", "z=", fzf.spell_suggest, { desc = "FZF: Spell Suggest" })
 
 		vim.keymap.set("n", "<space>cc", function()
@@ -100,7 +126,5 @@ return {
 				follow = true,
 			}
 		end, { desc = "FZF: Find Config Files" })
-
-		fzf.register_ui_select()
 	end,
 }

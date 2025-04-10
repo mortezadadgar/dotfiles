@@ -1,6 +1,5 @@
 return {
 	"lewis6991/gitsigns.nvim",
-	enabled = false,
 	opts = {
 		signcolumn = true,
 		numhl = false,
@@ -40,7 +39,10 @@ return {
 
 			-- Actions
 			vim.keymap.set("n", "<space>hs", gitsigns.stage_hunk, opts)
+			vim.keymap.set("n", "<space>hS", gitsigns.stage_buffer, opts)
 			vim.keymap.set("n", "<space>hr", gitsigns.reset_hunk, opts)
+			vim.keymap.set("n", "<space>hR", gitsigns.reset_buffer, opts)
+			vim.keymap.set("n", "<space>hp", gitsigns.preview_hunk, opts)
 
 			vim.keymap.set("v", "<space>hs", function()
 				gitsigns.stage_hunk { vim.fn.line ".", vim.fn.line "v" }
@@ -50,12 +52,9 @@ return {
 				gitsigns.reset_hunk { vim.fn.line ".", vim.fn.line "v" }
 			end, opts)
 
-			vim.keymap.set("n", "<space>hS", gitsigns.stage_buffer, opts)
-			vim.keymap.set("n", "<space>hR", gitsigns.reset_buffer, opts)
-			vim.keymap.set("n", "<space>hp", gitsigns.preview_hunk_inline, opts)
-
 			-- Toggles
 			vim.keymap.set("n", "<space>ts", gitsigns.toggle_signs, opts)
+			vim.keymap.set("n", "<space>tw", gitsigns.toggle_signs, opts)
 
 			-- Text object
 			vim.keymap.set({ "o", "x" }, "ih", gitsigns.select_hunk, opts)

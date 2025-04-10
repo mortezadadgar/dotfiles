@@ -2,7 +2,7 @@ return {
 	"neovim/nvim-lspconfig",
 	config = function()
 		vim.diagnostic.config {
-			virtual_text = {
+			virtual_lines = {
 				source = "if_many",
 			},
 			severity_sort = true,
@@ -82,29 +82,38 @@ return {
 					},
 				},
 			},
-			-- vtsls = {
-			-- 	settings = {
-			-- 		vtsls = {
-			-- 			autoUseWorkspaceTsdk = true,
-			-- 			experimental = {
-			-- 				completion = {
-			-- 					enableServerSideFuzzyMatch = true,
-			-- 				},
-			-- 			},
-			-- 		},
-			-- 	},
-			-- },
-			bashls = {},
-			svelte = {},
+			vtsls = {
+				settings = {
+					vtsls = {
+						autoUseWorkspaceTsdk = true,
+						experimental = {
+							completion = {
+								enableServerSideFuzzyMatch = true,
+							},
+						},
+					},
+				},
+			},
+			svelte = {
+				settings = {
+					svelte = {
+						plugin = {
+							html = { completions = { emmet = false } },
+							css = { completions = { emmet = false } },
+						},
+					},
+				},
+			},
+			-- ts_ls = {},
 			html = {},
 			cssls = {},
 			tailwindcss = {},
 			jsonls = {},
 			eslint = {},
-			ts_ls = {},
 			pyright = {},
 			clangd = {},
 			typos_lsp = {},
+			bashls = {},
 		}
 
 		-- enable file watching capabilities

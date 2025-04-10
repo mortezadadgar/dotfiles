@@ -1,9 +1,9 @@
 #!/bin/sh
 
 batterynotif &
-wlsunset -T 5001 -t 5000 &
+gammastep -O 4000 &
 swaybg --image "$XDG_DATA_HOME"/bg.jpg &
-udisksd -q &
+udiskie -q &
 
 # setup screen locker
 locker="waylock -fork-on-lock"

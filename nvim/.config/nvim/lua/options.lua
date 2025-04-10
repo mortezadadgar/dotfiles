@@ -4,7 +4,7 @@ vim.opt.relativenumber = true
 vim.opt.title = true
 vim.opt.cursorline = true
 vim.opt.signcolumn = "number"
-vim.opt.laststatus = 3
+vim.opt.showmode = false
 vim.opt.winborder = "single"
 
 -- Clipboard
@@ -54,13 +54,16 @@ vim.opt.guicursor:append { "t:ver25-TermCursor" }
 vim.opt.diffopt:append {
 	"indent-heuristic",
 	"algorithm:patience",
+	"followwrap",
+	"vertical",
+	"foldcolumn:0",
 }
 
 -- Attempt to perverse mark view
 vim.opt.jumpoptions:append { "view" }
 
--- Min number of screen lines to keep above and below the cursor.
+-- Min number of screen lines to keep above and below the cursor
 vim.opt.scrolloff = 4
 
--- annoying
-vim.opt.swapfile = false
+-- netrw
+vim.g.netrw_banner = 0

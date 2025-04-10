@@ -49,7 +49,7 @@ return {
 					},
 				},
 				move = {
-					enable = true,
+					enable = false, -- jumps to anonymous functions
 					set_jumps = true,
 					goto_next_start = {
 						["]m"] = "@function.outer",

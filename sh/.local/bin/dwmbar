@@ -97,8 +97,8 @@ display() {
 	if [ "$is_laptop" = 1 ]; then
 		xsetroot "${mediainfo:-} $mic$vol  $wifi  $bat  $time"
 	else
-		xsetroot -name "${mediainfo:-}$mic$vol  $time"
-		# echo "${mediainfo:-}$mic $vol  $time"
+		# xsetroot -name "${mediainfo:-}$mic$vol  $time"
+		echo "${mediainfo:-}$mic $vol  $time"
 	fi
 }
 

@@ -2,7 +2,6 @@
 Description=Display notificatinos on mpd events
 After=mpd.service
 Wants=mpd.service
-Restart=always
 
 [Service]
 Type=simple

@@ -1,11 +1,12 @@
 local group = vim.api.nvim_create_augroup("UserGroup", {})
 
 vim.api.nvim_create_autocmd("TextYankPost", {
-	desc = "Highlight on yank",
+	desc = "Highlight on yank and set tmux buffer",
 	group = group,
 	pattern = "*",
 	callback = function()
 		vim.highlight.on_yank()
+		vim.system { "tmux", "set-buffer", "-w", vim.fn.getreg [["]] }
 	end,
 })
 

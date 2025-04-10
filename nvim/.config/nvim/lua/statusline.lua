@@ -46,7 +46,7 @@ function M.file_component()
 	local attr, icon = "", ""
 
 	if _G.MiniIcons ~= nil then
-		local file_icon = MiniIcons.get("extension", vim.o.filetype)
+		local file_icon = MiniIcons.get("file", name)
 		if file_icon then
 			icon = string.format("%s ", file_icon)
 		end
@@ -74,13 +74,12 @@ end
 --- Git status.
 ---@return string
 function M.git_component()
-	if vim.g.loaded_fugitive == nil then
-		vim.print "fugitive in not installed"
+	if vim.b.gitsigns_head == nil then
 		return ""
 	end
 
-	local head = vim.fn.FugitiveHead()
-	if head == "" then
+	local head = vim.b.gitsigns_head
+	if not head then
 		return ""
 	end
 

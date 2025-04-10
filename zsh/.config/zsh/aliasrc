@@ -24,7 +24,7 @@ alias apply="patch --merge -p1 -i"
 alias log="journalctl -eb --follow -n"
 alias myip="curl -s api.ipify.org"
 alias wgetpaste="wgetpaste -s 0x0"
-alias cat="bat --theme base16 --style plain"
+alias cat="bat"
 
 # git
 alias gst="git status"
