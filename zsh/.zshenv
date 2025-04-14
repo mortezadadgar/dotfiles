@@ -28,7 +28,7 @@ export PASSWORD_STORE_GENERATED_LENGTH="16"
 
 # nnn
 export NNN_FIFO="/tmp/nnn.fifo"
-export NNN_PLUG="f:preview-tui"
+export NNN_PLUG="p:preview-tui;d:diffs;f:fzcd"
 export NNN_OPENER="open"
 
 # Less options

@@ -2,7 +2,7 @@ return {
 	"neovim/nvim-lspconfig",
 	config = function()
 		vim.diagnostic.config {
-			virtual_lines = {
+			virtual_text = {
 				source = "if_many",
 			},
 			severity_sort = true,
@@ -25,6 +25,13 @@ return {
 				if client == nil then
 					return
 				end
+
+				vim.keymap.set({ "i", "s" }, "<C-S>", function()
+					if vim.fn.pumvisible() ~= 0 then
+						vim.api.nvim_feedkeys(vim.keycode "<C-e>", "n", true)
+					end
+					vim.lsp.buf.signature_help()
+				end)
 
 				local ok, fzf = pcall(require, "fzf-lua")
 				if ok then
@@ -114,18 +121,11 @@ return {
 			clangd = {},
 			typos_lsp = {},
 			bashls = {},
-		}
-
-		-- enable file watching capabilities
-		local capabilities = require("blink.cmp").get_lsp_capabilities {
-			workspace = {
-				didChangeWatchedFiles = { dynamicRegistration = true },
-			},
+			marksman = {},
 		}
 
 		for server, config in pairs(servers) do
 			require("lspconfig")[server].setup {
-				capabilities = capabilities,
 				settings = config.settings,
 			}
 		end

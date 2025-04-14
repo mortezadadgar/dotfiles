@@ -53,7 +53,7 @@ vim.opt.guicursor:append { "t:ver25-TermCursor" }
 -- Better diff options
 vim.opt.diffopt:append {
 	"indent-heuristic",
-	"algorithm:patience",
+	"algorithm:histogram",
 	"followwrap",
 	"vertical",
 	"foldcolumn:0",
@@ -67,3 +67,4 @@ vim.opt.scrolloff = 4
 
 -- netrw
 vim.g.netrw_banner = 0
+vim.g.netrw_fastbrowse = 2

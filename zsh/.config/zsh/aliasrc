@@ -25,6 +25,7 @@ alias log="journalctl -eb --follow -n"
 alias myip="curl -s api.ipify.org"
 alias wgetpaste="wgetpaste -s 0x0"
 alias cat="bat"
+alias nnn="nnn -e"
 
 # git
 alias gst="git status"

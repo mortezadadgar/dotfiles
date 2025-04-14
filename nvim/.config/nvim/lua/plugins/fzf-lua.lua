@@ -6,6 +6,9 @@ return {
 	config = function()
 		local delta_preview = "delta --width=$COLUMNS --syntax-theme base16 --diff-highlight"
 		require("fzf-lua").setup {
+			-- keep the fzf process running in background, allow for a richer `:FzfLua resume`
+			"hide",
+
 			fzf_opts = {
 				["--layout"] = "default",
 				["--no-scrollbar"] = "",
@@ -17,17 +20,17 @@ return {
 				},
 				builtin = {
 					extensions = {
-						["png"] = { "chafa" },
-						["jpg"] = { "chafa" },
-						["jpeg"] = { "chafa" },
-						["webp"] = { "chafa" },
+						["png"] = { "ueberzug" },
+						["jpg"] = { "ueberzug" },
+						["jpeg"] = { "ueberzug" },
+						["webp"] = { "ueberzug" },
 					},
+					ueberzug_scaler = "cover",
 				},
 			},
 			winopts = {
 				preview = {
 					scrollbar = false,
-					-- wrap = true,
 				},
 			},
 			files = {
@@ -69,12 +72,6 @@ return {
 			buffers = {
 				cwd_only = true,
 				ignore_current_buffer = true,
-				winopts = {
-					width = 80,
-					height = 30,
-					col = 0.50,
-					layout = "vertical",
-				},
 			},
 			keymap = {
 				builtin = {

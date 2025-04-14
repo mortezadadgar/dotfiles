@@ -46,10 +46,12 @@ return {
 						["ic"] = "@conditional.inner",
 						["al"] = "@loop.outer",
 						["il"] = "@loop.inner",
+						["aa"] = "@parameter.outer",
+						["ia"] = "@parameter.inner",
 					},
 				},
 				move = {
-					enable = false, -- jumps to anonymous functions
+					enable = true,
 					set_jumps = true,
 					goto_next_start = {
 						["]m"] = "@function.outer",

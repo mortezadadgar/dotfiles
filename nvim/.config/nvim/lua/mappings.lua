@@ -23,9 +23,3 @@ vim.keymap.set("n", "gV", "`[v`]", { desc = "Select last inserted text" })
 
 -- Repeat last command for each line of a visual selection
 vim.keymap.set("x", ".", ":normal .<cr>", { silent = true })
-
--- accidentally press them all the times
--- never bothered to use anyway.
-for _, key in pairs { "L", "M", "H" } do
-	vim.keymap.set("n", key, "<Nop>")
-end

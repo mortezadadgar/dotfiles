@@ -42,11 +42,11 @@ end
 --- Current buffer's file info.
 ---@return string
 function M.file_component()
-	local name = vim.fn.expand "%:~:."
 	local attr, icon = "", ""
 
+	---@diagnostic disable-next-line: undefined-field
 	if _G.MiniIcons ~= nil then
-		local file_icon = MiniIcons.get("file", name)
+		local file_icon = MiniIcons.get("extension", vim.bo.filetype)
 		if file_icon then
 			icon = string.format("%s ", file_icon)
 		end
@@ -64,26 +64,18 @@ function M.file_component()
 		attr = string.format(" %s", attr)
 	end
 
-	if name == "" then
-		name = "[No Name]"
-	end
-
-	return string.format("%s%s%s", icon, name, attr)
+	return string.format("%s%%f%s", icon, attr)
 end
 
 --- Git status.
 ---@return string
 function M.git_component()
-	if vim.b.gitsigns_head == nil then
+	local head = vim.system({ "git", "rev-parse", "--abbrev-ref", "HEAD" }):wait()
+	if not head or head.code > 0 then
 		return ""
 	end
 
-	local head = vim.b.gitsigns_head
-	if not head then
-		return ""
-	end
-
-	return string.format(" %s %s", icons.buffers.git, head)
+	return string.format(" %s %s", icons.buffers.git, string.gsub(head.stdout, "\n", ""))
 end
 
 --- Spell check status.
