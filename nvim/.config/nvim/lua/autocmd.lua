@@ -32,3 +32,14 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 		end
 	end,
 })
+
+vim.api.nvim_create_autocmd("BufWritePost", {
+	desc = "Reload Xresources",
+	pattern = "Xresources",
+	callback = function()
+		local cmd = vim.system({ "xrdb", vim.fn.expand "$XDG_CONFIG_HOME/x11/Xresources" }):wait()
+		if cmd.code > 0 then
+			vim.notify(cmd.stderr, vim.log.levels.ERROR)
+		end
+	end,
+})

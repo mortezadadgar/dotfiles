@@ -1,31 +1,30 @@
 [global]
-font = Open Sans 11
-idle_threshold = 120
-format = "<b><span foreground='#C4A7E7'>%s</span></b>\n%b"
-width = (300, 300)
-height = (0, 150)
-origin = bottom-right
-offset = (30, 25)
-line_height = 3
-frame_width = 2
-padding = 8
-horizontal_padding = 8
-separator_color = "#191724"
-show_indicators = no
-icon_position = left
-enable_recursive_icon_lookup = true
-icon_theme = Papirus-Dark
-min_icon_size = 48
-max_icon_size = 64
-close = ctrl+space
-history = ctrl+shift+space
-gaps = true
-gap_size = 10
+	font = Open Sans 11
+	idle_threshold = 120
+	format = "<b><span foreground='#C4A7E7'>%s</span></b>\n%b"
+	width = (300, 300)
+	height = (0, 150)
+	origin = bottom-right
+	offset = (30, 25)
+	line_height = 3
+	frame_width = 2
+	padding = 8
+	horizontal_padding = 8
+	separator_color = "#191724"
+	show_indicators = no
+	icon_position = left
+	enable_recursive_icon_lookup = true
+	icon_theme = Papirus-Dark
+	min_icon_size = 48
+	max_icon_size = 64
+	close = ctrl+space
+	history = ctrl+shift+space
+	gap_size = 10
 
 [urgency_normal]
-foreground = "#E0DEF4"
-background = "#191724"
-frame_color = "#64656a"
-timeout = 10
+	foreground = "#E0DEF4"
+	background = "#191724"
+	frame_color = "#64656a"
+	timeout = 10
 
 # vim: ft=dosini

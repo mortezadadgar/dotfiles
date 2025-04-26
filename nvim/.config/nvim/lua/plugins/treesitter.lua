@@ -23,6 +23,7 @@ return {
 				enable = true,
 			},
 
+			-- TODO: buggy c switch-case statements
 			indent = {
 				enable = true,
 			},

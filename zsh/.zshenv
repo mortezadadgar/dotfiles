@@ -14,7 +14,7 @@ export PATH="$XDG_DATA_HOME/npm/bin/:$PATH"
 
 # Default programs
 export EDITOR="nvim"
-export BROWSER="brave"
+export BROWSER="brave-browser"
 
 # Clean up ~
 export XINITRC="$XDG_CONFIG_HOME/x11/xinitrc"

@@ -1,13 +1,11 @@
 return {
 	"echasnovski/mini.files",
-	enabled = false,
 	config = function()
 		local minifiles = require "mini.files"
-
 		minifiles.setup {
 			windows = {
 				preview = true,
-				width_preview = 70,
+				width_preview = 80,
 			},
 		}
 

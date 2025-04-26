@@ -19,25 +19,29 @@ return {
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 			callback = function(args)
-				local opts = { buffer = args.buf }
 				local client = vim.lsp.get_client_by_id(args.data.client_id)
 
 				if client == nil then
 					return
 				end
 
-				vim.keymap.set({ "i", "s" }, "<C-S>", function()
-					if vim.fn.pumvisible() ~= 0 then
-						vim.api.nvim_feedkeys(vim.keycode "<C-e>", "n", true)
-					end
-					vim.lsp.buf.signature_help()
-				end)
+				-- vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
 
 				local ok, fzf = pcall(require, "fzf-lua")
 				if ok then
-					vim.keymap.set("n", "grq", fzf.lsp_document_diagnostics, opts)
-					vim.keymap.set("n", "gO", fzf.lsp_document_symbols, opts)
-					vim.keymap.set("n", "grr", fzf.lsp_references, opts)
+					vim.keymap.set(
+						"n",
+						"grq",
+						fzf.lsp_document_diagnostics,
+						{ buffer = args.buf, desc = "LSP: document diagnostics" }
+					)
+					vim.keymap.set(
+						"n",
+						"gO",
+						fzf.lsp_document_symbols,
+						{ buffer = args.buf, desc = "LSP: document symbols" }
+					)
+					vim.keymap.set("n", "grr", fzf.lsp_references, { buffer = args.buf, desc = "LSP: references" })
 				end
 			end,
 		})
@@ -125,9 +129,8 @@ return {
 		}
 
 		for server, config in pairs(servers) do
-			require("lspconfig")[server].setup {
-				settings = config.settings,
-			}
+			vim.lsp.enable(server)
+			vim.lsp.config(server, config)
 		end
 	end,
 }

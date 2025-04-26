@@ -1,64 +1,60 @@
 return {
 	"lewis6991/gitsigns.nvim",
-	enabled = false,
 	opts = {
-		signcolumn = true,
-		numhl = false,
+		signcolumn = false,
+		numhl = true,
 		linehl = false,
 		word_diff = false,
-		signs = {
-			add = { text = "+" },
-			change = { text = "~" },
-			delete = { text = "_" },
-			topdelete = { text = "‾" },
-			changedelete = { text = "~" },
-			untracked = { text = "" },
-		},
 		current_line_blame_opts = {
 			delay = 500,
 		},
 		on_attach = function(buffer)
 			local gitsigns = require "gitsigns"
-			local opts = { buffer = buffer }
+
+			---@param mode string|string[]
+			---@param lhs string
+			---@param rhs string|function
+			---@param desc? string
+			local map = function(mode, lhs, rhs, desc)
+				vim.keymap.set(mode, lhs, rhs, { buffer = buffer, desc = "Git: " .. desc })
+			end
 
 			-- Navigation
-			vim.keymap.set("n", "]c", function()
+			map("n", "]c", function()
 				if vim.wo.diff then
 					vim.cmd.normal { "]c", bang = true }
 				else
 					gitsigns.nav_hunk("next", { preview = true })
 				end
-			end, opts)
+			end, "Next hunk")
 
-			vim.keymap.set("n", "[c", function()
+			map("n", "[c", function()
 				if vim.wo.diff then
 					vim.cmd.normal { "[c", bang = true }
 				else
 					gitsigns.nav_hunk("prev", { preview = true })
 				end
-			end, opts)
+			end, "previous hunk")
 
 			-- Actions
-			vim.keymap.set("n", "<space>hs", gitsigns.stage_hunk, opts)
-			vim.keymap.set("n", "<space>hS", gitsigns.stage_buffer, opts)
-			vim.keymap.set("n", "<space>hr", gitsigns.reset_hunk, opts)
-			vim.keymap.set("n", "<space>hR", gitsigns.reset_buffer, opts)
-			vim.keymap.set("n", "<space>hp", gitsigns.preview_hunk, opts)
+			map("n", "ghh", gitsigns.stage_hunk, "stage hunk")
+			map("n", "ghH", gitsigns.reset_hunk, "stage hunk")
 
-			vim.keymap.set("v", "<space>hs", function()
+			map("v", "ghh", function()
 				gitsigns.stage_hunk { vim.fn.line ".", vim.fn.line "v" }
-			end, opts)
+			end, "stage hunk")
 
-			vim.keymap.set("v", "<space>hr", function()
+			map("v", "ghH", function()
 				gitsigns.reset_hunk { vim.fn.line ".", vim.fn.line "v" }
-			end, opts)
+			end, "reset hunk")
 
-			-- Toggles
-			vim.keymap.set("n", "<space>ts", gitsigns.toggle_signs, opts)
-			vim.keymap.set("n", "<space>tw", gitsigns.toggle_signs, opts)
+			-- View
+			map("n", "ghd", gitsigns.diffthis, "diff this")
+			map("n", "ghb", gitsigns.blame, "blame")
+			map("n", "ghp", gitsigns.preview_hunk, "preview hunk")
 
 			-- Text object
-			vim.keymap.set({ "o", "x" }, "ih", gitsigns.select_hunk, opts)
+			map({ "o", "x" }, "ih", gitsigns.select_hunk, "stage hung")
 		end,
 	},
 }

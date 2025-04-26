@@ -2,7 +2,7 @@ return {
 	"otavioschwanck/arrow.nvim",
 	enabled = false,
 	dependencies = {
-		{ "echasnovski/mini.icons" },
+		"echasnovski/mini.icons",
 	},
 	opts = {
 		always_show_path = true,

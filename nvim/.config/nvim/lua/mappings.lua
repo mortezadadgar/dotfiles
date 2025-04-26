@@ -16,10 +16,13 @@ vim.keymap.set("ca", "W", "w")
 vim.keymap.set("n", "<leader>o", "<cmd>setlocal spell!<cr>", { desc = "Toggle spell checking" })
 
 -- gF is just better
-vim.keymap.set("n", "gf", "gF")
+vim.keymap.set("n", "gf", "gF", { desc = "Go to file + line" })
 
 -- Select last inserted text
 vim.keymap.set("n", "gV", "`[v`]", { desc = "Select last inserted text" })
 
 -- Repeat last command for each line of a visual selection
 vim.keymap.set("x", ".", ":normal .<cr>", { silent = true })
+
+-- Search within visual selection
+vim.keymap.set("x", "/", "<Esc>/\\%V", { desc = "Search within visual selection" })

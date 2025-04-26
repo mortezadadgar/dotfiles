@@ -26,6 +26,7 @@ alias myip="curl -s api.ipify.org"
 alias wgetpaste="wgetpaste -s 0x0"
 alias cat="bat"
 alias nnn="nnn -e"
+# alias nvim="nvim --listen /tmp/nvim.pipe"
 
 # git
 alias gst="git status"

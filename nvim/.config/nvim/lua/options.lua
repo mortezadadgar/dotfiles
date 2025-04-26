@@ -68,3 +68,6 @@ vim.opt.scrolloff = 4
 -- netrw
 vim.g.netrw_banner = 0
 vim.g.netrw_fastbrowse = 2
+
+-- TODO: st not supporting csi 2031
+-- vim.opt.background = "dark"

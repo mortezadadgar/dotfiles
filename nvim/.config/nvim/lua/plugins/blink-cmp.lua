@@ -1,8 +1,7 @@
 return {
 	"saghen/blink.cmp",
-	enabled = false,
 	dependencies = {
-		"L3MON4D3/LuaSnip",
+		"echasnovski/mini.snippets",
 	},
 	version = "*",
 	opts = {
@@ -15,9 +14,11 @@ return {
 				"path",
 			},
 		},
-		snippets = { preset = "luasnip" },
+		snippets = { preset = "mini_snippets" },
+		cmdline = { enabled = false },
 		completion = {
 			menu = { border = "none" },
+			-- list = { selection = { preselect = false, auto_insert = true } },
 			documentation = {
 				auto_show = true,
 			},

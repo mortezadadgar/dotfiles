@@ -24,6 +24,7 @@ return {
 						["jpg"] = { "ueberzug" },
 						["jpeg"] = { "ueberzug" },
 						["webp"] = { "ueberzug" },
+						["svg"] = { "chafa" },
 					},
 					ueberzug_scaler = "cover",
 				},
@@ -102,12 +103,9 @@ return {
 		vim.keymap.set("n", "<space>o", fzf.oldfiles, { desc = "FZF: Oldfiles" })
 		vim.keymap.set("n", "<space>gt", fzf.git_status, { desc = "FZF: Git Status" })
 		vim.keymap.set("n", "<space>?", fzf.help_tags, { desc = "FZF: Help Tags" })
-		vim.keymap.set("n", "<space>m", function()
-			fzf.marks { marks = "%a" }
-		end, { desc = "FZF: Global Marks" })
 		vim.keymap.set("n", "<space>tb", fzf.tmux_buffers, { desc = "FZF: Tmux buffers" })
 		vim.keymap.set("n", "<leader><leader>", fzf.resume, { desc = "FZF: Resume" })
-		vim.keymap.set("n", "<space>/", fzf.grep_curbuf, { desc = "FZF: grep current buffer" })
+		vim.keymap.set("n", "<leader>/", fzf.grep_curbuf, { desc = "FZF: grep current buffer" })
 		vim.keymap.set("n", "z=", fzf.spell_suggest, { desc = "FZF: Spell Suggest" })
 
 		vim.keymap.set("n", "<space>cc", function()
@@ -123,5 +121,7 @@ return {
 				follow = true,
 			}
 		end, { desc = "FZF: Find Config Files" })
+
+		vim.keymap.set("ca", "F", "FzfLua", { desc = "Alias FzfLua to F" })
 	end,
 }

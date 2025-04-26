@@ -1,15 +1,16 @@
 # Prompt
-setopt prompt_subst
+setopt prompt_subst # allow parameter expansion
 GIT_PS1_SHOWCOLORHINTS=true
 # GIT_PS1_SHOWDIRTYSTATE=true # so slow
 GIT_PS1_SHOWUPSTREAM="git"
 GIT_PS1_SHOWCONFLICTSTATE="yes"
-PROMPT='%F{blue}%B%~%f%b '
+PROMPT='%F{blue}%B%~%f%b ' # current working dir
 PROMPT+='%F{green}%(1j.(*) .)%f'
-PROMPT+='$(__git_ps1 "%s ")'
+PROMPT+='$(__git_ps1 "%s ")' # Git
+PROMPT+='$(echo -n "\\x1b]133;A\\x1b\\")' # OSC 133
 PROMPT+=$'\n'
-PROMPT+='%F{green}%B➜%b%f '
-precmd() { precmd() { print "" } }
+PROMPT+='%F{green}%B➜%b%f ' # prompt symbol
+precmd() { precmd() { print "" } } # a newline after every command except the first
 
 # Options
 setopt share_history hist_ignore_space hist_ignore_dups
@@ -63,6 +64,8 @@ function zle-keymap-select() {
     esac
 }
 zle -N zle-keymap-select
+
+# Default cursor shape
 function zle-line-init() {
     print -n "\e[6 q" # beam
 }
@@ -70,11 +73,11 @@ zle -N zle-line-init
 
 # Support system clipboard
 function vi-clip {
-	case $KEYS in
-		y) zle vi-yank;;
-		d) zle vi-delete;;
-	esac
-	echo "$CUTBUFFER" | xclip -r -sel clip
+    case $KEYS in
+	y) zle vi-yank;;
+	d) zle vi-delete;;
+    esac
+    echo "$CUTBUFFER" | xclip -r -sel clip
 }
 zle -N vi-clip
 bindkey -M vicmd 'y' vi-clip
@@ -89,14 +92,14 @@ bindkey "^E" edit-command-line
 
 # fzf
 if (( $+commands[fzf] )); then
-	. /usr/share/fzf/key-bindings.zsh
-	. /usr/share/fzf/completion.zsh
+    . /usr/share/fzf/key-bindings.zsh
+    . /usr/share/fzf/completion.zsh
 fi
 
 # lazy load nvm
 nvm() {
-  source "/usr/share/nvm/init-nvm.sh"
-  nvm "$@"
+    source "/usr/share/nvm/init-nvm.sh"
+    nvm "$@"
 }
 
 # plugins

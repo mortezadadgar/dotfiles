@@ -1,0 +1,21 @@
+/* normal */
+#define _color0 #191724  /*  black    */
+#define _color1 #EB6F92  /*  red      */
+#define _color2 #31748F  /*  green    */
+#define _color3 #F6C177  /*  yellow   */
+#define _color4 #9CCFD8  /*  blue     */
+#define _color5 #C4A7E7  /*  magenta  */
+#define _color6 #EBBCBA  /*  cyan     */
+#define _color7 #E0DEF4  /*  white    */
+/* bright */
+#define _color8  #6E6A86 /*  black    */
+#define _color9  #EB6F92 /*  red      */
+#define _color10 #31748F /*  green    */
+#define _color11 #F6C177 /*  yellow   */
+#define _color12 #9CCFD8 /*  blue     */
+#define _color13 #C4A7E7 /*  magenta  */
+#define _color14 #EBBCBA /*  cyan     */
+#define _color15 #E0DEF4 /*  white    */
+
+
+/* vim: set ft=xdefaults : */

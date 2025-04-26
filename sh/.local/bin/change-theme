@@ -1,0 +1,46 @@
+#!/bin/bash
+
+DARK_THEME="rose-pine-main"
+LIGHT_THEME="rose-pine-dawn"
+XRDB_PATH="$XDG_CONFIG_HOME/x11/Xresources"
+
+usage() {
+	printf "Usage: %s: [-t value]\n" "$(basename "$0")"
+	exit 2
+}
+
+theme=
+while getopts t: name
+do
+	case $name in
+		t)
+			if [[ "$OPTARG" != "light" && "$OPTARG" != "dark" ]]; then
+				echo "$theme"
+				usage
+			fi
+
+			theme="$OPTARG"
+			;;
+		?)
+			usage
+			;;
+	esac
+done
+
+if [[ "$theme" == "light" ]]; then
+	sed "/include/ s/$DARK_THEME/$LIGHT_THEME/" -i "$XRDB_PATH"
+else
+	sed "/include/ s/$LIGHT_THEME/$DARK_THEME/" -i "$XRDB_PATH"
+fi
+
+# reload Xresources
+xrdb -merge "$XRDB_PATH"
+
+# send signal to st
+pidof st | xargs kill -s USR1
+
+# send signal to dwm
+xdotool key super+F5
+
+# gtk
+gsettings set org.gnome.desktop.interface color-scheme "prefer-$theme"

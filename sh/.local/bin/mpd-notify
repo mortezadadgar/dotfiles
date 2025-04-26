@@ -1,5 +1,5 @@
 #!/bin/bash
-# Description: display notificatinos on mpd events with album cover
+# Description: Display notifications on mpd events and show album cover if possible
 # this script presume mpd address is set to `@mpd` like this:
 #
 # ```config
@@ -12,8 +12,14 @@ set -eu -o pipefail
 
 cover="$(mktemp)"
 music_library="$HOME/Music"
+id=0
 
-trap 'rm "$cover"' TERM
+trap 'rm "$cover"' TERM EXIT
+
+notify() {
+	# TODO: stack tag in buggy #1471
+	id=$(notify-send "Now Playing" "$(mpc current)" "$@" -p -r "$id")
+}
 
 while true;
 do
@@ -28,11 +34,12 @@ do
 
 	file="$(mpc --format "$music_library"/%file% | head -n 1)" 
 
-	# FIXME: this write out the error message to file despite errors
-	if ! mpc readpicture --host=@mpd "$file" > "$cover"; then
-		notify-send -i apple-music "Now Playing" "$(mpc current)"
+	mpc readpicture --host=@mpd "$file" > "$cover"
+
+	if ! identify "$cover" > /dev/null 2>&1; then
+		notify -i com.github.artemanufrij.playmymusic
 		continue
 	fi
 
-	notify-send -i "$cover" "Now Playing" "$(mpc current)"
+	notify -i "$cover"
 done

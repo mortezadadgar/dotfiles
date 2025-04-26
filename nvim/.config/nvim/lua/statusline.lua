@@ -46,7 +46,7 @@ function M.file_component()
 
 	---@diagnostic disable-next-line: undefined-field
 	if _G.MiniIcons ~= nil then
-		local file_icon = MiniIcons.get("extension", vim.bo.filetype)
+		local file_icon = MiniIcons.get("extension", vim.o.filetype)
 		if file_icon then
 			icon = string.format("%s ", file_icon)
 		end
@@ -70,12 +70,16 @@ end
 --- Git status.
 ---@return string
 function M.git_component()
-	local head = vim.system({ "git", "rev-parse", "--abbrev-ref", "HEAD" }):wait()
-	if not head or head.code > 0 then
+	if vim.b.gitsigns_head == nil then
 		return ""
 	end
 
-	return string.format(" %s %s", icons.buffers.git, string.gsub(head.stdout, "\n", ""))
+	local head = vim.b.gitsigns_head
+	if not head then
+		return ""
+	end
+
+	return string.format(" %s %s", icons.buffers.git, head)
 end
 
 --- Spell check status.
