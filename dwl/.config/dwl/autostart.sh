@@ -4,6 +4,7 @@ batterynotif &
 gammastep -O 4000 &
 swaybg --image "$XDG_DATA_HOME"/bg.jpg &
 udiskie -q &
+waybar --log-level off &
 
 # setup screen locker
 locker="waylock -fork-on-lock"

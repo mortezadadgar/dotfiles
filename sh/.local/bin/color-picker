@@ -1,10 +1,10 @@
 #!/bin/bash
 # Description: simple color picker
 # Shell: Bash
-# Dependencies: sxcs, xclip
+# Dependencies: grim, wl-copy, magick
 set -eu -o pipefail
 
-color="$(sxcs -q -o --hex | cut -f 2)"
+color="$(grim -g "$(slurp -p)" -t ppm - | magick - -format '%[pixel:p{0,0}]' txt:- |  awk 'NR==2 { print $3 }')"
 [ -z "$color" ] && exit
-echo "$color" | xclip -r -sel clip
+echo "$color" | wl-copy -n
 notify-send -i colorpicker "Color Picker" "Copied $color color to clipboard"

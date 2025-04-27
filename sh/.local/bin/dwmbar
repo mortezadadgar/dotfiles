@@ -98,6 +98,7 @@ display() {
 		xsetroot "${mediainfo:-} $mic$vol  $wifi  $bat  $time"
 	else
 		xsetroot -name "${mediainfo:-}$mic$vol  $time"
+		# echo "${mediainfo:-}$mic $vol  $time"
 	fi
 }
 

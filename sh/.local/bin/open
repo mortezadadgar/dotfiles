@@ -21,7 +21,7 @@ case "$mime_type" in
 	text/html) q "${BROWSER:-firefox}" "$1" &;;
 	*/pdf|*/epub+zip|*/vnd.djvu) q zathura "$1" &;;
 	# FIXME: unable to open files having spaces
-	image/*) q nsxiv "$1" $(list_images "$1") &;;
+	image/*) q imv "$1" $(list_images "$1") &;;
 	text/*) $EDITOR "$1";;
 	*officedocument*) q libreoffice "$1" &;;
 	*) echo "open: unsupported or invalid file type"
