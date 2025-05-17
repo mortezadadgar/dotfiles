@@ -4,24 +4,16 @@
 # Shell: Bash
 set -eu -o pipefail
 
-# Variables
-pass_store="$HOME/.password-store"
-
-notify_pass() {
-	# TODO: This leave pass running in background
-	xargs -n1 -I {} notify-send -i password "Password Store" {}
-}
-
-select=$(printf "generate a password\nshow password list" | tofi)
+select=$(printf "generate a password\nshow password list" | dmenu)
 
 case $select in
 	"generate a password")
-		pass_dirs=$(ls -1 "$pass_store")
+		pass_dirs=$(ls -1 "$PASSWORD_STORE_DIR")
 
-		pass_dir=$(printf "%s" "$pass_dirs"| tofi --prompt-text "select a folder")
+		pass_dir=$(printf "%s" "$pass_dirs"| dmenu -p "select a folder")
 		[ -z "$pass_dir" ] && exit 1
 
-		pass_name=$(printf "" | tofi --prompt-text "password name:")
+		pass_name=$(printf "" | dmenu -p "password name:")
 		[ -z "$pass_name" ] && exit 1
 
 		pass="$pass_dir/$pass_name"
@@ -31,9 +23,9 @@ case $select in
 			exit 1
 		fi
 
-		pass generate -c "$pass_dir/$pass_name" | notify_pass
+		pass generate -c "$pass_dir/$pass_name" | xargs -I {} notify-send -i password "Password Store" {}
 		;;
 	"show password list")
-		passmenu -i | notify_pass
+		passmenu -i | xargs -I {} notify-send -i password "Password Store" {}
 		;;
 esac

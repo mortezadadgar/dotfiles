@@ -13,12 +13,27 @@ return {
 				"buffer",
 				"path",
 			},
+			providers = {
+				lsp = {
+					fallbacks = {},
+				},
+				buffer = {
+					-- score below lsp
+					score_offset = -5,
+					opts = {
+						get_bufnrs = function()
+							return vim.tbl_filter(function(bufnr)
+								return vim.bo[bufnr].buftype == ""
+							end, vim.api.nvim_list_bufs())
+						end,
+					},
+				},
+			},
 		},
 		snippets = { preset = "mini_snippets" },
 		cmdline = { enabled = false },
 		completion = {
 			menu = { border = "none" },
-			-- list = { selection = { preselect = false, auto_insert = true } },
 			documentation = {
 				auto_show = true,
 			},

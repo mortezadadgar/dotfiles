@@ -10,17 +10,11 @@ return {
 				"markdown_inline",
 			},
 
-			ignore_install = {
-				"ini",
-				"vim",
-				"sql",
-				"tmux",
-			},
-
 			auto_install = true,
 
 			highlight = {
 				enable = true,
+				disable = { "tmux" },
 			},
 
 			-- TODO: buggy c switch-case statements
@@ -49,6 +43,8 @@ return {
 						["il"] = "@loop.inner",
 						["aa"] = "@parameter.outer",
 						["ia"] = "@parameter.inner",
+						["af"] = "@function.outer",
+						["if"] = "@function.inner",
 					},
 				},
 				move = {

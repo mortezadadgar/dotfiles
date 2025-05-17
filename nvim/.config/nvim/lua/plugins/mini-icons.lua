@@ -1,4 +1,8 @@
 return {
 	"echasnovski/mini.icons",
-	opts = true,
+	config = function()
+		local miniicons = require "mini.icons"
+		miniicons.setup()
+		miniicons.tweak_lsp_kind()
+	end,
 }

@@ -6,8 +6,8 @@ return {
 	config = function()
 		local delta_preview = "delta --width=$COLUMNS --syntax-theme base16 --diff-highlight"
 		require("fzf-lua").setup {
-			-- keep the fzf process running in background, allow for a richer `:FzfLua resume`
-			"hide",
+			-- #1929
+			-- { "hide" },
 
 			fzf_opts = {
 				["--layout"] = "default",
@@ -20,10 +20,10 @@ return {
 				},
 				builtin = {
 					extensions = {
-						["png"] = { "ueberzug" },
-						["jpg"] = { "ueberzug" },
-						["jpeg"] = { "ueberzug" },
-						["webp"] = { "ueberzug" },
+						["png"] = { "chafa" },
+						["jpg"] = { "chafa" },
+						["jpeg"] = { "chafa" },
+						["webp"] = { "chafa" },
 						["svg"] = { "chafa" },
 					},
 					ueberzug_scaler = "cover",
@@ -32,7 +32,9 @@ return {
 			winopts = {
 				preview = {
 					scrollbar = false,
+					border = "single",
 				},
+				border = "single",
 			},
 			files = {
 				cwd_prompt = false,
@@ -103,9 +105,7 @@ return {
 		vim.keymap.set("n", "<space>o", fzf.oldfiles, { desc = "FZF: Oldfiles" })
 		vim.keymap.set("n", "<space>gt", fzf.git_status, { desc = "FZF: Git Status" })
 		vim.keymap.set("n", "<space>?", fzf.help_tags, { desc = "FZF: Help Tags" })
-		vim.keymap.set("n", "<space>tb", fzf.tmux_buffers, { desc = "FZF: Tmux buffers" })
 		vim.keymap.set("n", "<leader><leader>", fzf.resume, { desc = "FZF: Resume" })
-		vim.keymap.set("n", "<leader>/", fzf.grep_curbuf, { desc = "FZF: grep current buffer" })
 		vim.keymap.set("n", "z=", fzf.spell_suggest, { desc = "FZF: Spell Suggest" })
 
 		vim.keymap.set("n", "<space>cc", function()

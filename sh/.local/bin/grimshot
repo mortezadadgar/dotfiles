@@ -8,8 +8,8 @@ set -eu -o pipefail
 DIR="$HOME/Pictures/screenshots"
 FORMAT="$DIR/$(date '+%y%m%d-%H%M-%S').png"
 
-select=$(printf "selected area (copy)\nfull screen (copy)\nselected area\nfull screen\nselected area (copy|edit)" |
-	tofi --prompt-text "Screenshot which area?")
+select=$(printf "selected area (copy)\nfull screen (copy)\nselected area\nfull screen" |
+	dmenu -p "Screenshot which area?" -l 5)
 
 case $select in
 	"selected area")
@@ -21,7 +21,8 @@ case $select in
 		notify-send "grimshot" "Screenshot taken"
 		;;
 	"selected area (copy)")
-		grim -g "$(slurp)" - | wl-copy -t image/png
+		pkill -USR1 dwl
+		grim -g "$(slurp < /tmp/regions)" - | wl-copy -t image/png
 		notify-send "grimshot" "Screenshot copied to clipboard"
 		;;
 	"full screen (copy)")

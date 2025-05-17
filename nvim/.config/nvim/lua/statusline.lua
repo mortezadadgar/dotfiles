@@ -30,7 +30,7 @@ function M.diagnostics_component()
 	local results = {}
 
 	for _, attr in pairs(diagnostics_attrs) do
-		local n = vim.diagnostic.get(0, { severity = attr[1] })
+		local n = vim.diagnostic.count(0, { severity = attr[1] })
 		if #n > 0 then
 			table.insert(results, string.format(" %d %s", #n, attr[2]))
 		end

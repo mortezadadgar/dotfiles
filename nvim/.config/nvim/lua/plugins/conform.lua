@@ -18,7 +18,12 @@ return {
 				},
 			},
 			notify_on_error = false,
-			format_on_save = function()
+			format_on_save = function(bufnr)
+				-- local ignore_filetypes = { "c", "cpp" }
+				-- if vim.tbl_contains(ignore_filetypes, vim.bo[bufnr].filetype) then
+				-- 	return
+				-- end
+
 				-- Stop if we disabled auto-formatting.
 				if not vim.g.autoformat then
 					return nil

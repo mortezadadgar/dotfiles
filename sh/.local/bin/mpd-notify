@@ -25,9 +25,6 @@ while true;
 do
 	mpc idle player > /dev/null
 
-	# update statusbar
-	kill -RTMIN+1 "$(<"$HOME"/.cache/pidofbar)"
-
 	if ! mpc | grep "playing" > /dev/null; then
 		continue
 	fi

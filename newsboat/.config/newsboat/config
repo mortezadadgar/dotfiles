@@ -1,6 +1,4 @@
-use-proxy no
 browser "setsid $BROWSER %u >/dev/null 2>&1 &"
-proxy localhost:8118
 reload-threads 8
 show-keymap-hint no
 confirm-mark-all-feeds-read no
@@ -27,16 +25,3 @@ color listnormal_unread magenta black
 color listfocus_unread black blue bold
 color article white default bold
 color title blue black
-
-highlight feedlist ".*(0/0))" black
-highlight article ".*" white
-highlight article "(^Feed:.*|^Title:.*|^Author:.*)" cyan default bold
-highlight article "(^Link:.*|^Date:.*)" default default
-highlight article "https?://[^ ]+" green default
-highlight article "^(Title):.*$" blue default
-highlight article "\\[[0-9][0-9]*\\]" magenta default bold
-highlight article "\\[image\\ [0-9]+\\]" green default bold
-highlight article "\\[embedded flash: [0-9][0-9]*\\]" green default bold
-highlight article ":.*\\(link\\)$" cyan default
-highlight article ":.*\\(image\\)$" blue default
-highlight article ":.*\\(embedded flash\\)$" magenta default

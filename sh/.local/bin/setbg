@@ -1,9 +1,9 @@
 #!/bin/bash
 # Description: set default desktop wallpaper
-# Dependencies:swaybg
+# Dependencies: swaybg
 # Shell: Bash
 set -eu -o pipefail
 
-xwallpaper --stretch "$1"
+swaybg --image "$1" &
 cp -v "$1" "$XDG_DATA_HOME"/bg.jpg
 mv -v "$1" "$HOME"/Pictures/wallpapers/

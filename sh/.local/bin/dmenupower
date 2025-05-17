@@ -4,7 +4,7 @@
 # Shell: Bash
 set -eu -o pipefail
 
-select=$(printf " Poweroff\n Restart\n󰍃 Logoff\n Lockscreen\n󰤄 Sleep"| dmenu)
+select=$(printf " Poweroff\n Restart\n󰍃 Logoff\n Lockscreen\n󰤄 Sleep"| dmenu -i)
 
 case $select in
 	" Poweroff")

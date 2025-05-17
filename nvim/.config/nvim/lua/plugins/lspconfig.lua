@@ -25,16 +25,15 @@ return {
 					return
 				end
 
-				-- vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
+				vim.keymap.set(
+					"n",
+					"grq",
+					vim.diagnostic.setqflist,
+					{ buffer = args.buf, desc = "LSP: document diagnostics" }
+				)
 
 				local ok, fzf = pcall(require, "fzf-lua")
 				if ok then
-					vim.keymap.set(
-						"n",
-						"grq",
-						fzf.lsp_document_diagnostics,
-						{ buffer = args.buf, desc = "LSP: document diagnostics" }
-					)
 					vim.keymap.set(
 						"n",
 						"gO",
@@ -48,74 +47,57 @@ return {
 
 		local servers = {
 			gopls = {
-				settings = {
-					gopls = {
-						codelenses = {
-							gc_details = true,
-							test = true,
-						},
-						-- usePlaceholders = true,
-						analyses = {
-							unusedparams = true,
-							nilness = true,
-							unusedwrite = true,
-							unusedvariable = true,
-							useany = true,
-						},
-						gofumpt = true,
-						staticcheck = true,
+				gopls = {
+					codelenses = {
+						gc_details = true,
+						test = true,
 					},
+					-- usePlaceholders = true,
+					analyses = {
+						unusedparams = true,
+						nilness = true,
+						unusedwrite = true,
+						unusedvariable = true,
+						useany = true,
+					},
+					gofumpt = true,
+					staticcheck = true,
 				},
 			},
 			lua_ls = {
-				settings = {
-					Lua = {
-						telemetry = {
-							enable = false,
-						},
-						workspace = {
-							checkThirdParty = false,
-							library = {
-								vim.env.VIMRUNTIME,
-								"${3rd}/luv/library",
-							},
+				Lua = {
+					telemetry = {
+						enable = false,
+					},
+					workspace = {
+						checkThirdParty = false,
+						library = {
+							vim.env.VIMRUNTIME,
+							"${3rd}/luv/library",
 						},
 					},
 				},
 			},
 			rust_analyzer = {
-				settings = {
-					["rust-analyzer"] = {
-						check = {
-							command = "clippy",
-							extraArgs = { "--", "-Wclippy::pedantic" },
-						},
+				["rust-analyzer"] = {
+					check = {
+						command = "clippy",
+						extraArgs = { "--", "-Wclippy::pedantic" },
 					},
 				},
 			},
-			vtsls = {
-				settings = {
-					vtsls = {
-						autoUseWorkspaceTsdk = true,
-						experimental = {
-							completion = {
-								enableServerSideFuzzyMatch = true,
-							},
-						},
-					},
-				},
-			},
-			svelte = {
-				settings = {
-					svelte = {
-						plugin = {
-							html = { completions = { emmet = false } },
-							css = { completions = { emmet = false } },
-						},
-					},
-				},
-			},
-			-- ts_ls = {},
+			-- vtsls = {
+			-- 	vtsls = {
+			-- 		autoUseWorkspaceTsdk = true,
+			-- 		experimental = {
+			-- 			completion = {
+			-- 				enableServerSideFuzzyMatch = true,
+			-- 			},
+			-- 		},
+			-- 	},
+			-- },
+			svelte = {},
+			ts_ls = {},
 			html = {},
 			cssls = {},
 			tailwindcss = {},
@@ -128,9 +110,18 @@ return {
 			marksman = {},
 		}
 
-		for server, config in pairs(servers) do
+		-- enable file watching capabilities
+		local capabilities = require("blink.cmp").get_lsp_capabilities {
+			workspace = {
+				didChangeWatchedFiles = { dynamicRegistration = true },
+			},
+		}
+
+		vim.lsp.config("*", { capabilities = capabilities })
+
+		for server, settings in pairs(servers) do
 			vim.lsp.enable(server)
-			vim.lsp.config(server, config)
+			vim.lsp.config(server, { settings = settings })
 		end
 	end,
 }

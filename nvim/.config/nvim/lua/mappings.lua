@@ -24,5 +24,5 @@ vim.keymap.set("n", "gV", "`[v`]", { desc = "Select last inserted text" })
 -- Repeat last command for each line of a visual selection
 vim.keymap.set("x", ".", ":normal .<cr>", { silent = true })
 
--- Search within visual selection
-vim.keymap.set("x", "/", "<Esc>/\\%V", { desc = "Search within visual selection" })
+-- map gd
+vim.keymap.set("n", "gd", "<C-]>")

@@ -38,7 +38,7 @@ return {
 
 			-- Actions
 			map("n", "ghh", gitsigns.stage_hunk, "stage hunk")
-			map("n", "ghH", gitsigns.reset_hunk, "stage hunk")
+			map("n", "ghH", gitsigns.reset_hunk, "reset hunk")
 
 			map("v", "ghh", function()
 				gitsigns.stage_hunk { vim.fn.line ".", vim.fn.line "v" }

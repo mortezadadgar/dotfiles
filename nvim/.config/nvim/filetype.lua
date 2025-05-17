@@ -3,6 +3,7 @@ vim.filetype.add {
 		[".env"] = "config",
 		[".env.*"] = "config",
 		["config"] = "config",
+		["fstab.*"] = "fstab",
 	},
 	extension = {
 		templ = "html",
