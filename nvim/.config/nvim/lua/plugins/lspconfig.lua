@@ -1,5 +1,6 @@
 return {
 	"neovim/nvim-lspconfig",
+	version = "*",
 	config = function()
 		vim.diagnostic.config {
 			virtual_text = {
@@ -47,55 +48,51 @@ return {
 
 		local servers = {
 			gopls = {
-				gopls = {
-					codelenses = {
-						gc_details = true,
-						test = true,
+				settings = {
+					gopls = {
+						codelenses = {
+							gc_details = true,
+							test = true,
+						},
+						-- usePlaceholders = true,
+						analyses = {
+							unusedparams = true,
+							nilness = true,
+							unusedwrite = true,
+							unusedvariable = true,
+							useany = true,
+						},
+						gofumpt = true,
+						staticcheck = true,
 					},
-					-- usePlaceholders = true,
-					analyses = {
-						unusedparams = true,
-						nilness = true,
-						unusedwrite = true,
-						unusedvariable = true,
-						useany = true,
-					},
-					gofumpt = true,
-					staticcheck = true,
 				},
 			},
 			lua_ls = {
-				Lua = {
-					telemetry = {
-						enable = false,
-					},
-					workspace = {
-						checkThirdParty = false,
-						library = {
-							vim.env.VIMRUNTIME,
-							"${3rd}/luv/library",
+				settings = {
+					Lua = {
+						telemetry = {
+							enable = false,
+						},
+						workspace = {
+							checkThirdParty = false,
+							library = {
+								vim.env.VIMRUNTIME,
+								"${3rd}/luv/library",
+							},
 						},
 					},
 				},
 			},
 			rust_analyzer = {
-				["rust-analyzer"] = {
-					check = {
-						command = "clippy",
-						extraArgs = { "--", "-Wclippy::pedantic" },
+				settings = {
+					["rust-analyzer"] = {
+						check = {
+							command = "clippy",
+							extraArgs = { "--", "-Wclippy::pedantic" },
+						},
 					},
 				},
 			},
-			-- vtsls = {
-			-- 	vtsls = {
-			-- 		autoUseWorkspaceTsdk = true,
-			-- 		experimental = {
-			-- 			completion = {
-			-- 				enableServerSideFuzzyMatch = true,
-			-- 			},
-			-- 		},
-			-- 	},
-			-- },
 			svelte = {},
 			ts_ls = {},
 			html = {},
@@ -104,7 +101,9 @@ return {
 			jsonls = {},
 			eslint = {},
 			pyright = {},
-			clangd = {},
+			clangd = {
+				cmd = { "clangd", "--log=error", "--function-arg-placeholders=false" },
+			},
 			typos_lsp = {},
 			bashls = {},
 			marksman = {},
@@ -121,7 +120,7 @@ return {
 
 		for server, settings in pairs(servers) do
 			vim.lsp.enable(server)
-			vim.lsp.config(server, { settings = settings })
+			vim.lsp.config(server, settings)
 		end
 	end,
 }

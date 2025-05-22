@@ -1,5 +1,6 @@
 return {
 	"rose-pine/neovim",
+	version = "*",
 	name = "rose-pine",
 	priority = 1000,
 	config = function()

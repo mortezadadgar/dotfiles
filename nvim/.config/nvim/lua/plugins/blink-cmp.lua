@@ -1,9 +1,9 @@
 return {
 	"saghen/blink.cmp",
+	version = "*",
 	dependencies = {
 		"echasnovski/mini.snippets",
 	},
-	version = "*",
 	opts = {
 		keymap = { preset = "enter" },
 		sources = {

@@ -6,4 +6,4 @@ set -eu -o pipefail
 
 swaybg --image "$1" &
 cp -v "$1" "$XDG_DATA_HOME"/bg.jpg
-mv -v "$1" "$HOME"/Pictures/wallpapers/
+# mv -v "$1" "$HOME"/Pictures/wallpapers/

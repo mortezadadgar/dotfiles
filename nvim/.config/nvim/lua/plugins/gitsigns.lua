@@ -1,5 +1,6 @@
 return {
 	"lewis6991/gitsigns.nvim",
+	version = "*",
 	opts = {
 		signcolumn = false,
 		numhl = true,

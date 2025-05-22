@@ -9,7 +9,7 @@ DIR="$HOME/Pictures/screenshots"
 FORMAT="$DIR/$(date '+%y%m%d-%H%M-%S').png"
 
 select=$(printf "selected area (copy)\nfull screen (copy)\nselected area\nfull screen" |
-	dmenu -p "Screenshot which area?" -l 5)
+	dmenu -p "Screenshot which area?" -l 4)
 
 case $select in
 	"selected area")

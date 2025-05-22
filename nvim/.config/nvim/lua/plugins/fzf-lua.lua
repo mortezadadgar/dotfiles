@@ -1,5 +1,6 @@
 return {
 	"ibhagwan/fzf-lua",
+	version = "*",
 	dependencies = {
 		"echasnovski/mini.icons",
 	},

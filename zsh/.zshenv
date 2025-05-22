@@ -16,7 +16,7 @@ export PATH="/usr/share/git/git-jump:$PATH"
 # Default programs
 export EDITOR="nvim"
 export BROWSER="firefox"
-export TERMINAL="foot"
+export TERMINAL="st"
 
 # Clean up ~
 export XINITRC="$XDG_CONFIG_HOME/x11/xinitrc"
@@ -45,22 +45,14 @@ export NNN_OPTS="Ce"
 export LESS="-x4Rg"
 export SYSTEMD_LESS="$LESS"
 
-# bat
-export {NNN_BATTHEME,BAT_THEME}="rose-pine"
-export {BAT_STYLE,NNN_BATSTYLE}="plain"
-
-# wayland
-export ELECTRON_OZONE_PLATFORM_HINT="wayland"
-export XDG_CURRENT_DESKTOP="wlroots"
-
 # Fzf
 export FZF_DEFAULT_OPTS="--layout=reverse --height=10% --no-separator --color=hl+:blue,hl:blue,fg+:#E0DEF4,bg+:#26233A,pointer:white,spinner:blue,info:green,prompt:cyan"
 
 # Use gtk for qt theming
 export QT_QPA_PLATFORMTHEME="gtk3"
 
-# Default gtk theme
-export GTK_THEME="Adwaita:dark"
+# Use neovim for man pages
+export MANPAGER='nvim +Man!'
 
 # man page highlighting
 export MANROFFOPT="-c"

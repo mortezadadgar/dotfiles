@@ -1,5 +1,6 @@
 return {
 	"echasnovski/mini.files",
+	version = "*",
 	config = function()
 		local minifiles = require "mini.files"
 		minifiles.setup {

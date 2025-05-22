@@ -1,5 +1,6 @@
 return {
 	"echasnovski/mini.snippets",
+	version = "*",
 	dependencies = {
 		"rafamadriz/friendly-snippets",
 	},
@@ -11,7 +12,5 @@ return {
 				minisnippets.gen_loader.from_lang(),
 			},
 		}
-
-		minisnippets.start_lsp_server()
 	end,
 }

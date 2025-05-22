@@ -16,7 +16,7 @@ else
 fi
 
 update_time() {
-	time=$(printf "󰃰 ")"$(date "+%b %d - %H:%M")"
+	time="$(date "+%b %d - %H:%M")"
 }
 
 update_wifi() {
@@ -60,13 +60,12 @@ update_bat() {
 update_vol() {
 	avol="$(amixer get Master |grep -m1 -o "[0-9]*%")"
 	vol_status="$(amixer get Master |grep -cm1 "\[on\]")"
-	if [ "$vol_status" = "1" ]; then
-		vol_icon="󰕾"
-	else
-		vol_icon="󰖁"
-	fi
 
-	vol="$(printf "%s %s" "$vol_icon" "$avol")"
+	if [ "$vol_status" = "1" ]; then
+		vol="$(printf "󰕾 %s" "$avol")"
+	else
+		vol="󰖁"
+	fi
 }
 
 update_mpd() {
@@ -95,10 +94,9 @@ update_vol
 
 display() {
 	if [ "$is_laptop" = 1 ]; then
-		xsetroot "${mediainfo:-} $mic$vol  $wifi  $bat  $time"
+		xsetroot -name "${mediainfo:-}${mic:-}$vol $wifi $bat $time"
 	else
-		xsetroot -name "${mediainfo:-}$mic$vol  $time"
-		# echo "${mediainfo:-}$mic $vol  $time"
+		xsetroot -name "${mediainfo:-}${mic:-}$vol $time"
 	fi
 }
 
@@ -112,8 +110,7 @@ do
 	sleep 1 &
 	wait && {
 		# to update item ever n seconds with a offset of m
-		[ $((sec % 9 )) -eq 0 ] && update_time
-		[ $((sec % 12 )) -eq 0 ] && update_vol
+		[ $((sec % 30 )) -eq 0 ] && update_time
 		if [ "$is_laptop" = 1 ]; then
 			[ $((sec % 12 )) -eq 0 ] && update_bat
 			[ $((sec % 3 )) -eq 0 ] && update_wifi

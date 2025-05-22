@@ -21,4 +21,4 @@ swayidle -w \
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
 # needed for systemd user services
-systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP FZF_DEFAULT_OPTS PATH
+systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP

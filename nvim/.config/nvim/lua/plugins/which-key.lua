@@ -1,6 +1,6 @@
 return {
 	"folke/which-key.nvim",
-	enabled = false,
+	version = "*",
 	opts = {
 		preset = "helix",
 		show_help = false,

@@ -1,9 +1,10 @@
-[unit]
-description=update newsboat feed
-after=network-online.target
-wants=network-online.target
+[Unit]
+Description=Update newsboat feed
+After=network-online.target
+Wants=network-online.target
 
-[service]
-type=simple
-execstartpre=sh -c 'while ! ping -c 1 1.1.1.1 >/dev/null; do sleep 1; done'
-execstart=/usr/bin/newsboat -x reload
+[Service]
+Type=simple
+ExecStartPre=sh -c 'while ! ping -c 1 1.1.1.1 >/dev/null; do sleep 1; done'
+ExecStart=/usr/bin/newsboat -x reload
+
