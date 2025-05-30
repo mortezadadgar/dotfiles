@@ -16,7 +16,7 @@ export PATH="/usr/share/git/git-jump:$PATH"
 # Default programs
 export EDITOR="nvim"
 export BROWSER="firefox"
-export TERMINAL="st"
+export TERMINAL="foot"
 
 # Clean up ~
 export XINITRC="$XDG_CONFIG_HOME/x11/xinitrc"
@@ -50,6 +50,9 @@ export FZF_DEFAULT_OPTS="--layout=reverse --height=10% --no-separator --color=hl
 
 # Use gtk for qt theming
 export QT_QPA_PLATFORMTHEME="gtk3"
+
+# Default gtk theme
+export GTK_THEME="Adwaita:dark"
 
 # Use neovim for man pages
 export MANPAGER='nvim +Man!'

@@ -39,6 +39,18 @@ xrdb -merge "$XRDB_PATH"
 # send signal to st
 pidof st | xargs kill -s USR1
 
+
+# send signal to neovim instances
+find  "$XDG_RUNTIME_DIR" -maxdepth 1 -type s -name 'nvim.*.0' \
+	-exec nvim --server {} --remote-send ":set background=$theme<CR>" \;
+
+# remove this when tmux is released
+if [[ "$theme" == "light" ]]; then
+	sed "/background/ s/dark/$theme/" -i "$XDG_CONFIG_HOME/nvim/lua/options.lua"
+else
+	sed "/background/ s/light/$theme/" -i "$XDG_CONFIG_HOME/nvim/lua/options.lua"
+fi
+
 # send signal to dwm
 xdotool key super+F5
 

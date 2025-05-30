@@ -1,16 +1,7 @@
-# Prompt
-setopt prompt_subst # allow parameter expansion
-GIT_PS1_SHOWCOLORHINTS=true
-# GIT_PS1_SHOWDIRTYSTATE=true # so slow
-GIT_PS1_SHOWUPSTREAM="git"
-GIT_PS1_SHOWCONFLICTSTATE="yes"
-PROMPT='%F{blue}%B%~%f%b ' # current working dir
-PROMPT+='%F{green}%(1j.(*) .)%f'
-PROMPT+='$(__git_ps1 "%s ")' # Git
-PROMPT+='$(echo -n "\\x1b]133;A\\x1b\\")' # OSC 133
-PROMPT+=$'\n'
-PROMPT+='%F{green}%B➜%b%f ' # prompt symbol
-precmd() { precmd() { print "" } } # a newline after every command except the first
+# Enable Powerlevel10k instant prompt.
+if [[ -r "${XDG_CACHE_HOME}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
 # Options
 setopt share_history hist_ignore_space hist_ignore_dups
@@ -104,4 +95,7 @@ nvm() {
 
 # plugins
 . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh 2>/dev/null
-. /usr/share/git/completion/git-prompt.sh 2>/dev/null
+
+# p10k
+. $ZDOTDIR/plugins/powerlevel10k/powerlevel10k.zsh-theme 2>/dev/null
+[[ ! -f "$ZDOTDIR"/.p10k.zsh ]] || source "$ZDOTDIR"/.p10k.zsh

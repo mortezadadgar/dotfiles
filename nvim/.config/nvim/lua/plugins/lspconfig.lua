@@ -41,7 +41,7 @@ return {
 						fzf.lsp_document_symbols,
 						{ buffer = args.buf, desc = "LSP: document symbols" }
 					)
-					vim.keymap.set("n", "grr", fzf.lsp_references, { buffer = args.buf, desc = "LSP: references" })
+					-- vim.keymap.set("n", "grr", fzf.lsp_references, { buffer = args.buf, desc = "LSP: references" })
 				end
 			end,
 		})

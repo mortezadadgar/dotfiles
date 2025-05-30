@@ -21,11 +21,11 @@ return {
 				},
 				builtin = {
 					extensions = {
-						["png"] = { "chafa" },
-						["jpg"] = { "chafa" },
-						["jpeg"] = { "chafa" },
-						["webp"] = { "chafa" },
-						["svg"] = { "chafa" },
+						["png"] = { "ueberzug" },
+						["jpg"] = { "ueberzug" },
+						["jpeg"] = { "ueberzug" },
+						["webp"] = { "ueberzug" },
+						["svg"] = { "ueberzug" },
 					},
 					ueberzug_scaler = "cover",
 				},
@@ -122,7 +122,5 @@ return {
 				follow = true,
 			}
 		end, { desc = "FZF: Find Config Files" })
-
-		vim.keymap.set("ca", "F", "FzfLua", { desc = "Alias FzfLua to F" })
 	end,
 }

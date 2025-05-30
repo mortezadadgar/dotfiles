@@ -8,7 +8,7 @@ if pidof ncmpc 2>/dev/null; then
 	exit 1
 fi
 
-"$TERMINAL" \
+st \
 	-T ncmpcpp \
 	-g 75x15 \
 	-e ncmpcpp

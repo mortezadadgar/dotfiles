@@ -24,5 +24,5 @@ vim.keymap.set("n", "gV", "`[v`]", { desc = "Select last inserted text" })
 -- Repeat last command for each line of a visual selection
 vim.keymap.set("x", ".", ":normal .<cr>", { silent = true })
 
--- map gd
-vim.keymap.set("n", "gd", "<C-]>")
+-- exit terminal mode with double pressing esc
+vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })

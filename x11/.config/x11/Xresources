@@ -17,7 +17,7 @@ st.color12:  _color12
 st.color13:  _color13
 st.color14:  _color14
 st.color15:  _color15
-st.font:     JetBrainsMono Nerd Font:size=13
+st.font:     JetBrains Mono Nerd Font:size=13
 
 /* dwm */
 dwm.normfgcolor:    _color7

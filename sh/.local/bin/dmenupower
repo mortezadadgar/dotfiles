@@ -1,6 +1,6 @@
 #!/bin/bash
 # Description: A simple powermenu with dmenu
-# Dependencies: dmenu, slock
+# Dependencies: dmenu, slock, elogind
 # Shell: Bash
 set -eu -o pipefail
 

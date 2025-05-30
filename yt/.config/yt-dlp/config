@@ -1,4 +1,4 @@
 --no-mtime
 --sponsorblock-remove all
---proxy socks5://127.0.0.1:8086
--o ~/Youtube/%(title)s.%(ext)s
+# --proxy socks5://127.0.0.1:8086
+# -o ~/Youtube/%(title)s.%(ext)s

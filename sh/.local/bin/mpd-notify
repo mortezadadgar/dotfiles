@@ -17,7 +17,7 @@ id=0
 trap 'rm "$cover"' TERM EXIT
 
 notify() {
-	# TODO: stack tag in buggy #1471
+	# TODO: stack tag is buggy #1471
 	id=$(notify-send "Now Playing" "$(mpc current)" "$@" -p -r "$id")
 }
 

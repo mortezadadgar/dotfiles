@@ -4,3 +4,6 @@
 [submodule "tmux/.config/tmux/plugins/tmux-continuum"]
 	path = tmux/.config/tmux/plugins/tmux-continuum
 	url = https://github.com/tmux-plugins/tmux-continuum
+[submodule "zsh/.config/zsh/plugins/powerlevel10k"]
+	path = zsh/.config/zsh/plugins/powerlevel10k
+	url = https://github.com/romkatv/powerlevel10k

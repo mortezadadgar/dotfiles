@@ -3,8 +3,10 @@
 # and restores previous brightness on exit.
 set -eu -o pipefail
 
-if ! command -v light 2>/dev/null; then
-	exit 1
+if [ "$(getdevice)" = "Laptop" ]; then
+	if ! command -v light 2>/dev/null; then
+		exit 1
+	fi
 fi
 
 brightness_sub=10
@@ -18,7 +20,13 @@ set_brightness() {
 }
 
 trap 'exit 0' TERM INT
-trap "set_brightness $(get_brightness); kill %%" EXIT
-set_brightness $(($(get_brightness)-brightness_sub))
-sleep 2147483647 &
+if [ "$(getdevice)" = "Laptop" ]; then
+	trap "set_brightness $(get_brightness); kill %%" EXIT
+	set_brightness $(($(get_brightness)-brightness_sub))
+else
+	trap "ddcutil setvcp 10 + 10 --skip-ddc-checks --bus 3; kill %%" EXIT
+	ddcutil setvcp 10 - 10 --skip-ddc-checks --bus 3
+fi
+
+sleep infinity &
 wait
