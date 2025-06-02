@@ -16,7 +16,6 @@ export PATH="/usr/share/git/git-jump:$PATH"
 # Default programs
 export EDITOR="nvim"
 export BROWSER="firefox"
-export TERMINAL="foot"
 
 # Clean up ~
 export XINITRC="$XDG_CONFIG_HOME/x11/xinitrc"
@@ -26,7 +25,6 @@ export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export GRADLE_USER_HOME="$XDG_DATA_HOME/gradle"
 export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
 export NVM_DIR="$XDG_CONFIG_HOME/nvm"
-export WINEPREFIX="$XDG_DATA_HOME/wineprefixes/default"
 export NSS_DEFAULT_DB_DIR="$XDG_DATA_HOME/ki/nssdb"
 export ADB_KEYS_PATH="$XDG_DATA_HOME/android"
 
@@ -39,7 +37,8 @@ export PASSWORD_STORE_GENERATED_LENGTH="16"
 export NNN_FIFO="/tmp/nnn.fifo"
 export NNN_PLUG="p:preview-tui;d:diffs;f:fzcd"
 export NNN_OPENER="open"
-export NNN_OPTS="Ce"
+export NNN_OPTS="e"
+export NNN_FCOLORS="0303040207050508010603"
 
 # Less options
 export LESS="-x4Rg"
@@ -48,11 +47,9 @@ export SYSTEMD_LESS="$LESS"
 # Fzf
 export FZF_DEFAULT_OPTS="--layout=reverse --height=10% --no-separator --color=hl+:blue,hl:blue,fg+:#E0DEF4,bg+:#26233A,pointer:white,spinner:blue,info:green,prompt:cyan"
 
-# Use gtk for qt theming
+# GUI theming
 export QT_QPA_PLATFORMTHEME="gtk3"
-
-# Default gtk theme
-export GTK_THEME="Adwaita:dark"
+# export GTK_THEME="Adwaita"
 
 # Use neovim for man pages
 export MANPAGER='nvim +Man!'
@@ -66,6 +63,3 @@ export LESS_TERMCAP_ue="$(tput sgr0)"
 
 # LS_COLORS
 (( $+commands[dircolors] )) && eval `dircolors`
-
-# private variables
-[ -f "$HOME/.zshenv_pri" ] && source "$HOME/.zshenv_pri"

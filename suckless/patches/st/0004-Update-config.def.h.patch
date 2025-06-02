@@ -1,0 +1,40 @@
+From 5439d388e62d584f6056d5ab9e46690f321e5810 Mon Sep 17 00:00:00 2001
+From: mortezadadgar <mortezadadgar97@gmail.com>
+Date: Fri, 18 Feb 2022 14:13:10 +0330
+Subject: [PATCH 4/7] Update config.def.h
+
+Signed-off-by: mortezadadgar <mortezadadgar97@gmail.com>
+---
+ config.def.h | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/config.def.h b/config.def.h
+index 4db0c23..a3a245e 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -34,11 +34,11 @@ static float chscale = 1.0;
+  *
+  * More advanced example: L" `'\"()[]{}"
+  */
+-wchar_t *worddelimiters = L" ";
++wchar_t *worddelimiters = L" `'\"()[]{},;<>:│";
+ 
+ /* selection timeouts (in milliseconds) */
+ static unsigned int doubleclicktimeout = 300;
+-static unsigned int tripleclicktimeout = 600;
++static unsigned int tripleclicktimeout = 0;
+ 
+ /* alt screens */
+ int allowaltscreen = 1;
+@@ -153,7 +153,7 @@ static unsigned int defaultrcs = 257;
+  * 6: Bar ("|")
+  * 7: Snowman ("☃")
+  */
+-static unsigned int cursorshape = 2;
++static unsigned int cursorshape = 6;
+ 
+ /*
+  * Default columns and rows numbers
+-- 
+2.49.0
+

@@ -15,11 +15,10 @@
 	icon_position = left
 	enable_recursive_icon_lookup = true
 	icon_theme = Papirus-Dark
-	min_icon_size = 48
-	max_icon_size = 64
+	max_icon_size = 48
 	close = ctrl+space
 	history = ctrl+shift+space
-	gap_size = 10
+	; gap_size = 10
 
 [urgency_normal]
 	foreground = "#E0DEF4"

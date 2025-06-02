@@ -1,19 +1,13 @@
-#!/bin/bash
+#!/bin/sh
 # Description: display system information on dwm bar
 # Dependencies: iw, alsa-utils, mpc, xsetroot
-# Shell: Bash
-# set -eu -o pipefail
+# Shell: POSIX Compliant
+# set -e
 
 # INIT
 echo "$$" > ~/.cache/pidofbar
-sec=0
+sec="$(date +%S)"
 interface="wlan0"
-
-if [ "$(getdevice)" = "Laptop" ]; then
-	is_laptop=1
-else
-	is_laptop=0
-fi
 
 update_time() {
 	time="$(date "+%b %d - %H:%M")"
@@ -36,11 +30,7 @@ update_wifi() {
 
 update_temp(){
 	test -d /sys/class/thermal/thermal_zone1 || return
-	if [ "$is_laptop" = 1 ]; then
-		read -r temperature </sys/class/thermal/thermal_zone0/temp
-	else
-		read -r temperature </sys/class/thermal/thermal_zone1/temp
-	fi
+	read -r temperature </sys/class/thermal/thermal_zone1/temp
 	temp="$(printf "󰈐 %.2s" "$temperature")"
 }
 
@@ -75,8 +65,8 @@ update_mpd() {
 	fi
 
 	mpc="$(mpc current -f "[%artist% - %title%]")"
-	[ -z "$mpc" ] && mediainfo="󰋄 Playing " && return
-	mediainfo="$(printf "󰋄 %s " "$mpc")"
+	[ -z "$mpc" ] && mediainfo="󰋄 Playing" && return
+	mediainfo="$(printf "󰋄 %s" "$mpc")"
 }
 
 update_mic() {
@@ -86,19 +76,22 @@ update_mic() {
 		return
 	fi
 
-	mic="  "
+	mic=" "
 }
-
-# We have to run this only once.
-update_vol
 
 display() {
-	if [ "$is_laptop" = 1 ]; then
-		xsetroot -name "${mediainfo:-}${mic:-}$vol $wifi $bat $time"
-	else
-		xsetroot -name "${mediainfo:-}${mic:-}$vol $time"
-	fi
+	status=""
+	[ -n "$mediainfo" ] && status="$status$mediainfo "
+	[ -n "$mic" ] && status="$status$mic "
+	[ -n "$vol" ] && status="$status$vol "
+	[ -n "$time" ] && status="$status$time"
+	xsetroot -name "$status"
 }
+
+# Initial updates
+update_vol
+update_time
+display
 
 # Handles receiving signal
 trap   "update_vol; display"    "RTMIN"
@@ -109,15 +102,12 @@ while true
 do
 	sleep 1 &
 	wait && {
-		# to update item ever n seconds with a offset of m
-		[ $((sec % 12 )) -eq 0 ] && update_time
-		if [ "$is_laptop" = 1 ]; then
-			[ $((sec % 12 )) -eq 0 ] && update_bat
-			[ $((sec % 3 )) -eq 0 ] && update_wifi
-		fi
-
-		# how often the display updates
-		[ $((sec % 3 )) -eq 0 ] && display
+		case $((sec % 60 )) in
+			0)
+				update_time
+				display
+				;;
+		esac
 		sec=$((sec + 1))
 	}
 done

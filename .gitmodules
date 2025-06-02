@@ -7,3 +7,12 @@
 [submodule "zsh/.config/zsh/plugins/powerlevel10k"]
 	path = zsh/.config/zsh/plugins/powerlevel10k
 	url = https://github.com/romkatv/powerlevel10k
+[submodule "suckless/repos/dmenu"]
+	path = suckless/repos/dmenu
+	url = git://git.suckless.org/dmenu
+[submodule "suckless/repos/slock"]
+	path = suckless/repos/slock
+	url = git://git.suckless.org/slock
+[submodule "suckless/repos/st"]
+	path = suckless/repos/st
+	url = git://git.suckless.org/st

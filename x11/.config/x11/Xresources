@@ -1,4 +1,4 @@
-#include "./themes/rose-pine-main"
+#include "./themes/rose-pine-dawn"
 
 /* st */
 st.color0:   _color0
@@ -18,6 +18,12 @@ st.color13:  _color13
 st.color14:  _color14
 st.color15:  _color15
 st.font:     JetBrains Mono Nerd Font:size=13
+
+/* slock */
+slock.init:   _color0
+slock.input:  _color4
+slock.failed: _color1
+slock.caps:   _color3
 
 /* dwm */
 dwm.normfgcolor:    _color7

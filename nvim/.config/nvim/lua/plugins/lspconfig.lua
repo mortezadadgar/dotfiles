@@ -110,13 +110,12 @@ return {
 		}
 
 		-- enable file watching capabilities
-		local capabilities = require("blink.cmp").get_lsp_capabilities {
-			workspace = {
-				didChangeWatchedFiles = { dynamicRegistration = true },
-			},
-		}
-
-		vim.lsp.config("*", { capabilities = capabilities })
+		-- local capabilities = require("blink.cmp").get_lsp_capabilities {
+		-- 	workspace = {
+		-- 		didChangeWatchedFiles = { dynamicRegistration = true },
+		-- 	},
+		-- }
+		-- vim.lsp.config("*", { capabilities = capabilities })
 
 		for server, settings in pairs(servers) do
 			vim.lsp.enable(server)

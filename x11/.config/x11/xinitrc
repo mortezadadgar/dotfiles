@@ -3,14 +3,14 @@ xset -dpms
 xset s 900 10
 xset r rate 300 50
 xrdb -merge "$XDG_CONFIG_HOME/x11/Xresources"
-setxkbmap -option caps:swapescape
+setxkbmap -option caps:escape
 setxkbmap -layout us,ir -option grp:alt_shift_toggle
 xinput set-prop "ELAN0501:00 04F3:3019 Touchpad" "libinput Tapping Enabled" 1
 xinput set-prop "ELAN0501:00 04F3:3019 Touchpad" "libinput Natural Scrolling Enabled" 1
 
 # Autostart
 dunst &
-dwmbar &
+pgrep dwmbar || dwmbar &
 batterynotif &
 redshift -O 4000 &
 xss-lock -n dim-screen -l -- slock &

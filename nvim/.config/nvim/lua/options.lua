@@ -69,4 +69,4 @@ vim.opt.scrolloff = 4
 vim.g.netrw_banner = 0
 vim.g.netrw_fastbrowse = 2
 
-vim.opt.background = "dark"
+vim.opt.background = "light"

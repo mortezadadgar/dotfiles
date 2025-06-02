@@ -1,0 +1,24 @@
+From 2ac4c6379b6e1f02a9328c1120232e95476b7ded Mon Sep 17 00:00:00 2001
+From: mortezadadgar <mortezadadgar97@gmail.com>
+Date: Sat, 23 Sep 2023 18:46:16 +0330
+Subject: [PATCH 1/4] update group
+
+---
+ config.def.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/config.def.h b/config.def.h
+index 9855e21..27cc2d0 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -1,6 +1,6 @@
+ /* user and group to drop privileges to */
+ static const char *user  = "nobody";
+-static const char *group = "nogroup";
++static const char *group = "nobody";
+ 
+ static const char *colorname[NUMCOLS] = {
+ 	[INIT] =   "black",     /* after initialization */
+-- 
+2.49.0
+

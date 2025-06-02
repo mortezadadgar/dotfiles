@@ -1,9 +1,16 @@
 #!/bin/bash
 # Description: Get individual process memory usage
 # Shell: Bash
-set -eu -o pipefail
+set -u -o pipefail
 
-sizes=$(ps --pid $(pgrep -fd ',' "$1") -o comm,rss --no-headers \
+pids="$(pgrep -xd ',' "$1")"
+
+if [ -z "$pids" ]; then
+	echo "rss: process '$1' not found" >&2
+	exit 1
+fi
+
+sizes=$(ps --pid "$pids" -o comm,rss --no-headers \
 	| awk '{print $2}')
 
 echo "$sizes" | awk '{s += $1} END {printf "%sM\n", s / 1024}'
