@@ -15,10 +15,10 @@ case $select in
 		;;
 	"󰍃 Logoff")
 		clear > /dev/tty1
-		xdotool key super+shift+ctrl+q
+		pkill -SIGTERM -x dwl
 		;;
 	" Lockscreen")
-		slock
+		waylock
 		;;
 	"󰤄 Sleep")
 		systemctl suspend -i
