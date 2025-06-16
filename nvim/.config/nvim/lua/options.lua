@@ -19,7 +19,7 @@ vim.opt.smartindent = true
 
 -- Completion menu
 vim.opt.pumheight = 10
-vim.opt.completeopt = "menuone,popup,noselect,fuzzy"
+vim.opt.completeopt = "menuone,popup,nosort,noselect,fuzzy"
 vim.opt.shortmess:append "c"
 
 -- Wild menu
@@ -69,4 +69,4 @@ vim.opt.scrolloff = 4
 vim.g.netrw_banner = 0
 vim.g.netrw_fastbrowse = 2
 
-vim.opt.background = "light"
+vim.opt.background = "dark"

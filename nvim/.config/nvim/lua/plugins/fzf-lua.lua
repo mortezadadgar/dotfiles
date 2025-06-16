@@ -21,6 +21,7 @@ return {
 				},
 				builtin = {
 					extensions = {
+						-- install openslide along side ueberzug
 						["png"] = { "ueberzug" },
 						["jpg"] = { "ueberzug" },
 						["jpeg"] = { "ueberzug" },

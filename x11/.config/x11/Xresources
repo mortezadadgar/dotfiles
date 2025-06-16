@@ -1,4 +1,4 @@
-#include "./themes/rose-pine-dawn"
+#include "./themes/rose-pine-main"
 
 /* st */
 st.color0:   _color0

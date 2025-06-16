@@ -6,12 +6,12 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 
 # PATH
-export PATH="$HOME/.local/bin:$PATH"
-export PATH="$XDG_DATA_HOME/go/bin:$PATH"
-export PATH="$XDG_DATA_HOME/cargo/bin:$PATH"
-export PATH="$XDG_DATA_HOME/nvim/mason/bin/:$PATH"
-export PATH="$XDG_DATA_HOME/npm/bin/:$PATH"
-export PATH="/usr/share/git/git-jump:$PATH"
+export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:$XDG_DATA_HOME/go/bin"
+export PATH="$PATH:$XDG_DATA_HOME/cargo/bin"
+export PATH="$PATH:$XDG_DATA_HOME/nvim/mason/bin/"
+export PATH="$PATH:$XDG_DATA_HOME/npm/bin/"
+export PATH="$PATH:/usr/share/git/git-jump"
 
 # Default programs
 export EDITOR="nvim"
@@ -27,6 +27,9 @@ export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
 export NVM_DIR="$XDG_CONFIG_HOME/nvm"
 export NSS_DEFAULT_DB_DIR="$XDG_DATA_HOME/ki/nssdb"
 export ADB_KEYS_PATH="$XDG_DATA_HOME/android"
+
+# go proxy
+export GOPROXY="https://goproxy.cn,direct"
 
 # password store
 export PASSWORD_STORE_DIR="${XDG_DATA_HOME}/pass"
@@ -49,7 +52,7 @@ export FZF_DEFAULT_OPTS="--layout=reverse --height=10% --no-separator --color=hl
 
 # GUI theming
 export QT_QPA_PLATFORMTHEME="gtk3"
-# export GTK_THEME="Adwaita"
+export GTK_THEME="Adwaita:dark"
 
 # Use neovim for man pages
 export MANPAGER='nvim +Man!'

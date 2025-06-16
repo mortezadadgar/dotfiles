@@ -4,9 +4,11 @@ vim.filetype.add {
 		[".env.*"] = "config",
 		["config"] = "config",
 		["fstab.*"] = "fstab",
+		["*.tmpl"] = "html",
+		["*.gohtml"] = "html",
 	},
 	extension = {
-		templ = "html",
 		tmpl = "html",
+		gohtml = "html",
 	},
 }

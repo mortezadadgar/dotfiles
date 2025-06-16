@@ -1,0 +1,24 @@
+diff --git a/dunst/.config/dunst/dunstrc b/dunst/.config/dunst/dunstrc
+index 17a7ffb..69fc73d 100644
+--- a/dunst/.config/dunst/dunstrc
++++ b/dunst/.config/dunst/dunstrc
+@@ -1,7 +1,7 @@
+ [global]
+ 	font = Open Sans 11
+ 	idle_threshold = 120
+-	format = "<b><span foreground='#907aa9'>%s</span></b>\n%b"
++	format = "<b><span foreground='#C4A7E7'>%s</span></b>\n%b"
+ 	width = (300, 300)
+ 	height = (0, 150)
+ 	origin = bottom-right
+@@ -21,8 +21,8 @@
+ 	; gap_size = 10
+ 
+ [urgency_normal]
+-	foreground = "#575279"
+-	background = "#faf4ed"
++	foreground = "#E0DEF4"
++	background = "#191724"
+ 	frame_color = "#64656a"
+ 	timeout = 10
+ 

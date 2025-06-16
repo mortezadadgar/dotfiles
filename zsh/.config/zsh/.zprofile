@@ -1,3 +1,3 @@
-if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
-	exec startx 2> ~/.dwmlog
+if [ -z "${WAYLAND_DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
+	dwmbar | exec dwl -s "$HOME/.config/dwl/autostart.sh"
 fi

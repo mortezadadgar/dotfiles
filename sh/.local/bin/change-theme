@@ -1,8 +1,10 @@
 #!/bin/bash
+set -eu -o pipefail
 
 DARK_THEME="rose-pine-main"
 LIGHT_THEME="rose-pine-dawn"
 XRDB_PATH="$XDG_CONFIG_HOME/x11/Xresources"
+DUNST_PATH="$XDG_CONFIG_HOME/dunst"
 
 usage() {
 	printf "Usage: %s: [-t value]\n" "$(basename "$0")"
@@ -27,6 +29,8 @@ do
 	esac
 done
 
+# TODO: check for current theme
+
 if [[ "$theme" == "light" ]]; then
 	sed "/include/ s/$DARK_THEME/$LIGHT_THEME/" -i "$XRDB_PATH"
 else
@@ -39,12 +43,11 @@ xrdb -merge "$XRDB_PATH"
 # send signal to st
 pidof st | xargs kill -s USR1
 
-
 # send signal to neovim instances
 find  "$XDG_RUNTIME_DIR" -maxdepth 1 -type s -name 'nvim.*.0' \
 	-exec nvim --server {} --remote-send ":set background=$theme<CR>" \;
 
-# remove this when tmux is released
+# remove this when new version of tmux is released
 if [[ "$theme" == "light" ]]; then
 	sed "/background/ s/dark/$theme/" -i "$XDG_CONFIG_HOME/nvim/lua/options.lua"
 else
@@ -53,6 +56,15 @@ fi
 
 # send signal to dwm
 xdotool key super+F5
+
+# dunst
+if [[ "$theme" == "light" ]]; then
+	patch -p1 "$DUNST_PATH"/dunstrc -si "$DUNST_PATH"/themes/$LIGHT_THEME
+else
+	patch -p1 "$DUNST_PATH"/dunstrc -si "$DUNST_PATH"/themes/$DARK_THEME
+fi
+
+dunstctl reload
 
 # gtk
 gsettings set org.gnome.desktop.interface color-scheme "prefer-$theme"

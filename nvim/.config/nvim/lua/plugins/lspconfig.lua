@@ -32,17 +32,6 @@ return {
 					vim.diagnostic.setqflist,
 					{ buffer = args.buf, desc = "LSP: document diagnostics" }
 				)
-
-				local ok, fzf = pcall(require, "fzf-lua")
-				if ok then
-					vim.keymap.set(
-						"n",
-						"gO",
-						fzf.lsp_document_symbols,
-						{ buffer = args.buf, desc = "LSP: document symbols" }
-					)
-					-- vim.keymap.set("n", "grr", fzf.lsp_references, { buffer = args.buf, desc = "LSP: references" })
-				end
 			end,
 		})
 
@@ -107,15 +96,17 @@ return {
 			typos_lsp = {},
 			bashls = {},
 			marksman = {},
+			templ = {},
 		}
 
 		-- enable file watching capabilities
-		-- local capabilities = require("blink.cmp").get_lsp_capabilities {
-		-- 	workspace = {
-		-- 		didChangeWatchedFiles = { dynamicRegistration = true },
-		-- 	},
-		-- }
-		-- vim.lsp.config("*", { capabilities = capabilities })
+		local capabilities = require("blink.cmp").get_lsp_capabilities {
+			workspace = {
+				didChangeWatchedFiles = { dynamicRegistration = true },
+			},
+		}
+
+		vim.lsp.config("*", { capabilities = capabilities })
 
 		for server, settings in pairs(servers) do
 			vim.lsp.enable(server)

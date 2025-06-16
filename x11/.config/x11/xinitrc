@@ -1,6 +1,6 @@
 # X settings
 xset -dpms
-xset s 900 10
+xset s 120 10
 xset r rate 300 50
 xrdb -merge "$XDG_CONFIG_HOME/x11/Xresources"
 setxkbmap -option caps:escape
@@ -10,7 +10,7 @@ xinput set-prop "ELAN0501:00 04F3:3019 Touchpad" "libinput Natural Scrolling Ena
 
 # Autostart
 dunst &
-pgrep dwmbar || dwmbar &
+pgrep dwmbar || dwmbar >> ~/.config/dwmbar 2>&1 &
 batterynotif &
 redshift -O 4000 &
 xss-lock -n dim-screen -l -- slock &

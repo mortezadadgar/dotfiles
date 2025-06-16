@@ -12,5 +12,6 @@ return {
 				minisnippets.gen_loader.from_lang(),
 			},
 		}
+		minisnippets.start_lsp_server()
 	end,
 }

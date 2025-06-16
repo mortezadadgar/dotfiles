@@ -15,9 +15,6 @@ vim.keymap.set("ca", "W", "w")
 -- spell check
 vim.keymap.set("n", "<leader>o", "<cmd>setlocal spell!<cr>", { desc = "Toggle spell checking" })
 
--- gF is just better
-vim.keymap.set("n", "gf", "gF", { desc = "Go to file + line" })
-
 -- Select last inserted text
 vim.keymap.set("n", "gV", "`[v`]", { desc = "Select last inserted text" })
 

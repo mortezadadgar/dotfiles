@@ -9,6 +9,14 @@ echo "$$" > ~/.cache/pidofbar
 sec="$(date +%S)"
 interface="wlan0"
 
+# wait for dwlb
+# while true; do
+# 	sleep 1
+# 	if pgrep -x dwlb >/dev/null; then
+# 		break
+# 	fi
+# done
+
 update_time() {
 	time="$(date "+%b %d - %H:%M")"
 }
@@ -59,10 +67,13 @@ update_vol() {
 }
 
 update_mpd() {
-	if ! mpc | grep "playing" > /dev/null; then
+	state="$(mpc status %state%)"
+
+	if [ "$state" != "playing" ]; then
 		mediainfo=""
 		return
 	fi
+
 
 	mpc="$(mpc current -f "[%artist% - %title%]")"
 	[ -z "$mpc" ] && mediainfo="󰋄 Playing" && return
@@ -76,7 +87,7 @@ update_mic() {
 		return
 	fi
 
-	mic=" "
+	mic=""
 }
 
 display() {
@@ -85,7 +96,7 @@ display() {
 	[ -n "$mic" ] && status="$status$mic "
 	[ -n "$vol" ] && status="$status$vol "
 	[ -n "$time" ] && status="$status$time"
-	xsetroot -name "$status"
+	echo " $status"
 }
 
 # Initial updates
