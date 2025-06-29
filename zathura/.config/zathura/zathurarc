@@ -7,7 +7,6 @@ set statusbar-basename true
 set window-title-page true
 set guioptions ""
 set selection-notification false
-# set sandbox strict no C-o, history...
 
 # maps
 map d scroll half-down
