@@ -1,21 +1,11 @@
 #!/bin/sh
 # Description: display system information on dwm bar
-# Dependencies: iw, alsa-utils, mpc, xsetroot
-# Shell: POSIX Compliant
 # set -e
 
 # INIT
-echo "$$" > ~/.cache/pidofbar
-sec="$(date +%S)"
+echo "$$" > "$HOME/.cache/pidofbar"
+sec="60"
 interface="wlan0"
-
-# wait for dwlb
-# while true; do
-# 	sleep 1
-# 	if pgrep -x dwlb >/dev/null; then
-# 		break
-# 	fi
-# done
 
 update_time() {
 	time="$(date "+%b %d - %H:%M")"
@@ -56,38 +46,52 @@ update_bat() {
 }
 
 update_vol() {
-	avol="$(amixer get Master |grep -m1 -o "[0-9]*%")"
-	vol_status="$(amixer get Master |grep -cm1 "\[on\]")"
+	avol="$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print $2*100}')"
+	vol_status="$(wpctl status | grep -m 1 -A 1 "Sinks" | grep -c "MUTED")"
 
-	if [ "$vol_status" = "1" ]; then
+	if [ "$vol_status" = "0" ]; then
 		vol="$(printf "󰕾 %s" "$avol")"
 	else
 		vol="󰖁"
 	fi
 }
 
-update_mpd() {
-	state="$(mpc status %state%)"
-
-	if [ "$state" != "playing" ]; then
+update_mediainfo() {
+	state="$(playerctl --player=mpd metadata --format '{{status}}')"
+	if [ "$state" = "Playing" ]; then
+		mediainfo=" $(playerctl metadata --player=mpd --format '{{ artist }} - {{ title }}')"
+	else
 		mediainfo=""
-		return
 	fi
-
-
-	mpc="$(mpc current -f "[%artist% - %title%]")"
-	[ -z "$mpc" ] && mediainfo="󰋄 Playing" && return
-	mediainfo="$(printf "󰋄 %s" "$mpc")"
 }
 
 update_mic() {
-	mic_status="$(amixer get Capture |grep -cm1 "\[on\]")"
-	if [ "$mic_status" = "1" ]; then
+	mic_status="$(wpctl status | grep -m 1 -A 1 "Sources" | grep -c "MUTED")"
+	if [ "$mic_status" = "0" ]; then
 		mic=""
-		return
+	else
+		mic=" "
 	fi
+}
 
-	mic=""
+subscribe_playerctl() {
+	playerctl --follow status | while read -r _; do
+		kill -RTMIN+1 "$(cat "$HOME"/.cache/pidofbar)"
+	done &
+}
+
+subscribe_pactl() {
+	pactl subscribe | while read -r line; do
+		pid="$(cat "$HOME"/.cache/pidofbar)"
+		case "$line" in
+			*"Event 'change' on sink"*)
+				kill -RTMIN "$pid" # volume
+				;;
+			*"Event 'change' on source"*)
+				kill -RTMIN+2 "$pid" # microphone
+				;;
+		esac
+	done &
 }
 
 display() {
@@ -101,18 +105,22 @@ display() {
 
 # Initial updates
 update_vol
-update_time
+update_mic
 display
 
+# Subscribe to events
+subscribe_playerctl
+subscribe_pactl
+
 # Handles receiving signal
-trap   "update_vol; display"    "RTMIN"
-trap   "update_mpd; display"    "RTMIN+1"
-trap   "update_mic; display"    "RTMIN+2"
+trap   "update_vol; display"          "RTMIN"
+trap   "update_mediainfo; display"    "RTMIN+1"
+trap   "update_mic; display"          "RTMIN+2"
 
 while true
 do
 	sleep 1 &
-	wait && {
+	wait "$!" && {
 		case $((sec % 60 )) in
 			0)
 				update_time

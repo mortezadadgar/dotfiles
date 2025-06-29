@@ -1,3 +1,3 @@
 #!/bin/sh
  
-st -c "floating" -e "$@"
+foot -T "floating" -e "$@"

@@ -6,7 +6,12 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	pattern = "*",
 	callback = function()
 		vim.highlight.on_yank()
-		vim.system { "tmux", "set-buffer", "-w", vim.fn.getreg [["]] }
+
+		local reg = vim.fn.getreg [["]]
+		local _, count = reg:gsub("\n", "\n")
+		if count < 450 then
+			vim.system { "tmux", "set-buffer", "-w", reg }
+		end
 	end,
 })
 

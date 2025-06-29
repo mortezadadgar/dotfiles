@@ -1,0 +1,11 @@
+[Unit]
+Description=hyprsunset
+Requisite=graphical-session.target
+After=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/hyprsunset --temperature 4000
+Slice=background-graphical.slice
+
+[Install]
+WantedBy=graphical-session.target

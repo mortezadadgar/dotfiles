@@ -1,3 +1,3 @@
-if [ -z "${WAYLAND_DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
-	dwmbar | exec dwl -s "$HOME/.config/dwl/autostart.sh"
+if uwsm check may-start; then
+    exec uwsm start hyprland.desktop
 fi

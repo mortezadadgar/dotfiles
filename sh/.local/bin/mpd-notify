@@ -12,13 +12,11 @@ set -eu -o pipefail
 
 cover="$(mktemp)"
 music_library="$HOME/Music"
-id=0
 
 trap 'rm "$cover"' TERM EXIT
 
 notify() {
-	# TODO: stack tag is buggy #1471
-	id=$(notify-send "Now Playing" "$(mpc current)" "$@" -p -r "$id")
+	notify-send --app-name "mpd-notify" "Now Playing" "$(mpc current)" "$@"
 }
 
 while true;

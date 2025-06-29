@@ -39,6 +39,7 @@ export PASSWORD_STORE_GENERATED_LENGTH="16"
 # nnn
 export NNN_FIFO="/tmp/nnn.fifo"
 export NNN_PLUG="p:preview-tui;d:diffs;f:fzcd"
+export NNN_PREVIEWIMGPROG='chafa -f sixel'
 export NNN_OPENER="open"
 export NNN_OPTS="e"
 export NNN_FCOLORS="0303040207050508010603"
@@ -49,7 +50,6 @@ export SYSTEMD_LESS="$LESS"
 
 # wayland
 export ELECTRON_OZONE_PLATFORM_HINT="wayland"
-export XDG_CURRENT_DESKTOP="wlroots"
 
 # Fzf
 export FZF_DEFAULT_OPTS="--layout=reverse --height=10% --no-separator --color=hl+:blue,hl:blue,fg+:#E0DEF4,bg+:#26233A,pointer:white,spinner:blue,info:green,prompt:cyan"

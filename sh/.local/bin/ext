@@ -15,5 +15,6 @@ case "$mime_type" in
 	*/zip) 7z x "$file" -o"$out_dir";;
 	*/x-rar|*/vnd.rar) unrar x -op"$out_dir" "$file";;
 	*officedocument*) 7z x "$file" -o"$out_dir";;
+	*/x-7z-compressed) 7z x "$file" -o"$out_dir" ;;
 	*) echo "Unsupported or invalid file type"
 esac

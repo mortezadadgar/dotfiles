@@ -1,14 +1,11 @@
 #!/bin/bash
-# Description: open ncmpc window
-# Shell: Bash
-# Dependencies: foot, ncmpc
 set -eu -o pipefail
 
-if pidof ncmpc 2>/dev/null; then
+if pidof ncmpcpp 2>/dev/null; then
 	exit 1
 fi
 
 foot \
 	-T ncmpcpp \
-	-w 750x400 \
+	-w 500x300 \
 	-e ncmpcpp

@@ -12,5 +12,8 @@ layer=overlay
 anchor=bottom-right
 format=<b><span foreground='#C4A7E7'>%s</span></b>\n%b
 
-[app-name=mpd_notify]
+[app-name=mpd-notify]
 history=0
+group-by=app-name
+# Hide the group-index
+format=<b><span foreground='#C4A7E7'>%s</span></b>\n%b
