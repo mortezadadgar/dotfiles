@@ -9,21 +9,37 @@ list_images() {
 	find "$(dirname "$1")" -maxdepth 1 ! -name "$1" | grep -iE '\.(png|jpe?g|webp|gif|svg|bmp|ico)$'
 }
 
-q() {
-	"$@" >/dev/null 2>&1
+exec() {
+	"$@" >/dev/null 2>&1 &
 }
 
 mime_type="$(file -bL --mime-type "$1")"
-# shellcheck disable=SC2046
+
 case "$mime_type" in
-	video/*) q mpv "$1" &;;
-	audio/*) q mpv "$1" &;;
-	text/html) q "${BROWSER:-firefox}" "$1" &;;
-	*/pdf|*/epub+zip|*/vnd.djvu) q zathura "$1" &;;
-	# FIXME: unable to open files having spaces
-	image/*) q gobble nsxiv "$1" $(list_images "$1") &;;
-	text/*) $EDITOR "$1";;
-	*officedocument*) q libreoffice "$1" &;;
-	*opendocument*) q libreoffice "$1" &;;
-	*) echo "open: unsupported or invalid file type:" "$mime_type"
+	video/*)
+		exec mpv "$1"
+		;;
+	audio/*)
+		exec mpv "$1"
+		;;
+	text/html)
+		exec "${BROWSER:-firefox}" "$1"
+		;;
+	*/pdf|*/epub+zip|*/vnd.djvu)
+		exec zathura "$1"
+		;;
+	image/*)
+		# FIXME: unable to open file names including spaces
+		# shellcheck disable=SC2046
+		exec nsxiv "$1" $(list_images "$1")
+		;;
+	text/*)
+		$EDITOR "$1"
+		;;
+	*officedocument*|*opendocument*)
+		exec libreoffice "$1"
+		;;
+	*)
+		echo "open: unsupported or invalid file type:" "$mime_type"
+		exit 1
 esac
