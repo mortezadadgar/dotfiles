@@ -5,9 +5,19 @@ usage() {
 	exit 2
 }
 
-read -ra dirs < <(find . -maxdepth 1 -type d \
-	-not -name "suckless" -not -name ".git" -not -name "." \
-	-printf "%f ")
+excludeDirs=(
+	"suckless"
+	".git"
+	"root"
+	"."
+)
+
+findargs=()
+for dir in "${excludeDirs[@]}"; do
+	findargs+=("-not" "-name" "$dir")
+done
+
+read -ra dirs < <(find . -maxdepth 1 -type d "${findargs[@]}" -printf "%f ")
 
 case "$1" in
 	install)
