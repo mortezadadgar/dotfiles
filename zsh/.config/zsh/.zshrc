@@ -1,6 +1,6 @@
 # Enable Powerlevel10k instant prompt.
 if [[ -r "${XDG_CACHE_HOME}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME}/p10k-instant-prompt-${(%):-%n}.zsh"
+  . "${XDG_CACHE_HOME}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
 # Options
@@ -20,12 +20,8 @@ SAVEHIST=100000
 zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
 zstyle ":completion:*:default" list-colors ${(s.:.)LS_COLORS} "ma=48;5;12;38;5;0"
 zstyle ':completion:*:default' menu yes select
-zstyle ':completion:*' rehash true
 autoload -U compinit; compinit
 zmodload zsh/complist
-
-# only list files for open command
-compdef _files open
 
 # up and down keys to search history
 autoload up-line-or-beginning-search down-line-or-beginning-search
@@ -44,6 +40,8 @@ bindkey -M menuselect '^[[Z' reverse-menu-complete
 # vi mode
 KEYTIMEOUT=1
 bindkey -v
+
+# misc
 bindkey '^?' backward-delete-char
 bindkey '^Q' push-line
 
@@ -93,9 +91,16 @@ nvm() {
     nvm "$@"
 }
 
-# plugins
-. /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh 2>/dev/null
 
-# p10k
-. $ZDOTDIR/plugins/powerlevel10k/powerlevel10k.zsh-theme 2>/dev/null
-[[ ! -f "$ZDOTDIR"/.p10k.zsh ]] || source "$ZDOTDIR"/.p10k.zsh
+# Config plugins
+ZSH_AUTOSUGGEST_MANUAL_REBIND=1
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+ZSH_HIGHLIGHT_MAXLENGTH=512
+
+# Plugins
+. $ZDOTDIR/plugins/zsh-syntax-highlighting/*.plugin.zsh
+. $ZDOTDIR/plugins/zsh-autosuggestions/*.plugin.zsh
+. $ZDOTDIR/plugins/powerlevel10k/powerlevel10k.zsh-theme
+
+# load p10k config
+. "$ZDOTDIR"/.p10k.zsh
