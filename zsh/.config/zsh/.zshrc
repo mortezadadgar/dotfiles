@@ -91,16 +91,13 @@ nvm() {
     nvm "$@"
 }
 
-
-# Config plugins
-ZSH_AUTOSUGGEST_MANUAL_REBIND=1
-ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
-ZSH_HIGHLIGHT_MAXLENGTH=512
-
 # Plugins
 . $ZDOTDIR/plugins/zsh-syntax-highlighting/*.plugin.zsh
 . $ZDOTDIR/plugins/zsh-autosuggestions/*.plugin.zsh
 . $ZDOTDIR/plugins/powerlevel10k/powerlevel10k.zsh-theme
+
+# Render comments in bright black color
+ZSH_HIGHLIGHT_STYLES[comment]="fg=8"
 
 # load p10k config
 . "$ZDOTDIR"/.p10k.zsh
