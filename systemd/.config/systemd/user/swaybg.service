@@ -1,13 +1,11 @@
 [Unit]
 Description=Swaybg
 Documentation=man:swaybg(1)
-Requisite=graphical-session.target
+Wants=graphical-session.target
 After=graphical-session.target
 
 [Service]
-Type=exec
-ExecStart=/bin/sh -c "swaybg --image $XDG_DATA_HOME/bg.jpg"
-Slice=background-graphical.slice
+ExecStart=/usr/bin/swaybg --image %h/.local/share/bg.jpg
 
 [Install]
 WantedBy=graphical-session.target

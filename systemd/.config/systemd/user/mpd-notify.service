@@ -1,11 +1,11 @@
 [Unit]
 Description=Display notificatinos on mpd events
-Requisite=mpd.service
+Wants=mpd.service
 After=mpd.service
 
 [Service]
-Type=exec
-ExecStart=/home/morteza/.local/bin/mpd-notify
+ExecCondition=/bin/sh -c "command -v notify-send > /dev/null"
+ExecStart=%h/.local/bin/mpd-notify
 Restart=on-failure
 
 [Install]
