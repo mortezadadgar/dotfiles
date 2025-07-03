@@ -1,0 +1,74 @@
+* {
+	font-family: "JetBrainsMono Nerd Font";
+	font-weight: 700;
+	font-size: 13px;
+	/* min-height: 18px; */
+}
+
+@define-color white rgb(224, 222, 244);
+@define-color magenta rgb(196, 167, 231);
+@define-color black rgb(25, 23, 36);
+@define-color red rgb(235, 111, 146);
+
+.modules-left {
+	background-color: @black;
+	padding: 0px;
+}
+
+.modules-right {
+	background-color: @black;
+	border-color: @magenta;
+}
+
+#tags button,
+#tags button.focused {
+	padding: 0px 5px;
+	border-radius: 0px;
+}
+
+#tags button:hover {
+	box-shadow: none;
+	background: none;
+	transition: none;
+	border: none;
+	text-shadow: none;
+	transition: none;
+	padding: 1px 6px; /* +1 default padding */
+}
+
+#tags button {
+	color: @white;
+}
+
+#tags button.focused {
+	background-color: @magenta;
+	color: @black;
+}
+
+#tags button.urgent {
+	background-color: @white;
+	color: @black;
+}
+
+window#waybar {
+	background-color: @black;
+	color: @white;
+}
+
+#window {
+	color: @white;
+	background-color: @black;
+	padding: 0px 10px;
+}
+
+#network,
+#backlight,
+#clock,
+#temperature,
+#privay,
+#mpd,
+#wireplumber,
+#tray,
+#battery {
+	padding-left: 10px;
+}

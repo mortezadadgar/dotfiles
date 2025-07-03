@@ -1,0 +1,86 @@
+{
+	"layer": "top",
+	"position": "top",
+	"reload_style_on_change": true,
+	"modules-left": [
+		"dwl/tags",
+		"dwl/window"
+	],
+	"modules-center": [],
+	"modules-right": [
+		"privacy",
+		"mpd",
+		"wireplumber",
+		"custom/mic",
+		"clock",
+		"tray"
+	],
+	"privacy": {
+		"icon-spacing": 5,
+		"icon-size": 13,
+		"transition-duration": 250,
+		"modules": [
+			{
+				"type": "screenshare",
+				"tooltip": true,
+				"tooltip-icon-size": 24
+			},
+			{
+				"type": "audio-in",
+				"tooltip": true,
+				"tooltip-icon-size": 24
+			}
+		]
+	},
+	"custom/mic": {
+		"format": " {}",
+		"interval": "once",
+		"exec": "$XDG_CONFIG_HOME/waybar/scripts/mic.sh",
+		"hide-empty-text": true,
+		"signal": 8
+	},
+	"dwl/tags": {
+		"hide-vacant": true
+	},
+	"dwl/window": {
+		"format": "{title}",
+		"max-length": 80,
+		"icon": true,
+		"icon-size": 16
+	},
+	"tray": {
+		"icon-size": 16,
+		"spacing": 5
+	},
+	"clock": {
+		"format": "{:%b %d | %H:%M}",
+		"interval": 60,
+		"tooltip": false
+	},
+	"mpd": {
+		"format": " {artist} - {title}",
+		"format-disconnected": "",
+		"format-stopped": "",
+		"format-paused": "",
+		"on-click": "mpc toggle"
+	},
+	"temperature": {
+		"thermal-zone": 1,
+		"format": "{icon} {temperatureC}°C",
+		"format-icons": [
+			""
+		],
+		"interval": 10
+	},
+	"wireplumber": {
+		"format": "{icon} {volume}%",
+		"format-muted": "",
+		"on-click": "foot -T floating pulsemixer",
+		"format-icons": {
+			"default": [
+				"",
+				" "
+			]
+		}
+	}
+}
