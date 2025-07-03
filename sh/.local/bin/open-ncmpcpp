@@ -7,5 +7,5 @@ fi
 
 foot \
 	-T ncmpcpp \
-	-w 500x300 \
+	-w 700x400 \
 	-e ncmpcpp
