@@ -4,7 +4,9 @@ Operation = Upgrade
 Operation = Remove
 Type = Path
 Target = usr/bin/*
+
 [Action]
 Depends = zsh
+Depends = procps-ng
 When = PostTransaction
-Exec = /usr/bin/install -Dm644 /dev/null /var/cache/zsh/pacman
+Exec = /usr/bin/pkill zsh --signal=USR1

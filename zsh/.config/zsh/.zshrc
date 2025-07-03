@@ -76,6 +76,11 @@ bindkey -M vicmd 'd' vi-clip
 autoload edit-command-line; zle -N edit-command-line
 bindkey "^E" edit-command-line
 
+# rehash on USR1 sig
+TRAPUSR1() {
+    rehash
+}
+
 # aliases
 . $ZDOTDIR/aliasrc
 
