@@ -10,27 +10,25 @@ FILE="$DIR/$(date '+%y%m%d-%H%M-%S').png"
 select=$(printf "selected area (copy)\nfull screen (copy)\nselected area\nfull screen" |
 	dmenu -p "Screenshot which area?" -l 4)
 
-# wait for menu to disappear
-sleep 1
-
 # dismiss notifications 
 makoctl dismiss --all
 
 case $select in
-	"selected area")
-		grimblast save area "$FILE"
-		notify-send "shot" "Screenshot taken"
-		;;
-	"full screen")
-		grimblast save screen "$FILE"
-		notify-send "shot" "Screenshot taken"
-		;;
-	"selected area (copy)")
-		grimblast copy area
-		notify-send "shot" "Screenshot copied to clipboard"
-		;;
-	"full screen (copy)")
-		grimblast copy screen
-		notify-send "shot" "Screenshot copied to clibboard"
-		;;
+        "selected area")
+                grim -g "$(slurp)" "$FILE"
+                notify-send "grimshot" "Screenshot taken"
+                ;;
+        "full screen")
+                grim "$FILE"
+                notify-send "grimshot" "Screenshot taken"
+                ;;
+        "selected area (copy)")
+                pkill -USR1 dwl
+                grim -g "$(slurp < /tmp/regions)" - | wl-copy -t image/png
+                notify-send "grimshot" "Screenshot copied to clipboard"
+                ;;
+        "full screen (copy)")
+                grim - | wl-copy -t image/png
+                notify-send "grimshot" "Screenshot copied to clibboard"
+                ;;
 esac
