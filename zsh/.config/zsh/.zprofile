@@ -1,3 +1,3 @@
 if uwsm check may-start; then
-    exec uwsm start dwl.desktop
+    exec uwsm start dwl -- -s "uwsm finalize"
 fi
