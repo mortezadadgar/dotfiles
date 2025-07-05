@@ -15,8 +15,8 @@ return {
 				"path",
 			},
 		},
-		snippets = { preset = "default" },
-		cmdline = { enabled = false },
+		snippets = { preset = "mini_snippets" },
+		-- cmdline = { enabled = false },
 		completion = {
 			menu = { border = "none" },
 			documentation = {
