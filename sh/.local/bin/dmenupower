@@ -14,7 +14,7 @@ case $select in
 		systemctl reboot -i
 		;;
 	"󰍃 Logoff")
-		uwsm stop
+		pkill -SIGTERM -x dwl$
 		;;
 	" Lockscreen")
 		loginctl lock-session

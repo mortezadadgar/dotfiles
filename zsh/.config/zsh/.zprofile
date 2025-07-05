@@ -1,3 +1,3 @@
-if uwsm check may-start; then
-    exec uwsm start dwl -- -s "uwsm finalize"
+if [ -z "${WAYLAND_DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
+    exec dwl -s "$HOME/.config/dwl/session.sh"
 fi
