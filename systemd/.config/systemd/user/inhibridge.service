@@ -1,0 +1,11 @@
+[Unit]
+Description=inhibridge
+Wants=swayidle.target
+After=swayidle.target
+
+[Service]
+ExecStart=/usr/bin/inhibridge
+Restart=on-failure
+
+[Install]
+WantedBy=graphical-session.target

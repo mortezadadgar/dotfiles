@@ -8,8 +8,9 @@
 	],
 	"modules-center": [],
 	"modules-right": [
-		"privacy",
 		"mpd",
+		"temperature",
+		"privacy",
 		"wireplumber",
 		"custom/mic",
 		"clock",

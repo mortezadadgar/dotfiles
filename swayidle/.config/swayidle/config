@@ -1,5 +1,5 @@
-timeout 900 "waylock"
+timeout 300 "waylock"
 
-timeout 910 'wlr-dpms off' resume 'wlr-dpms on'
+timeout 310 'wlr-dpms off' resume 'wlr-dpms on'
 
 before-sleep "waylock"

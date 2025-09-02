@@ -3,6 +3,7 @@ return {
 	-- version = "*", too old
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter-textobjects",
+		enabled = false,
 	},
 	-- branch = "main",
 	build = ":TSUpdate",

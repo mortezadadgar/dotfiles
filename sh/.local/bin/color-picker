@@ -5,5 +5,5 @@ set -eu -o pipefail
 
 color="$(hyprpicker)"
 [ -z "$color" ] && exit
-echo "$color" | wl-copy
+echo "$color" | wl-copy --trim-newline
 notify-send -i colorpicker "Color Picker" "Copied $color color to clipboard"

@@ -15,7 +15,6 @@ export PATH="$PATH:/usr/share/git/git-jump"
 
 # Default programs
 export EDITOR="nvim"
-export BROWSER="firefox"
 
 # Clean up ~
 export XINITRC="$XDG_CONFIG_HOME/x11/xinitrc"

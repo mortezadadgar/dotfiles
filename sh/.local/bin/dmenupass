@@ -24,6 +24,9 @@ case $select in
 		fi
 
 		pass generate -c "$pass_dir/$pass_name" | xargs -I {} notify-send -i password "Password Store" {}
+
+		git -C "$PASSWORD_STORE_DIR" pull
+		git -C "$PASSWORD_STORE_DIR" push
 		;;
 	"show password list")
 		passmenu -i | xargs -I {} notify-send -i password "Password Store" {}

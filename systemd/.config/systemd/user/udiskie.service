@@ -6,6 +6,7 @@ After=waybar.service
 
 [Service]
 ExecStart=/usr/bin/udiskie --smart-tray
+Restart=on-failure
 
 [Install]
 WantedBy=graphical-session.target

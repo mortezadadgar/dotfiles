@@ -17,7 +17,7 @@ case $select in
 		pkill -SIGTERM -x dwl$
 		;;
 	" Lockscreen")
-		loginctl lock-session
+		waylock
 		;;
 	"󰤄 Sleep")
 		systemctl suspend -i
