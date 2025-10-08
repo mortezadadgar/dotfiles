@@ -1,5 +1,5 @@
 --no-mtime
 --sponsorblock-remove all
---proxy socks5://127.0.0.1:8087
+--proxy socks5://127.0.0.1:8086
 --format="bestvideo[height<=720]+bestaudio/best"
 # -o ~/Youtube/%(title)s.%(ext)s

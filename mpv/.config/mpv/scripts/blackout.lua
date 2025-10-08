@@ -36,5 +36,5 @@ function on_pause_change(_, value)
 	end
 end
 
-mp.add_key_binding("MBTN_MID", "blackout", toggle_blackout)
+mp.add_key_binding("b", "blackout", toggle_blackout)
 mp.observe_property("pause", "bool", on_pause_change)

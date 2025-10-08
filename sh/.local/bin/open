@@ -33,6 +33,9 @@ case "$mime_type" in
 		# shellcheck disable=SC2046
 		exec nsxiv "$1" $(list_images "$1")
 		;;
+	text/csv)
+		exec libreoffice "$1"
+		;;
 	text/*)
 		$EDITOR "$1"
 		;;

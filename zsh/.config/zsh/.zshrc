@@ -96,6 +96,9 @@ nvm() {
     nvm "$@"
 }
 
+# pyenv
+eval "$(pyenv init - zsh)"
+
 # Plugins
 . $ZDOTDIR/plugins/zsh-syntax-highlighting/*.plugin.zsh
 . $ZDOTDIR/plugins/zsh-autosuggestions/*.plugin.zsh

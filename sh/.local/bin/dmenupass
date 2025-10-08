@@ -6,6 +6,11 @@ set -eu -o pipefail
 
 select=$(printf "generate a password\nshow password list" | dmenu)
 
+# if ! git -C "$PASSWORD_STORE_DIR" pull; then
+# 	notify-send -i password "Password Store" "Failed to pull from remote"
+# 	exit 1
+# fi
+
 case $select in
 	"generate a password")
 		pass_dirs=$(ls -1 "$PASSWORD_STORE_DIR")
