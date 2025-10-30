@@ -65,10 +65,6 @@ vim.opt.jumpoptions:append { "view" }
 -- Min number of screen lines to keep above and below the cursor
 vim.opt.scrolloff = 4
 
--- netrw
-vim.g.netrw_banner = 0
-vim.g.netrw_fastbrowse = 2
-
 vim.opt.background = "dark"
 
 -- silence checkhealth warnings

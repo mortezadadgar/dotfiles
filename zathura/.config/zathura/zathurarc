@@ -5,7 +5,7 @@ set scroll-step 60
 set window-title-basename true
 set statusbar-basename true
 set window-title-page true
-set guioptions ""
+# set guioptions ""
 set selection-notification false
 
 # maps

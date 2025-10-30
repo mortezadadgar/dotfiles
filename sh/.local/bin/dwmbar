@@ -100,7 +100,7 @@ display() {
 	[ -n "$mic" ] && status="$status$mic "
 	[ -n "$vol" ] && status="$status$vol "
 	[ -n "$time" ] && status="$status$time"
-	echo " $status"
+	xsetroot -name "$status"
 }
 
 # Initial updates

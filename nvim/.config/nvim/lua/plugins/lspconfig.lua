@@ -59,9 +59,6 @@ return {
 			lua_ls = {
 				settings = {
 					Lua = {
-						telemetry = {
-							enable = false,
-						},
 						workspace = {
 							checkThirdParty = false,
 							library = {

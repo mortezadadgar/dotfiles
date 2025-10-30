@@ -12,12 +12,13 @@ xinput set-prop "ELAN0501:00 04F3:3019 Touchpad" "libinput Natural Scrolling Ena
 dunst &
 pgrep dwmbar || dwmbar >> ~/.config/dwmbar 2>&1 &
 batterynotif &
-redshift -O 4000 &
+redshift -O 5000 &
 xss-lock -n dim-screen -l -- slock &
 xwallpaper --stretch "$XDG_DATA_HOME/bg.jpg" &
 systemctl --user import-environment DISPLAY &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 udiskie -q &
+picom &
 
 # WM
 exec dwm

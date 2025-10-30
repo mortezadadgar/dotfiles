@@ -2,6 +2,7 @@
 	font-family: "JetBrainsMono Nerd Font";
 	font-weight: 700;
 	font-size: 13px;
+	border-radius: 5px;
 	/* min-height: 18px; */
 }
 
@@ -12,21 +13,22 @@
 
 .modules-left {
 	background-color: @black;
-	padding: 0px;
+	padding: 3px;
 }
 
 .modules-right {
 	background-color: @black;
 	border-color: @magenta;
+	padding-right: 5px;
 }
 
-#tags button,
-#tags button.focused {
+#workspaces button,
+#workspaces button.active {
 	padding: 0px 5px;
-	border-radius: 0px;
+	margin: 0px 1px;
 }
 
-#tags button:hover {
+#workspaces button:hover {
 	box-shadow: none;
 	background: none;
 	transition: none;
@@ -36,16 +38,16 @@
 	padding: 1px 6px; /* +1 default padding */
 }
 
-#tags button {
+#workspaces button {
 	color: @white;
 }
 
-#tags button.focused {
+#workspaces button.active {
 	background-color: @magenta;
 	color: @black;
 }
 
-#tags button.urgent {
+#workspaces button.urgent {
 	background-color: @white;
 	color: @black;
 }

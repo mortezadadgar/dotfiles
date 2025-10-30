@@ -1,19 +1,19 @@
 {
-	"layer": "top",
 	"position": "top",
+	"margin": "10 10 0 10",
 	"reload_style_on_change": true,
 	"modules-left": [
-		"dwl/tags",
-		"dwl/window"
+		"hyprland/workspaces"
 	],
-	"modules-center": [],
+	"modules-center": [
+		"clock"
+	],
 	"modules-right": [
 		"mpd",
 		"temperature",
 		"privacy",
 		"wireplumber",
 		"custom/mic",
-		"clock",
 		"tray"
 	],
 	"privacy": {
@@ -40,10 +40,7 @@
 		"hide-empty-text": true,
 		"signal": 8
 	},
-	"dwl/tags": {
-		"hide-vacant": true
-	},
-	"dwl/window": {
+	"hyprland/window": {
 		"format": "{title}",
 		"max-length": 80,
 		"icon": true,
