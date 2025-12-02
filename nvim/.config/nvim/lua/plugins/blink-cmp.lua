@@ -2,7 +2,6 @@ return {
 	"saghen/blink.cmp",
 	version = "*",
 	dependencies = {
-		"echasnovski/mini.snippets",
 		"rafamadriz/friendly-snippets",
 	},
 	opts = {
@@ -15,8 +14,8 @@ return {
 				"path",
 			},
 		},
-		snippets = { preset = "mini_snippets" },
-		cmdline = { enabled = false },
+		-- snippets = { preset = "mini_snippets" },
+		-- cmdline = { enabled = false },
 		completion = {
 			menu = { border = "none" },
 			documentation = {

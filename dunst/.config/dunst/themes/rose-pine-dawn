@@ -5,14 +5,14 @@ index 17a7ffb..69fc73d 100644
 @@ -1,7 +1,7 @@
  [global]
  	font = Open Sans 11
- 	idle_threshold = 120
 -	format = "<b><span foreground='#C4A7E7'>%s</span></b>\n%b"
 +	format = "<b><span foreground='#907aa9'>%s</span></b>\n%b"
  	width = (300, 300)
  	height = (0, 150)
  	origin = bottom-right
+	offset = (30, 25)
 @@ -21,8 +21,8 @@
- 	; gap_size = 10
+ 	gap_size = 10
  
  [urgency_normal]
 -	foreground = "#E0DEF4"

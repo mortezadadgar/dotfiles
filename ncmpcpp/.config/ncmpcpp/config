@@ -38,3 +38,5 @@ song_window_title_format = "ncmpcpp: {{%a %t}|{%f}}"
 allow_for_physical_item_deletion = yes
 seek_time = 15
 startup_screen = browser
+execute_on_song_change = "kill -RTMIN+1 $(cat ~/.cache/pidofbar)"
+execute_on_player_state_change = "kill -RTMIN+1 $(cat ~/.cache/pidofbar)"

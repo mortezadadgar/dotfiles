@@ -1,10 +1,11 @@
 [Unit]
-Description=hyprsunset
+Description=xss-lock
 Wants=graphical-session.target
 After=graphical-session.target
 
 [Service]
-ExecStart=/usr/bin/hyprsunset --temperature 5000
+ExecStart=/usr/bin/xss-lock --session 1 --transfer-sleep-lock -- slock
+Restart=always
 
 [Install]
 WantedBy=graphical-session.target

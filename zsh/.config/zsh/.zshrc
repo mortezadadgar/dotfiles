@@ -20,6 +20,7 @@ SAVEHIST=100000
 zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
 zstyle ":completion:*:default" list-colors ${(s.:.)LS_COLORS} "ma=48;5;12;38;5;0"
 zstyle ':completion:*:default' menu yes select
+zstyle ':completion:*' rehash true
 autoload -U compinit; compinit
 zmodload zsh/complist
 
@@ -66,7 +67,7 @@ function vi-clip {
 	y) zle vi-yank;;
 	d) zle vi-delete;;
     esac
-    echo "$CUTBUFFER" | wl-copy -n
+    echo "$CUTBUFFER" | xclip -sel clipboard -r
 }
 zle -N vi-clip
 bindkey -M vicmd 'y' vi-clip
@@ -75,11 +76,6 @@ bindkey -M vicmd 'd' vi-clip
 # Edit line in editor
 autoload edit-command-line; zle -N edit-command-line
 bindkey "^E" edit-command-line
-
-# rehash on USR1 sig
-TRAPUSR1() {
-    rehash
-}
 
 # aliases
 . $ZDOTDIR/aliasrc
@@ -95,9 +91,6 @@ nvm() {
     source "/usr/share/nvm/init-nvm.sh"
     nvm "$@"
 }
-
-# pyenv
-eval "$(pyenv init - zsh)"
 
 # Plugins
 . $ZDOTDIR/plugins/zsh-syntax-highlighting/*.plugin.zsh

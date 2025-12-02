@@ -16,3 +16,6 @@
 [submodule "zsh/.config/zsh/plugins/zsh-syntax-highlighting"]
 	path = zsh/.config/zsh/plugins/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting
+[submodule "tmux/.config/tmux/plugins/tmux-fingers"]
+	path = tmux/.config/tmux/plugins/tmux-fingers
+	url = https://github.com/Morantron/tmux-fingers

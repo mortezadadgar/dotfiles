@@ -52,7 +52,10 @@ export FZF_DEFAULT_OPTS="--layout=reverse --height=10% --no-separator --color=hl
 
 # GUI theming
 export QT_QPA_PLATFORMTHEME="gtk3"
-export GTK_THEME="Adwaita:dark"
+# export GTK_THEME="Adwaita:dark"
+
+# wayland
+export ELECTRON_OZONE_PLATFORM_HINT="wayland"
 
 # Use neovim for man pages
 export MANPAGER='nvim +Man!'

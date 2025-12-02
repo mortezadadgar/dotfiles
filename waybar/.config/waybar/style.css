@@ -13,7 +13,7 @@
 
 .modules-left {
 	background-color: @black;
-	padding: 3px;
+	padding: 5px;
 }
 
 .modules-right {
@@ -67,10 +67,10 @@ window#waybar {
 #backlight,
 #clock,
 #temperature,
-#privay,
+#privacy,
 #mpd,
-#wireplumber,
 #tray,
+#wireplumber,
 #battery {
 	padding-left: 10px;
 }

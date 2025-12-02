@@ -1,7 +1,6 @@
 [global]
 	font = Open Sans 11
-	idle_threshold = 120
-	format = "<b><span foreground='#C4A7E7'>%s</span></b>\n%b"
+	format = "<b><span foreground='#907aa9'>%s</span></b>\n%b"
 	width = (300, 300)
 	height = (0, 150)
 	origin = bottom-right
@@ -18,7 +17,7 @@
 	max_icon_size = 48
 	close = ctrl+space
 	history = ctrl+shift+space
-	; gap_size = 10
+	gap_size = 10
 
 [urgency_normal]
 	foreground = "#E0DEF4"

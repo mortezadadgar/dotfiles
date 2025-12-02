@@ -14,11 +14,10 @@ case $select in
 		systemctl reboot -i
 		;;
 	"󰍃 Logoff")
-		clear > /dev/tty1
-		xdotool key super+shift+ctrl+q
+		uwsm stop
 		;;
 	" Lockscreen")
-		slock
+		loginctl lock-session
 		;;
 	"󰤄 Sleep")
 		systemctl suspend -i

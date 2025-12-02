@@ -12,7 +12,7 @@ index 17a7ffb..69fc73d 100644
  	height = (0, 150)
  	origin = bottom-right
 @@ -21,8 +21,8 @@
- 	; gap_size = 10
+ 	gap_size = 10
  
  [urgency_normal]
 -	foreground = "#575279"

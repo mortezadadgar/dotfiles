@@ -1,0 +1,36 @@
+#!/bin/bash
+# Description: dmenu script to take screenshots
+# Shell: Bash
+set -eu -o pipefail
+
+# Variables
+DIR="$HOME/Pictures/screenshots"
+FILE="$DIR/$(date '+%y%m%d-%H%M-%S').png"
+
+select=$(printf "selected area (copy)\nfull screen (copy)\nselected area\nfull screen" |
+	dmenu -p "Screenshot which area?" -l 4)
+
+# wait for menu to disappear
+sleep 1
+
+# dismiss notifications 
+makoctl dismiss --all
+
+case $select in
+	"selected area")
+		hyprshot --mode region --filename "$FILE"
+		notify-send "shot" "Screenshot taken"
+		;;
+	"full screen")
+		hyprshot --mode output --filename "$FILE"
+		notify-send "shot" "Screenshot taken"
+		;;
+	"selected area (copy)")
+		hyprshot --mode region --clipboard-only
+		notify-send "shot" "Screenshot copied to clipboard"
+		;;
+	"full screen (copy)")
+		hyprshot --mode output --clipboard-only
+		notify-send "shot" "Screenshot copied to clibboard"
+		;;
+esac

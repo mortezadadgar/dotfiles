@@ -3,7 +3,9 @@ Description=Playerctl daemon
 Documentation=man:playerctl(1)
 
 [Service]
-ExecStart=/usr/bin/playerctld daemon
+Type=dbus
+BusName=org.mpris.MediaPlayer2.playerctld
+ExecStart=/usr/bin/playerctld
 
 [Install]
 WantedBy=default.target

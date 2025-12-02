@@ -1,10 +1,11 @@
 [Unit]
-Description=hyprsunset
+Description=xssproxy
 Wants=graphical-session.target
 After=graphical-session.target
 
 [Service]
-ExecStart=/usr/bin/hyprsunset --temperature 5000
+ExecStart=/usr/bin/xssproxy
+Restart=on-failure
 
 [Install]
 WantedBy=graphical-session.target

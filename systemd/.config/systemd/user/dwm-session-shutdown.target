@@ -1,0 +1,10 @@
+[Unit]
+Description=Shutdown running dwm session
+DefaultDependencies=no
+StopWhenUnneeded=true
+
+Conflicts=graphical-session.target graphical-session-pre.target
+After=graphical-session.target graphical-session-pre.target
+
+Conflicts=dwm-session.target
+After=dwm-session.target

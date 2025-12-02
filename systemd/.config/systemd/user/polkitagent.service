@@ -2,7 +2,7 @@
 Description=Polkit Authentication Agent
 PartOf=graphical-session.target
 After=graphical-session.target
-ConditionEnvironment=WAYLAND_DISPLAY
+ConditionEnvironment=DISPLAY
 	
 [Service]
 ExecStart=/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1

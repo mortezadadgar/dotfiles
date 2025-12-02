@@ -1,3 +1,3 @@
 if uwsm check may-start; then
-	exec startx
+    exec uwsm start hyprland
 fi
