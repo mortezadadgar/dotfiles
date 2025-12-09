@@ -1,12 +1,12 @@
 [Unit]
 Description=Udiskie daemon
 Documentation=man:udiskie(8)
-Wants=waybar.service
-After=waybar.service
+Requisite=graphical-session.target
+After=graphical-session.target
 
 [Service]
+Type=exec
 ExecStart=/usr/bin/udiskie --smart-tray
-Restart=on-failure
 
 [Install]
-WantedBy=graphical-session.target
+WantedBy=default.target

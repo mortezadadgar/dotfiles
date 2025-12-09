@@ -60,6 +60,9 @@ export ELECTRON_OZONE_PLATFORM_HINT="wayland"
 # Use neovim for man pages
 export MANPAGER='nvim +Man!'
 
+# ssh agent
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+
 # man page highlighting
 export MANROFFOPT="-c"
 export LESS_TERMCAP_md="$(tput bold; tput setaf 5)"
