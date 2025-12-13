@@ -3,7 +3,7 @@
 [interactive]
 	diffFilter = delta --syntax-theme base16 --diff-highlight --color-only
 [pager]
-	diff = delta --syntax-theme base16 --diff-highlight --color-only
+	diff = delta --syntax-theme base16 --diff-highlight --color-only --paging=always
 [delta]
 	navigate = true
 [user]

@@ -7,17 +7,13 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.cursorline = true
 vim.opt.signcolumn = "number"
-vim.opt.showmode = false
 vim.opt.winborder = "single"
 vim.opt.clipboard = "unnamedplus"
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.softtabstop = 4
 vim.opt.breakindent = true
-vim.opt.smartindent = true
 vim.opt.pumheight = 10
-vim.opt.completeopt = "menuone,popup,nosort,noselect,fuzzy"
-vim.opt.shortmess:append "c"
 vim.opt.wildignorecase = true
 vim.opt.wildoptions:append { "fuzzy" }
 vim.opt.ignorecase = true
@@ -30,6 +26,8 @@ vim.opt.splitbelow = true
 vim.opt.confirm = true
 vim.opt.jumpoptions:append { "view" }
 vim.opt.scrolloff = 4
+vim.opt.updatetime = 1000
+vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20,t:ver25" -- disable cursor blinking and vertical line shape for fzf
 
 --------------
 -- Mappings --
@@ -41,14 +39,17 @@ vim.keymap.set("x", "J", ":m '>+1<CR>gv=gv", { silent = true })
 vim.keymap.set("x", "K", ":m '<-2<CR>gv=gv", { silent = true })
 vim.keymap.set("n", "<leader>o", "<cmd>setlocal spell!<cr>", { desc = "Toggle spell checking" })
 vim.keymap.set("ca", "W", "w")
-vim.keymap.set("n", "<space>b", "<cmd>ls t<cr>:buffer ")
+vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
-vim.keymap.set("n", "<space><space>", "<cmd>Pick files<cr>", { desc = "Pick: Find Files" })
-vim.keymap.set("n", "<space>g", "<cmd>Pick grep_live<cr>", { desc = "Pick: Live grep" })
-vim.keymap.set("n", "<space>o", "<cmd>Pick oldfiles<cr>", { desc = "Pick: Oldfiles" })
-vim.keymap.set("n", "<leader><leader>", "<cmd>Pick resume<cr>", { desc = "Pick: Resume" })
-vim.keymap.set("n", "z=", "<cmd>Pick spellsuggest<cr>", { desc = "Pick: Spell Suggestions" })
+vim.keymap.set("n", "<space><space>", "<cmd>FzfLua files<cr>", { desc = "FZF: Find Files" })
+vim.keymap.set("n", "<space>g", "<cmd>FzfLua live_grep<cr>", { desc = "FZF: Live grep" })
+vim.keymap.set("x", "<space>g", "<cmd>FzfLua grep_visual<cr>", { desc = "FZF: Grep Word under cursor" })
+vim.keymap.set("n", "<space>o", "<cmd>FzfLua oldfiles<cr>", { desc = "FZF: Oldfiles" })
+vim.keymap.set("n", "<space>b", "<cmd>FzfLua buffers<cr>", { desc = "FZF: Buffers" })
+vim.keymap.set("n", "<leader><leader>", "<cmd>FzfLua resume<cr>", { desc = "FZF: Resume" })
+vim.keymap.set("n", "z=", "<cmd>FzfLua spell_suggest<cr>", { desc = "FZF: Spell Suggest" })
 vim.keymap.set("n", "-", "<cmd>=MiniFiles.open(vim.api.nvim_buf_get_name(0), false)<cr>", { desc = "File explorer" })
+vim.keymap.set("n", "<space>u", "<cmd>Undotree<cr>", { desc = "Undotree" })
 
 --------------
 -- Autocmd  --
@@ -100,16 +101,16 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 -------------
 vim.pack.add {
 	"https://github.com/neovim/nvim-lspconfig",
-	"https://github.com/nvim-mini/mini.files",
 	"https://github.com/nvim-mini/mini.notify",
-	"https://github.com/nvim-mini/mini.pick",
-	"https://github.com/nvim-mini/mini.extra",
+	"https://github.com/nvim-mini/mini.files",
 	"https://github.com/nvim-mini/mini.icons",
+	"https://github.com/ibhagwan/fzf-lua",
 	{ src = "https://github.com/saghen/blink.cmp", version = vim.version.range "*" },
 	"https://github.com/karb94/neoscroll.nvim",
 	"https://github.com/stevearc/conform.nvim",
 	"https://github.com/linrongbin16/gitlinker.nvim",
 	"https://github.com/tpope/vim-fugitive",
+	"https://github.com/tpope/vim-surround",
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "master" },
 	{ src = "https://github.com/rose-pine/neovim", name = "rose-pine" },
 }
@@ -156,11 +157,11 @@ local function setup_lsp()
 	vim.api.nvim_create_autocmd("LspAttach", {
 		group = group,
 		callback = function(ev)
-			vim.keymap.set("n", "grq", "<cmd>Pick diagnostic scope='current'<cr>", { buffer = ev.buf, desc = "Diagnostic buffer" })
-			vim.keymap.set("n", "grQ", "<cmd>Pick diagnostic<cr>", { buffer = ev.buf, desc = "Diagnostic workspace" })
-			vim.keymap.set("n", "gO", "<cmd>Pick lsp scope='document_symbol'<cr>", { buffer = ev.buf, desc = "Symbols document" })
-			vim.keymap.set("n", "grr", "<cmd>Pick lsp scope='references'<cr>", { buffer = ev.buf, desc = "LSP References" })
-			vim.keymap.set("n", "gri", "<cmd>Pick lsp scope='implementation'<cr>", { buffer = ev.buf, desc = "LSP Implementation" })
+			vim.keymap.set("n", "grq", "<cmd>FzfLua diagnostics_document<cr>", { buffer = ev.buf, desc = "Diagnostic buffer" })
+			vim.keymap.set("n", "grQ", "<cmd>FzfLua diagnostics_workspace<cr>", { buffer = ev.buf, desc = "Diagnostic workspace" })
+			vim.keymap.set("n", "gO", "<cmd>FzfLua lsp_document_symbols<cr>", { buffer = ev.buf, desc = "Symbols document" })
+			vim.keymap.set("n", "grr", "<cmd>FzfLua lsp_references<cr>", { buffer = ev.buf, desc = "LSP References" })
+			vim.keymap.set("n", "gri", "<cmd>FzfLua lsp_implementations<cr>", { buffer = ev.buf, desc = "LSP Implementation" })
 		end,
 	})
 end
@@ -209,6 +210,7 @@ local function setup_blink()
 				"path",
 			},
 		},
+		cmdline = { enabled = false },
 		completion = {
 			menu = {
 				border = "none",
@@ -220,14 +222,42 @@ local function setup_blink()
 	}
 end
 
+local function setup_fzf()
+	require("fzf-lua").setup {
+		previewers = {
+			builtin = {
+				extensions = {
+					["png"] = { "chafa" },
+					["jpg"] = { "chafa" },
+					["jpeg"] = { "chafa" },
+					["webp"] = { "chafa" },
+					["svg"] = { "chafa" },
+				},
+			},
+		},
+		oldfiles = {
+			cwd_only = true,
+		},
+		keymap = {
+			builtin = {
+				["<C-d>"] = "preview-page-down",
+				["<C-u>"] = "preview-page-up",
+			},
+			fzf = {
+				["ctrl-q"] = "select-all+accept",
+			},
+		},
+	}
+	require("fzf-lua").register_ui_select()
+end
+
 vim.cmd.colorscheme "rose-pine"
 
 setup_lsp()
 setup_treesitter()
 setup_conform()
 setup_blink()
-require("mini.pick").setup()
-require("mini.extra").setup()
+setup_fzf()
 require("mini.files").setup()
 require("mini.notify").setup()
 require("mini.icons").setup()
