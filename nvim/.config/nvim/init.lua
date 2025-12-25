@@ -1,5 +1,3 @@
-local vim = vim -- suppress lsp warnings
-
 -------------
 -- Options --
 -------------
@@ -39,8 +37,6 @@ vim.keymap.set("x", "J", ":m '>+1<CR>gv=gv", { silent = true })
 vim.keymap.set("x", "K", ":m '<-2<CR>gv=gv", { silent = true })
 vim.keymap.set("n", "<leader>o", "<cmd>setlocal spell!<cr>", { desc = "Toggle spell checking" })
 vim.keymap.set("ca", "W", "w")
-vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
-
 vim.keymap.set("n", "<space><space>", "<cmd>FzfLua files<cr>", { desc = "FZF: Find Files" })
 vim.keymap.set("n", "<space>g", "<cmd>FzfLua live_grep<cr>", { desc = "FZF: Live grep" })
 vim.keymap.set("x", "<space>g", "<cmd>FzfLua grep_visual<cr>", { desc = "FZF: Grep Word under cursor" })
@@ -96,22 +92,30 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 	end,
 })
 
+vim.api.nvim_create_autocmd("PackChanged", {
+	desc = "vim.pack hook",
+	group = group,
+	callback = function(ev)
+		local name, kind = ev.data.spec.name, ev.data.kind
+		if name == "nvim-treesitter" and (kind == "install" or kind == "update") then
+			vim.cmd ":TSUpdate"
+		end
+	end,
+})
+
 -------------
 -- Plugins --
 -------------
 vim.pack.add {
 	"https://github.com/neovim/nvim-lspconfig",
-	"https://github.com/nvim-mini/mini.notify",
 	"https://github.com/nvim-mini/mini.files",
 	"https://github.com/nvim-mini/mini.icons",
 	"https://github.com/ibhagwan/fzf-lua",
 	{ src = "https://github.com/saghen/blink.cmp", version = vim.version.range "*" },
 	"https://github.com/karb94/neoscroll.nvim",
 	"https://github.com/stevearc/conform.nvim",
-	"https://github.com/linrongbin16/gitlinker.nvim",
-	"https://github.com/tpope/vim-fugitive",
-	"https://github.com/tpope/vim-surround",
-	{ src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "master" },
+	"https://github.com/kylechui/nvim-surround",
+	"https://github.com/nvim-treesitter/nvim-treesitter",
 	{ src = "https://github.com/rose-pine/neovim", name = "rose-pine" },
 }
 
@@ -126,6 +130,7 @@ local function setup_lsp()
 		"svelte",
 		"html",
 		"cssls",
+		"jsonls",
 		"emmet_language_server",
 		"tailwindcss",
 		"typos_lsp",
@@ -167,16 +172,33 @@ local function setup_lsp()
 end
 
 local function setup_treesitter()
-	require("nvim-treesitter.configs").setup {
-		ensure_installed = { "markdown_inline", "bash" },
-		auto_install = true,
-		highlight = {
-			enable = true,
-		},
-		indent = {
-			enable = true,
-		},
-	}
+	vim.api.nvim_create_autocmd("FileType", {
+		desc = "TreesitterAutoInstall",
+		group = vim.api.nvim_create_augroup("TreesitterAutoInstall", {}),
+		callback = function(ev)
+			local ft = ev.match
+			local buf = ev.buf
+
+			if vim.bo[buf].buftype == "nofile" then
+				return
+			end
+
+			local ok, lang = pcall(vim.treesitter.language.get_lang, ft)
+			if not ok then
+				return
+			end
+
+			local parser = require("nvim-treesitter.parsers")[ft]
+			if not parser then
+				return -- no parser available
+			end
+
+			require("nvim-treesitter").install({ lang }):await(function()
+				vim.treesitter.start(buf, lang)
+				vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+			end)
+		end,
+	})
 end
 
 local function setup_conform()
@@ -259,8 +281,7 @@ setup_conform()
 setup_blink()
 setup_fzf()
 require("mini.files").setup()
-require("mini.notify").setup()
 require("mini.icons").setup()
-require("gitlinker").setup()
 require("neoscroll").setup { duration_multiplier = 0.5 }
+require("nvim-surround").setup()
 vim.cmd [[packadd nvim.undotree]]

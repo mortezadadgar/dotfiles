@@ -67,7 +67,7 @@ function vi-clip {
 	y) zle vi-yank;;
 	d) zle vi-delete;;
     esac
-    echo "$CUTBUFFER" | xclip -sel clipboard -r
+    echo "$CUTBUFFER" | wl-copy --trim-newline
 }
 zle -N vi-clip
 bindkey -M vicmd 'y' vi-clip
