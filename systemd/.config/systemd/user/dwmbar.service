@@ -1,0 +1,12 @@
+[Unit]
+Description=dwmbar
+PartOf=graphical-session.target
+After=graphical-session.target
+ConditionEnvironment=DISPLAY
+	
+[Service]
+ExecStart=%h/.local/bin/dwmbar
+Restart=on-failure
+
+[Install]
+WantedBy=graphical-session.target

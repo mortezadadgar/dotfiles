@@ -1,12 +1,11 @@
 [Unit]
-Description=Swaybg
-Documentation=man:swaybg(1)
+Description=Hide the mouse cursor if it isn’t being used
 Wants=graphical-session.target
 After=graphical-session.target
-ConditionEnvironment=WAYLAND_DISPLAY
+ConditionEnvironment=DISPLAY
 
 [Service]
-ExecStart=/usr/bin/swaybg --image %h/.local/share/bg.jpg
+ExecStart=/usr/bin/unclutter --timeout 10
 Restart=on-failure
 
 [Install]

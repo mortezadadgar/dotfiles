@@ -1,6 +1,6 @@
 --no-mtime
 --sponsorblock-remove all
---proxy socks5://127.0.0.1:8086
+# --proxy socks5://127.0.0.1:9050
 --format="bestvideo[height<=720]+bestaudio/best"
---cookies-from-browser=firefox:"zeq25g5l.Default User"
+# --cookies-from-browser=firefox:"zeq25g5l.Default User"
 # -o ~/Youtube/%(title)s.%(ext)s

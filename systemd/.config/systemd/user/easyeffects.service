@@ -4,7 +4,7 @@ Wants=graphical-session.target
 After=graphical-session.target
 
 [Service]
-ExecStart=/usr/bin/easyeffects --gapplication-service
+ExecStart=/usr/bin/easyeffects --service-mode --hide-window
 Restart=on-failure
 
 [Install]

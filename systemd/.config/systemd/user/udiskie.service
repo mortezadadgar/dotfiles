@@ -9,4 +9,4 @@ Type=exec
 ExecStart=/usr/bin/udiskie --smart-tray
 
 [Install]
-WantedBy=default.target
+WantedBy=graphical-session.target

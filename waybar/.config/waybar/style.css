@@ -35,7 +35,8 @@
 	border: none;
 	text-shadow: none;
 	transition: none;
-	padding: 1px 6px; /* +1 default padding */
+	padding: 1px 6px;
+	/* +1 default padding */
 }
 
 #workspaces button {
@@ -61,6 +62,11 @@ window#waybar {
 	color: @white;
 	background-color: @black;
 	padding: 0px 10px;
+}
+
+#custom-recorder {
+	font-size: 18px;
+	color: @red;
 }
 
 #network,

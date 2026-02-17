@@ -1,13 +1,15 @@
 #!/bin/bash
-# Description: creates a new session in specified directory
+# Description: creates a new session in a specified directory
 # Dependencies: tmux, fzf
 # Shell: Bash
 set -u -o pipefail
 
-dirs=("$HOME"/git/ "$HOME"/workspace)
+# relative to $HOME
+dirs=(git/ workspace/)
 
-selected=$(find "${dirs[@]}" -type d -maxdepth 3 2>/dev/null | fzf-tmux -p 50%,50% -- --prompt="Projects> ")
+selected=$(fd . "${dirs[@]}" --base-directory "$HOME" --type directory --max-depth 3 | fzf-tmux -p 50%,50% -- --prompt="Projects> ")
 [ -z "$selected" ] && exit 0
+selected="$HOME"/"$selected"
 session="$(basename "$selected" | tr . _)"
 tmux new-session -Adc "$selected" -s "$session"
 tmux switch-client -t "$session"

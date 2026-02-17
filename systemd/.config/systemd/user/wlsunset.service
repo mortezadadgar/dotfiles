@@ -3,9 +3,11 @@ Description=Gamma adjustments for Wayland compositors
 Documentation=man:wlsunset(1)
 Wants=graphical-session.target
 After=graphical-session.target
+ConditionEnvironment=WAYLAND_DISPLAY
 
 [Service]
-ExecStart=/usr/bin/wlsunset -T 5000 -t 4000
+ExecStart=/usr/bin/wlsunset -T 5501 -t 5500
+Restart=on-failure
 
 [Install]
 WantedBy=graphical-session.target

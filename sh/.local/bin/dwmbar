@@ -1,9 +1,8 @@
-#!/bin/sh
+#!/bin/bash
 # Description: display system information on dwm bar
 # set -e
 
 # INIT
-echo "$$" > "$HOME/.cache/pidofbar"
 sec="60"
 interface="wlan0"
 
@@ -75,20 +74,19 @@ update_mic() {
 }
 
 subscribe_playerctl() {
-	playerctl --follow status | while read -r _; do
-		kill -RTMIN+1 "$(cat "$HOME"/.cache/pidofbar)"
+	playerctl --follow metadata --format '{{ status }} - {{ title }}' | while read -r _; do
+		kill -RTMIN+1 "$$"
 	done &
 }
 
 subscribe_pactl() {
 	pactl subscribe | while read -r line; do
-		pid="$(cat "$HOME"/.cache/pidofbar)"
 		case "$line" in
 			*"Event 'change' on sink"*)
-				kill -RTMIN "$pid" # volume
+				kill -RTMIN "$$" # volume
 				;;
 			*"Event 'change' on source"*)
-				kill -RTMIN+2 "$pid" # microphone
+				kill -RTMIN+2 "$$" # microphone
 				;;
 		esac
 	done &
@@ -100,12 +98,13 @@ display() {
 	[ -n "$mic" ] && status="$status$mic "
 	[ -n "$vol" ] && status="$status$vol "
 	[ -n "$time" ] && status="$status$time"
-	xsetroot -name "$status"
+	echo " $status"
 }
 
 # Initial updates
 update_vol
 update_mic
+update_time
 display
 
 # Subscribe to events
@@ -121,7 +120,7 @@ while true
 do
 	sleep 1 &
 	wait "$!" && {
-		case $((sec % 60 )) in
+		case $((sec % 25 )) in
 			0)
 				update_time
 				display

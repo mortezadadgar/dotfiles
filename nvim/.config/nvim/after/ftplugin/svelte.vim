@@ -1,4 +1,4 @@
-" Copied from vim-svelte and updated from ftplugn/html.vim
+" Copied for vim-svelte and updated from ftplugn/html.vim
 if exists("loaded_matchit")
 	let b:match_ignorecase = 1
 	let b:match_words = '<!--:-->,' ..
@@ -8,3 +8,5 @@ if exists("loaded_matchit")
 				\	      '<\@<=dl\>[^>]*\%(>\|$\):<\@<=d[td]\>:<\@<=/dl>,' ..
 				\	      '<\@<=\([^/!][^ \t>]*\)[^>]*\%(>\|$\):<\@<=/\1>'
 endif
+
+runtime! indent/html.vim

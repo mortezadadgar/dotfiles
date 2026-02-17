@@ -11,6 +11,10 @@ usage() {
 	exit 2
 }
 
+apply_patch() {
+	patch -strip=1 --reject-file=- --ignore-whitespace --force --silent "$1" --input "$2"
+}
+
 theme=
 while getopts t: name
 do
@@ -29,42 +33,39 @@ do
 	esac
 done
 
-# TODO: check for current theme
+{
+	if [[ "$theme" == "light" ]]; then
+		sed "/include/ s/$DARK_THEME/$LIGHT_THEME/" -i "$XRDB_PATH"
+	else
+		sed "/include/ s/$LIGHT_THEME/$DARK_THEME/" -i "$XRDB_PATH"
+	fi
 
-if [[ "$theme" == "light" ]]; then
-	sed "/include/ s/$DARK_THEME/$LIGHT_THEME/" -i "$XRDB_PATH"
-else
-	sed "/include/ s/$LIGHT_THEME/$DARK_THEME/" -i "$XRDB_PATH"
-fi
+	# reload Xresources
+	xrdb -merge "$XRDB_PATH"
+}
 
-# reload Xresources
-xrdb -merge "$XRDB_PATH"
+{
+	# send signal to st
+	pidof st | xargs kill -s USR1
+}
 
-# send signal to st
-pidof st | xargs kill -s USR1
+{
+	# send signal to dwm
+	xdotool key super+F5
+}
 
-# send signal to neovim instances
-find  "$XDG_RUNTIME_DIR" -maxdepth 1 -type s -name 'nvim.*.0' \
-	-exec nvim --server {} --remote-send ":set background=$theme<CR>" \;
+# {
+# 	if [[ "$theme" == "light" ]]; then
+# 		apply_patch "$DUNST_PATH"/dunstrc "$DUNST_PATH"/themes/$LIGHT_THEME
+# 	else
+# 		apply_patch "$DUNST_PATH"/dunstrc "$DUNST_PATH"/themes/$DARK_THEME
+# 	fi
+#
+# 	dunstctl reload
+# }
 
-# remove this when new version of tmux is released
-if [[ "$theme" == "light" ]]; then
-	sed "/background/ s/dark/$theme/" -i "$XDG_CONFIG_HOME/nvim/lua/options.lua"
-else
-	sed "/background/ s/light/$theme/" -i "$XDG_CONFIG_HOME/nvim/lua/options.lua"
-fi
+{
+	echo "$theme"
+	gsettings set org.gnome.desktop.interface color-scheme "prefer-$theme"
+}
 
-# send signal to dwm
-xdotool key super+F5
-
-# dunst
-if [[ "$theme" == "light" ]]; then
-	patch -p1 "$DUNST_PATH"/dunstrc -si "$DUNST_PATH"/themes/$LIGHT_THEME
-else
-	patch -p1 "$DUNST_PATH"/dunstrc -si "$DUNST_PATH"/themes/$DARK_THEME
-fi
-
-dunstctl reload
-
-# gtk
-gsettings set org.gnome.desktop.interface color-scheme "prefer-$theme"

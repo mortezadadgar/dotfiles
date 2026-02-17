@@ -2,5 +2,7 @@
 # Description: set default desktop wallpaper
 set -eu -o pipefail
 
-swaybg --image "$1" &
-cp -v "$1" "$XDG_DATA_HOME"/bg.jpg
+ext="${1##*\.}"
+
+xwallpaper --stretch "$1" &
+cp -v "$1" "$XDG_DATA_HOME"/bg."$ext"

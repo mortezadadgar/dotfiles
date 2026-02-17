@@ -2,6 +2,7 @@
 Description=inhibridge
 Wants=swayidle.target
 After=swayidle.target
+ConditionEnvironment=WAYLAND_DISPLAY
 
 [Service]
 ExecStart=/usr/bin/inhibridge

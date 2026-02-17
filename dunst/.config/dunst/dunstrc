@@ -20,8 +20,8 @@
 	gap_size = 10
 
 [urgency_normal]
-	foreground = "#E0DEF4"
-	background = "#191724"
+	foreground = "#575279"
+	background = "#faf4ed"
 	frame_color = "#64656a"
 	timeout = 10
 

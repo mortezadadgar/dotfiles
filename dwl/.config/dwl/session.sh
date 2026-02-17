@@ -5,7 +5,7 @@ export XDG_CURRENT_DESKTOP="dwl"
 # reset failed state of all user units
 systemctl --user reset-failed
 
-systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP DISPLAY
 systemctl --user start dwl-session.target
 
 # shutdown session on SIGTERM signal

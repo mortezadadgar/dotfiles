@@ -30,6 +30,12 @@ export ADB_KEYS_PATH="$XDG_DATA_HOME/android"
 # go proxy
 export GOPROXY="https://goproxy.cn,direct"
 
+# use git to fetch
+export CARGO_NET_GIT_FETCH_WITH_CLI=true
+
+# lower nodejs process memory usage
+# export NODE_OPTIONS="--max-old-space-size=512"
+
 # password store
 export PASSWORD_STORE_DIR="${XDG_DATA_HOME}/pass"
 export PASSWORD_STORE_CLIP_TIME="120"
@@ -37,8 +43,8 @@ export PASSWORD_STORE_GENERATED_LENGTH="16"
 
 # nnn
 export NNN_FIFO="/tmp/nnn.fifo"
-export NNN_PLUG="p:preview-tui;d:diffs;f:fzcd"
-export NNN_PREVIEWIMGPROG='chafa -f sixel'
+export NNN_PLUG="p:preview-tui;d:dragdrop;f:fzcd"
+export NNN_PREVIEWIMGPROG="ueberzug"
 export NNN_OPENER="open"
 export NNN_OPTS="e"
 export NNN_FCOLORS="0303040207050508010603"
@@ -52,23 +58,12 @@ export FZF_DEFAULT_OPTS="--layout=reverse --height=10% --no-separator --color=hl
 
 # GUI theming
 export QT_QPA_PLATFORMTHEME="gtk3"
-# export GTK_THEME="Adwaita:dark"
-
-# wayland
-export ELECTRON_OZONE_PLATFORM_HINT="wayland"
 
 # Use neovim for man pages
 export MANPAGER='nvim +Man!'
 
 # ssh agent
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
-
-# man page highlighting
-export MANROFFOPT="-c"
-export LESS_TERMCAP_md="$(tput bold; tput setaf 5)"
-export LESS_TERMCAP_me="$(tput sgr0)"
-export LESS_TERMCAP_us="$(tput bold; tput setaf 2)"
-export LESS_TERMCAP_ue="$(tput sgr0)"
 
 # LS_COLORS
 (( $+commands[dircolors] )) && eval `dircolors`

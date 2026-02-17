@@ -9,6 +9,7 @@
 		"clock"
 	],
 	"modules-right": [
+		"custom/recorder",
 		"mpd",
 		"temperature",
 		"wireplumber",
@@ -34,10 +35,15 @@
 	},
 	"custom/mic": {
 		"format": " {}",
-		"interval": "once",
 		"exec": "$XDG_CONFIG_HOME/waybar/scripts/mic.sh",
 		"hide-empty-text": true,
 		"signal": 8
+	},
+	"custom/recorder": {
+		"format": " {}",
+		"exec": "$XDG_CONFIG_HOME/waybar/scripts/recording.sh",
+		"hide-empty-text": true,
+		"signal": 7
 	},
 	"hyprland/window": {
 		"format": "{title}",
