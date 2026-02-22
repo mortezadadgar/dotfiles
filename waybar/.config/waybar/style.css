@@ -10,6 +10,7 @@
 @define-color magenta rgb(196, 167, 231);
 @define-color black rgb(25, 23, 36);
 @define-color red rgb(235, 111, 146);
+@define-color yellow rgb(246, 193, 119);
 
 .modules-left {
 	background-color: @black;
@@ -44,7 +45,7 @@
 }
 
 #workspaces button.active {
-	background-color: @magenta;
+	background-color: @yellow;
 	color: @black;
 }
 
@@ -77,6 +78,7 @@ window#waybar {
 #mpd,
 #tray,
 #wireplumber,
+#custom-vpn,
 #battery {
 	padding-left: 10px;
 }

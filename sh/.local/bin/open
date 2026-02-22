@@ -5,10 +5,6 @@ set -eu -o pipefail
 
 [ "$#" = 1 ] || (echo "open: missing filename"; exit 1)
 
-list_images() {
-	find "$(dirname "$1")" -maxdepth 1 ! -name "$1" | grep -iE '\.(png|jpe?g|webp|gif|svg|bmp|ico)$'
-}
-
 exec() {
 	"$@" >/dev/null 2>&1 &
 }
@@ -29,9 +25,7 @@ case "$mime_type" in
 		exec zathura "$1"
 		;;
 	image/*)
-		# FIXME: unable to open file names including spaces
-		# shellcheck disable=SC2046
-		exec nsxiv "$1" $(list_images "$1")
+		exec nsxiv-rifle "$1"
 		;;
 	text/csv)
 		exec libreoffice "$1"

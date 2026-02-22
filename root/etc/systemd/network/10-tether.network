@@ -1,0 +1,8 @@
+[Match]
+Name=enp0s*
+
+[Network]
+DHCP=ipv4
+
+[DHCPv4]
+RouteMetric=800

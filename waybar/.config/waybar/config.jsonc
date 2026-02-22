@@ -3,17 +3,17 @@
 	"margin": "10 10 0 10",
 	"reload_style_on_change": true,
 	"modules-left": [
-		"hyprland/workspaces"
-	],
-	"modules-center": [
-		"clock"
+		"hyprland/workspaces",
+		"hyprland/window"
 	],
 	"modules-right": [
+		"mpris",
+		"custom/vpn",
 		"custom/recorder",
-		"mpd",
-		"temperature",
 		"wireplumber",
 		"custom/mic",
+		"clock#date",
+		"clock",
 		"tray"
 	],
 	"privacy": {
@@ -33,6 +33,29 @@
 			}
 		]
 	},
+	"mpris": {
+		"format": "{player_icon} {dynamic}",
+		"format-paused": "{status_icon} <i>{dynamic}</i>",
+		"player-icons": {
+			"default": "⏸"
+		},
+		"status-icons": {
+			"paused": "▶"
+		},
+		"dynamic-len": 45,
+		"dynamic-order": [
+			"title",
+			"artist",
+			"album"
+		]
+	},
+	"custom/vpn": {
+		"format": " VPN",
+		"exec": "echo '{\"class\": \"connected\"}'",
+		"exec-if": "test -d /proc/sys/net/ipv4/conf/tun0",
+		"return-type": "json",
+		"interval": 5
+	},
 	"custom/mic": {
 		"format": " {}",
 		"exec": "$XDG_CONFIG_HOME/waybar/scripts/mic.sh",
@@ -46,19 +69,18 @@
 		"signal": 7
 	},
 	"hyprland/window": {
-		"format": "{title}",
-		"max-length": 80,
-		"icon": true,
+		"format": "",
+		"max-length": 60,
+		"icon": false,
 		"icon-size": 16
 	},
 	"tray": {
 		"icon-size": 16,
 		"spacing": 5
 	},
-	"clock": {
-		"format": "{:%b %d | %H:%M}",
-		"interval": 60,
-		"tooltip": false
+	"clock#date": {
+		"interval": 600,
+		"format": "{:%a %d}"
 	},
 	"mpd": {
 		"format": " {artist} - {title}",

@@ -1,13 +1,5 @@
 {
   "plugins": {
-    "CopilotChat.nvim": {
-      "rev": "743d6005fb412c85309d3f3aa45f18f3a2fb2098",
-      "src": "https://github.com/CopilotC-Nvim/CopilotChat.nvim"
-    },
-    "blink-copilot": {
-      "rev": "7ad8209b2f880a2840c94cdcd80ab4dc511d4f39",
-      "src": "https://github.com/fang2hou/blink-copilot"
-    },
     "blink.cmp": {
       "rev": "4b18c32adef2898f95cdef6192cbd5796c1a332d",
       "src": "https://github.com/saghen/blink.cmp",
@@ -17,20 +9,12 @@
       "rev": "c2526f1cde528a66e086ab1668e996d162c75f4f",
       "src": "https://github.com/stevearc/conform.nvim"
     },
-    "copilot-lsp": {
-      "rev": "1b6d8273594643f51bb4c0c1d819bdb21b42159d",
-      "src": "https://github.com/copilotlsp-nvim/copilot-lsp"
-    },
-    "copilot.lua": {
-      "rev": "3faffefbd6ddeb52578535ec6b730e0b72d7fd1a",
-      "src": "ssh://git@github.com/zbirenbaum/copilot.lua"
-    },
     "friendly-snippets": {
       "rev": "6cd7280adead7f586db6fccbd15d2cac7e2188b9",
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
     "fzf-lua": {
-      "rev": "5921997472574fca3880b62949eb8679dc6f5afc",
+      "rev": "9004cbb4c065a32b690e909c49903967b45301eb",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "gitlinker.nvim": {
@@ -42,7 +26,7 @@
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
     "mini.ai": {
-      "rev": "9eae720f2b20f6ad28cbfa0ddc524e10dc2c3201",
+      "rev": "b0247752cf629ce7c6bd0a1efd82fb58ff60f9d6",
       "src": "https://github.com/nvim-mini/mini.ai"
     },
     "mini.files": {
@@ -74,16 +58,12 @@
       "src": "https://github.com/kylechui/nvim-surround"
     },
     "nvim-treesitter": {
-      "rev": "4d9466677a5ceadef104eaa0fe08d60d91c4e9a7",
+      "rev": "dc42c209f3820bdfaae0956f15de29689aa6b451",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "nvim-ts-autotag": {
       "rev": "8e1c0a389f20bf7f5b0dd0e00306c1247bda2595",
       "src": "https://github.com/windwp/nvim-ts-autotag"
-    },
-    "plenary.nvim": {
-      "rev": "b9fd5226c2f76c951fc8ed5923d85e4de065e509",
-      "src": "https://github.com/nvim-lua/plenary.nvim"
     },
     "quicker.nvim": {
       "rev": "fc041830fa7cf093786b0d5990d99cf3c7b0c129",
@@ -96,6 +76,10 @@
     "vim-fugitive": {
       "rev": "61b51c09b7c9ce04e821f6cf76ea4f6f903e3cf4",
       "src": "https://github.com/tpope/vim-fugitive"
+    },
+    "vim-sleuth": {
+      "rev": "be69bff86754b1aa5adcbb527d7fcd1635a84080",
+      "src": "https://github.com/tpope/vim-sleuth"
     }
   }
 }

@@ -4,11 +4,11 @@
 # Dependencies: st, ncmpc
 set -eu -o pipefail
 
-if pidof ncmpc 2>/dev/null; then
+if pidof ncmpcpp 2>/dev/null; then
 	exit 1
 fi
 
-foot \
+st \
 	-T ncmpcpp \
-	-w 750x400 \
-	-e ncmpcpp -q
+	-g 75x15 \
+	-e ncmpcpp

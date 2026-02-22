@@ -1,0 +1,15 @@
+[Match]
+Name=enp*
+
+[Network]
+DHCP=ipv4
+
+[DHCPv4]
+UseDNS=false
+RouteMetric=1024
+
+[DHCPv6]
+UseDNS=false
+
+[IPv6AcceptRA]
+UseDNS=false

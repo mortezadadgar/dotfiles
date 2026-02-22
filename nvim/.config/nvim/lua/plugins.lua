@@ -3,38 +3,26 @@ local gh = function(plugin, opts)
 end
 
 vim.pack.add {
-	-- LSP
 	gh "neovim/nvim-lspconfig",
-
-	-- File Manager
-	gh "nvim-mini/mini.files",
-
-	-- Fuzzy Finder
 	gh "ibhagwan/fzf-lua",
-
-	-- Editing Tools
 	gh("saghen/blink.cmp", { version = vim.version.range "*" }),
 	gh "rafamadriz/friendly-snippets",
 	gh "stevearc/conform.nvim",
 	gh "kylechui/nvim-surround",
-	gh "nvim-mini/mini.splitjoin",
-	gh "nvim-mini/mini.ai",
 	gh "windwp/nvim-ts-autotag",
-
-	-- Treesitter
 	gh "nvim-treesitter/nvim-treesitter",
-
-	-- Git
 	gh "tpope/vim-fugitive",
 	gh "linrongbin16/gitlinker.nvim",
 	gh "lewis6991/gitsigns.nvim",
-
-	-- Appearance
 	gh("rose-pine/neovim", { name = "rose-pine" }),
+	gh "nvim-mini/mini.files",
+	gh "nvim-mini/mini.splitjoin",
+	gh "nvim-mini/mini.ai",
 	gh "nvim-mini/mini.icons",
 	gh "nvim-mini/mini.notify",
 	gh "karb94/neoscroll.nvim",
 	gh "stevearc/quicker.nvim",
+	gh "tpope/vim-sleuth",
 }
 
 -- pack event -----------------------------------------------------
@@ -60,7 +48,7 @@ vim.lsp.enable {
 	"svelte",
 	"html",
 	"cssls",
-	"biome",
+	-- "biome",
 	"jsonls",
 	"tailwindcss",
 	"typos_lsp",
@@ -97,6 +85,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "gO", "<cmd>FzfLua lsp_document_symbols<cr>", { buffer = args.buf, desc = "Symbols document" })
 		vim.keymap.set("n", "grr", "<cmd>FzfLua lsp_references<cr>", { buffer = args.buf, desc = "LSP References" })
 		vim.keymap.set("n", "gri", "<cmd>FzfLua lsp_implementations<cr>", { buffer = args.buf, desc = "LSP Implementation" })
+
+		-- local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+		-- vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
 	end,
 })
 
@@ -132,18 +123,18 @@ vim.api.nvim_create_autocmd("FileType", {
 require("conform").setup {
 	formatters_by_ft = {
 		lua = { "stylua" },
-		javascript = { "prettier" },
-		svelte = { "prettier" },
-		typescript = { "prettier" },
-		yaml = { "prettier" },
-		html = { "prettier" },
-		css = { "prettier" },
+		javascript = { "prettierd" },
+		svelte = { "prettierd" },
+		typescript = { "prettierd" },
+		yaml = { "prettierd" },
+		html = { "prettierd" },
+		css = { "prettierd" },
 		go = { "goimports" },
 		templ = { "templ" },
 	},
 	formatters = {
-		-- Require a Prettier configuration file to format.
-		prettier = {
+		-- Require a prettierd configuration file to format.
+		prettierd = {
 			require_cwd = true,
 		},
 	},
@@ -170,6 +161,18 @@ require("blink.cmp").setup {
 			"buffer",
 			"path",
 		},
+		providers = {
+			lsp = { fallbacks = {}, score_offset = 2 },
+			buffer = {
+				opts = {
+					get_bufnrs = function()
+						return vim.tbl_filter(function(bufnr)
+							return vim.bo[bufnr].buftype == ""
+						end, vim.api.nvim_list_bufs())
+					end,
+				},
+			},
+		},
 	},
 	cmdline = { enabled = false },
 	completion = {
@@ -194,12 +197,13 @@ require("fzf-lua").setup {
 	previewers = {
 		builtin = {
 			extensions = {
-				["png"] = { "chafa" },
-				["jpg"] = { "chafa" },
-				["jpeg"] = { "chafa" },
-				["webp"] = { "chafa" },
-				["svg"] = { "chafa" },
+				["png"] = { "ueberzug" },
+				["jpg"] = { "ueberzug" },
+				["jpeg"] = { "ueberzug" },
+				["webp"] = { "ueberzug" },
+				["svg"] = { "ueberzug" },
 			},
+			ueberzug_scaler = "cover",
 		},
 	},
 	oldfiles = {

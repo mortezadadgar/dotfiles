@@ -23,4 +23,7 @@ vim.opt.confirm = true
 vim.opt.jumpoptions:append { "view" }
 vim.opt.scrolloff = 4
 vim.opt.updatetime = 1000
+vim.opt.title = true
 vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20,t:ver25" -- disable cursor blinking and vertical line shape for fzf
+-- vim.opt.completeopt:append { "noinsert", "menuone", "fuzzy" }
+-- vim.opt.autocomplete = true

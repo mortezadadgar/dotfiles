@@ -1,0 +1,16 @@
+#!/bin/bash
+# Description: helper to pick hypland window
+# Dependencies: slurp
+
+ACTIVE=$(hyprctl monitors -j | jq -c '[.[].activeWorkspace.id]')
+
+JQ_FILTER='
+.[] 
+| select(
+    (.hidden | not)
+    and (.workspace.id as $id | $active | contains([$id]))
+  )
+| "\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])"
+'
+
+hyprctl clients -j | jq --argjson active "$ACTIVE" -r "$JQ_FILTER" | slurp

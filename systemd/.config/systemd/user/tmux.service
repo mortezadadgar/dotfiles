@@ -1,0 +1,13 @@
+[Unit]
+Description=tmux session
+Wants=graphical-session.target
+After=graphical-session.target
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/tmux new-session -d
+ExecStop=/usr/bin/tmux kill-session
+Restart=on-failure
+
+[Install]
+WantedBy=graphical-session.target

@@ -1,0 +1,30 @@
+#!/bin/bash 
+set -eu
+
+DIR="$HOME/Videos/Recordings"
+FILE="$DIR"/$(date +'recording_%Y-%m-%d-%H%M%S.mp4')
+
+if [ ! -d "$DIR" ]; then
+	mkdir -p "$DIR"
+fi
+
+if pgrep wl-screenrec; then
+	pkill --signal SIGINT wl-screenrec
+	exit 0
+fi
+
+select=$(printf "full screen\nselected window"| dmenu -i -l 10 -p "Screen capture which area?")
+
+case $select in
+	"full screen")
+		wl-screenrec --filename "$FILE" &
+		;;
+	"selected window")
+		regions=$(hyprwindow)
+		wl-screenrec --geometry "$regions" --filename "$FILE" &
+		;;
+esac
+
+# update bar
+pkill -RTMIN+7 waybar
+

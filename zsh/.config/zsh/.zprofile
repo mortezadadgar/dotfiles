@@ -1,3 +1,3 @@
-if uwsm check may-start -g 30; then
-    exec uwsm start hyprland.desktop
+if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
+	exec startx
 fi

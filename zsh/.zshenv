@@ -33,9 +33,6 @@ export GOPROXY="https://goproxy.cn,direct"
 # use git to fetch
 export CARGO_NET_GIT_FETCH_WITH_CLI=true
 
-# lower nodejs process memory usage
-# export NODE_OPTIONS="--max-old-space-size=512"
-
 # password store
 export PASSWORD_STORE_DIR="${XDG_DATA_HOME}/pass"
 export PASSWORD_STORE_CLIP_TIME="120"
