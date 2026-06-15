@@ -45,7 +45,7 @@
 }
 
 #workspaces button.active {
-	background-color: @yellow;
+	background-color: @magenta;
 	color: @black;
 }
 
@@ -55,7 +55,8 @@
 }
 
 window#waybar {
-	background-color: @black;
+	/* workaround https://github.com/Alexays/Waybar/issues/3882 */
+	background: rgba(25, 23, 36, 0.99);
 	color: @white;
 }
 

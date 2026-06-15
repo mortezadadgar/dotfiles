@@ -28,7 +28,7 @@ export NSS_DEFAULT_DB_DIR="$XDG_DATA_HOME/ki/nssdb"
 export ADB_KEYS_PATH="$XDG_DATA_HOME/android"
 
 # go proxy
-export GOPROXY="https://goproxy.cn,direct"
+export GOPROXY=https://mirror-go.runflare.com
 
 # use git to fetch
 export CARGO_NET_GIT_FETCH_WITH_CLI=true

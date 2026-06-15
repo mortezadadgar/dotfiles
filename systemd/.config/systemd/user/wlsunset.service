@@ -6,7 +6,7 @@ After=graphical-session.target
 ConditionEnvironment=WAYLAND_DISPLAY
 
 [Service]
-ExecStart=/usr/bin/wlsunset -T 5501 -t 5500
+ExecStart=/usr/bin/wlsunset -T 5001 -t 5000
 Restart=on-failure
 
 [Install]

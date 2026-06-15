@@ -5,7 +5,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	group = group,
 	pattern = "*",
 	callback = function()
-		vim.highlight.on_yank()
+		vim.hl.on_yank()
 
 		local reg = vim.fn.getreg [["]]
 		local _, count = reg:gsub("\n", "\n")
@@ -39,3 +39,18 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 		end
 	end,
 })
+
+-- vim.api.nvim_create_autocmd("LspProgress", {
+-- 	desc = "Show lsp progress messages",
+-- 	callback = function(ev)
+-- 		local value = ev.data.params.value
+-- 		vim.api.nvim_echo({ { value.message or "done" } }, false, {
+-- 			id = "lsp." .. ev.data.client_id,
+-- 			kind = "progress",
+-- 			source = "vim.lsp",
+-- 			title = value.title,
+-- 			status = value.kind ~= "end" and "running" or "success",
+-- 			percent = value.percentage,
+-- 		})
+-- 	end,
+-- })

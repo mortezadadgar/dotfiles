@@ -65,7 +65,14 @@ done
 # }
 
 {
-	echo "$theme"
 	gsettings set org.gnome.desktop.interface color-scheme "prefer-$theme"
 }
 
+{
+	if [[ "$theme" == "light" ]]; then
+		tmux set -g @rose_pine_variant 'dawn'
+	else
+		tmux set -g @rose_pine_variant 'main'
+	fi
+	tmux source-file $HOME/.config/tmux/tmux.conf 
+}

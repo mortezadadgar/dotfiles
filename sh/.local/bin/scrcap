@@ -27,4 +27,3 @@ esac
 
 # update bar
 pkill -RTMIN+7 waybar
-

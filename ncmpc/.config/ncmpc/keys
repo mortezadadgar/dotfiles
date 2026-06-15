@@ -1,0 +1,10 @@
+key play = 'l'
+key select-playing = ']'
+key screen-help = '1', 265
+key go-parent-directory = 'h'
+key rfind-next = 'N'
+key pause = 'p'
+key scroll-up-half = Ctrl-U
+key scroll-down-half = Ctrl-D
+key db-update = 'U'
+key autocenter-mode = 

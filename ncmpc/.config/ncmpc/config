@@ -1,0 +1,12 @@
+host = 127.0.0.1
+show-title-bar = no
+enable-mouse = yes
+set-xterm-title = yes
+color title = white/black
+color title-bold = white
+color list = white
+color list-bold = blue,standout
+color status-state = green
+color status-song = white/black
+color background = black
+color browser-directory = white/black

@@ -1,8 +1,9 @@
 [Unit]
 Description=Redshift display colour temperature adjustment
 Documentation=http://jonls.dk/redshift/
-Requisite=graphical-session.target
+Wants=graphical-session.target
 After=graphical-session.target
+ConditionEnvironment=DISPLAY
 
 [Service]
 ExecStart=/usr/bin/redshift -O 5000

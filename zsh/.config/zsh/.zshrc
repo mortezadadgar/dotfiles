@@ -1,11 +1,11 @@
 # Enable Powerlevel10k instant prompt.
 if [[ -r "${XDG_CACHE_HOME}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  . "${XDG_CACHE_HOME}/p10k-instant-prompt-${(%):-%n}.zsh"
+    . "${XDG_CACHE_HOME}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
 # Options
 setopt share_history hist_ignore_space hist_ignore_dups
-setopt glob_complete glob_dots glob_star_short extended_glob
+setopt glob_complete glob_dots glob_star_short
 setopt nocomplete_aliases complete_in_word
 setopt interactive_comments
 setopt auto_pushd pushd_ignore_dups cd_silent
@@ -61,13 +61,13 @@ function zle-line-init() {
 }
 zle -N zle-line-init
 
-# Support system clipboard
+# Use system clipboard
 function vi-clip {
     case $KEYS in
-	y) zle vi-yank;;
-	d) zle vi-delete;;
+        y) zle vi-yank;;
+        d) zle vi-delete;;
     esac
-    echo "$CUTBUFFER" | xclip -sel clipboard -r
+    echo "$CUTBUFFER" | wl-copy --trim-newline
 }
 zle -N vi-clip
 bindkey -M vicmd 'y' vi-clip
@@ -77,28 +77,17 @@ bindkey -M vicmd 'd' vi-clip
 autoload edit-command-line; zle -N edit-command-line
 bindkey "^E" edit-command-line
 
-# aliases
-. $ZDOTDIR/aliasrc
-
 # fzf
 if (( $+commands[fzf] )); then
     . /usr/share/fzf/key-bindings.zsh
     . /usr/share/fzf/completion.zsh
 fi
 
-# lazy load nvm
-nvm() {
-    source "/usr/share/nvm/init-nvm.sh"
-    nvm "$@"
-}
+# aliases
+. $ZDOTDIR/aliasrc
 
 # Plugins
 . $ZDOTDIR/plugins/zsh-syntax-highlighting/*.plugin.zsh
 . $ZDOTDIR/plugins/zsh-autosuggestions/*.plugin.zsh
 . $ZDOTDIR/plugins/powerlevel10k/powerlevel10k.zsh-theme
-
-# Render comments in bright black color
-ZSH_HIGHLIGHT_STYLES[comment]="fg=8"
-
-# load p10k config
-. "$ZDOTDIR"/.p10k.zsh
+. $ZDOTDIR/.p10k.zsh

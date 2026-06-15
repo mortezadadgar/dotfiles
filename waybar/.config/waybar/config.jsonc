@@ -3,8 +3,8 @@
 	"margin": "10 10 0 10",
 	"reload_style_on_change": true,
 	"modules-left": [
-		"hyprland/workspaces",
-		"hyprland/window"
+		"ext/workspaces",
+		"dwl/window"
 	],
 	"modules-right": [
 		"mpris",
@@ -69,10 +69,20 @@
 		"signal": 7
 	},
 	"hyprland/window": {
-		"format": "",
+		"format": "{title}",
 		"max-length": 60,
 		"icon": false,
 		"icon-size": 16
+	},
+	"ext/workspaces": {
+		"format": "{icon}",
+		"ignore-hidden": true,
+		"on-click": "activate",
+		"on-click-right": "deactivate",
+		"sort-by-id": true
+	},
+	"dwl/window": {
+		"format": "[{layout}] {title}"
 	},
 	"tray": {
 		"icon-size": 16,

@@ -1,5 +1,9 @@
-timeout 300 "waylock"
+timeout 290 'dim'
+
+timeout 300 'waylock'
 
 timeout 310 'wlr-dpms off' resume 'wlr-dpms on'
 
-before-sleep "waylock"
+timeout 900 'systemctl suspend'
+
+before-sleep 'waylock'

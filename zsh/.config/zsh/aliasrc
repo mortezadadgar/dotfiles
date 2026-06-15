@@ -30,7 +30,9 @@ alias cat="bat"
 alias nnn="nnn -e"
 alias rsstop="ps -o comm,rss --sort -rss --ppid 2 -p 2 --deselect | head -n 15"
 alias sqlite3="sqlite3 -cmd 'PRAGMA foreign_keys=ON;'"
+alias mkdir="mkdir --parents"
 # alias nvim="nvim --listen /tmp/nvim.pipe"
+alias tw="taskwarrior-tui"
 
 # git
 alias gst="git status"

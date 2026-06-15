@@ -1,8 +1,6 @@
 [global]
 	font = Open Sans 11
 	format = "<b><span foreground='#907aa9'>%s</span></b>\n%b"
-	width = (300, 300)
-	height = (0, 150)
 	origin = bottom-right
 	offset = (30, 25)
 	line_height = 3

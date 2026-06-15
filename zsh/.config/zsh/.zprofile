@@ -1,3 +1,3 @@
-if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
-	exec startx
+if uwsm check may-start; then
+    exec uwsm start mango
 fi

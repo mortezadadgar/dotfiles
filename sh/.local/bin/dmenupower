@@ -4,22 +4,25 @@
 # Shell: Bash
 set -eu -o pipefail
 
-select=$(printf " Poweroff\n Restart\n󰍃 Logoff\n Lockscreen\n󰤄 Sleep"| dmenu -i)
+select=$(printf " Poweroff\n Restart\n󰍃 Logoff\n Lockscreen\n󰤄 Sleep\nHibernate"| dmenu -i)
 
 case $select in
 	" Poweroff")
-		systemctl poweroff -i
+		systemctl poweroff
 		;;
 	" Restart")
-		systemctl reboot -i
+		systemctl reboot
 		;;
 	"󰍃 Logoff")
-		xdotool key super+shift+ctrl+q
+		uwsm stop
 		;;
 	" Lockscreen")
-		slock
+		loginctl lock-session
 		;;
 	"󰤄 Sleep")
-		systemctl suspend -i
+		systemctl suspend
+		;;
+	"Hibernate")
+		systemctl hibernate
 		;;
 esac
